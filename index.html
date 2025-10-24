@@ -28,31 +28,28 @@
       text-transform:uppercase;
     }
 
-    /* --- Intro (flat, centered, black outline) --- */
+    /* --- Intro (flat, red fill with black outline) --- */
     .netflix-intro{
       position:fixed; inset:0; display:grid; place-items:center;
       background:#000; z-index:10000; animation:hideIntro .5s ease 2.6s forwards;
     }
-    .netflix-logo{ display:grid; place-items-center; animation:logoZoom 1.8s ease both; }
+    .netflix-logo{ display:grid; place-items:center; animation:logoZoom 1.8s ease both; }
     .logo-text{
-      /* size similar to the earlier splash, but flat */
       font-family:"Netflix Sans","Bebas Neue",system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
       font-weight:900;
-      font-size:clamp(88px,12vw,220px);
+      font-size:clamp(96px,13vw,240px);
       line-height:1;
       letter-spacing:-.02em;
-      color:#fff;
+      color:#E50914;                 /* RED fill */
       text-transform:uppercase;
       text-align:center;
 
-      /* Black outline for readability */
-      -webkit-text-stroke: 6px #000;
-      /* red “beam” and soft glow; stroke renders under fill due to text-stroke */
+      /* Black outline for bold, graphic look */
+      -webkit-text-stroke: 8px #000;
+      /* slight glow and density */
       text-shadow:
-        .06em 0 var(--accent),
-        0 0 18px rgba(229,9,20,.45),
-        0 0 2px rgba(0,0,0,.85);
-      /* tighten glyph rendering */
+        0 0 2px rgba(0,0,0,.85),
+        0 0 18px rgba(229,9,20,.35);
       font-kerning:normal;
     }
     @keyframes logoZoom{ 0%{transform:scale(.6);opacity:0}55%{transform:scale(1.15);opacity:1}100%{transform:scale(1)} }
@@ -128,6 +125,8 @@
       transition:background .25s ease, box-shadow .25s ease;
     }
     .navbar.scrolled{ background:#0f0f0f; box-shadow:0 2px 0 rgba(255,255,255,.04) inset; }
+
+    /* Brand (clickable resets to intro like before) */
     .brand{
       background:none; border:0; padding:0; margin:0;
       font-weight:900; color:var(--accent); letter-spacing:-.04em; font-size:clamp(22px,3.2vw,32px);
@@ -199,8 +198,8 @@
 <body>
   <!-- Intro (flat text) -->
   <div class="netflix-intro" aria-hidden="true">
-    <div class="netflix-logo" aria-label="Angel Contreras">
-      <div class="logo-text nf">ANGEL CONTRERAS</div>
+    <div class="netflix-logo" aria-label="ANGE">
+      <div class="logo-text nf">ANGE</div>
     </div>
   </div>
 
@@ -210,7 +209,7 @@
       <h2 id="whosWatching" class="nf">Who’s watching?</h2>
       <div class="grid">
         <!-- Recruiter (clickable) -->
-        <button class="tile" data-profile="recruiter" data-target="#projects" aria-label="Recruiter profile">
+        <button class="tile" data-profile="recruiter" data-target="#professional" aria-label="Recruiter profile">
           <div class="avatar av-recruiter" aria-hidden="true">
             <span class="icon">
               <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -222,7 +221,7 @@
         </button>
 
         <!-- Friends / Family (disabled) -->
-        <button class="tile disabled" data-profile="family" data-target="#skills" aria-label="Friends and Family profile" aria-disabled="true" tabindex="-1">
+        <button class="tile disabled" data-profile="family" data-target="#home" aria-label="Friends and Family profile" aria-disabled="true" tabindex="-1">
           <div class="avatar av-family" aria-hidden="true">
             <span class="icon">
               <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -254,11 +253,11 @@
     <nav class="navbar" id="navbar">
       <button class="brand nf" id="brandHome" aria-label="Reset to intro">Angel Contreras</button>
       <div class="navlinks" role="navigation" aria-label="Primary">
-        <a href="#home">Home</a>
-        <a href="#projects">Projects</a>
+        <a href="#home" id="navHome">Home</a>
+        <a href="#professional" id="navProfessional">Professional</a>
         <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
-        <a href="#contact">Contact</a>
+        <a href="#hire" id="navHire">Hire Me</a>
       </div>
     </nav>
 
@@ -269,18 +268,18 @@
         <p class="sub">Full Stack Developer &amp; IT Professional</p>
         <p class="desc">Passionate about building innovative solutions and creating seamless digital experiences. Breaking into tech, one project at a time.</p>
         <div class="cta">
-          <a class="btn btn-white" href="#resume"><span aria-hidden="true">▶</span> View&nbsp;Resume</a>
-          <a class="btn btn-ghost" href="#projects"><span aria-hidden="true">ℹ</span> More&nbsp;Info</a>
+          <a class="btn btn-white" href="#professional"><span aria-hidden="true">▶</span> View&nbsp;Professional</a>
+          <a class="btn btn-ghost" href="#professional"><span aria-hidden="true">ℹ</span> More&nbsp;Info</a>
         </div>
       </div>
     </header>
 
-    <!-- Projects -->
-    <section class="section" id="projects">
-      <h2 class="section-title">Featured Projects</h2>
+    <!-- Professional (renamed from Projects) -->
+    <section class="section" id="professional">
+      <h2 class="section-title">Professional</h2>
       <div class="rail">
-        <button class="scroll-btn scroll-left" aria-label="Scroll projects left">‹</button>
-        <div class="scroller" tabindex="0" aria-label="Featured projects carousel">
+        <button class="scroll-btn scroll-left" aria-label="Scroll left">‹</button>
+        <div class="scroller" tabindex="0" aria-label="Professional carousel">
           <article class="card" style="background:#2a2a2a">
             <img class="thumb" alt="Project Charter Website" loading="lazy"
                  src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=900&auto=format&fit=crop">
@@ -326,7 +325,7 @@
             </div>
           </article>
         </div>
-        <button class="scroll-btn scroll-right" aria-label="Scroll projects right">›</button>
+        <button class="scroll-btn scroll-right" aria-label="Scroll right">›</button>
       </div>
     </section>
 
@@ -424,17 +423,27 @@
       </div>
     </section>
 
+    <!-- Hire Me (replaces Contact) -->
+    <section class="section" id="hire">
+      <h2 class="section-title">Hire Me</h2>
+      <p style="color:#bdbdbd; max-width:60ch">
+        I’m open to full-time roles and select freelance projects. Email
+        <a href="mailto:angel@example.com" style="color:#e5e5e5">angel@example.com</a>
+        or DM on <a href="https://linkedin.com" target="_blank" rel="noopener" style="color:#e5e5e5">LinkedIn</a>.
+      </p>
+    </section>
+
     <!-- Footer -->
-    <footer class="footer" id="contact">
+    <footer class="footer">
       <nav class="links" aria-label="Footer">
         <a href="mailto:angel@example.com">Email</a>
         <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
-        <a href="#resume">Resume</a>
-        <a href="#projects">Projects</a>
+        <a href="#professional">Professional</a>
         <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
-        <a href="#home">Back to top</a>
+        <a href="#hire">Hire Me</a>
+        <a href="#home" id="footerHome">Back to top</a>
       </nav>
       <p class="copyright">© <span id="year"></span> Angel Contreras. All rights reserved.</p>
     </footer>
@@ -447,40 +456,6 @@
       if (window.scrollY > 80) navbar.classList.add('scrolled');
       else navbar.classList.remove('scrolled');
     }, { passive: true });
-
-    // ---------- In-page nav ----------
-    document.querySelectorAll('.navlinks a').forEach(a => {
-      a.addEventListener('click', e => {
-        const id = a.getAttribute('href');
-        if (!id || !id.startsWith('#')) return;
-        e.preventDefault();
-        const el = document.querySelector(id);
-        if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
-      });
-    });
-
-    // ---------- Carousels ----------
-    function setupRail(rail){
-      const scroller = rail.querySelector('.scroller');
-      const left = rail.querySelector('.scroll-left');
-      const right = rail.querySelector('.scroll-right');
-      const step = () => Math.round(scroller.clientWidth * 0.9);
-      left.addEventListener('click', () => scroller.scrollBy({left:-step(), behavior:'smooth'}));
-      right.addEventListener('click', () => scroller.scrollBy({left: step(), behavior:'smooth'}));
-      scroller.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight') { e.preventDefault(); scroller.scrollBy({left: step(), behavior:'smooth'}); }
-        if (e.key === 'ArrowLeft')  { e.preventDefault(); scroller.scrollBy({left:-step(), behavior:'smooth'}); }
-      });
-      const updateBtns = () => {
-        const max = scroller.scrollWidth - scroller.clientWidth - 1;
-        left.style.display  = scroller.scrollLeft <= 2 ? 'none' : 'grid';
-        right.style.display = scroller.scrollLeft >= max ? 'none' : 'grid';
-      };
-      scroller.addEventListener('scroll', updateBtns, { passive:true });
-      new ResizeObserver(updateBtns).observe(scroller);
-      updateBtns();
-    }
-    document.querySelectorAll('.rail').forEach(setupRail);
 
     // ---------- Year ----------
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -538,6 +513,29 @@
       tailSrc.start(now+0.5); tailSrc.stop(now+2.0);
     }
 
+    // ---------- Carousels ----------
+    function setupRail(rail){
+      const scroller = rail.querySelector('.scroller');
+      const left = rail.querySelector('.scroll-left');
+      const right = rail.querySelector('.scroll-right');
+      const step = () => Math.round(scroller.clientWidth * 0.9);
+      left.addEventListener('click', () => scroller.scrollBy({left:-step(), behavior:'smooth'}));
+      right.addEventListener('click', () => scroller.scrollBy({left: step(), behavior:'smooth'}));
+      scroller.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') { e.preventDefault(); scroller.scrollBy({left: step(), behavior:'smooth'}); }
+        if (e.key === 'ArrowLeft')  { e.preventDefault(); scroller.scrollBy({left:-step(), behavior:'smooth'}); }
+      });
+      const updateBtns = () => {
+        const max = scroller.scrollWidth - scroller.clientWidth - 1;
+        left.style.display  = scroller.scrollLeft <= 2 ? 'none' : 'grid';
+        right.style.display = scroller.scrollLeft >= max ? 'none' : 'grid';
+      };
+      scroller.addEventListener('scroll', updateBtns, { passive:true });
+      new ResizeObserver(updateBtns).observe(scroller);
+      updateBtns();
+    }
+    document.querySelectorAll('.rail').forEach(setupRail);
+
     // ---------- Flow: Intro -> Profiles -> Main ----------
     const introSel = '.netflix-intro';
     const profiles = document.getElementById('profiles');
@@ -552,6 +550,7 @@
     function showMain(){ appRoot.classList.add('show'); }
     function hideMain(){ appRoot.classList.remove('show'); }
 
+    // autoplay with interaction fallback
     function kickIntro(){
       let started = false;
       const start = async () => {
@@ -602,7 +601,7 @@
         e && e.preventDefault();
         return;
       }
-      const target = this.getAttribute('data-target') || '#home';
+      const target = this.getAttribute('data-target') || '#professional';
       const profile = this.getAttribute('data-profile') || 'guest';
       localStorage.setItem('ac_profile_choice', profile);
       hideProfiles(); showMain();
@@ -610,6 +609,7 @@
       if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
     }
 
+    // Wire profile tiles
     document.querySelectorAll('.tile').forEach(btn => {
       btn.addEventListener('click', handleProfileClick);
       btn.addEventListener('keydown', (e) => {
@@ -618,15 +618,26 @@
       });
     });
 
+    // Brand still resets to full intro (with sound)
     document.getElementById('brandHome').addEventListener('click', resetToIntro);
+
+    // NEW: Home nav opens Who’s Watching (no intro, no sound)
+    const navHome = document.getElementById('navHome');
+    const footerHome = document.getElementById('footerHome');
+    function openProfilesFromNav(e){
+      e.preventDefault();
+      hideMain();
+      showProfiles();
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    }
+    navHome.addEventListener('click', openProfilesFromNav);
+    footerHome.addEventListener('click', openProfilesFromNav);
 
     // Boot
     window.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('year').textContent = new Date().getFullYear();
       kickIntro();
       scheduleAfterIntro();
     });
   </script>
 </body>
 </html>
-
