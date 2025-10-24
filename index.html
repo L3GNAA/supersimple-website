@@ -1,12 +1,4 @@
-Got it—I made the intro text much more readable and upgraded the intro sting to a closer, two-hit “ta-dum”-style synth (no copyrighted audio used). Paste this whole file over yours.
 
-**What changed**
-
-* Stronger contrast: white fill + red offset shadow + soft glow.
-* Slightly looser letter-spacing and larger min size.
-* Web Audio “ta-dum” with low boom → high strike, short noise impact, and a tiny tail. Falls back to play on first tap/keypress if autoplay is blocked.
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,22 +7,6 @@ Got it—I made the intro text much more readable and upgraded the intro sting t
   <title>Angel Contreras — Netflix-style</title>
   <meta name="color-scheme" content="dark">
 
-  <!-- If you own licensed Netflix Sans, point @font-face to them and remove the Bebas import. -->
-  <!--
-  <style>
-    @font-face{
-      font-family:"Netflix Sans";
-      src:url("/assets/fonts/NetflixSans-Regular.woff2") format("woff2");
-      font-weight:400; font-style:normal; font-display:swap;
-    }
-    @font-face{
-      font-family:"Netflix Sans";
-      src:url("/assets/fonts/NetflixSans-Bold.woff2") format("woff2");
-      font-weight:700; font-style:normal; font-display:swap;
-    }
-  </style>
-  -->
-  <!-- Free look-alike fallback -->
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 
   <style>
@@ -528,6 +504,3 @@ Got it—I made the intro text much more readable and upgraded the intro sting t
   </script>
 </body>
 </html>
-```
-
-If you’d like the intro to say `(Angel Contreras)` with parentheses, just change the splash text inside `.netflix-logo`. Want it even bolder? Swap `-webkit-text-stroke: .5px` to `1px`.
