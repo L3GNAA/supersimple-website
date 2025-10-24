@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +6,7 @@
   <title>Angel Contreras — Netflix-style</title>
   <meta name="color-scheme" content="dark">
 
+  <!-- If you own licensed Netflix Sans files, wire them via @font-face and remove Bebas. -->
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 
   <style>
@@ -29,30 +29,24 @@
       text-transform:uppercase;
     }
 
-    /* --- Netflix splash --- */
+    /* --- Intro (unchanged, but readable) --- */
     .netflix-intro{
       position:fixed; inset:0; display:grid; place-items:center;
       background:#000; z-index:10000; animation:hideIntro .5s ease 2.6s forwards;
     }
-
-    /* Make intro highly readable on black */
     .netflix-logo{
       font-size: clamp(88px,12vw,220px);
       font-weight: 900;
-      color:#fff;                          /* White fill for max contrast */
+      color:#fff;
       letter-spacing:-.02em;
       text-align:center;
-
-      /* Red offset “beam” + soft glow + crisp outline */
       text-shadow:
-        .06em 0 var(--accent),             /* red offset (right) */
-        0 0 18px rgba(229,9,20,.45),       /* red glow */
-        0 0 2px rgba(0,0,0,.8);            /* dark edge crispness */
-
-      -webkit-text-stroke: .5px rgba(0,0,0,.35); /* subtle outline for readability */
+        .06em 0 var(--accent),
+        0 0 18px rgba(229,9,20,.45),
+        0 0 2px rgba(0,0,0,.8);
+      -webkit-text-stroke:.5px rgba(0,0,0,.35);
       animation:logoZoom 1.8s ease both;
     }
-
     @keyframes logoZoom{
       0%{transform:scale(.6); opacity:0}
       55%{transform:scale(1.15); opacity:1}
@@ -60,8 +54,55 @@
     }
     @keyframes hideIntro{to{opacity:0; visibility:hidden}}
 
-    .main{opacity:0; animation:fadeIn .8s ease 2.8s forwards}
-    @keyframes fadeIn{to{opacity:1}}
+    /* --- Who's Watching --- */
+    .profiles{
+      position:fixed; inset:0; display:none; align-items:center; justify-content:center;
+      background:#000; z-index:9000;
+    }
+    .profiles.show{ display:flex; animation:fadeIn .35s ease both; }
+    .profiles-wrap{ width:min(1100px,92vw); margin:auto; text-align:center; }
+    .profiles h2{
+      font:900 clamp(20px,3.2vw,32px)/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:#fff; margin:0 0 20px;
+    }
+    .grid{
+      display:grid; gap:18px;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+    }
+    @media (max-width:900px){ .grid{grid-template-columns: repeat(3,1fr)} }
+    @media (max-width:640px){ .grid{grid-template-columns: repeat(2,1fr)} }
+
+    .tile{
+      display:grid; gap:10px; place-items:center; cursor:pointer; text-decoration:none;
+      user-select:none; outline:none;
+    }
+    .avatar{
+      width:min(28vw,170px); height:min(28vw,170px);
+      border-radius:10px; overflow:hidden; background:#1f1f1f;
+      border:2px solid transparent; box-shadow:0 0 0 0 rgba(255,255,255,.0);
+      transition:transform .12s ease, border-color .12s ease, box-shadow .12s ease;
+      display:grid; place-items:center;
+    }
+    .avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .tile:focus .avatar, .tile:hover .avatar{
+      transform:scale(1.04);
+      border-color:#fff;
+      box-shadow:0 0 0 4px rgba(255,255,255,.12);
+    }
+    .label{
+      font-weight:700; color:#a3a3a3; letter-spacing:.04em; font-size:14px;
+    }
+    .profiles .manage{
+      display:inline-block; margin-top:26px; color:#a3a3a3; font-size:13px; text-decoration:none;
+    }
+    .profiles .manage:hover{ color:#c7c7c7; text-decoration:underline; }
+
+    .hide{ display:none !important; }
+
+    /* --- Main app visibility is controlled by JS after profile pick --- */
+    .main{ opacity:0; }
+    .main.show{ animation:fadeIn .6s ease forwards; }
+    @keyframes fadeIn{ to{ opacity:1 } }
 
     /* --- Navbar --- */
     .navbar{
@@ -156,30 +197,55 @@
     .links a{color:#808080; text-decoration:none; font-size:13px}
     .links a:hover{text-decoration:underline}
     .copyright{color:#808080; font-size:12px}
-
-    /* Motion respect */
-    @media (prefers-reduced-motion: reduce){
-      .netflix-intro, .main, .card, .scroller{animation:none; scroll-behavior:auto}
-      .card, .overlay, .scroll-btn{transition:none}
-    }
-
-    /* Mobile */
-    @media (max-width: 768px){
-      .navbar{padding:12px 16px}
-      .navlinks{gap:14px}
-      .card{min-width:250px; height:145px}
-      .links{grid-template-columns: repeat(2, minmax(0,1fr))}
-    }
   </style>
 </head>
 <body>
-  <!-- Splash -->
+  <!-- Intro -->
   <div class="netflix-intro" aria-hidden="true">
     <div class="netflix-logo nf" aria-label="Angel Contreras">Angel Contreras</div>
   </div>
 
+  <!-- Who's watching -->
+  <div id="profiles" class="profiles" role="dialog" aria-labelledby="whosWatching">
+    <div class="profiles-wrap">
+      <h2 id="whosWatching" class="nf">Who’s watching?</h2>
+      <div class="grid">
+        <!-- Each tile maps to a different section/URL via data-target -->
+        <button class="tile" data-profile="angel" data-target="#projects">
+          <div class="avatar" aria-hidden="true">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&auto=format&fit=crop" alt="">
+          </div>
+          <span class="label nf">Angel</span>
+        </button>
+
+        <button class="tile" data-profile="developer" data-target="#skills">
+          <div class="avatar" aria-hidden="true">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop" alt="">
+          </div>
+          <span class="label nf">Developer</span>
+        </button>
+
+        <button class="tile" data-profile="it" data-target="#experience">
+          <div class="avatar" aria-hidden="true">
+            <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=600&auto=format&fit=crop" alt="">
+          </div>
+          <span class="label nf">IT</span>
+        </button>
+
+        <button class="tile" data-profile="guest" data-target="#home">
+          <div class="avatar" aria-hidden="true">
+            <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?w=600&auto=format&fit=crop" alt="">
+          </div>
+          <span class="label nf">Guest</span>
+        </button>
+      </div>
+
+      <a href="#" id="manageProfiles" class="manage">Manage profiles</a>
+    </div>
+  </div>
+
   <!-- App -->
-  <div class="main">
+  <div class="main" id="appRoot">
     <!-- Nav -->
     <nav class="navbar" id="navbar">
       <div class="brand nf" aria-label="Brand">Angel Contreras</div>
@@ -219,6 +285,7 @@
               <p class="meta">Interactive web-based project management tool</p>
             </div>
           </article>
+
           <article class="card">
             <img class="thumb" alt="Portfolio Website" loading="lazy"
                  src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=901&auto=format&fit=crop">
@@ -227,6 +294,7 @@
               <p class="meta">Personal portfolio showcasing skills and projects</p>
             </div>
           </article>
+
           <article class="card">
             <img class="thumb" alt="IT Management System" loading="lazy"
                  src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=1000&auto=format&fit=crop">
@@ -235,6 +303,7 @@
               <p class="meta">Full-stack application for IT project tracking</p>
             </div>
           </article>
+
           <article class="card">
             <img class="thumb" alt="Database Design" loading="lazy"
                  src="https://images.unsplash.com/photo-1555949963-aa79dcee981d?w=1000&auto=format&fit=crop">
@@ -243,6 +312,7 @@
               <p class="meta">Optimized database architecture</p>
             </div>
           </article>
+
           <article class="card">
             <img class="thumb" alt="Web Development" loading="lazy"
                  src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1000&auto=format&fit=crop">
@@ -367,15 +437,14 @@
   </div>
 
   <script>
-    // Solidify nav on scroll
+    // ---------- Nav on scroll ----------
     const navbar = document.getElementById('navbar');
-    const onScroll = () => {
+    addEventListener('scroll', () => {
       if (window.scrollY > 80) navbar.classList.add('scrolled');
       else navbar.classList.remove('scrolled');
-    };
-    addEventListener('scroll', onScroll, { passive: true });
+    }, { passive: true });
 
-    // Smooth in-page nav
+    // ---------- In-page nav ----------
     document.querySelectorAll('.navlinks a').forEach(a => {
       a.addEventListener('click', e => {
         const id = a.getAttribute('href');
@@ -386,21 +455,18 @@
       });
     });
 
-    // Carousels: buttons + keyboard
+    // ---------- Carousels ----------
     function setupRail(rail){
       const scroller = rail.querySelector('.scroller');
       const left = rail.querySelector('.scroll-left');
       const right = rail.querySelector('.scroll-right');
       const step = () => Math.round(scroller.clientWidth * 0.9);
-
       left.addEventListener('click', () => scroller.scrollBy({left:-step(), behavior:'smooth'}));
       right.addEventListener('click', () => scroller.scrollBy({left: step(), behavior:'smooth'}));
-
       scroller.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowRight') { e.preventDefault(); scroller.scrollBy({left: step(), behavior:'smooth'}); }
         if (e.key === 'ArrowLeft')  { e.preventDefault(); scroller.scrollBy({left:-step(), behavior:'smooth'}); }
       });
-
       const updateBtns = () => {
         const max = scroller.scrollWidth - scroller.clientWidth - 1;
         left.style.display  = scroller.scrollLeft <= 2 ? 'none' : 'grid';
@@ -412,64 +478,53 @@
     }
     document.querySelectorAll('.rail').forEach(setupRail);
 
-    // Year
+    // ---------- Year ----------
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // --------- “Ta-dum”-style intro (closer approximation, no copyrighted file) ---------
+    // ---------- “Ta-dum”-style intro (copyright-safe) ----------
     async function playTaDum(){
       const Ctx = window.AudioContext || window.webkitAudioContext;
       const ctx = new Ctx();
       const now = ctx.currentTime;
 
-      // master
       const master = ctx.createGain();
       master.gain.setValueAtTime(0.9, now);
       master.gain.exponentialRampToValueAtTime(0.0001, now + 2.4);
       master.connect(ctx.destination);
 
-      // helper: short noise burst (impact / whoosh)
       function noiseBurst(t, dur = 0.25, gain = 0.8){
         const buf = ctx.createBuffer(1, ctx.sampleRate * dur, ctx.sampleRate);
         const d = buf.getChannelData(0);
         for (let i=0;i<d.length;i++) d[i] = (Math.random()*2-1) * (1 - i/d.length);
-        const src = ctx.createBufferSource();
-        src.buffer = buf;
+        const src = ctx.createBufferSource(); src.buffer = buf;
         const g = ctx.createGain();
         g.gain.setValueAtTime(gain, t);
         g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-        src.connect(g); g.connect(master);
-        src.start(t); src.stop(t + dur + 0.05);
+        src.connect(g); g.connect(master); src.start(t); src.stop(t + dur + 0.05);
       }
 
-      // helper: percussive hit (osc sweep)
       function hit(t, { type='sine', f0=60, f1=45, g0=1.0, gDur=0.9, len=1.0 } = {}){
-        const osc = ctx.createOscillator();
-        osc.type = type;
+        const osc = ctx.createOscillator(); osc.type = type;
         osc.frequency.setValueAtTime(f0, t);
         osc.frequency.exponentialRampToValueAtTime(f1, t + gDur);
-
         const g = ctx.createGain();
         g.gain.setValueAtTime(0.0001, t);
         g.gain.exponentialRampToValueAtTime(g0, t + 0.02);
         g.gain.exponentialRampToValueAtTime(0.0001, t + gDur);
-
-        // slight stereo widening via delay (very subtle)
-        const delay = ctx.createDelay();
-        delay.delayTime.setValueAtTime(0.012, t);
-
+        const delay = ctx.createDelay(); delay.delayTime.setValueAtTime(0.012, t);
         osc.connect(g); g.connect(delay); delay.connect(master);
         osc.start(t); osc.stop(t + len);
       }
 
-      // HIT 1: low boom + noise
+      // HIT 1 + noise
       hit(now, { type:'sine', f0:56, f1:40, g0:1.0, gDur:0.9, len:1.0 });
       noiseBurst(now, 0.22, 0.7);
 
-      // HIT 2: higher musical strike (slightly later) + short bright noise
+      // HIT 2 (higher) + short bright noise
       hit(now + 0.36, { type:'triangle', f0:392, f1:330, g0:0.95, gDur:0.95, len:1.3 });
       noiseBurst(now + 0.36, 0.18, 0.5);
 
-      // tiny airy tail (very short bandpassed noise)
+      // airy tail
       const tail = ctx.createBuffer(1, ctx.sampleRate * 0.5, ctx.sampleRate);
       const td = tail.getChannelData(0);
       for (let i=0;i<td.length;i++) td[i] = (Math.random()*2-1) * (1 - i/td.length);
@@ -481,7 +536,22 @@
       tailSrc.start(now+0.5); tailSrc.stop(now+2.0);
     }
 
-    // Try to play automatically; if blocked, play on first interaction.
+    // ---------- Flow control: Intro -> Profiles -> Main ----------
+    const profiles = document.getElementById('profiles');
+    const appRoot = document.getElementById('appRoot');
+
+    function showProfiles(){
+      profiles.classList.add('show');
+      profiles.querySelector('.tile')?.focus();
+    }
+    function hideProfiles(){
+      profiles.classList.remove('show');
+    }
+    function showMain(){
+      appRoot.classList.add('show');
+    }
+
+    // Try to play automatically; if blocked, wait for first interaction.
     function kickIntro(){
       let started = false;
       const start = async () => {
@@ -491,16 +561,58 @@
         window.removeEventListener('keydown', start);
         window.removeEventListener('touchstart', start);
       };
-      // fire slightly after mount so the logo is visible first
-      setTimeout(start, 300);
-      // mobile/desktop autoplay fallback
+      setTimeout(start, 300); // logo first
       window.addEventListener('click', start, { once:true });
       window.addEventListener('keydown', start, { once:true });
       window.addEventListener('touchstart', start, { once:true });
     }
 
-    // Kick it off
-    window.addEventListener('DOMContentLoaded', kickIntro);
+    // After intro finishes, either show profile screen or skip if we remember one
+    function afterIntro(){
+      const saved = localStorage.getItem('ac_profile_choice');
+      if (saved) {
+        // Jump straight to saved destination
+        const btn = document.querySelector(`.tile[data-profile="${saved}"]`);
+        if (btn) handleProfileClick.call(btn);
+        else showProfiles();
+      } else {
+        showProfiles();
+      }
+    }
+
+    // Handle clicks on profile tiles
+    function handleProfileClick(){
+      const target = this.getAttribute('data-target') || '#home';
+      const profile = this.getAttribute('data-profile') || 'guest';
+      localStorage.setItem('ac_profile_choice', profile);
+      hideProfiles();
+      showMain();
+      // Scroll to destination
+      const el = document.querySelector(target);
+      if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
+    }
+
+    // Manage link (clear choice)
+    document.getElementById('manageProfiles').addEventListener('click', (e) => {
+      e.preventDefault();
+      localStorage.removeItem('ac_profile_choice');
+      alert('Profile choice cleared. Reload to choose again.');
+    });
+
+    // Wire profile buttons
+    document.querySelectorAll('.tile').forEach(btn => {
+      btn.addEventListener('click', handleProfileClick);
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleProfileClick.call(btn); }
+      });
+    });
+
+    // Start sequence
+    window.addEventListener('DOMContentLoaded', () => {
+      kickIntro();
+      // Wait for intro to finish (2.6s) then show profiles
+      setTimeout(afterIntro, 2700);
+    });
   </script>
 </body>
 </html>
