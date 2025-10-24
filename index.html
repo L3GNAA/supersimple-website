@@ -6,7 +6,6 @@
   <title>Angel Contreras — Netflix-style</title>
   <meta name="color-scheme" content="dark">
 
-  <!-- If you own licensed Netflix Sans, wire it via @font-face and remove Bebas. -->
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 
   <style>
@@ -22,36 +21,25 @@
       background:var(--bg); color:var(--ink); overflow-x:hidden;
     }
 
-    /* Netflix-like font utility */
     .nf{
       font-family:"Netflix Sans","Bebas Neue",system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
       letter-spacing:.015em;
       text-transform:uppercase;
     }
 
-    /* --- Intro (readable) --- */
+    /* --- Intro (arched, black outline) --- */
     .netflix-intro{
       position:fixed; inset:0; display:grid; place-items:center;
       background:#000; z-index:10000; animation:hideIntro .5s ease 2.6s forwards;
     }
-    .netflix-logo{
-      font-size: clamp(88px,12vw,220px);
-      font-weight: 900;
-      color:#fff;
-      letter-spacing:-.02em;
-      text-align:center;
-      text-shadow:
-        .06em 0 var(--accent),
-        0 0 18px rgba(229,9,20,.45),
-        0 0 2px rgba(0,0,0,.8);
-      -webkit-text-stroke:.5px rgba(0,0,0,.35);
-      animation:logoZoom 1.8s ease both;
+    .netflix-logo{ display:grid; place-items:center; animation:logoZoom 1.8s ease both; }
+    .logo-arch{ width:min(92vw,1200px); height:auto; transform-origin:center; }
+    .ac-text{
+      font-family:"Netflix Sans","Bebas Neue",system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+      font-weight:900; letter-spacing:.04em; font-size:clamp(56px,10vw,170px); text-transform:uppercase;
+      fill:#fff; stroke:#000; stroke-width:8px; paint-order:stroke fill; shape-rendering:geometricPrecision;
     }
-    @keyframes logoZoom{
-      0%{transform:scale(.6); opacity:0}
-      55%{transform:scale(1.15); opacity:1}
-      100%{transform:scale(1)}
-    }
+    @keyframes logoZoom{ 0%{transform:scale(.6);opacity:0}55%{transform:scale(1.15);opacity:1}100%{transform:scale(1)} }
     @keyframes hideIntro{to{opacity:0; visibility:hidden}}
 
     /* --- Who's Watching --- */
@@ -68,7 +56,7 @@
 
     .grid{
       display:grid; gap:22px;
-      grid-template-columns: repeat(3, minmax(0,1fr)); /* exactly three */
+      grid-template-columns: repeat(3, minmax(0,1fr));
       place-items:center;
     }
     @media (max-width: 680px){
@@ -79,6 +67,7 @@
       display:grid; gap:10px; place-items:center; cursor:pointer; text-decoration:none;
       user-select:none; outline:none; background:transparent; border:0;
     }
+    .tile.disabled{ cursor:not-allowed; }
     .avatar{
       width:min(32vw,180px); height:min(32vw,180px);
       border-radius:10px; overflow:hidden;
@@ -86,29 +75,30 @@
       transition:transform .12s ease, border-color .12s ease, box-shadow .12s ease, filter .12s ease;
       display:grid; place-items:center;
     }
-    .tile:focus .avatar, .tile:hover .avatar{
+    .tile:not(.disabled):focus .avatar,
+    .tile:not(.disabled):hover .avatar{
       transform:scale(1.04);
       border-color:#fff;
       box-shadow:0 0 0 4px rgba(255,255,255,.12);
       filter:brightness(1.06);
     }
+    /* Disabled visuals */
+    .tile.disabled .avatar{ filter:grayscale(1) brightness(.75); border-color:transparent; }
     .label{
       font-weight:800; color:#a3a3a3; letter-spacing:.04em; font-size:14px;
       text-transform:none;
     }
 
-    /* Avatar color blocks (close to Netflix style) */
+    /* Avatar color blocks */
     .av-recruiter { background:linear-gradient(180deg,#0DB5FF,#0070F3); }
     .av-family    { background:linear-gradient(180deg,#25E26A,#0AA84B); }
     .av-guest     { background:linear-gradient(180deg,#FFB21E,#FF7A00); }
 
-    /* Simple white icons */
     .icon{ width:56%; height:56%; display:block }
     .icon svg{ width:100%; height:100%; fill:#fff }
 
     .hide{ display:none !important; }
 
-    /* Main app shows after pick */
     .main{ opacity:0; }
     .main.show{ animation:fadeIn .6s ease forwards; }
     @keyframes fadeIn{ to{ opacity:1 } }
@@ -123,7 +113,12 @@
       transition:background .25s ease, box-shadow .25s ease;
     }
     .navbar.scrolled{ background:#0f0f0f; box-shadow:0 2px 0 rgba(255,255,255,.04) inset; }
-    .brand{font-weight:900; color:var(--accent); letter-spacing:-.04em; font-size: clamp(22px,3.2vw,32px)}
+    /* Make brand a button for accessibility */
+    .brand{
+      background:none; border:0; padding:0; margin:0;
+      font-weight:900; color:var(--accent); letter-spacing:-.04em; font-size:clamp(22px,3.2vw,32px);
+      cursor:pointer;
+    }
 
     .navlinks{display:flex; gap:22px; align-items:center; flex-wrap:wrap}
     .navlinks a{
@@ -141,8 +136,7 @@
     }
     .hero::after{
       content:""; position:absolute; left:0; right:0; bottom:-1px; height:160px;
-      background:linear-gradient(to top,var(--bg),transparent);
-      z-index:0;
+      background:linear-gradient(to top,var(--bg),transparent); z-index:0;
     }
     .hero-content{max-width:720px; position:relative; z-index:1}
     .hero h1{font-size: clamp(32px,8vw,68px); line-height:1.05; margin:0 0 .25em}
@@ -159,7 +153,6 @@
     .btn-ghost{background:rgba(109,109,110,.7); color:#fff}
     .btn-ghost:hover{filter:brightness(1.1)}
 
-    /* --- Sections / rows --- */
     .section{padding: 28px clamp(16px,4vw,48px) 8px}
     .section-title{font-size:20px; font-weight:700; color:#e5e5e5; margin:0 0 10px}
 
@@ -175,8 +168,7 @@
 
     .card{
       position:relative; min-width:290px; height:168px; border-radius:8px; overflow:hidden;
-      background:#222; scroll-snap-align:start; flex-shrink:0;
-      transform-origin:center; transition:transform .2s ease;
+      background:#222; scroll-snap-align:start; flex-shrink:0; transform-origin:center; transition:transform .2s ease;
     }
     .card:hover{transform:scale(1.06); z-index:5}
     .thumb{width:100%; height:100%; object-fit:cover}
@@ -193,19 +185,31 @@
 <body>
   <!-- Intro -->
   <div class="netflix-intro" aria-hidden="true">
-    <div class="netflix-logo nf" aria-label="Angel Contreras">Angel Contreras</div>
+    <div class="netflix-logo nf" aria-label="Angel Contreras">
+      <svg class="logo-arch" viewBox="0 0 1200 500" role="img" aria-label="Angel Contreras">
+        <defs>
+          <path id="ac-arc" d="M100,380 A520,520 0 0 1 1100,380" vector-effect="non-scaling-stroke"/>
+          <filter id="ac-glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feDropShadow dx="6" dy="0" stdDeviation="0" flood-color="#E50914" flood-opacity="1"/>
+            <feDropShadow dx="0" dy="0" stdDeviation="9" flood-color="#E50914" flood-opacity="0.45"/>
+          </filter>
+        </defs>
+        <text filter="url(#ac-glow)">
+          <textPath href="#ac-arc" startOffset="50%" text-anchor="middle" dominant-baseline="central" class="ac-text">ANGEL CONTRERAS</textPath>
+        </text>
+      </svg>
+    </div>
   </div>
 
   <!-- Who's watching -->
-  <div id="profiles" class="profiles" role="dialog" aria-labelledby="whosWatching">
+  <div id="profiles" class="profiles" role="dialog" aria-labelledby="whosWatching" aria-modal="true">
     <div class="profiles-wrap">
       <h2 id="whosWatching" class="nf">Who’s watching?</h2>
       <div class="grid">
-        <!-- Recruiter -->
+        <!-- Recruiter (clickable) -->
         <button class="tile" data-profile="recruiter" data-target="#projects" aria-label="Recruiter profile">
           <div class="avatar av-recruiter" aria-hidden="true">
             <span class="icon">
-              <!-- briefcase icon -->
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1h3a3 3 0 0 1 3 3v3h-7v1a1 1 0 0 1-2 0V12H2V9a3 3 0 0 1 3-3h5Zm2-1h0a1 1 0 0 0-1 1v1h2V6a1 1 0 0 0-1-1ZM2 13h9v1a1 1 0 0 0 2 0v-1h9v5a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-5Z"/>
               </svg>
@@ -214,24 +218,22 @@
           <span class="label">Recruiter</span>
         </button>
 
-        <!-- Family / Friends -->
-        <button class="tile" data-profile="family" data-target="#skills" aria-label="Family and Friends profile">
+        <!-- Friends / Family (disabled) -->
+        <button class="tile disabled" data-profile="family" data-target="#skills" aria-label="Friends and Family profile" aria-disabled="true" tabindex="-1">
           <div class="avatar av-family" aria-hidden="true">
             <span class="icon">
-              <!-- people icon -->
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M16 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm-8 2a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm8 2c-3.31 0-6 1.79-6 4v1h12v-1c0-2.21-2.69-4-6-4Zm-8 0c-3.31 0-6 1.79-6 4v1h8v-1c0-1.03.39-1.97 1.07-2.76A7.2 7.2 0 0 0 8 15Z"/>
               </svg>
             </span>
           </div>
-          <span class="label">Family / Friends</span>
+          <span class="label">Friends / Family</span>
         </button>
 
-        <!-- Guest -->
-        <button class="tile" data-profile="guest" data-target="#home" aria-label="Guest profile">
+        <!-- Guest (disabled) -->
+        <button class="tile disabled" data-profile="guest" data-target="#home" aria-label="Guest profile" aria-disabled="true" tabindex="-1">
           <div class="avatar av-guest" aria-hidden="true">
             <span class="icon">
-              <!-- smile icon -->
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Zm-3.5 9a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 8.5 11Zm9 2.5a5.5 5.5 0 0 1-11 0 1 1 0 0 1 2 0 3.5 3.5 0 0 0 7 0 1 1 0 0 1 2 0ZM15.5 11A1.5 1.5 0 1 1 17 9.5 1.5 1.5 0 0 1 15.5 11Z"/>
               </svg>
@@ -240,7 +242,6 @@
           <span class="label">Guest</span>
         </button>
       </div>
-      <!-- Removed Manage profiles link as requested -->
     </div>
   </div>
 
@@ -248,7 +249,7 @@
   <div class="main" id="appRoot">
     <!-- Nav -->
     <nav class="navbar" id="navbar">
-      <div class="brand nf" aria-label="Brand">Angel Contreras</div>
+      <button class="brand nf" id="brandHome" aria-label="Reset to intro">Angel Contreras</button>
       <div class="navlinks" role="navigation" aria-label="Primary">
         <a href="#home">Home</a>
         <a href="#projects">Projects</a>
@@ -529,8 +530,10 @@
     }
 
     // ---------- Flow: Intro -> Profiles -> Main ----------
+    const introSel = '.netflix-intro';
     const profiles = document.getElementById('profiles');
     const appRoot = document.getElementById('appRoot');
+    let afterIntroTimer = null;
 
     function showProfiles(){
       profiles.classList.add('show');
@@ -538,7 +541,9 @@
     }
     function hideProfiles(){ profiles.classList.remove('show'); }
     function showMain(){ appRoot.classList.add('show'); }
+    function hideMain(){ appRoot.classList.remove('show'); }
 
+    // Start / replay intro sound with fallback on user interaction
     function kickIntro(){
       let started = false;
       const start = async () => {
@@ -554,18 +559,48 @@
       window.addEventListener('touchstart', start, { once:true });
     }
 
-    function afterIntro(){
-      const saved = localStorage.getItem('ac_profile_choice');
-      if (saved) {
-        const btn = document.querySelector(`.tile[data-profile="${saved}"]`);
-        if (btn) handleProfileClick.call(btn);
-        else showProfiles();
-      } else {
-        showProfiles();
-      }
+    function scheduleAfterIntro(){
+      if (afterIntroTimer) clearTimeout(afterIntroTimer);
+      afterIntroTimer = setTimeout(() => {
+        const saved = localStorage.getItem('ac_profile_choice');
+        if (saved) {
+          const btn = document.querySelector('.tile[data-profile="'+saved+'"]');
+          if (btn) handleProfileClick.call(btn); else showProfiles();
+        } else {
+          showProfiles();
+        }
+      }, 2700);
     }
 
-    function handleProfileClick(){
+    // Replace the intro node to restart CSS animation cleanly
+    function replayIntro(){
+      const intro = document.querySelector(introSel);
+      const parent = intro.parentNode;
+      const clone = intro.cloneNode(true); // includes SVG
+      parent.replaceChild(clone, intro);
+    }
+
+    // Public reset: click brand to return to intro
+    function resetToIntro(){
+      // clear profile choice & UI
+      localStorage.removeItem('ac_profile_choice');
+      hideProfiles();
+      hideMain();
+      window.scrollTo({ top: 0, behavior: 'auto' });
+
+      // replay intro overlay and sound, then show profiles
+      replayIntro();
+      kickIntro();
+      scheduleAfterIntro();
+    }
+
+    // ---------- Profile click handling ----------
+    function handleProfileClick(e){
+      // guard: disabled tiles do nothing
+      if (this.classList.contains('disabled') || this.getAttribute('aria-disabled') === 'true'){
+        e && e.preventDefault();
+        return;
+      }
       const target = this.getAttribute('data-target') || '#home';
       const profile = this.getAttribute('data-profile') || 'guest';
       localStorage.setItem('ac_profile_choice', profile);
@@ -577,15 +612,19 @@
     document.querySelectorAll('.tile').forEach(btn => {
       btn.addEventListener('click', handleProfileClick);
       btn.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleProfileClick.call(btn); }
+        if (btn.classList.contains('disabled')) return; // inert
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleProfileClick.call(btn, e); }
       });
     });
 
+    // Brand click => reset to intro
+    document.getElementById('brandHome').addEventListener('click', resetToIntro);
+
+    // Initial boot
     window.addEventListener('DOMContentLoaded', () => {
       kickIntro();
-      setTimeout(afterIntro, 2700); // after intro fades
+      scheduleAfterIntro();
     });
   </script>
 </body>
 </html>
-
