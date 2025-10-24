@@ -6,6 +6,7 @@
   <title>Angel Contreras — Netflix-style</title>
   <meta name="color-scheme" content="dark">
 
+  <!-- Free fallback; swap to licensed Netflix Sans via @font-face if you have it -->
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 
   <style>
@@ -27,17 +28,32 @@
       text-transform:uppercase;
     }
 
-    /* --- Intro (arched, black outline) --- */
+    /* --- Intro (flat, centered, black outline) --- */
     .netflix-intro{
       position:fixed; inset:0; display:grid; place-items:center;
       background:#000; z-index:10000; animation:hideIntro .5s ease 2.6s forwards;
     }
-    .netflix-logo{ display:grid; place-items:center; animation:logoZoom 1.8s ease both; }
-    .logo-arch{ width:min(92vw,1200px); height:auto; transform-origin:center; }
-    .ac-text{
+    .netflix-logo{ display:grid; place-items-center; animation:logoZoom 1.8s ease both; }
+    .logo-text{
+      /* size similar to the earlier splash, but flat */
       font-family:"Netflix Sans","Bebas Neue",system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
-      font-weight:900; letter-spacing:.04em; font-size:clamp(56px,10vw,170px); text-transform:uppercase;
-      fill:#fff; stroke:#000; stroke-width:8px; paint-order:stroke fill; shape-rendering:geometricPrecision;
+      font-weight:900;
+      font-size:clamp(88px,12vw,220px);
+      line-height:1;
+      letter-spacing:-.02em;
+      color:#fff;
+      text-transform:uppercase;
+      text-align:center;
+
+      /* Black outline for readability */
+      -webkit-text-stroke: 6px #000;
+      /* red “beam” and soft glow; stroke renders under fill due to text-stroke */
+      text-shadow:
+        .06em 0 var(--accent),
+        0 0 18px rgba(229,9,20,.45),
+        0 0 2px rgba(0,0,0,.85);
+      /* tighten glyph rendering */
+      font-kerning:normal;
     }
     @keyframes logoZoom{ 0%{transform:scale(.6);opacity:0}55%{transform:scale(1.15);opacity:1}100%{transform:scale(1)} }
     @keyframes hideIntro{to{opacity:0; visibility:hidden}}
@@ -82,14 +98,13 @@
       box-shadow:0 0 0 4px rgba(255,255,255,.12);
       filter:brightness(1.06);
     }
-    /* Disabled visuals */
     .tile.disabled .avatar{ filter:grayscale(1) brightness(.75); border-color:transparent; }
     .label{
       font-weight:800; color:#a3a3a3; letter-spacing:.04em; font-size:14px;
       text-transform:none;
     }
 
-    /* Avatar color blocks */
+    /* Avatar color blocks (Netflix-y tiles) */
     .av-recruiter { background:linear-gradient(180deg,#0DB5FF,#0070F3); }
     .av-family    { background:linear-gradient(180deg,#25E26A,#0AA84B); }
     .av-guest     { background:linear-gradient(180deg,#FFB21E,#FF7A00); }
@@ -113,7 +128,6 @@
       transition:background .25s ease, box-shadow .25s ease;
     }
     .navbar.scrolled{ background:#0f0f0f; box-shadow:0 2px 0 rgba(255,255,255,.04) inset; }
-    /* Make brand a button for accessibility */
     .brand{
       background:none; border:0; padding:0; margin:0;
       font-weight:900; color:var(--accent); letter-spacing:-.04em; font-size:clamp(22px,3.2vw,32px);
@@ -183,21 +197,10 @@
   </style>
 </head>
 <body>
-  <!-- Intro -->
+  <!-- Intro (flat text) -->
   <div class="netflix-intro" aria-hidden="true">
-    <div class="netflix-logo nf" aria-label="Angel Contreras">
-      <svg class="logo-arch" viewBox="0 0 1200 500" role="img" aria-label="Angel Contreras">
-        <defs>
-          <path id="ac-arc" d="M100,380 A520,520 0 0 1 1100,380" vector-effect="non-scaling-stroke"/>
-          <filter id="ac-glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feDropShadow dx="6" dy="0" stdDeviation="0" flood-color="#E50914" flood-opacity="1"/>
-            <feDropShadow dx="0" dy="0" stdDeviation="9" flood-color="#E50914" flood-opacity="0.45"/>
-          </filter>
-        </defs>
-        <text filter="url(#ac-glow)">
-          <textPath href="#ac-arc" startOffset="50%" text-anchor="middle" dominant-baseline="central" class="ac-text">ANGEL CONTRERAS</textPath>
-        </text>
-      </svg>
+    <div class="netflix-logo" aria-label="Angel Contreras">
+      <div class="logo-text nf">ANGEL CONTRERAS</div>
     </div>
   </div>
 
@@ -286,6 +289,7 @@
               <p class="meta">Interactive web-based project management tool</p>
             </div>
           </article>
+
           <article class="card">
             <img class="thumb" alt="Portfolio Website" loading="lazy"
                  src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=901&auto=format&fit=crop">
@@ -294,6 +298,7 @@
               <p class="meta">Personal portfolio showcasing skills and projects</p>
             </div>
           </article>
+
           <article class="card">
             <img class="thumb" alt="IT Management System" loading="lazy"
                  src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=1000&auto=format&fit=crop">
@@ -302,6 +307,7 @@
               <p class="meta">Full-stack application for IT project tracking</p>
             </div>
           </article>
+
           <article class="card">
             <img class="thumb" alt="Database Design" loading="lazy"
                  src="https://images.unsplash.com/photo-1555949963-aa79dcee981d?w=1000&auto=format&fit=crop">
@@ -310,6 +316,7 @@
               <p class="meta">Optimized database architecture</p>
             </div>
           </article>
+
           <article class="card">
             <img class="thumb" alt="Web Development" loading="lazy"
                  src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1000&auto=format&fit=crop">
@@ -513,11 +520,13 @@
         osc.start(t); osc.stop(t + len);
       }
 
+      // two-hit signature
       hit(now, { type:'sine', f0:56, f1:40, g0:1.0, gDur:0.9, len:1.0 });
       noiseBurst(now, 0.22, 0.7);
       hit(now + 0.36, { type:'triangle', f0:392, f1:330, g0:0.95, gDur:0.95, len:1.3 });
       noiseBurst(now + 0.36, 0.18, 0.5);
 
+      // airy tail
       const tail = ctx.createBuffer(1, ctx.sampleRate * 0.5, ctx.sampleRate);
       const td = tail.getChannelData(0);
       for (let i=0;i<td.length;i++) td[i] = (Math.random()*2-1) * (1 - i/td.length);
@@ -543,7 +552,6 @@
     function showMain(){ appRoot.classList.add('show'); }
     function hideMain(){ appRoot.classList.remove('show'); }
 
-    // Start / replay intro sound with fallback on user interaction
     function kickIntro(){
       let started = false;
       const start = async () => {
@@ -572,31 +580,24 @@
       }, 2700);
     }
 
-    // Replace the intro node to restart CSS animation cleanly
     function replayIntro(){
       const intro = document.querySelector(introSel);
       const parent = intro.parentNode;
-      const clone = intro.cloneNode(true); // includes SVG
+      const clone = intro.cloneNode(true);
       parent.replaceChild(clone, intro);
     }
 
-    // Public reset: click brand to return to intro
     function resetToIntro(){
-      // clear profile choice & UI
       localStorage.removeItem('ac_profile_choice');
       hideProfiles();
       hideMain();
       window.scrollTo({ top: 0, behavior: 'auto' });
-
-      // replay intro overlay and sound, then show profiles
       replayIntro();
       kickIntro();
       scheduleAfterIntro();
     }
 
-    // ---------- Profile click handling ----------
     function handleProfileClick(e){
-      // guard: disabled tiles do nothing
       if (this.classList.contains('disabled') || this.getAttribute('aria-disabled') === 'true'){
         e && e.preventDefault();
         return;
@@ -612,19 +613,20 @@
     document.querySelectorAll('.tile').forEach(btn => {
       btn.addEventListener('click', handleProfileClick);
       btn.addEventListener('keydown', (e) => {
-        if (btn.classList.contains('disabled')) return; // inert
+        if (btn.classList.contains('disabled')) return;
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleProfileClick.call(btn, e); }
       });
     });
 
-    // Brand click => reset to intro
     document.getElementById('brandHome').addEventListener('click', resetToIntro);
 
-    // Initial boot
+    // Boot
     window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('year').textContent = new Date().getFullYear();
       kickIntro();
       scheduleAfterIntro();
     });
   </script>
 </body>
 </html>
+
