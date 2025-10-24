@@ -28,31 +28,27 @@
       text-transform:uppercase;
     }
 
-    /* --- Intro (flat, red fill with black outline) --- */
+    /* --- Intro (slight arch, red fill + black outline) --- */
     .netflix-intro{
       position:fixed; inset:0; display:grid; place-items:center;
       background:#000; z-index:10000; animation:hideIntro .5s ease 2.6s forwards;
     }
     .netflix-logo{ display:grid; place-items:center; animation:logoZoom 1.8s ease both; }
-    .logo-text{
+    .logo-arch{ width:min(92vw,1200px); height:auto; transform-origin:center; }
+    .ac-text{
       font-family:"Netflix Sans","Bebas Neue",system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
       font-weight:900;
-      font-size:clamp(96px,13vw,240px);
-      line-height:1;
-      letter-spacing:-.02em;
-      color:#E50914;                 /* RED fill */
+      letter-spacing:.035em;                 /* a touch of spacing for curvature */
+      font-size: clamp(72px, 10.5vw, 200px); /* responsive */
       text-transform:uppercase;
-      text-align:center;
-
-      /* Black outline for bold, graphic look */
-      -webkit-text-stroke: 8px #000;
-      /* slight glow and density */
-      text-shadow:
-        0 0 2px rgba(0,0,0,.85),
-        0 0 18px rgba(229,9,20,.35);
-      font-kerning:normal;
+      fill:#E50914;                          /* RED fill */
+      stroke:#000; stroke-width:8px;         /* BLACK outline */
+      paint-order:stroke fill;
+      shape-rendering:geometricPrecision;
+      /* soft red glow for vibe */
+      filter: drop-shadow(0 0 14px rgba(229,9,20,.35));
     }
-    @keyframes logoZoom{ 0%{transform:scale(.6);opacity:0}55%{transform:scale(1.15);opacity:1}100%{transform:scale(1)} }
+    @keyframes logoZoom{ 0%{transform:scale(.6);opacity:0}55%{transform:scale(1.12);opacity:1}100%{transform:scale(1)} }
     @keyframes hideIntro{to{opacity:0; visibility:hidden}}
 
     /* --- Who's Watching --- */
@@ -101,7 +97,7 @@
       text-transform:none;
     }
 
-    /* Avatar color blocks (Netflix-y tiles) */
+    /* Avatar color blocks */
     .av-recruiter { background:linear-gradient(180deg,#0DB5FF,#0070F3); }
     .av-family    { background:linear-gradient(180deg,#25E26A,#0AA84B); }
     .av-guest     { background:linear-gradient(180deg,#FFB21E,#FF7A00); }
@@ -125,8 +121,6 @@
       transition:background .25s ease, box-shadow .25s ease;
     }
     .navbar.scrolled{ background:#0f0f0f; box-shadow:0 2px 0 rgba(255,255,255,.04) inset; }
-
-    /* Brand (clickable resets to intro like before) */
     .brand{
       background:none; border:0; padding:0; margin:0;
       font-weight:900; color:var(--accent); letter-spacing:-.04em; font-size:clamp(22px,3.2vw,32px);
@@ -196,10 +190,20 @@
   </style>
 </head>
 <body>
-  <!-- Intro (flat text) -->
+  <!-- Intro (slight-arch SVG) -->
   <div class="netflix-intro" aria-hidden="true">
-    <div class="netflix-logo" aria-label="ANGE">
-      <div class="logo-text nf">ANGE</div>
+    <div class="netflix-logo" aria-label="ANGEL CONTRERAS">
+      <svg class="logo-arch" viewBox="0 0 1200 500" role="img" aria-label="ANGEL CONTRERAS">
+        <defs>
+          <!-- Subtle arch: large radius for a gentle curve -->
+          <path id="ac-arc" d="M120,360 A900,900 0 0 1 1080,360" vector-effect="non-scaling-stroke"/>
+        </defs>
+        <text>
+          <textPath href="#ac-arc" startOffset="50%" text-anchor="middle" dominant-baseline="central" class="ac-text">
+            ANGEL CONTRERAS
+          </textPath>
+        </text>
+      </svg>
     </div>
   </div>
 
@@ -209,7 +213,7 @@
       <h2 id="whosWatching" class="nf">Who’s watching?</h2>
       <div class="grid">
         <!-- Recruiter (clickable) -->
-        <button class="tile" data-profile="recruiter" data-target="#professional" aria-label="Recruiter profile">
+        <button class="tile" data-profile="recruiter" data-target="#portfolio" aria-label="Recruiter profile">
           <div class="avatar av-recruiter" aria-hidden="true">
             <span class="icon">
               <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -254,9 +258,9 @@
       <button class="brand nf" id="brandHome" aria-label="Reset to intro">Angel Contreras</button>
       <div class="navlinks" role="navigation" aria-label="Primary">
         <a href="#home" id="navHome">Home</a>
-        <a href="#professional" id="navProfessional">Professional</a>
+        <a href="#portfolio" id="navPortfolio">Portfolio</a>
         <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
         <a href="#hire" id="navHire">Hire Me</a>
       </div>
     </nav>
@@ -268,18 +272,18 @@
         <p class="sub">Full Stack Developer &amp; IT Professional</p>
         <p class="desc">Passionate about building innovative solutions and creating seamless digital experiences. Breaking into tech, one project at a time.</p>
         <div class="cta">
-          <a class="btn btn-white" href="#professional"><span aria-hidden="true">▶</span> View&nbsp;Professional</a>
-          <a class="btn btn-ghost" href="#professional"><span aria-hidden="true">ℹ</span> More&nbsp;Info</a>
+          <a class="btn btn-white" href="#portfolio"><span aria-hidden="true">▶</span> View&nbsp;Portfolio</a>
+          <a class="btn btn-ghost" href="#portfolio"><span aria-hidden="true">ℹ</span> More&nbsp;Info</a>
         </div>
       </div>
     </header>
 
-    <!-- Professional (renamed from Projects) -->
-    <section class="section" id="professional">
-      <h2 class="section-title">Professional</h2>
+    <!-- Portfolio (renamed from Professional) -->
+    <section class="section" id="portfolio">
+      <h2 class="section-title">Portfolio</h2>
       <div class="rail">
         <button class="scroll-btn scroll-left" aria-label="Scroll left">‹</button>
-        <div class="scroller" tabindex="0" aria-label="Professional carousel">
+        <div class="scroller" tabindex="0" aria-label="Portfolio carousel">
           <article class="card" style="background:#2a2a2a">
             <img class="thumb" alt="Project Charter Website" loading="lazy"
                  src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=900&auto=format&fit=crop">
@@ -380,12 +384,12 @@
       </div>
     </section>
 
-    <!-- Experience -->
-    <section class="section" id="experience">
-      <h2 class="section-title">Professional Experience</h2>
+    <!-- Projects (renamed from Experience) -->
+    <section class="section" id="projects">
+      <h2 class="section-title">Projects</h2>
       <div class="rail">
-        <button class="scroll-btn scroll-left" aria-label="Scroll experience left">‹</button>
-        <div class="scroller" tabindex="0" aria-label="Experience carousel">
+        <button class="scroll-btn scroll-left" aria-label="Scroll projects left">‹</button>
+        <div class="scroller" tabindex="0" aria-label="Projects carousel">
           <article class="card">
             <img class="thumb" alt="IT Project Management" loading="lazy"
                  src="https://images.unsplash.com/photo-1557800636-894a64c1696f?w=1000&auto=format&fit=crop">
@@ -419,11 +423,11 @@
             </div>
           </article>
         </div>
-        <button class="scroll-btn scroll-right" aria-label="Scroll experience right">›</button>
+        <button class="scroll-btn scroll-right" aria-label="Scroll projects right">›</button>
       </div>
     </section>
 
-    <!-- Hire Me (replaces Contact) -->
+    <!-- Hire Me -->
     <section class="section" id="hire">
       <h2 class="section-title">Hire Me</h2>
       <p style="color:#bdbdbd; max-width:60ch">
@@ -439,9 +443,9 @@
         <a href="mailto:angel@example.com">Email</a>
         <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
-        <a href="#professional">Professional</a>
+        <a href="#portfolio">Portfolio</a>
         <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
         <a href="#hire">Hire Me</a>
         <a href="#home" id="footerHome">Back to top</a>
       </nav>
@@ -601,7 +605,7 @@
         e && e.preventDefault();
         return;
       }
-      const target = this.getAttribute('data-target') || '#professional';
+      const target = this.getAttribute('data-target') || '#portfolio';
       const profile = this.getAttribute('data-profile') || 'guest';
       localStorage.setItem('ac_profile_choice', profile);
       hideProfiles(); showMain();
@@ -618,10 +622,10 @@
       });
     });
 
-    // Brand still resets to full intro (with sound)
+    // Brand resets to full intro (with sound)
     document.getElementById('brandHome').addEventListener('click', resetToIntro);
 
-    // NEW: Home nav opens Who’s Watching (no intro, no sound)
+    // Home nav opens Who’s Watching (no intro, no sound)
     const navHome = document.getElementById('navHome');
     const footerHome = document.getElementById('footerHome');
     function openProfilesFromNav(e){
