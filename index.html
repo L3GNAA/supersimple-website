@@ -1,3 +1,12 @@
+Got it—I made the intro text much more readable and upgraded the intro sting to a closer, two-hit “ta-dum”-style synth (no copyrighted audio used). Paste this whole file over yours.
+
+**What changed**
+
+* Stronger contrast: white fill + red offset shadow + soft glow.
+* Slightly looser letter-spacing and larger min size.
+* Web Audio “ta-dum” with low boom → high strike, short noise impact, and a tiny tail. Falls back to play on first tap/keypress if autoplay is blocked.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +15,7 @@
   <title>Angel Contreras — Netflix-style</title>
   <meta name="color-scheme" content="dark">
 
-  <!-- If you own licensed Netflix Sans files, point @font-face to them and remove the Bebas import. -->
+  <!-- If you own licensed Netflix Sans, point @font-face to them and remove the Bebas import. -->
   <!--
   <style>
     @font-face{
@@ -33,14 +42,14 @@
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+      margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
       background:var(--bg); color:var(--ink); overflow-x:hidden;
     }
 
     /* Netflix-like font utility */
     .nf{
       font-family:"Netflix Sans","Bebas Neue",system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
-      letter-spacing:.02em;
+      letter-spacing:.015em;
       text-transform:uppercase;
     }
 
@@ -49,12 +58,25 @@
       position:fixed; inset:0; display:grid; place-items:center;
       background:#000; z-index:10000; animation:hideIntro .5s ease 2.6s forwards;
     }
+
+    /* Make intro highly readable on black */
     .netflix-logo{
-      font-size: clamp(72px,12vw,200px); font-weight: 900; color:var(--accent);
-      letter-spacing:-.05em; animation:logoZoom 1.8s ease both;
-      text-shadow:.06em 0 var(--accent);
+      font-size: clamp(88px,12vw,220px);
+      font-weight: 900;
+      color:#fff;                          /* White fill for max contrast */
+      letter-spacing:-.02em;
       text-align:center;
+
+      /* Red offset “beam” + soft glow + crisp outline */
+      text-shadow:
+        .06em 0 var(--accent),             /* red offset (right) */
+        0 0 18px rgba(229,9,20,.45),       /* red glow */
+        0 0 2px rgba(0,0,0,.8);            /* dark edge crispness */
+
+      -webkit-text-stroke: .5px rgba(0,0,0,.35); /* subtle outline for readability */
+      animation:logoZoom 1.8s ease both;
     }
+
     @keyframes logoZoom{
       0%{transform:scale(.6); opacity:0}
       55%{transform:scale(1.15); opacity:1}
@@ -207,7 +229,6 @@
       </div>
     </header>
 
-    <!-- Sections (unchanged) -->
     <!-- Projects -->
     <section class="section" id="projects">
       <h2 class="section-title">Featured Projects</h2>
@@ -222,7 +243,6 @@
               <p class="meta">Interactive web-based project management tool</p>
             </div>
           </article>
-
           <article class="card">
             <img class="thumb" alt="Portfolio Website" loading="lazy"
                  src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=901&auto=format&fit=crop">
@@ -231,7 +251,6 @@
               <p class="meta">Personal portfolio showcasing skills and projects</p>
             </div>
           </article>
-
           <article class="card">
             <img class="thumb" alt="IT Management System" loading="lazy"
                  src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=1000&auto=format&fit=crop">
@@ -240,7 +259,6 @@
               <p class="meta">Full-stack application for IT project tracking</p>
             </div>
           </article>
-
           <article class="card">
             <img class="thumb" alt="Database Design" loading="lazy"
                  src="https://images.unsplash.com/photo-1555949963-aa79dcee981d?w=1000&auto=format&fit=crop">
@@ -249,7 +267,6 @@
               <p class="meta">Optimized database architecture</p>
             </div>
           </article>
-
           <article class="card">
             <img class="thumb" alt="Web Development" loading="lazy"
                  src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1000&auto=format&fit=crop">
@@ -295,4 +312,222 @@
           </article>
           <article class="card">
             <img class="thumb" alt="Python" loading="lazy"
-                 src="https://images.un
+                 src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=1000&auto=format&fit=crop">
+            <div class="overlay">
+              <h3 class="title">Python</h3>
+              <p class="meta">Back-end & automation</p>
+            </div>
+          </article>
+          <article class="card">
+            <img class="thumb" alt="SQL" loading="lazy"
+                 src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=1000&auto=format&fit=crop">
+            <div class="overlay">
+              <h3 class="title">SQL</h3>
+              <p class="meta">Database management</p>
+            </div>
+          </article>
+        </div>
+        <button class="scroll-btn scroll-right" aria-label="Scroll skills right">›</button>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="section" id="experience">
+      <h2 class="section-title">Professional Experience</h2>
+      <div class="rail">
+        <button class="scroll-btn scroll-left" aria-label="Scroll experience left">‹</button>
+        <div class="scroller" tabindex="0" aria-label="Experience carousel">
+          <article class="card">
+            <img class="thumb" alt="IT Project Management" loading="lazy"
+                 src="https://images.unsplash.com/photo-1557800636-894a64c1696f?w=1000&auto=format&fit=crop">
+            <div class="overlay">
+              <h3 class="title">IT Project Management</h3>
+              <p class="meta">Managing tech projects efficiently</p>
+            </div>
+          </article>
+          <article class="card">
+            <img class="thumb" alt="Web Development" loading="lazy"
+                 src="https://images.unsplash.com/photo-1487014679447-9f8336841d58?w=1000&auto=format&fit=crop">
+            <div class="overlay">
+              <h3 class="title">Web Development</h3>
+              <p class="meta">Building responsive web solutions</p>
+            </div>
+          </article>
+          <article class="card">
+            <img class="thumb" alt="System Administration" loading="lazy"
+                 src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1000&auto=format&fit=crop">
+            <div class="overlay">
+              <h3 class="title">System Administration</h3>
+              <p class="meta">Maintaining IT infrastructure</p>
+            </div>
+          </article>
+          <article class="card">
+            <img class="thumb" alt="Technical Support" loading="lazy"
+                 src="https://images.unsplash.com/photo-1525182008055-f88b95ff7980?w=1000&auto=format&fit=crop">
+            <div class="overlay">
+              <h3 class="title">Technical Support</h3>
+              <p class="meta">Providing IT solutions</p>
+            </div>
+          </article>
+        </div>
+        <button class="scroll-btn scroll-right" aria-label="Scroll experience right">›</button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+      <nav class="links" aria-label="Footer">
+        <a href="mailto:angel@example.com">Email</a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+        <a href="#resume">Resume</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#home">Back to top</a>
+      </nav>
+      <p class="copyright">© <span id="year"></span> Angel Contreras. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    // Solidify nav on scroll
+    const navbar = document.getElementById('navbar');
+    const onScroll = () => {
+      if (window.scrollY > 80) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    };
+    addEventListener('scroll', onScroll, { passive: true });
+
+    // Smooth in-page nav
+    document.querySelectorAll('.navlinks a').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if (!id || !id.startsWith('#')) return;
+        e.preventDefault();
+        const el = document.querySelector(id);
+        if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
+      });
+    });
+
+    // Carousels: buttons + keyboard
+    function setupRail(rail){
+      const scroller = rail.querySelector('.scroller');
+      const left = rail.querySelector('.scroll-left');
+      const right = rail.querySelector('.scroll-right');
+      const step = () => Math.round(scroller.clientWidth * 0.9);
+
+      left.addEventListener('click', () => scroller.scrollBy({left:-step(), behavior:'smooth'}));
+      right.addEventListener('click', () => scroller.scrollBy({left: step(), behavior:'smooth'}));
+
+      scroller.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') { e.preventDefault(); scroller.scrollBy({left: step(), behavior:'smooth'}); }
+        if (e.key === 'ArrowLeft')  { e.preventDefault(); scroller.scrollBy({left:-step(), behavior:'smooth'}); }
+      });
+
+      const updateBtns = () => {
+        const max = scroller.scrollWidth - scroller.clientWidth - 1;
+        left.style.display  = scroller.scrollLeft <= 2 ? 'none' : 'grid';
+        right.style.display = scroller.scrollLeft >= max ? 'none' : 'grid';
+      };
+      scroller.addEventListener('scroll', updateBtns, { passive:true });
+      new ResizeObserver(updateBtns).observe(scroller);
+      updateBtns();
+    }
+    document.querySelectorAll('.rail').forEach(setupRail);
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // --------- “Ta-dum”-style intro (closer approximation, no copyrighted file) ---------
+    async function playTaDum(){
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      const ctx = new Ctx();
+      const now = ctx.currentTime;
+
+      // master
+      const master = ctx.createGain();
+      master.gain.setValueAtTime(0.9, now);
+      master.gain.exponentialRampToValueAtTime(0.0001, now + 2.4);
+      master.connect(ctx.destination);
+
+      // helper: short noise burst (impact / whoosh)
+      function noiseBurst(t, dur = 0.25, gain = 0.8){
+        const buf = ctx.createBuffer(1, ctx.sampleRate * dur, ctx.sampleRate);
+        const d = buf.getChannelData(0);
+        for (let i=0;i<d.length;i++) d[i] = (Math.random()*2-1) * (1 - i/d.length);
+        const src = ctx.createBufferSource();
+        src.buffer = buf;
+        const g = ctx.createGain();
+        g.gain.setValueAtTime(gain, t);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+        src.connect(g); g.connect(master);
+        src.start(t); src.stop(t + dur + 0.05);
+      }
+
+      // helper: percussive hit (osc sweep)
+      function hit(t, { type='sine', f0=60, f1=45, g0=1.0, gDur=0.9, len=1.0 } = {}){
+        const osc = ctx.createOscillator();
+        osc.type = type;
+        osc.frequency.setValueAtTime(f0, t);
+        osc.frequency.exponentialRampToValueAtTime(f1, t + gDur);
+
+        const g = ctx.createGain();
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.exponentialRampToValueAtTime(g0, t + 0.02);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + gDur);
+
+        // slight stereo widening via delay (very subtle)
+        const delay = ctx.createDelay();
+        delay.delayTime.setValueAtTime(0.012, t);
+
+        osc.connect(g); g.connect(delay); delay.connect(master);
+        osc.start(t); osc.stop(t + len);
+      }
+
+      // HIT 1: low boom + noise
+      hit(now, { type:'sine', f0:56, f1:40, g0:1.0, gDur:0.9, len:1.0 });
+      noiseBurst(now, 0.22, 0.7);
+
+      // HIT 2: higher musical strike (slightly later) + short bright noise
+      hit(now + 0.36, { type:'triangle', f0:392, f1:330, g0:0.95, gDur:0.95, len:1.3 });
+      noiseBurst(now + 0.36, 0.18, 0.5);
+
+      // tiny airy tail (very short bandpassed noise)
+      const tail = ctx.createBuffer(1, ctx.sampleRate * 0.5, ctx.sampleRate);
+      const td = tail.getChannelData(0);
+      for (let i=0;i<td.length;i++) td[i] = (Math.random()*2-1) * (1 - i/td.length);
+      const tailSrc = ctx.createBufferSource(); tailSrc.buffer = tail;
+      const bpf = ctx.createBiquadFilter(); bpf.type='bandpass'; bpf.frequency.setValueAtTime(1500, now+0.5); bpf.Q.value = 3;
+      const gTail = ctx.createGain(); gTail.gain.setValueAtTime(0.12, now+0.5);
+      gTail.gain.exponentialRampToValueAtTime(0.0001, now+1.9);
+      tailSrc.connect(bpf); bpf.connect(gTail); gTail.connect(master);
+      tailSrc.start(now+0.5); tailSrc.stop(now+2.0);
+    }
+
+    // Try to play automatically; if blocked, play on first interaction.
+    function kickIntro(){
+      let started = false;
+      const start = async () => {
+        if (started) return; started = true;
+        try { await playTaDum(); } catch {}
+        window.removeEventListener('click', start);
+        window.removeEventListener('keydown', start);
+        window.removeEventListener('touchstart', start);
+      };
+      // fire slightly after mount so the logo is visible first
+      setTimeout(start, 300);
+      // mobile/desktop autoplay fallback
+      window.addEventListener('click', start, { once:true });
+      window.addEventListener('keydown', start, { once:true });
+      window.addEventListener('touchstart', start, { once:true });
+    }
+
+    // Kick it off
+    window.addEventListener('DOMContentLoaded', kickIntro);
+  </script>
+</body>
+</html>
+```
+
+If you’d like the intro to say `(Angel Contreras)` with parentheses, just change the splash text inside `.netflix-logo`. Want it even bolder? Swap `-webkit-text-stroke: .5px` to `1px`.
