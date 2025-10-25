@@ -284,7 +284,9 @@
   <!-- Intro (Netflix style with name) -->
   <div class="netflix-intro" aria-hidden="true">
     <div class="netflix-logo" aria-label="ANGEL CONTRERAS">
-      <h1 class="intro-text">ANGEL CONTRERAS</h1>
+      <h1 class="intro-text">
+        <span>A</span><span>N</span><span>G</span><span>E</span><span>L</span><span> </span><span>C</span><span>O</span><span>N</span><span>T</span><span>R</span><span>E</span><span>R</span><span>A</span><span>S</span>
+      </h1>
     </div>
   </div>
 
@@ -437,11 +439,11 @@
             </div>
           </article>
           <article class="card">
-            <img class="thumb" alt="Video Games" loading="lazy"
-                 src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1000&auto=format&fit=crop">
+            <img class="thumb" alt="Blog" loading="lazy"
+                 src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1000&auto=format&fit=crop">
             <div class="overlay">
-              <h3 class="title">Video Games</h3>
-              <p class="meta">Gamer & interactive storytelling</p>
+              <h3 class="title">Blog</h3>
+              <p class="meta">Thoughts & insights</p>
             </div>
           </article>
           <a href="contact.html" class="card" style="text-decoration:none; cursor:pointer">
@@ -484,7 +486,7 @@
     // ---------- Year ----------
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ---------- "Ta-dum"-style intro (copyright-safe) ----------
+    // ---------- "Ta-dum"-style intro (Netflix-inspired sound) ----------
     async function playTaDum(){
       const Ctx = window.AudioContext || window.webkitAudioContext;
       if (!Ctx) return;
@@ -492,8 +494,8 @@
       const now = ctx.currentTime;
 
       const master = ctx.createGain();
-      master.gain.setValueAtTime(0.9, now);
-      master.gain.exponentialRampToValueAtTime(0.0001, now + 2.4);
+      master.gain.setValueAtTime(1.0, now);
+      master.gain.exponentialRampToValueAtTime(0.0001, now + 2.5);
       master.connect(ctx.destination);
 
       function noiseBurst(t, dur = 0.25, gain = 0.8){
@@ -520,22 +522,22 @@
         osc.start(t); osc.stop(t + len);
       }
 
-      // two-hit signature
-      hit(now, { type:'sine', f0:56, f1:40, g0:1.0, gDur:0.9, len:1.0 });
-      noiseBurst(now, 0.22, 0.7);
-      hit(now + 0.36, { type:'triangle', f0:392, f1:330, g0:0.95, gDur:0.95, len:1.3 });
-      noiseBurst(now + 0.36, 0.18, 0.5);
+      // Netflix-style "TA-DUM" two-hit signature
+      hit(now, { type:'sine', f0:52, f1:38, g0:1.2, gDur:1.0, len:1.2 });
+      noiseBurst(now, 0.25, 0.8);
+      hit(now + 0.40, { type:'triangle', f0:415, f1:349, g0:1.1, gDur:1.0, len:1.4 });
+      noiseBurst(now + 0.40, 0.20, 0.6);
 
-      // airy tail
-      const tail = ctx.createBuffer(1, ctx.sampleRate * 0.5, ctx.sampleRate);
+      // Airy reverb tail
+      const tail = ctx.createBuffer(1, ctx.sampleRate * 0.6, ctx.sampleRate);
       const td = tail.getChannelData(0);
       for (let i=0;i<td.length;i++) td[i] = (Math.random()*2-1) * (1 - i/td.length);
       const tailSrc = ctx.createBufferSource(); tailSrc.buffer = tail;
-      const bpf = ctx.createBiquadFilter(); bpf.type='bandpass'; bpf.frequency.setValueAtTime(1500, now+0.5); bpf.Q.value = 3;
-      const gTail = ctx.createGain(); gTail.gain.setValueAtTime(0.12, now+0.5);
-      gTail.gain.exponentialRampToValueAtTime(0.0001, now+1.9);
+      const bpf = ctx.createBiquadFilter(); bpf.type='bandpass'; bpf.frequency.setValueAtTime(1600, now+0.6); bpf.Q.value = 3;
+      const gTail = ctx.createGain(); gTail.gain.setValueAtTime(0.15, now+0.6);
+      gTail.gain.exponentialRampToValueAtTime(0.0001, now+2.2);
       tailSrc.connect(bpf); bpf.connect(gTail); gTail.connect(master);
-      tailSrc.start(now+0.5); tailSrc.stop(now+2.0);
+      tailSrc.start(now+0.6); tailSrc.stop(now+2.3);
     }
 
     // ---------- Carousels ----------
