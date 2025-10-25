@@ -5,197 +5,98 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Angel Contreras — Netflix-style</title>
   <meta name="color-scheme" content="dark">
-
-  <!-- Free fallback; swap to licensed Netflix Sans via @font-face if you have it -->
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --bg:#141414; --ink:#fff; --muted:#e5e5e5; --ink-2:#b3b3b3;
-      --panel:#000; --accent:#E50914; --rail:#1a1a1a; --thumb:#4a4a4a;
-      --ring:rgba(255,255,255,.14);
+      --accent:#E50914;
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
-      background:var(--bg); color:var(--ink); overflow-x:hidden;
-    }
+    html,body{height:100%;margin:0;background:var(--bg);color:var(--ink);overflow-x:hidden;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;}
+    .nf{font-family:"Netflix Sans","Bebas Neue",system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+        text-transform:uppercase;}
 
-    .nf{
-      font-family:"Netflix Sans","Bebas Neue",system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
-      letter-spacing:.015em;
-      text-transform:uppercase;
-    }
-
-    /* --- Intro (slight arch, red fill + black outline) --- */
-    .netflix-intro{
-      position:fixed; inset:0; display:grid; place-items:center;
-      background:#000; z-index:10000; animation:hideIntro .5s ease 2.6s forwards;
-    }
-    .netflix-logo{ display:grid; place-items:center; animation:logoZoom 1.8s ease both; }
-    .logo-arch{ width:min(92vw,1200px); height:auto; transform-origin:center; }
+    /* Intro */
+    .netflix-intro{position:fixed;inset:0;display:grid;place-items:center;
+      background:#000;z-index:10000;animation:hideIntro .5s ease 2.6s forwards;}
+    .netflix-logo{display:grid;place-items:center;animation:logoZoom 1.8s ease both;}
+    .logo-arch{width:min(92vw,1200px);height:auto;transform-origin:center;}
     .ac-text{
       font-family:"Netflix Sans","Bebas Neue",system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
-      font-weight:900;
-      letter-spacing:.035em;                 /* a touch of spacing for curvature */
-      font-size: clamp(72px, 10.5vw, 200px); /* responsive */
-      text-transform:uppercase;
-      fill:#E50914;                          /* RED fill */
-      stroke:#000; stroke-width:8px;         /* BLACK outline */
-      paint-order:stroke fill;
-      shape-rendering:geometricPrecision;
-      /* soft red glow for vibe */
-      filter: drop-shadow(0 0 14px rgba(229,9,20,.35));
+      font-weight:900;letter-spacing:.035em;font-size:clamp(72px,10.5vw,200px);
+      text-transform:uppercase;fill:#E50914;stroke:#000;stroke-width:8px;
+      paint-order:stroke fill;filter:drop-shadow(0 0 14px rgba(229,9,20,.35));
     }
-    @keyframes logoZoom{ 0%{transform:scale(.6);opacity:0}55%{transform:scale(1.12);opacity:1}100%{transform:scale(1)} }
-    @keyframes hideIntro{to{opacity:0; visibility:hidden}}
+    @keyframes logoZoom{0%{transform:scale(.6);opacity:0}55%{transform:scale(1.12);opacity:1}100%{transform:scale(1)}}
+    @keyframes hideIntro{to{opacity:0;visibility:hidden}}
 
-    /* --- Who's Watching --- */
-    .profiles{
-      position:fixed; inset:0; display:none; align-items:center; justify-content:center;
-      background:#000; z-index:9000;
-    }
-    .profiles.show{ display:flex; animation:fadeIn .35s ease both; }
-    .profiles-wrap{ width:min(1000px,92vw); margin:auto; text-align:center; }
-    .profiles h2{
-      font:900 clamp(20px,3.2vw,32px)/1.2 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:#fff; margin:0 0 22px;
-    }
+    /* Profiles */
+    .profiles{position:fixed;inset:0;display:none;align-items:center;justify-content:center;
+      background:#000;z-index:9000;}
+    .profiles.show{display:flex;animation:fadeIn .35s ease both;}
+    .profiles-wrap{width:min(1000px,92vw);margin:auto;text-align:center;}
+    .profiles h2{font:900 clamp(20px,3.2vw,32px)/1.2 system-ui;color:#fff;margin:0 0 22px;}
+    .grid{display:grid;gap:22px;grid-template-columns:repeat(3,minmax(0,1fr));place-items:center;}
+    .tile{display:grid;gap:10px;place-items:center;cursor:pointer;text-decoration:none;user-select:none;outline:none;border:0;background:transparent;}
+    .tile.disabled{cursor:not-allowed;}
+    .avatar{width:min(32vw,180px);height:min(32vw,180px);border-radius:10px;overflow:hidden;
+      border:2px solid transparent;transition:.12s;display:grid;place-items:center;}
+    .tile:not(.disabled):hover .avatar{transform:scale(1.04);border-color:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.12);}
+    .tile.disabled .avatar{filter:grayscale(1) brightness(.75);}
+    .label{font-weight:800;color:#a3a3a3;font-size:14px;}
+    .av-recruiter{background:linear-gradient(180deg,#0DB5FF,#0070F3);}
+    .av-family{background:linear-gradient(180deg,#25E26A,#0AA84B);}
+    .av-guest{background:linear-gradient(180deg,#FFB21E,#FF7A00);}
+    .icon{width:56%;height:56%;display:block;}
+    .icon svg{width:100%;height:100%;fill:#fff;}
+    @keyframes fadeIn{to{opacity:1}}
 
-    .grid{
-      display:grid; gap:22px;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      place-items:center;
-    }
-    @media (max-width: 680px){
-      .grid{ grid-template-columns: repeat(3, minmax(0,1fr)); gap:14px; }
-    }
+    .main{opacity:0;}
+    .main.show{animation:fadeIn .6s ease forwards;}
 
-    .tile{
-      display:grid; gap:10px; place-items:center; cursor:pointer; text-decoration:none;
-      user-select:none; outline:none; background:transparent; border:0;
-    }
-    .tile.disabled{ cursor:not-allowed; }
-    .avatar{
-      width:min(32vw,180px); height:min(32vw,180px);
-      border-radius:10px; overflow:hidden;
-      border:2px solid transparent; box-shadow:0 0 0 0 rgba(255,255,255,.0);
-      transition:transform .12s ease, border-color .12s ease, box-shadow .12s ease, filter .12s ease;
-      display:grid; place-items:center;
-    }
-    .tile:not(.disabled):focus .avatar,
-    .tile:not(.disabled):hover .avatar{
-      transform:scale(1.04);
-      border-color:#fff;
-      box-shadow:0 0 0 4px rgba(255,255,255,.12);
-      filter:brightness(1.06);
-    }
-    .tile.disabled .avatar{ filter:grayscale(1) brightness(.75); border-color:transparent; }
-    .label{
-      font-weight:800; color:#a3a3a3; letter-spacing:.04em; font-size:14px;
-      text-transform:none;
-    }
+    /* Navbar */
+    .navbar{position:fixed;width:100%;padding:14px clamp(16px,4vw,48px);
+      display:flex;align-items:center;justify-content:space-between;z-index:1000;
+      background:linear-gradient(180deg,rgba(0,0,0,.7) 10%,transparent);}
+    .navbar.scrolled{background:#0f0f0f;box-shadow:0 2px 0 rgba(255,255,255,.04) inset;}
+    .brand{background:none;border:0;font-weight:900;color:var(--accent);letter-spacing:-.04em;
+      font-size:clamp(22px,3.2vw,32px);cursor:pointer;}
+    .navlinks{display:flex;gap:22px;align-items:center;}
+    .navlinks a{color:#e5e5e5;text-decoration:none;font-size:14px;font-weight:600;}
+    .navlinks a:hover{color:#b3b3b3;}
 
-    /* Avatar color blocks */
-    .av-recruiter { background:linear-gradient(180deg,#0DB5FF,#0070F3); }
-    .av-family    { background:linear-gradient(180deg,#25E26A,#0AA84B); }
-    .av-guest     { background:linear-gradient(180deg,#FFB21E,#FF7A00); }
+    /* Hero */
+    .hero{position:relative;min-height:92vh;display:grid;align-items:center;
+      padding:0 clamp(16px,4vw,48px);
+      background:linear-gradient(90deg,rgba(0,0,0,.8),rgba(0,0,0,.3)),
+                 url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1920&auto=format&fit=crop') center/cover no-repeat;}
+    .hero::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:160px;
+      background:linear-gradient(to top,var(--bg),transparent);}
+    .hero-content{max-width:720px;position:relative;z-index:1;}
+    .hero h1{font-size:clamp(32px,8vw,68px);line-height:1.05;margin:0 0 .25em;}
+    .hero .sub{font-size:clamp(16px,3.2vw,22px);color:var(--muted);margin:0 0 .6em;}
+    .hero .desc{font-size:clamp(14px,2.6vw,18px);color:#d2d2d2;max-width:54ch;margin:0 0 1em;}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;}
+    .btn{display:inline-flex;align-items:center;gap:10px;border:0;cursor:pointer;
+      font-weight:700;border-radius:4px;padding:12px 22px;transition:filter .15s;}
+    .btn-white{background:#fff;color:#000;}
+    .btn-white:hover{filter:brightness(.92);}
+    .btn-ghost{background:rgba(109,109,110,.7);color:#fff;}
+    .btn-ghost:hover{filter:brightness(1.1);}
 
-    .icon{ width:56%; height:56%; display:block }
-    .icon svg{ width:100%; height:100%; fill:#fff }
-
-    .hide{ display:none !important; }
-
-    .main{ opacity:0; }
-    .main.show{ animation:fadeIn .6s ease forwards; }
-    @keyframes fadeIn{ to{ opacity:1 } }
-
-    /* --- Navbar --- */
-    .navbar{
-      position:fixed; inset:0 auto auto 0; width:100%;
-      padding:14px clamp(16px,4vw,48px);
-      display:flex; align-items:center; justify-content:space-between; gap:16px;
-      z-index:1000;
-      background:linear-gradient(180deg,rgba(0,0,0,.7) 10%,transparent);
-      transition:background .25s ease, box-shadow .25s ease;
-    }
-    .navbar.scrolled{ background:#0f0f0f; box-shadow:0 2px 0 rgba(255,255,255,.04) inset; }
-    .brand{
-      background:none; border:0; padding:0; margin:0;
-      font-weight:900; color:var(--accent); letter-spacing:-.04em; font-size:clamp(22px,3.2vw,32px);
-      cursor:pointer;
-    }
-
-    .navlinks{display:flex; gap:22px; align-items:center; flex-wrap:wrap}
-    .navlinks a{
-      color:#e5e5e5; text-decoration:none; font-size:14px; font-weight:600;
-    }
-    .navlinks a:hover{color:var(--ink-2)}
-
-    /* --- Hero billboard --- */
-    .hero{
-      position:relative; min-height:92vh; display:grid; align-items:center;
-      padding:0 clamp(16px,4vw,48px); isolation:isolate;
-      background:
-        linear-gradient(90deg,rgba(0,0,0,.8),rgba(0,0,0,.3)),
-        url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1920&auto=format&fit=crop') center/cover no-repeat;
-    }
-    .hero::after{
-      content:""; position:absolute; left:0; right:0; bottom:-1px; height:160px;
-      background:linear-gradient(to top,var(--bg),transparent); z-index:0;
-    }
-    .hero-content{max-width:720px; position:relative; z-index:1}
-    .hero h1{font-size: clamp(32px,8vw,68px); line-height:1.05; margin:0 0 .25em}
-    .hero .sub{font-size: clamp(16px,3.2vw,22px); color:var(--muted); margin:0 0 .6em}
-    .hero .desc{font-size: clamp(14px,2.6vw,18px); color:#d2d2d2; max-width:54ch; margin:0 0 1em}
-    .cta{display:flex; gap:12px; flex-wrap:wrap}
-    .btn{
-      display:inline-flex; align-items:center; gap:10px; border:0; cursor:pointer;
-      font-weight:700; border-radius:4px; padding:12px 22px; transition:filter .15s;
-    }
-    .btn:focus{outline:2px solid var(--ring); outline-offset:2px}
-    .btn-white{background:#fff; color:#000}
-    .btn-white:hover{filter:brightness(.92)}
-    .btn-ghost{background:rgba(109,109,110,.7); color:#fff}
-    .btn-ghost:hover{filter:brightness(1.1)}
-
-    .section{padding: 28px clamp(16px,4vw,48px) 8px}
-    .section-title{font-size:20px; font-weight:700; color:#e5e5e5; margin:0 0 10px}
-
-    .rail{ position:relative; }
-    .scroller{
-      display:flex; gap:10px; overflow:auto; scroll-behavior:smooth; padding-bottom:18px;
-      scroll-snap-type: x proximity;
-    }
-    .scroller::-webkit-scrollbar{height:8px}
-    .scroller::-webkit-scrollbar-track{background:var(--rail)}
-    .scroller::-webkit-scrollbar-thumb{background:var(--thumb); border-radius:4px}
-    .scroller:focus{outline:2px solid var(--ring); outline-offset:2px}
-
-    .card{
-      position:relative; min-width:290px; height:168px; border-radius:8px; overflow:hidden;
-      background:#222; scroll-snap-align:start; flex-shrink:0; transform-origin:center; transition:transform .2s ease;
-    }
-    .card:hover{transform:scale(1.06); z-index:5}
-    .thumb{width:100%; height:100%; object-fit:cover}
-    .overlay{
-      position:absolute; inset:auto 0 0 0; padding:16px;
-      background:linear-gradient(to top,rgba(0,0,0,.9),transparent);
-      opacity:0; transition:opacity .18s ease;
-    }
-    .card:hover .overlay{opacity:1}
-    .title{font-size:15px; font-weight:800; margin:0 0 6px}
-    .meta{font-size:12px; color:#d2d2d2}
+    .section{padding:28px clamp(16px,4vw,48px) 8px;}
+    .section-title{font-size:20px;font-weight:700;color:#e5e5e5;margin:0 0 10px;}
   </style>
 </head>
 <body>
-  <!-- Intro (slight-arch SVG) -->
+  <!-- Intro -->
   <div class="netflix-intro" aria-hidden="true">
-    <div class="netflix-logo" aria-label="ANGEL CONTRERAS">
-      <svg class="logo-arch" viewBox="0 0 1200 500" role="img" aria-label="ANGEL CONTRERAS">
+    <div class="netflix-logo" aria-label="Angel Contreras">
+      <svg class="logo-arch" viewBox="0 0 1200 500" role="img" aria-label="Angel Contreras">
         <defs>
-          <!-- Subtle arch: large radius for a gentle curve -->
+          <!-- Slight arch -->
           <path id="ac-arc" d="M120,360 A900,900 0 0 1 1080,360" vector-effect="non-scaling-stroke"/>
         </defs>
         <text>
@@ -208,60 +109,34 @@
   </div>
 
   <!-- Who's watching -->
-  <div id="profiles" class="profiles" role="dialog" aria-labelledby="whosWatching" aria-modal="true">
+  <div id="profiles" class="profiles">
     <div class="profiles-wrap">
-      <h2 id="whosWatching" class="nf">Who’s watching?</h2>
+      <h2 class="nf">Who’s watching?</h2>
       <div class="grid">
-        <!-- Recruiter (clickable) -->
-        <button class="tile" data-profile="recruiter" data-target="#portfolio" aria-label="Recruiter profile">
-          <div class="avatar av-recruiter" aria-hidden="true">
-            <span class="icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1h3a3 3 0 0 1 3 3v3h-7v1a1 1 0 0 1-2 0V12H2V9a3 3 0 0 1 3-3h5Zm2-1h0a1 1 0 0 0-1 1v1h2V6a1 1 0 0 0-1-1ZM2 13h9v1a1 1 0 0 0 2 0v-1h9v5a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-5Z"/>
-              </svg>
-            </span>
-          </div>
-          <span class="label">Recruiter</span>
-        </button>
-
-        <!-- Friends / Family (disabled) -->
-        <button class="tile disabled" data-profile="family" data-target="#home" aria-label="Friends and Family profile" aria-disabled="true" tabindex="-1">
-          <div class="avatar av-family" aria-hidden="true">
-            <span class="icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M16 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm-8 2a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm8 2c-3.31 0-6 1.79-6 4v1h12v-1c0-2.21-2.69-4-6-4Zm-8 0c-3.31 0-6 1.79-6 4v1h8v-1c0-1.03.39-1.97 1.07-2.76A7.2 7.2 0 0 0 8 15Z"/>
-              </svg>
-            </span>
-          </div>
-          <span class="label">Friends / Family</span>
-        </button>
-
-        <!-- Guest (disabled) -->
-        <button class="tile disabled" data-profile="guest" data-target="#home" aria-label="Guest profile" aria-disabled="true" tabindex="-1">
-          <div class="avatar av-guest" aria-hidden="true">
-            <span class="icon">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Zm-3.5 9a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 8.5 11Zm9 2.5a5.5 5.5 0 0 1-11 0 1 1 0 0 1 2 0 3.5 3.5 0 0 0 7 0 1 1 0 0 1 2 0ZM15.5 11A1.5 1.5 0 1 1 17 9.5 1.5 1.5 0 0 1 15.5 11Z"/>
-              </svg>
-            </span>
-          </div>
-          <span class="label">Guest</span>
-        </button>
+        <button class="tile" data-profile="recruiter" data-target="#portfolio">
+          <div class="avatar av-recruiter"><span class="icon">
+            <svg viewBox="0 0 24 24"><path d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1h3a3 3 0 0 1 3 3v3h-7v1a1 1 0 0 1-2 0V12H2V9a3 3 0 0 1 3-3h5Z"/></svg>
+          </span></div><span class="label">Recruiter</span></button>
+        <button class="tile disabled"><div class="avatar av-family"><span class="icon">
+          <svg viewBox="0 0 24 24"><path d="M16 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4Zm-8 2a4 4 0 1 0-4-4 4 4 0 0 0 4 4Z"/></svg>
+        </span></div><span class="label">Friends / Family</span></button>
+        <button class="tile disabled"><div class="avatar av-guest"><span class="icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Z"/></svg>
+        </span></div><span class="label">Guest</span></button>
       </div>
     </div>
   </div>
 
-  <!-- App -->
+  <!-- Main -->
   <div class="main" id="appRoot">
-    <!-- Nav -->
     <nav class="navbar" id="navbar">
-      <button class="brand nf" id="brandHome" aria-label="Reset to intro">Angel Contreras</button>
-      <div class="navlinks" role="navigation" aria-label="Primary">
+      <button class="brand nf" id="brandHome">Angel Contreras</button>
+      <div class="navlinks">
         <a href="#home" id="navHome">Home</a>
-        <a href="#portfolio" id="navPortfolio">Portfolio</a>
+        <a href="#portfolio">Portfolio</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
-        <a href="#hire" id="navHire">Hire Me</a>
+        <a href="#hire">Hire Me</a>
       </div>
     </nav>
 
@@ -272,376 +147,50 @@
         <p class="sub">Full Stack Developer &amp; IT Professional</p>
         <p class="desc">Passionate about building innovative solutions and creating seamless digital experiences. Breaking into tech, one project at a time.</p>
         <div class="cta">
-          <a class="btn btn-white" href="#portfolio"><span aria-hidden="true">▶</span> View&nbsp;Portfolio</a>
-          <a class="btn btn-ghost" href="#portfolio"><span aria-hidden="true">ℹ</span> More&nbsp;Info</a>
+          <a class="btn btn-white" href="#resume"><span aria-hidden="true">▶</span> Resume</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/angel-contreras-488539195/" target="_blank" rel="noopener">
+            <span aria-hidden="true">ℹ</span> LinkedIn
+          </a>
         </div>
       </div>
     </header>
 
-    <!-- Portfolio (renamed from Professional) -->
-    <section class="section" id="portfolio">
-      <h2 class="section-title">Portfolio</h2>
-      <div class="rail">
-        <button class="scroll-btn scroll-left" aria-label="Scroll left">‹</button>
-        <div class="scroller" tabindex="0" aria-label="Portfolio carousel">
-          <article class="card" style="background:#2a2a2a">
-            <img class="thumb" alt="Project Charter Website" loading="lazy"
-                 src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=900&auto=format&fit=crop">
-            <div class="overlay">
-              <h3 class="title">Project Charter Website</h3>
-              <p class="meta">Interactive web-based project management tool</p>
-            </div>
-          </article>
-
-          <article class="card">
-            <img class="thumb" alt="Portfolio Website" loading="lazy"
-                 src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=901&auto=format&fit=crop">
-            <div class="overlay">
-              <h3 class="title">Portfolio Website</h3>
-              <p class="meta">Personal portfolio showcasing skills and projects</p>
-            </div>
-          </article>
-
-          <article class="card">
-            <img class="thumb" alt="IT Management System" loading="lazy"
-                 src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=1000&auto=format&fit=crop">
-            <div class="overlay">
-              <h3 class="title">IT Management System</h3>
-              <p class="meta">Full-stack application for IT project tracking</p>
-            </div>
-          </article>
-
-          <article class="card">
-            <img class="thumb" alt="Database Design" loading="lazy"
-                 src="https://images.unsplash.com/photo-1555949963-aa79dcee981d?w=1000&auto=format&fit=crop">
-            <div class="overlay">
-              <h3 class="title">Database Design</h3>
-              <p class="meta">Optimized database architecture</p>
-            </div>
-          </article>
-
-          <article class="card">
-            <img class="thumb" alt="Web Development" loading="lazy"
-                 src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1000&auto=format&fit=crop">
-            <div class="overlay">
-              <h3 class="title">Web Development</h3>
-              <p class="meta">Responsive website designs</p>
-            </div>
-          </article>
-        </div>
-        <button class="scroll-btn scroll-right" aria-label="Scroll right">›</button>
-      </div>
-    </section>
+    <!-- Portfolio -->
+    <section class="section" id="portfolio"><h2 class="section-title">Portfolio</h2></section>
 
     <!-- Skills -->
-    <section class="section" id="skills">
-      <h2 class="section-title">Technical Skills</h2>
-      <div class="rail">
-        <button class="scroll-btn scroll-left" aria-label="Scroll skills left">‹</button>
-        <div class="scroller" tabindex="0" aria-label="Skills carousel">
-          <article class="card">
-            <img class="thumb" alt="HTML & CSS" loading="lazy"
-                 src="https://images.unsplash.com/photo-1520975916090-3105956dac38?w=1000&auto=format&fit=crop">
-            <div class="overlay">
-              <h3 class="title">HTML &amp; CSS</h3>
-              <p class="meta">Advanced frontend development</p>
-            </div>
-          </article>
-          <article class="card">
-            <img class="thumb" alt="JavaScript" loading="lazy"
-                 src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1000&auto=format&fit=crop">
-            <div class="overlay">
-              <h3 class="title">JavaScript</h3>
-              <p class="meta">Interactive web applications</p>
-            </div>
-          </article>
-          <article class="card">
-            <img class="thumb" alt="React" loading="lazy"
-                 src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1000&auto=format&fit=crop">
-            <div class="overlay">
-              <h3 class="title">React</h3>
-              <p class="meta">Modern UI development</p>
-            </div>
-          </article>
-          <article class="card">
-            <img class="thumb" alt="Python" loading="lazy"
-                 src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=1000&auto=format&fit=crop">
-            <div class="overlay">
-              <h3 class="title">Python</h3>
-              <p class="meta">Back-end & automation</p>
-            </div>
-          </article>
-          <article class="card">
-            <img class="thumb" alt="SQL" loading="lazy"
-                 src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=1000&auto=format&fit=crop">
-            <div class="overlay">
-              <h3 class="title">SQL</h3>
-              <p class="meta">Database management</p>
-            </div>
-          </article>
-        </div>
-        <button class="scroll-btn scroll-right" aria-label="Scroll skills right">›</button>
-      </div>
-    </section>
+    <section class="section" id="skills"><h2 class="section-title">Technical Skills</h2></section>
 
-    <!-- Projects (renamed from Experience) -->
-    <section class="section" id="projects">
-      <h2 class="section-title">Projects</h2>
-      <div class="rail">
-        <button class="scroll-btn scroll-left" aria-label="Scroll projects left">‹</button>
-        <div class="scroller" tabindex="0" aria-label="Projects carousel">
-          <article class="card">
-            <img class="thumb" alt="IT Project Management" loading="lazy"
-                 src="https://images.unsplash.com/photo-1557800636-894a64c1696f?w=1000&auto=format&fit=crop">
-            <div class="overlay">
-              <h3 class="title">IT Project Management</h3>
-              <p class="meta">Managing tech projects efficiently</p>
-            </div>
-          </article>
-          <article class="card">
-            <img class="thumb" alt="Web Development" loading="lazy"
-                 src="https://images.unsplash.com/photo-1487014679447-9f8336841d58?w=1000&auto=format&fit=crop">
-            <div class="overlay">
-              <h3 class="title">Web Development</h3>
-              <p class="meta">Building responsive web solutions</p>
-            </div>
-          </article>
-          <article class="card">
-            <img class="thumb" alt="System Administration" loading="lazy"
-                 src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1000&auto=format&fit=crop">
-            <div class="overlay">
-              <h3 class="title">System Administration</h3>
-              <p class="meta">Maintaining IT infrastructure</p>
-            </div>
-          </article>
-          <article class="card">
-            <img class="thumb" alt="Technical Support" loading="lazy"
-                 src="https://images.unsplash.com/photo-1525182008055-f88b95ff7980?w=1000&auto=format&fit=crop">
-            <div class="overlay">
-              <h3 class="title">Technical Support</h3>
-              <p class="meta">Providing IT solutions</p>
-            </div>
-          </article>
-        </div>
-        <button class="scroll-btn scroll-right" aria-label="Scroll projects right">›</button>
-      </div>
+    <!-- Projects -->
+    <section class="section" id="projects"><h2 class="section-title">Projects</h2></section>
+
+    <!-- Resume -->
+    <section class="section" id="resume">
+      <h2 class="section-title">Resume</h2>
+      <p style="color:#bdbdbd;max-width:60ch">Download or view my resume below:</p>
+      <a href="https://example.com/resume.pdf" target="_blank" style="color:#e50914;text-decoration:none;font-weight:700;">📄 View Resume PDF</a>
     </section>
 
     <!-- Hire Me -->
     <section class="section" id="hire">
       <h2 class="section-title">Hire Me</h2>
-      <p style="color:#bdbdbd; max-width:60ch">
+      <p style="color:#bdbdbd;max-width:60ch">
         I’m open to full-time roles and select freelance projects. Email
         <a href="mailto:angel@example.com" style="color:#e5e5e5">angel@example.com</a>
-        or DM on <a href="https://linkedin.com" target="_blank" rel="noopener" style="color:#e5e5e5">LinkedIn</a>.
+        or DM on
+        <a href="https://www.linkedin.com/in/angel-contreras-488539195/" target="_blank" rel="noopener" style="color:#e5e5e5">LinkedIn</a>.
       </p>
     </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <nav class="links" aria-label="Footer">
-        <a href="mailto:angel@example.com">Email</a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#hire">Hire Me</a>
-        <a href="#home" id="footerHome">Back to top</a>
-      </nav>
-      <p class="copyright">© <span id="year"></span> Angel Contreras. All rights reserved.</p>
-    </footer>
   </div>
 
   <script>
-    // ---------- Nav on scroll ----------
-    const navbar = document.getElementById('navbar');
-    addEventListener('scroll', () => {
-      if (window.scrollY > 80) navbar.classList.add('scrolled');
-      else navbar.classList.remove('scrolled');
-    }, { passive: true });
-
-    // ---------- Year ----------
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // ---------- “Ta-dum”-style intro (copyright-safe) ----------
-    async function playTaDum(){
-      const Ctx = window.AudioContext || window.webkitAudioContext;
-      const ctx = new Ctx();
-      const now = ctx.currentTime;
-
-      const master = ctx.createGain();
-      master.gain.setValueAtTime(0.9, now);
-      master.gain.exponentialRampToValueAtTime(0.0001, now + 2.4);
-      master.connect(ctx.destination);
-
-      function noiseBurst(t, dur = 0.25, gain = 0.8){
-        const buf = ctx.createBuffer(1, ctx.sampleRate * dur, ctx.sampleRate);
-        const d = buf.getChannelData(0);
-        for (let i=0;i<d.length;i++) d[i] = (Math.random()*2-1) * (1 - i/d.length);
-        const src = ctx.createBufferSource(); src.buffer = buf;
-        const g = ctx.createGain();
-        g.gain.setValueAtTime(gain, t);
-        g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-        src.connect(g); g.connect(master); src.start(t); src.stop(t + dur + 0.05);
-      }
-
-      function hit(t, { type='sine', f0=60, f1=45, g0=1.0, gDur=0.9, len=1.0 } = {}){
-        const osc = ctx.createOscillator(); osc.type = type;
-        osc.frequency.setValueAtTime(f0, t);
-        osc.frequency.exponentialRampToValueAtTime(f1, t + gDur);
-        const g = ctx.createGain();
-        g.gain.setValueAtTime(0.0001, t);
-        g.gain.exponentialRampToValueAtTime(g0, t + 0.02);
-        g.gain.exponentialRampToValueAtTime(0.0001, t + gDur);
-        const delay = ctx.createDelay(); delay.delayTime.setValueAtTime(0.012, t);
-        osc.connect(g); g.connect(delay); delay.connect(master);
-        osc.start(t); osc.stop(t + len);
-      }
-
-      // two-hit signature
-      hit(now, { type:'sine', f0:56, f1:40, g0:1.0, gDur:0.9, len:1.0 });
-      noiseBurst(now, 0.22, 0.7);
-      hit(now + 0.36, { type:'triangle', f0:392, f1:330, g0:0.95, gDur:0.95, len:1.3 });
-      noiseBurst(now + 0.36, 0.18, 0.5);
-
-      // airy tail
-      const tail = ctx.createBuffer(1, ctx.sampleRate * 0.5, ctx.sampleRate);
-      const td = tail.getChannelData(0);
-      for (let i=0;i<td.length;i++) td[i] = (Math.random()*2-1) * (1 - i/td.length);
-      const tailSrc = ctx.createBufferSource(); tailSrc.buffer = tail;
-      const bpf = ctx.createBiquadFilter(); bpf.type='bandpass'; bpf.frequency.setValueAtTime(1500, now+0.5); bpf.Q.value = 3;
-      const gTail = ctx.createGain(); gTail.gain.setValueAtTime(0.12, now+0.5);
-      gTail.gain.exponentialRampToValueAtTime(0.0001, now+1.9);
-      tailSrc.connect(bpf); bpf.connect(gTail); gTail.connect(master);
-      tailSrc.start(now+0.5); tailSrc.stop(now+2.0);
-    }
-
-    // ---------- Carousels ----------
-    function setupRail(rail){
-      const scroller = rail.querySelector('.scroller');
-      const left = rail.querySelector('.scroll-left');
-      const right = rail.querySelector('.scroll-right');
-      const step = () => Math.round(scroller.clientWidth * 0.9);
-      left.addEventListener('click', () => scroller.scrollBy({left:-step(), behavior:'smooth'}));
-      right.addEventListener('click', () => scroller.scrollBy({left: step(), behavior:'smooth'}));
-      scroller.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight') { e.preventDefault(); scroller.scrollBy({left: step(), behavior:'smooth'}); }
-        if (e.key === 'ArrowLeft')  { e.preventDefault(); scroller.scrollBy({left:-step(), behavior:'smooth'}); }
-      });
-      const updateBtns = () => {
-        const max = scroller.scrollWidth - scroller.clientWidth - 1;
-        left.style.display  = scroller.scrollLeft <= 2 ? 'none' : 'grid';
-        right.style.display = scroller.scrollLeft >= max ? 'none' : 'grid';
-      };
-      scroller.addEventListener('scroll', updateBtns, { passive:true });
-      new ResizeObserver(updateBtns).observe(scroller);
-      updateBtns();
-    }
-    document.querySelectorAll('.rail').forEach(setupRail);
-
-    // ---------- Flow: Intro -> Profiles -> Main ----------
-    const introSel = '.netflix-intro';
-    const profiles = document.getElementById('profiles');
-    const appRoot = document.getElementById('appRoot');
-    let afterIntroTimer = null;
-
-    function showProfiles(){
-      profiles.classList.add('show');
-      profiles.querySelector('.tile')?.focus();
-    }
-    function hideProfiles(){ profiles.classList.remove('show'); }
-    function showMain(){ appRoot.classList.add('show'); }
-    function hideMain(){ appRoot.classList.remove('show'); }
-
-    // autoplay with interaction fallback
-    function kickIntro(){
-      let started = false;
-      const start = async () => {
-        if (started) return; started = true;
-        try { await playTaDum(); } catch {}
-        window.removeEventListener('click', start);
-        window.removeEventListener('keydown', start);
-        window.removeEventListener('touchstart', start);
-      };
-      setTimeout(start, 300);
-      window.addEventListener('click', start, { once:true });
-      window.addEventListener('keydown', start, { once:true });
-      window.addEventListener('touchstart', start, { once:true });
-    }
-
-    function scheduleAfterIntro(){
-      if (afterIntroTimer) clearTimeout(afterIntroTimer);
-      afterIntroTimer = setTimeout(() => {
-        const saved = localStorage.getItem('ac_profile_choice');
-        if (saved) {
-          const btn = document.querySelector('.tile[data-profile="'+saved+'"]');
-          if (btn) handleProfileClick.call(btn); else showProfiles();
-        } else {
-          showProfiles();
-        }
-      }, 2700);
-    }
-
-    function replayIntro(){
-      const intro = document.querySelector(introSel);
-      const parent = intro.parentNode;
-      const clone = intro.cloneNode(true);
-      parent.replaceChild(clone, intro);
-    }
-
-    function resetToIntro(){
-      localStorage.removeItem('ac_profile_choice');
-      hideProfiles();
-      hideMain();
-      window.scrollTo({ top: 0, behavior: 'auto' });
-      replayIntro();
-      kickIntro();
-      scheduleAfterIntro();
-    }
-
-    function handleProfileClick(e){
-      if (this.classList.contains('disabled') || this.getAttribute('aria-disabled') === 'true'){
-        e && e.preventDefault();
-        return;
-      }
-      const target = this.getAttribute('data-target') || '#portfolio';
-      const profile = this.getAttribute('data-profile') || 'guest';
-      localStorage.setItem('ac_profile_choice', profile);
-      hideProfiles(); showMain();
-      const el = document.querySelector(target);
-      if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
-    }
-
-    // Wire profile tiles
-    document.querySelectorAll('.tile').forEach(btn => {
-      btn.addEventListener('click', handleProfileClick);
-      btn.addEventListener('keydown', (e) => {
-        if (btn.classList.contains('disabled')) return;
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleProfileClick.call(btn, e); }
-      });
-    });
-
-    // Brand resets to full intro (with sound)
-    document.getElementById('brandHome').addEventListener('click', resetToIntro);
-
-    // Home nav opens Who’s Watching (no intro, no sound)
-    const navHome = document.getElementById('navHome');
-    const footerHome = document.getElementById('footerHome');
-    function openProfilesFromNav(e){
+    // Home in nav returns to "Who's Watching"
+    document.getElementById('navHome').onclick = e => {
       e.preventDefault();
-      hideMain();
-      showProfiles();
-      window.scrollTo({ top: 0, behavior: 'auto' });
-    }
-    navHome.addEventListener('click', openProfilesFromNav);
-    footerHome.addEventListener('click', openProfilesFromNav);
-
-    // Boot
-    window.addEventListener('DOMContentLoaded', () => {
-      kickIntro();
-      scheduleAfterIntro();
-    });
+      document.getElementById('appRoot').classList.remove('show');
+      document.getElementById('profiles').classList.add('show');
+      window.scrollTo({top:0,behavior:'auto'});
+    };
   </script>
 </body>
 </html>
