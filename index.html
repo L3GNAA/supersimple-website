@@ -29,26 +29,58 @@
       text-transform:uppercase;
     }
 
-    /* --- Intro (slight arch, red fill + black outline) --- */
+    /* --- Intro (Netflix style with text) --- */
     .netflix-intro{
       position:fixed; inset:0; display:grid; place-items:center;
       background:#000; z-index:10000; animation:hideIntro .5s ease 2.6s forwards;
     }
-    .netflix-logo{ display:grid; place-items:center; animation:logoZoom 1.8s ease both; }
-    .logo-arch{ width:min(92vw,1200px); height:auto; transform-origin:center; }
-    .ac-text{
+    .netflix-logo{ 
+      display:grid; place-items:center; 
+      animation:logoZoom 1.8s ease both; 
+    }
+    .intro-text{
       font-family:"Netflix Sans","Bebas Neue",system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
       font-weight:900;
-      letter-spacing:.035em;
-      font-size: clamp(72px, 10.5vw, 200px);
+      font-size:clamp(48px, 12vw, 140px);
+      letter-spacing:.15em;
       text-transform:uppercase;
-      fill:#E50914;
-      stroke:#000; stroke-width:8px;
-      paint-order:stroke fill;
-      shape-rendering:geometricPrecision;
-      filter: drop-shadow(0 0 14px rgba(229,9,20,.35));
+      color:#E50914;
+      margin:0;
+      text-shadow:
+        0 0 20px rgba(229,9,20,.6),
+        0 0 40px rgba(229,9,20,.4),
+        0 0 60px rgba(229,9,20,.2);
+      position:relative;
+      /* Bridge arch effect using inline-block spans */
+      display:flex;
+      justify-content:center;
+      align-items:baseline;
     }
-    @keyframes logoZoom{ 0%{transform:scale(.6);opacity:0}55%{transform:scale(1.12);opacity:1}100%{transform:scale(1)} }
+    .intro-text span{
+      display:inline-block;
+      position:relative;
+    }
+    /* Create arch by adjusting individual letter positions */
+    .intro-text span:nth-child(1) { transform:translateY(30px); }
+    .intro-text span:nth-child(2) { transform:translateY(20px); }
+    .intro-text span:nth-child(3) { transform:translateY(12px); }
+    .intro-text span:nth-child(4) { transform:translateY(7px); }
+    .intro-text span:nth-child(5) { transform:translateY(3px); }
+    .intro-text span:nth-child(6) { transform:translateY(1px); }
+    .intro-text span:nth-child(7) { transform:translateY(0px); } /* Peak */
+    .intro-text span:nth-child(8) { transform:translateY(0px); } /* Peak */
+    .intro-text span:nth-child(9) { transform:translateY(1px); }
+    .intro-text span:nth-child(10) { transform:translateY(3px); }
+    .intro-text span:nth-child(11) { transform:translateY(7px); }
+    .intro-text span:nth-child(12) { transform:translateY(12px); }
+    .intro-text span:nth-child(13) { transform:translateY(20px); }
+    .intro-text span:nth-child(14) { transform:translateY(30px); }
+    .intro-text span:nth-child(15) { transform:translateY(40px); }
+    @keyframes logoZoom{ 
+      0%{transform:scale(.6);opacity:0}
+      55%{transform:scale(1.12);opacity:1}
+      100%{transform:scale(1)}
+    }
     @keyframes hideIntro{to{opacity:0; visibility:hidden}}
 
     /* --- Who's Watching --- */
@@ -115,7 +147,7 @@
     .navbar{
       position:fixed; inset:0 auto auto 0; width:100%;
       padding:14px clamp(16px,4vw,48px);
-      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      display:flex; align-items:center; gap:32px;
       z-index:1000;
       background:linear-gradient(180deg,rgba(0,0,0,.7) 10%,transparent);
       transition:background .25s ease, box-shadow .25s ease;
@@ -125,6 +157,7 @@
       background:none; border:0; padding:0; margin:0;
       font-weight:900; color:var(--accent); letter-spacing:-.04em; font-size:clamp(22px,3.2vw,32px);
       cursor:pointer;
+      flex-shrink:0;
     }
 
     .navlinks{display:flex; gap:22px; align-items:center; flex-wrap:wrap}
@@ -522,19 +555,19 @@
         osc.start(t); osc.stop(t + len);
       }
 
-      // Netflix-style "TA-DUM" two-hit signature
-      hit(now, { type:'sine', f0:52, f1:38, g0:1.2, gDur:1.0, len:1.2 });
-      noiseBurst(now, 0.25, 0.8);
-      hit(now + 0.40, { type:'triangle', f0:415, f1:349, g0:1.1, gDur:1.0, len:1.4 });
-      noiseBurst(now + 0.40, 0.20, 0.6);
+      // Netflix-style "TA-DUM" two-hit signature - LOUDER VERSION
+      hit(now, { type:'sine', f0:52, f1:38, g0:2.0, gDur:1.0, len:1.2 });
+      noiseBurst(now, 0.25, 1.5);
+      hit(now + 0.40, { type:'triangle', f0:415, f1:349, g0:1.8, gDur:1.0, len:1.4 });
+      noiseBurst(now + 0.40, 0.20, 1.2);
 
-      // Airy reverb tail
+      // Airy reverb tail - louder
       const tail = ctx.createBuffer(1, ctx.sampleRate * 0.6, ctx.sampleRate);
       const td = tail.getChannelData(0);
       for (let i=0;i<td.length;i++) td[i] = (Math.random()*2-1) * (1 - i/td.length);
       const tailSrc = ctx.createBufferSource(); tailSrc.buffer = tail;
       const bpf = ctx.createBiquadFilter(); bpf.type='bandpass'; bpf.frequency.setValueAtTime(1600, now+0.6); bpf.Q.value = 3;
-      const gTail = ctx.createGain(); gTail.gain.setValueAtTime(0.15, now+0.6);
+      const gTail = ctx.createGain(); gTail.gain.setValueAtTime(0.25, now+0.6);
       gTail.gain.exponentialRampToValueAtTime(0.0001, now+2.2);
       tailSrc.connect(bpf); bpf.connect(gTail); gTail.connect(master);
       tailSrc.start(now+0.6); tailSrc.stop(now+2.3);
