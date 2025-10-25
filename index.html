@@ -38,14 +38,13 @@
     .ac-text{
       font-family:"Netflix Sans","Bebas Neue",system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
       font-weight:900;
-      letter-spacing:.035em;                 /* a touch of spacing for curvature */
-      font-size: clamp(72px, 10.5vw, 200px); /* responsive */
+      letter-spacing:.035em;
+      font-size: clamp(72px, 10.5vw, 200px);
       text-transform:uppercase;
-      fill:#E50914;                          /* RED fill */
-      stroke:#000; stroke-width:8px;         /* BLACK outline */
+      fill:#E50914;
+      stroke:#000; stroke-width:8px;
       paint-order:stroke fill;
       shape-rendering:geometricPrecision;
-      /* soft red glow for vibe */
       filter: drop-shadow(0 0 14px rgba(229,9,20,.35));
     }
     @keyframes logoZoom{ 0%{transform:scale(.6);opacity:0}55%{transform:scale(1.12);opacity:1}100%{transform:scale(1)} }
@@ -153,6 +152,7 @@
     .btn{
       display:inline-flex; align-items:center; gap:10px; border:0; cursor:pointer;
       font-weight:700; border-radius:4px; padding:12px 22px; transition:filter .15s;
+      text-decoration:none;
     }
     .btn:focus{outline:2px solid var(--ring); outline-offset:2px}
     .btn-white{background:#fff; color:#000}
@@ -164,6 +164,30 @@
     .section-title{font-size:20px; font-weight:700; color:#e5e5e5; margin:0 0 10px}
 
     .rail{ position:relative; }
+    
+    /* Scroll buttons */
+    .scroll-btn{
+      position:absolute; top:50%; transform:translateY(-50%);
+      width:48px; height:48px; border-radius:50%;
+      background:rgba(0,0,0,.7); border:2px solid rgba(255,255,255,.2);
+      color:#fff; font-size:32px; font-weight:300;
+      cursor:pointer; z-index:10;
+      display:grid; place-items:center;
+      transition:all .2s ease;
+      user-select:none;
+    }
+    .scroll-btn:hover{
+      background:rgba(0,0,0,.9);
+      border-color:rgba(255,255,255,.4);
+      transform:translateY(-50%) scale(1.1);
+    }
+    .scroll-btn:focus{
+      outline:2px solid var(--ring);
+      outline-offset:2px;
+    }
+    .scroll-left{ left:8px; }
+    .scroll-right{ right:8px; }
+    
     .scroller{
       display:flex; gap:10px; overflow:auto; scroll-behavior:smooth; padding-bottom:18px;
       scroll-snap-type: x proximity;
@@ -187,6 +211,25 @@
     .card:hover .overlay{opacity:1}
     .title{font-size:15px; font-weight:800; margin:0 0 6px}
     .meta{font-size:12px; color:#d2d2d2}
+    
+    /* Footer */
+    .footer{
+      padding:48px clamp(16px,4vw,48px) 32px;
+      border-top:1px solid rgba(255,255,255,.1);
+      margin-top:48px;
+    }
+    .footer .links{
+      display:flex; gap:16px; flex-wrap:wrap; margin-bottom:24px;
+      justify-content:center;
+    }
+    .footer .links a{
+      color:#808080; text-decoration:none; font-size:13px;
+      transition:color .2s;
+    }
+    .footer .links a:hover{ color:#fff; }
+    .footer .copyright{
+      text-align:center; color:#808080; font-size:12px; margin:0;
+    }
   </style>
 </head>
 <body>
@@ -210,7 +253,7 @@
   <!-- Who's watching -->
   <div id="profiles" class="profiles" role="dialog" aria-labelledby="whosWatching" aria-modal="true">
     <div class="profiles-wrap">
-      <h2 id="whosWatching" class="nf">Who’s watching?</h2>
+      <h2 id="whosWatching" class="nf">Who's watching?</h2>
       <div class="grid">
         <!-- Recruiter (clickable) -->
         <button class="tile" data-profile="recruiter" data-target="#portfolio" aria-label="Recruiter profile">
@@ -272,8 +315,8 @@
         <p class="sub">Full Stack Developer &amp; IT Professional</p>
         <p class="desc">Passionate about building innovative solutions and creating seamless digital experiences. Breaking into tech, one project at a time.</p>
         <div class="cta">
-          <a class="btn btn-white" href="#portfolio"><span aria-hidden="true">▶</span> View&nbsp;Portfolio</a>
-          <a class="btn btn-ghost" href="#portfolio"><span aria-hidden="true">ℹ</span> More&nbsp;Info</a>
+          <a class="btn btn-white" href="#portfolio"><span aria-hidden="true">▶</span> View Resume</a>
+          <a class="btn btn-ghost" href="#portfolio"><span aria-hidden="true">ℹ</span> More Info</a>
         </div>
       </div>
     </header>
@@ -431,7 +474,7 @@
     <section class="section" id="hire">
       <h2 class="section-title">Hire Me</h2>
       <p style="color:#bdbdbd; max-width:60ch">
-        I’m open to full-time roles and select freelance projects. Email
+        I'm open to full-time roles and select freelance projects. Email
         <a href="mailto:angel@example.com" style="color:#e5e5e5">angel@example.com</a>
         or DM on <a href="https://linkedin.com" target="_blank" rel="noopener" style="color:#e5e5e5">LinkedIn</a>.
       </p>
@@ -464,9 +507,10 @@
     // ---------- Year ----------
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ---------- “Ta-dum”-style intro (copyright-safe) ----------
+    // ---------- "Ta-dum"-style intro (copyright-safe) ----------
     async function playTaDum(){
       const Ctx = window.AudioContext || window.webkitAudioContext;
+      if (!Ctx) return;
       const ctx = new Ctx();
       const now = ctx.currentTime;
 
@@ -522,6 +566,8 @@
       const scroller = rail.querySelector('.scroller');
       const left = rail.querySelector('.scroll-left');
       const right = rail.querySelector('.scroll-right');
+      if (!scroller || !left || !right) return;
+      
       const step = () => Math.round(scroller.clientWidth * 0.9);
       left.addEventListener('click', () => scroller.scrollBy({left:-step(), behavior:'smooth'}));
       right.addEventListener('click', () => scroller.scrollBy({left: step(), behavior:'smooth'}));
@@ -548,7 +594,7 @@
 
     function showProfiles(){
       profiles.classList.add('show');
-      profiles.querySelector('.tile')?.focus();
+      profiles.querySelector('.tile:not(.disabled)')?.focus();
     }
     function hideProfiles(){ profiles.classList.remove('show'); }
     function showMain(){ appRoot.classList.add('show'); }
@@ -573,13 +619,7 @@
     function scheduleAfterIntro(){
       if (afterIntroTimer) clearTimeout(afterIntroTimer);
       afterIntroTimer = setTimeout(() => {
-        const saved = localStorage.getItem('ac_profile_choice');
-        if (saved) {
-          const btn = document.querySelector('.tile[data-profile="'+saved+'"]');
-          if (btn) handleProfileClick.call(btn); else showProfiles();
-        } else {
-          showProfiles();
-        }
+        showProfiles();
       }, 2700);
     }
 
@@ -591,7 +631,6 @@
     }
 
     function resetToIntro(){
-      localStorage.removeItem('ac_profile_choice');
       hideProfiles();
       hideMain();
       window.scrollTo({ top: 0, behavior: 'auto' });
@@ -606,11 +645,12 @@
         return;
       }
       const target = this.getAttribute('data-target') || '#portfolio';
-      const profile = this.getAttribute('data-profile') || 'guest';
-      localStorage.setItem('ac_profile_choice', profile);
-      hideProfiles(); showMain();
-      const el = document.querySelector(target);
-      if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
+      hideProfiles(); 
+      showMain();
+      setTimeout(() => {
+        const el = document.querySelector(target);
+        if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
+      }, 100);
     }
 
     // Wire profile tiles
@@ -625,7 +665,7 @@
     // Brand resets to full intro (with sound)
     document.getElementById('brandHome').addEventListener('click', resetToIntro);
 
-    // Home nav opens Who’s Watching (no intro, no sound)
+    // Home nav opens Who's Watching (no intro, no sound)
     const navHome = document.getElementById('navHome');
     const footerHome = document.getElementById('footerHome');
     function openProfilesFromNav(e){
