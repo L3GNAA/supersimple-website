@@ -70,85 +70,169 @@
 
     /* Hero Section */
     .hero{
-      min-height:50vh;
+      min-height:100vh;
       display:grid;
       place-items:center;
-      padding:140px clamp(16px,4vw,48px) 80px;
-      background:
-        radial-gradient(circle at 20% 50%, rgba(229,9,20,.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 50%, rgba(229,9,20,.1) 0%, transparent 50%),
-        var(--bg);
+      padding:100px clamp(16px,4vw,48px) 60px;
+      background:var(--bg);
       text-align:center;
       position:relative;
     }
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,.02) 2px, rgba(255,255,255,.02) 4px);
-      pointer-events:none;
+    
+    /* Profile Card */
+    .profile-card{
+      background:rgba(30,30,30,.9);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:20px;
+      padding:48px 40px;
+      max-width:520px;
+      margin:0 auto 60px;
+      text-align:center;
     }
-    .hero h1{
-      font-size:clamp(48px,7vw,86px);
+    .profile-header{
+      display:flex;
+      align-items:flex-start;
+      gap:24px;
+      margin-bottom:28px;
+      text-align:left;
+    }
+    .profile-image{
+      width:100px;
+      height:100px;
+      border-radius:50%;
+      background:linear-gradient(135deg, #0DB5FF, #0070F3);
+      flex-shrink:0;
+      display:grid;
+      place-items:center;
+      font-size:40px;
       font-weight:900;
-      margin:0 0 20px;
       color:#fff;
-      letter-spacing:-.02em;
-      line-height:1.1;
     }
-    .hero p{
-      font-size:clamp(18px,2.8vw,22px);
+    .profile-info h1{
+      font-size:28px;
+      font-weight:900;
+      color:#fff;
+      margin:0 0 6px;
+    }
+    .profile-info .title{
+      font-size:16px;
+      color:#999;
+      margin:0 0 16px;
+      font-weight:400;
+    }
+    .profile-info .bio{
+      font-size:15px;
       color:#b3b3b3;
-      margin:0 0 40px;
-      max-width:700px;
       line-height:1.6;
+      margin:0 0 12px;
     }
-    .hero-cta{
+    .profile-info .education{
+      font-size:14px;
+      color:#888;
+      margin:0;
+    }
+    .linkedin-btn{
       display:inline-flex;
       align-items:center;
-      gap:12px;
-      padding:16px 32px;
-      background:linear-gradient(135deg, var(--accent), #c50812);
+      gap:10px;
+      padding:14px 28px;
+      background:#0077b5;
       color:#fff;
       text-decoration:none;
-      border-radius:8px;
+      border-radius:6px;
       font-weight:700;
-      font-size:16px;
+      font-size:15px;
       transition:all .3s ease;
-      text-transform:uppercase;
-      letter-spacing:.05em;
+      margin-top:20px;
     }
-    .hero-cta:hover{
-      transform:translateY(-3px);
-      box-shadow:0 10px 25px rgba(229,9,20,.4);
+    .linkedin-btn:hover{
+      background:#006399;
+      transform:translateY(-2px);
+      box-shadow:0 6px 20px rgba(0,119,181,.4);
     }
-    .hero-cta svg{
+    .linkedin-btn svg{
       width:20px;
       height:20px;
       fill:currentColor;
     }
+    
+    /* Contact Message */
+    .contact-message{
+      font-size:20px;
+      color:#ccc;
+      margin:0 0 40px;
+      font-weight:400;
+    }
+    
+    /* Contact Links */
+    .contact-links{
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+      max-width:400px;
+      margin:0 auto 60px;
+    }
+    .contact-link{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      padding:16px 24px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:50px;
+      color:#fff;
+      text-decoration:none;
+      font-size:16px;
+      transition:all .3s ease;
+    }
+    .contact-link:hover{
+      background:rgba(255,255,255,.08);
+      border-color:rgba(255,255,255,.2);
+      transform:translateX(4px);
+    }
+    .contact-link svg{
+      width:20px;
+      height:20px;
+      flex-shrink:0;
+    }
+    .contact-link.email svg{
+      fill:#EA4335;
+    }
+    .contact-link.phone svg{
+      fill:#34A853;
+    }
+    
+    /* Coffee Section */
+    .coffee-section{
+      font-size:18px;
+      color:#aaa;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+    }
 
     /* Contact Section */
     .contact-section{
-      padding:0 clamp(16px,4vw,48px) 100px;
+      padding:80px clamp(16px,4vw,48px) 100px;
       max-width:1400px;
       margin:0 auto;
     }
     
     .section-header{
       text-align:center;
-      margin-bottom:60px;
+      margin-bottom:50px;
     }
     .section-header h2{
-      font-size:clamp(32px,5vw,48px);
+      font-size:clamp(28px,4.5vw,42px);
       font-weight:900;
-      margin:0 0 16px;
+      margin:0 0 12px;
       color:#fff;
     }
     .section-header p{
-      font-size:18px;
-      color:#b3b3b3;
+      font-size:17px;
+      color:#999;
       margin:0;
     }
 
@@ -156,7 +240,6 @@
       display:grid;
       gap:28px;
       grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
-      margin-bottom:80px;
     }
 
     .contact-card{
