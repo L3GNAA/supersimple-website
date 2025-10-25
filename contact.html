@@ -29,7 +29,7 @@
     .navbar{
       position:fixed; inset:0 auto auto 0; width:100%;
       padding:14px clamp(16px,4vw,48px);
-      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      display:flex; align-items:center; gap:32px;
       z-index:1000;
       background:#0f0f0f;
       box-shadow:0 2px 0 rgba(255,255,255,.04) inset;
@@ -39,201 +39,289 @@
       font-weight:900; color:var(--accent); letter-spacing:-.04em; 
       font-size:clamp(22px,3.2vw,32px);
       text-decoration:none;
+      flex-shrink:0;
     }
-    .navlinks{display:flex; gap:22px; align-items:center; flex-wrap:wrap}
+    .navlinks{display:flex; gap:22px; align-items:center; flex-wrap:wrap; flex:1;}
     .navlinks a{
       color:#e5e5e5; text-decoration:none; font-size:14px; font-weight:600;
       transition:color .2s;
     }
     .navlinks a:hover{color:var(--ink-2)}
+    
+    /* Profile Avatar in Navbar */
+    .profile-avatar{
+      margin-left:auto;
+      width:40px; height:40px;
+      border-radius:6px;
+      background:linear-gradient(180deg,#0DB5FF,#0070F3);
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      transition:transform .2s ease;
+      flex-shrink:0;
+    }
+    .profile-avatar:hover{
+      transform:scale(1.05);
+    }
+    .profile-avatar svg{
+      width:20px; height:20px;
+      fill:#fff;
+    }
 
     /* Hero Section */
     .hero{
-      min-height:40vh;
+      min-height:50vh;
       display:grid;
       place-items:center;
-      padding:120px clamp(16px,4vw,48px) 60px;
+      padding:140px clamp(16px,4vw,48px) 80px;
       background:
-        linear-gradient(135deg, rgba(229,9,20,.1) 0%, transparent 50%),
-        linear-gradient(to bottom, var(--bg), #1a1a1a);
+        radial-gradient(circle at 20% 50%, rgba(229,9,20,.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(229,9,20,.1) 0%, transparent 50%),
+        var(--bg);
       text-align:center;
+      position:relative;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,.02) 2px, rgba(255,255,255,.02) 4px);
+      pointer-events:none;
     }
     .hero h1{
-      font-size:clamp(40px,6vw,72px);
+      font-size:clamp(48px,7vw,86px);
       font-weight:900;
-      margin:0 0 16px;
-      background:linear-gradient(135deg, #fff 0%, #b3b3b3 100%);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      background-clip:text;
+      margin:0 0 20px;
+      color:#fff;
+      letter-spacing:-.02em;
+      line-height:1.1;
     }
     .hero p{
-      font-size:clamp(16px,2.5vw,20px);
+      font-size:clamp(18px,2.8vw,22px);
       color:#b3b3b3;
-      margin:0;
-      max-width:600px;
+      margin:0 0 40px;
+      max-width:700px;
+      line-height:1.6;
+    }
+    .hero-cta{
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      padding:16px 32px;
+      background:linear-gradient(135deg, var(--accent), #c50812);
+      color:#fff;
+      text-decoration:none;
+      border-radius:8px;
+      font-weight:700;
+      font-size:16px;
+      transition:all .3s ease;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+    }
+    .hero-cta:hover{
+      transform:translateY(-3px);
+      box-shadow:0 10px 25px rgba(229,9,20,.4);
+    }
+    .hero-cta svg{
+      width:20px;
+      height:20px;
+      fill:currentColor;
     }
 
     /* Contact Section */
     .contact-section{
-      padding:60px clamp(16px,4vw,48px) 80px;
-      max-width:1200px;
+      padding:0 clamp(16px,4vw,48px) 100px;
+      max-width:1400px;
       margin:0 auto;
+    }
+    
+    .section-header{
+      text-align:center;
+      margin-bottom:60px;
+    }
+    .section-header h2{
+      font-size:clamp(32px,5vw,48px);
+      font-weight:900;
+      margin:0 0 16px;
+      color:#fff;
+    }
+    .section-header p{
+      font-size:18px;
+      color:#b3b3b3;
+      margin:0;
     }
 
     .contact-grid{
       display:grid;
-      gap:24px;
-      grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
-      margin-bottom:60px;
+      gap:28px;
+      grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+      margin-bottom:80px;
     }
 
     .contact-card{
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.1);
-      border-radius:12px;
-      padding:40px 28px;
+      background:rgba(20,20,20,.6);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:16px;
+      padding:48px 32px;
       text-align:center;
-      transition:all .3s ease;
+      transition:all .35s ease;
       text-decoration:none;
       color:inherit;
-      display:block;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
       position:relative;
       overflow:hidden;
+      backdrop-filter:blur(10px);
     }
     .contact-card::before{
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(135deg, rgba(229,9,20,.1), transparent);
+      background:linear-gradient(135deg, rgba(229,9,20,.08), transparent 60%);
       opacity:0;
-      transition:opacity .3s ease;
+      transition:opacity .35s ease;
     }
     .contact-card:hover{
-      background:rgba(255,255,255,.08);
-      border-color:rgba(229,9,20,.5);
-      transform:translateY(-8px);
-      box-shadow:0 12px 24px rgba(0,0,0,.4);
+      background:rgba(30,30,30,.8);
+      border-color:rgba(229,9,20,.3);
+      transform:translateY(-6px);
+      box-shadow:0 16px 32px rgba(0,0,0,.5), 0 0 0 1px rgba(229,9,20,.2);
     }
     .contact-card:hover::before{
       opacity:1;
     }
 
     .contact-icon{
-      width:64px;
-      height:64px;
-      margin:0 auto 20px;
-      background:linear-gradient(135deg, var(--accent), #c50812);
-      border-radius:50%;
+      width:72px;
+      height:72px;
+      margin:0 0 24px;
+      background:linear-gradient(135deg, var(--accent), #b20710);
+      border-radius:16px;
       display:grid;
       place-items:center;
-      transition:transform .3s ease;
+      transition:all .35s ease;
       position:relative;
       z-index:1;
+      box-shadow:0 4px 12px rgba(229,9,20,.3);
     }
     .contact-card:hover .contact-icon{
-      transform:scale(1.1) rotate(5deg);
+      transform:scale(1.08) rotate(-3deg);
+      box-shadow:0 8px 20px rgba(229,9,20,.5);
     }
     .contact-icon svg{
-      width:28px;
-      height:28px;
+      width:32px;
+      height:32px;
       fill:#fff;
     }
 
     .contact-card h3{
-      font-size:22px;
-      font-weight:700;
-      margin:0 0 12px;
+      font-size:24px;
+      font-weight:800;
+      margin:0 0 10px;
       color:#fff;
       position:relative;
       z-index:1;
+      letter-spacing:-.01em;
     }
     .contact-card p{
-      font-size:15px;
-      color:#b3b3b3;
+      font-size:16px;
+      color:#999;
       margin:0;
       word-break:break-word;
       position:relative;
       z-index:1;
+      line-height:1.5;
     }
     .contact-card:hover p{
-      color:#e5e5e5;
+      color:#ccc;
     }
 
     /* Form Section */
     .form-container{
-      max-width:700px;
+      max-width:800px;
       margin:0 auto;
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.1);
-      border-radius:16px;
-      padding:48px clamp(24px,5vw,48px);
+      background:rgba(20,20,20,.6);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:20px;
+      padding:56px clamp(28px,6vw,56px);
+      backdrop-filter:blur(10px);
     }
     .form-container h2{
       font-size:clamp(28px,4vw,36px);
-      font-weight:700;
-      margin:0 0 12px;
+      font-weight:800;
+      margin:0 0 32px;
       text-align:center;
       color:#fff;
+      display:none;
     }
     .form-container .subtitle{
       text-align:center;
       color:#b3b3b3;
       font-size:15px;
       margin:0 0 32px;
+      display:none;
     }
 
     .form-group{
-      margin-bottom:24px;
+      margin-bottom:28px;
     }
     .form-group label{
       display:block;
-      font-weight:600;
-      margin-bottom:8px;
+      font-weight:700;
+      margin-bottom:10px;
       color:#e5e5e5;
-      font-size:14px;
+      font-size:15px;
+      letter-spacing:-.01em;
     }
     .form-group input,
     .form-group textarea{
       width:100%;
-      padding:14px 16px;
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.15);
-      border-radius:8px;
+      padding:16px 20px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:10px;
       color:#fff;
-      font-size:15px;
+      font-size:16px;
       font-family:inherit;
-      transition:all .2s ease;
+      transition:all .25s ease;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder{
+      color:#666;
     }
     .form-group input:focus,
     .form-group textarea:focus{
       outline:none;
       border-color:var(--accent);
-      background:rgba(255,255,255,.08);
-      box-shadow:0 0 0 3px rgba(229,9,20,.15);
+      background:rgba(255,255,255,.06);
+      box-shadow:0 0 0 4px rgba(229,9,20,.12);
     }
     .form-group textarea{
-      min-height:150px;
+      min-height:160px;
       resize:vertical;
     }
 
     .submit-btn{
       width:100%;
-      padding:16px 32px;
-      background:linear-gradient(135deg, var(--accent), #c50812);
+      padding:18px 36px;
+      background:linear-gradient(135deg, var(--accent), #b20710);
       border:none;
-      border-radius:8px;
+      border-radius:10px;
       color:#fff;
-      font-size:16px;
-      font-weight:700;
+      font-size:17px;
+      font-weight:800;
       cursor:pointer;
-      transition:all .3s ease;
+      transition:all .35s ease;
       text-transform:uppercase;
-      letter-spacing:.05em;
+      letter-spacing:.06em;
+      box-shadow:0 4px 16px rgba(229,9,20,.3);
     }
     .submit-btn:hover{
       transform:translateY(-2px);
-      box-shadow:0 8px 20px rgba(229,9,20,.4);
+      box-shadow:0 8px 24px rgba(229,9,20,.5);
+      background:linear-gradient(135deg, #ff0a16, #c50812);
     }
     .submit-btn:active{
       transform:translateY(0);
@@ -263,18 +351,34 @@
       <a href="index.html#projects">Projects</a>
       <a href="contact.html">Hire Me</a>
     </div>
+    <div class="profile-avatar" aria-label="Recruiter profile" title="Recruiter">
+      <svg viewBox="0 0 24 24">
+        <path d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1h3a3 3 0 0 1 3 3v3h-7v1a1 1 0 0 1-2 0V12H2V9a3 3 0 0 1 3-3h5Zm2-1h0a1 1 0 0 0-1 1v1h2V6a1 1 0 0 0-1-1ZM2 13h9v1a1 1 0 0 0 2 0v-1h9v5a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-5Z"/>
+      </svg>
+    </div>
   </nav>
 
   <!-- Hero -->
   <section class="hero">
     <div>
-      <h1 class="nf">Let's Work Together</h1>
-      <p>I'm open to full-time opportunities, freelance projects, and collaborations. Let's create something amazing!</p>
+      <h1 class="nf">Get In Touch</h1>
+      <p>Have a project in mind or just want to chat? I'd love to hear from you. Drop me a message and let's create something amazing together.</p>
+      <a href="mailto:acontr126@calstatela.edu" class="hero-cta">
+        <svg viewBox="0 0 24 24">
+          <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+        Send Email
+      </a>
     </div>
   </section>
 
   <!-- Contact Methods -->
   <section class="contact-section">
+    <div class="section-header">
+      <h2>Contact Information</h2>
+      <p>Choose your preferred way to reach out</p>
+    </div>
+    
     <div class="contact-grid">
       <a href="mailto:acontr126@calstatela.edu" class="contact-card">
         <div class="contact-icon">
@@ -317,7 +421,11 @@
       </a>
     </div>
 
-    <!-- Contact Form -->
+    <!-- Alternative Contact Form Section -->
+    <div class="section-header" style="margin-top:80px">
+      <h2>Or Send a Message</h2>
+      <p>Fill out the form and I'll get back to you within 24 hours</p>
+    </div>
     <div class="form-container">
       <h2>Send Me a Message</h2>
       <p class="subtitle">Fill out the form below and I'll get back to you as soon as possible.</p>
