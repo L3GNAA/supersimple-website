@@ -8,6 +8,15 @@
 
   <!-- Free fallback; swap to licensed Netflix Sans via @font-face if you have it -->
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  
+  <!-- Force page to start at top -->
+  <script>
+    // MUST be in head to prevent any scroll before page loads
+    if (history.scrollRestoration) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+  </script>
 
   <style>
     :root{
@@ -15,12 +24,12 @@
       --panel:#000; --accent:#E50914; --rail:#1a1a1a; --thumb:#4a4a4a;
       --ring:rgba(255,255,255,.14);
     }
-    *{box-sizing:border-box}
+    *{box-sizing:border-box; margin:0; padding:0}
     html,body{height:100%; overflow-x:hidden}
-    html{scroll-behavior:smooth}
+    html{scroll-behavior:smooth; overflow-y:scroll; position:relative}
     body{
-      margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
-      background:var(--bg); color:var(--ink);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+      background:var(--bg); color:var(--ink); position:relative;
     }
 
     .nf{
@@ -399,11 +408,11 @@
         <a href="#projects">Projects</a>
         <a href="contact.html">Hire Me</a>
       </div>
-      <div class="profile-avatar" id="profileAvatar" aria-label="Recruiter profile" title="Recruiter">
+      <button class="profile-avatar" id="profileAvatar" aria-label="Recruiter profile" title="Recruiter">
         <svg viewBox="0 0 24 24">
           <path d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1h3a3 3 0 0 1 3 3v3h-7v1a1 1 0 0 1-2 0V12H2V9a3 3 0 0 1 3-3h5Zm2-1h0a1 1 0 0 0-1 1v1h2V6a1 1 0 0 0-1-1ZM2 13h9v1a1 1 0 0 0 2 0v-1h9v5a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-5Z"/>
         </svg>
-      </div>
+      </button>
     </nav>
 
     <!-- Hero -->
@@ -705,6 +714,8 @@
     // Home nav opens Who's Watching (no intro, no sound)
     const navHome = document.getElementById('navHome');
     const footerHome = document.getElementById('footerHome');
+    const profileAvatar = document.getElementById('profileAvatar');
+    
     function openProfilesFromNav(e){
       e.preventDefault();
       hideMain();
@@ -713,6 +724,9 @@
     }
     navHome.addEventListener('click', openProfilesFromNav);
     footerHome.addEventListener('click', openProfilesFromNav);
+    
+    // Profile avatar click opens Who's Watching
+    profileAvatar.addEventListener('click', openProfilesFromNav);
 
     // Boot
     window.addEventListener('DOMContentLoaded', () => {
