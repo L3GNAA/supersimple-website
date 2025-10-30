@@ -1,148 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Hire Me – Angel Contreras</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#0f0f10; --panel:#1c1d20; --muted:#9aa1a9; --ink:#eaecef;
-      --brand:#e11d2e; --ring:rgba(255,255,255,.08);
-      --pill:#222429; --pill-border:#2c2f36;
-      --ln:#0a66c2; --ln-dark:#0a57a6;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0}
-    body{font-family:Inter,system-ui,Segoe UI,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#0c0c0e, #121316 40%, #0f1012);color:var(--ink)}
-    a{color:inherit;text-decoration:none}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Your Name</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* Top bar */
-    .nav{
-      position:sticky; top:0; z-index:20;
-      backdrop-filter:saturate(1.2) blur(8px);
-      background:rgba(10,10,12,.7);
-      border-bottom:1px solid rgba(255,255,255,.06);
-    }
-    .nav-inner{
-      max-width:1100px; margin:0 auto; padding:16px 20px; display:flex; align-items:center; gap:22px;
-    }
-    .brand{
-      font-weight:900; letter-spacing:.04em; color:var(--brand);
-      text-transform:uppercase; font-size:22px;
-    }
-    .tabs{margin-left:auto; display:flex; gap:20px; align-items:center; flex-wrap:wrap}
-    .tabs a{color:#c9cbd1; font-weight:600; font-size:14px; opacity:.9}
-    .tabs a:hover{opacity:1}
-    .tabs a.active{color:#fff}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            min-height: 100vh;
+        }
 
-    /* Page wrap */
-    .wrap{max-width:900px; margin:0 auto; padding:56px 18px 96px}
+        /* Navigation Bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: #0a0a0a;
+        }
 
-    /* Card */
-    .card{
-      background:var(--panel); border:1px solid rgba(255,255,255,.06);
-      border-radius:14px; padding:26px; display:grid; grid-template-columns:80px 1fr; gap:18px;
-      box-shadow:0 10px 30px rgba(0,0,0,.35);
-    }
-    .avatar{
-      width:80px;height:80px;border-radius:12px; overflow:hidden; display:grid;place-items:center;
-      background:linear-gradient(135deg,#2e7eed,#0a66c2);
-      color:#fff; font-weight:900; font-size:28px;
-    }
-    .c-title{font-size:18px; font-weight:900; margin:0 0 2px}
-    .c-sub{margin:0 0 10px; color:var(--muted); font-weight:600}
-    .c-desc{margin:0 0 12px; color:#c7ccd3; line-height:1.6}
-    .edu{color:#8b929b; font-size:13px}
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff3333;
+            letter-spacing: 2px;
+        }
 
-    .ln-btn{
-      display:inline-flex; align-items:center; gap:10px; margin-top:12px;
-      background:var(--ln); border:1px solid rgba(255,255,255,.12);
-      color:#fff; padding:10px 14px; border-radius:8px; font-weight:800; font-size:14px;
-      box-shadow:0 10px 24px rgba(10,102,194,.35); transition:.2s transform, .2s background;
-    }
-    .ln-btn:hover{background:var(--ln-dark); transform:translateY(-1px)}
-    .ln-btn svg{width:18px;height:18px;fill:#fff}
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
 
-    /* Middle text */
-    .lead{ text-align:center; margin:26px auto 18px; color:#c9cdd4 }
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
 
-    /* Pills */
-    .pills{max-width:520px; margin:10px auto 30px; display:flex; flex-direction:column; gap:14px}
-    .pill{
-      display:flex; align-items:center; gap:12px; justify-content:center;
-      padding:14px 18px; background:var(--pill); border:1px solid var(--pill-border);
-      color:#e9ecf1; border-radius:999px; font-weight:700; letter-spacing:.2px;
-      transition:.2s transform, .2s border-color, .2s background;
-    }
-    .pill:hover{transform:translateX(3px); border-color:#3a3f48; background:#24272d}
-    .pill .icon{width:18px;height:18px; display:inline-block}
-    .pill.mail .icon{filter:none}
-    .pill.phone .icon{filter:none}
+        .nav-links a:hover {
+            color: #ff3333;
+        }
 
-    /* Coffee row */
-    .coffee{display:flex; justify-content:center; align-items:center; gap:10px; color:#cfd3da; margin-top:18px; font-weight:600}
+        .globe-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
 
-    /* Responsive */
-    @media (max-width:620px){
-      .card{grid-template-columns:60px 1fr}
-      .avatar{width:60px;height:60px; font-size:22px}
-    }
-  </style>
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Profile Card */
+        .profile-card {
+            background-color: #1a1a1a;
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            display: flex;
+            gap: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            flex-shrink: 0;
+        }
+
+        .profile-info h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .profile-info h2 {
+            font-size: 16px;
+            color: #999;
+            font-weight: normal;
+            margin-bottom: 20px;
+        }
+
+        .profile-description {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .profile-details {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .view-profile-btn {
+            background-color: #0077b5;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .view-profile-btn:hover {
+            background-color: #005885;
+        }
+
+        /* Contact Section */
+        .contact-intro {
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 50px;
+            color: #ccc;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .contact-item {
+            background-color: #1a1a1a;
+            padding: 18px 40px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 18px;
+            text-decoration: none;
+            color: #ffffff;
+            transition: transform 0.3s, background-color 0.3s;
+            min-width: 350px;
+            justify-content: center;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-3px);
+            background-color: #252525;
+        }
+
+        .icon {
+            font-size: 24px;
+        }
+
+        .email-icon {
+            color: #ff3333;
+        }
+
+        .phone-icon {
+            color: #ff3333;
+        }
+
+        .coffee-text {
+            text-align: center;
+            font-size: 22px;
+            color: #ccc;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 20px 25px;
+            }
+
+            .nav-links {
+                gap: 15px;
+                font-size: 14px;
+            }
+
+            .profile-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 30px 20px;
+            }
+
+            .contact-item {
+                min-width: auto;
+                width: 100%;
+                font-size: 16px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- NAV -->
-  <header class="nav">
-    <div class="nav-inner">
-      <a class="brand" href="index.html">ANGEL CONTRERAS</a>
-      <nav class="tabs" aria-label="Primary">
-        <a href="index.html">Home</a>
-        <a href="professional.html">Professional</a>
-        <a href="skills.html">Skills</a>
-        <a href="projects.html">Projects</a>
-        <a class="active" href="contact.html">Hire Me</a>
-      </nav>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">YOUR NAME</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="professional.html">Professional</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Hire Me</a></li>
+        </ul>
+        <div class="globe-icon">🌐</div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Profile Card -->
+        <div class="profile-card">
+            <div class="profile-image"></div>
+            <div class="profile-info">
+                <h1>Your Name</h1>
+                <h2>Your Job Title</h2>
+                <p class="profile-description">
+                    Brief description of your experience and skills. 
+                    Mention your years of experience and key technologies you work with.
+                </p>
+                <p class="profile-details">Your Company/Community | Your University</p>
+                <a href="https://www.linkedin.com/in/yourprofile" class="view-profile-btn" target="_blank">
+                    <span>in</span> View Profile
+                </a>
+            </div>
+        </div>
+
+        <!-- Contact Introduction -->
+        <p class="contact-intro">I'm always up for a chat or a coffee! Feel free to reach out.</p>
+
+        <!-- Contact Methods -->
+        <div class="contact-methods">
+            <a href="mailto:your.email@example.com" class="contact-item">
+                <span class="icon email-icon">✉️</span>
+                <span>your.email@example.com</span>
+            </a>
+
+            <a href="tel:+1234567890" class="contact-item">
+                <span class="icon phone-icon">📞</span>
+                <span>+1 (234) 567-8900</span>
+            </a>
+        </div>
+
+        <!-- Coffee Message -->
+        <p class="coffee-text">Or catch up over a coffee ☕ 🥧</p>
     </div>
-  </header>
-
-  <main class="wrap">
-    <!-- PROFILE CARD -->
-    <section class="card" aria-labelledby="name">
-      <div class="avatar" aria-hidden="true">AC</div>
-      <div>
-        <h1 id="name" class="c-title">Angel Contreras</h1>
-        <p class="c-sub">IT-focused student • Managing IT Projects</p>
-        <p class="c-desc">
-          Passionate about technology and project execution. I’m exploring roles where I can grow,
-          contribute to teams, and deliver value across the stack and the business.
-        </p>
-        <p class="edu">California State University, Los Angeles</p>
-
-        <a class="ln-btn" href="https://www.linkedin.com/in/angel-contreras-488539195/" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3H5A2 2 0 0 0 3 5v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2ZM8.34 18.34H6V9.75h2.34v8.59ZM7.17 8.6a1.35 1.35 0 1 1 0-2.7 1.35 1.35 0 0 1 0 2.7ZM18 18.34h-2.34V14c0-1.03-.37-1.73-1.31-1.73-.72 0-1.14.49-1.33.97-.07.17-.09.41-.09.65v4.45H10.6s.03-7.22 0-7.98h2.34v1.13c.31-.48.86-1.15 2.1-1.15 1.53 0 2.96 1 2.96 3.15v4.85Z"/></svg>
-          View Profile
-        </a>
-      </div>
-    </section>
-
-    <!-- MESSAGE -->
-    <p class="lead">I'm always up for a chat or a coffee! Feel free to reach out.</p>
-
-    <!-- CONTACT PILLS -->
-    <div class="pills">
-      <a class="pill mail" href="mailto:acontr126@calstatela.edu">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#ea4335" d="M20 4H4a2 2 0 0 0-2 2v.4l10 6.6 10-6.6V6a2 2 0 0 0-2-2Zm0 4.8-9.28 6.13a1 1 0 0 1-1.1 0L4 8.8V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8.8Z"/></svg>
-        acontr126@calstatela.edu
-      </a>
-
-      <a class="pill phone" href="tel:+12132921901">
-        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="#39b46a" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2Z"/></svg>
-        (213) 292-1901
-      </a>
-    </div>
-
-    <!-- COFFEE -->
-    <div class="coffee">Or catch up over a coffee ☕ <span aria-hidden="true">🍵</span></div>
-  </main>
 </body>
 </html>
