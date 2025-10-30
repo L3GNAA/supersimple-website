@@ -1,268 +1,360 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - Your Name</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hire Me — Angel Contreras</title>
+  <meta name="color-scheme" content="dark">
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0a0a0a;
-            color: #ffffff;
-            min-height: 100vh;
-        }
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 
-        /* Navigation Bar */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 50px;
-            background-color: #0a0a0a;
-        }
+  <style>
+    :root{
+      --bg:#141414; --ink:#fff; --muted:#e5e5e5; --ink-2:#b3b3b3;
+      --panel:#000; --accent:#E50914; --rail:#1a1a1a; --thumb:#4a4a4a;
+      --ring:rgba(255,255,255,.14);
+    }
+    *{box-sizing:border-box; margin:0; padding:0}
+    html,body{height:100%; overflow-x:hidden}
+    html{scroll-behavior:smooth; overflow-y:scroll}
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+      background:var(--bg); color:var(--ink);
+    }
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #ff3333;
-            letter-spacing: 2px;
-        }
+    .nf{
+      font-family:"Netflix Sans","Bebas Neue",system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+      letter-spacing:.015em;
+      text-transform:uppercase;
+    }
 
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
+    /* --- Navbar --- */
+    .navbar{
+      position:fixed; inset:0 auto auto 0; width:100%;
+      padding:14px clamp(16px,4vw,48px);
+      display:flex; align-items:center; gap:32px;
+      z-index:1000;
+      background:#0f0f0f;
+      box-shadow:0 2px 0 rgba(255,255,255,.04) inset;
+    }
+    .brand{
+      background:none; border:0; padding:0; margin:0;
+      font-weight:900; color:var(--accent); letter-spacing:-.04em; font-size:clamp(22px,3.2vw,32px);
+      cursor:pointer;
+      flex-shrink:0;
+      text-decoration:none;
+    }
 
-        .nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 16px;
-            transition: color 0.3s;
-        }
+    .navlinks{display:flex; gap:22px; align-items:center; flex-wrap:wrap; flex:1;}
+    .navlinks a{
+      color:#e5e5e5; text-decoration:none; font-size:14px; font-weight:600;
+    }
+    .navlinks a:hover{color:var(--ink-2)}
+    
+    .profile-avatar{
+      margin-left:auto;
+      width:40px; height:40px;
+      border-radius:6px;
+      background:linear-gradient(180deg,#0DB5FF,#0070F3);
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      transition:transform .2s ease;
+      flex-shrink:0;
+    }
+    .profile-avatar:hover{
+      transform:scale(1.05);
+    }
+    .profile-avatar svg{
+      width:20px; height:20px;
+      fill:#fff;
+    }
 
-        .nav-links a:hover {
-            color: #ff3333;
-        }
+    /* --- Main Content --- */
+    .main-content{
+      padding-top:80px;
+      min-height:100vh;
+    }
 
-        .globe-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #00d4ff, #0099cc);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
+    /* --- Profile Section --- */
+    .profile-section{
+      padding:40px clamp(16px,4vw,48px);
+      max-width:1200px;
+      margin:0 auto;
+    }
 
-        /* Main Content */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
+    .profile-card{
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:12px;
+      padding:40px;
+      max-width:800px;
+      margin:0 auto 60px;
+      display:flex;
+      gap:30px;
+      align-items:flex-start;
+    }
 
-        /* Profile Card */
-        .profile-card {
-            background-color: #1a1a1a;
-            border-radius: 12px;
-            padding: 40px;
-            max-width: 700px;
-            margin: 0 auto 60px;
-            display: flex;
-            gap: 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-        }
+    .profile-image{
+      width:120px;
+      height:120px;
+      border-radius:50%;
+      background:linear-gradient(180deg,#0DB5FF,#0070F3);
+      flex-shrink:0;
+      display:grid;
+      place-items:center;
+    }
 
-        .profile-image {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            flex-shrink: 0;
-        }
+    .profile-image svg{
+      width:60px;
+      height:60px;
+      fill:#fff;
+    }
 
-        .profile-info h1 {
-            font-size: 28px;
-            margin-bottom: 8px;
-        }
+    .profile-info h1{
+      font-size:clamp(24px,4vw,32px);
+      margin-bottom:8px;
+      font-weight:900;
+    }
 
-        .profile-info h2 {
-            font-size: 16px;
-            color: #999;
-            font-weight: normal;
-            margin-bottom: 20px;
-        }
+    .profile-info h2{
+      font-size:16px;
+      color:#b3b3b3;
+      font-weight:normal;
+      margin-bottom:20px;
+    }
 
-        .profile-description {
-            color: #ccc;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
+    .profile-description{
+      color:#ccc;
+      line-height:1.6;
+      margin-bottom:15px;
+      font-size:15px;
+    }
 
-        .profile-details {
-            color: #999;
-            font-size: 14px;
-            margin-bottom: 25px;
-        }
+    .profile-details{
+      color:#999;
+      font-size:14px;
+      margin-bottom:25px;
+    }
 
-        .view-profile-btn {
-            background-color: #0077b5;
-            color: white;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 6px;
-            font-size: 15px;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
+    .linkedin-btn{
+      background:#0077b5;
+      color:white;
+      padding:12px 24px;
+      border:none;
+      border-radius:6px;
+      font-size:15px;
+      font-weight:600;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      text-decoration:none;
+      transition:background-color .3s;
+    }
 
-        .view-profile-btn:hover {
-            background-color: #005885;
-        }
+    .linkedin-btn:hover{
+      background:#005885;
+    }
 
-        /* Contact Section */
-        .contact-intro {
-            text-align: center;
-            font-size: 20px;
-            margin-bottom: 50px;
-            color: #ccc;
-        }
+    /* --- Contact Section --- */
+    .contact-intro{
+      text-align:center;
+      font-size:clamp(18px,3vw,22px);
+      margin-bottom:50px;
+      color:#ccc;
+      max-width:800px;
+      margin-left:auto;
+      margin-right:auto;
+    }
 
-        .contact-methods {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 25px;
-            margin-bottom: 60px;
-        }
+    .contact-grid{
+      display:grid;
+      gap:24px;
+      grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+      max-width:800px;
+      margin:0 auto 60px;
+    }
 
-        .contact-item {
-            background-color: #1a1a1a;
-            padding: 18px 40px;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 18px;
-            text-decoration: none;
-            color: #ffffff;
-            transition: transform 0.3s, background-color 0.3s;
-            min-width: 350px;
-            justify-content: center;
-        }
+    .contact-card{
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:12px;
+      padding:32px 24px;
+      text-align:center;
+      transition:all .3s ease;
+      text-decoration:none;
+      color:inherit;
+      display:block;
+    }
 
-        .contact-item:hover {
-            transform: translateY(-3px);
-            background-color: #252525;
-        }
+    .contact-card:hover{
+      background:rgba(255,255,255,.08);
+      border-color:rgba(255,255,255,.2);
+      transform:translateY(-4px);
+    }
 
-        .icon {
-            font-size: 24px;
-        }
+    .contact-icon{
+      width:56px;
+      height:56px;
+      margin:0 auto 16px;
+      background:var(--accent);
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+    }
 
-        .email-icon {
-            color: #ff3333;
-        }
+    .contact-icon svg{
+      width:28px;
+      height:28px;
+      fill:#fff;
+    }
 
-        .phone-icon {
-            color: #ff3333;
-        }
+    .contact-card h3{
+      font-size:18px;
+      font-weight:700;
+      margin:0 0 8px;
+      color:#fff;
+    }
 
-        .coffee-text {
-            text-align: center;
-            font-size: 22px;
-            color: #ccc;
-            margin-top: 40px;
-        }
+    .contact-card p{
+      font-size:15px;
+      color:#b3b3b3;
+      margin:0;
+      word-break:break-word;
+    }
 
-        @media (max-width: 768px) {
-            nav {
-                padding: 20px 25px;
-            }
+    .coffee-text{
+      text-align:center;
+      font-size:clamp(20px,3.5vw,24px);
+      color:#ccc;
+      margin-top:40px;
+      margin-bottom:60px;
+    }
 
-            .nav-links {
-                gap: 15px;
-                font-size: 14px;
-            }
+    /* --- Footer --- */
+    .footer{
+      padding:48px clamp(16px,4vw,48px) 32px;
+      border-top:1px solid rgba(255,255,255,.1);
+      margin-top:48px;
+    }
+    .footer .links{
+      display:flex; gap:16px; flex-wrap:wrap; margin-bottom:24px;
+      justify-content:center;
+    }
+    .footer .links a{
+      color:#808080; text-decoration:none; font-size:13px;
+      transition:color .2s;
+    }
+    .footer .links a:hover{ color:#fff; }
+    .footer .copyright{
+      text-align:center; color:#808080; font-size:12px; margin:0;
+    }
 
-            .profile-card {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                padding: 30px 20px;
-            }
+    @media (max-width: 768px){
+      .profile-card{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+        padding:30px 20px;
+      }
 
-            .contact-item {
-                min-width: auto;
-                width: 100%;
-                font-size: 16px;
-            }
-        }
-    </style>
+      .contact-grid{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="logo">YOUR NAME</div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="professional.html">Professional</a></li>
-            <li><a href="skills.html">Skills</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="contact.html">Hire Me</a></li>
-        </ul>
-        <div class="globe-icon">🌐</div>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="container">
-        <!-- Profile Card -->
-        <div class="profile-card">
-            <div class="profile-image"></div>
-            <div class="profile-info">
-                <h1>Your Name</h1>
-                <h2>Your Job Title</h2>
-                <p class="profile-description">
-                    Brief description of your experience and skills. 
-                    Mention your years of experience and key technologies you work with.
-                </p>
-                <p class="profile-details">Your Company/Community | Your University</p>
-                <a href="https://www.linkedin.com/in/yourprofile" class="view-profile-btn" target="_blank">
-                    <span>in</span> View Profile
-                </a>
-            </div>
-        </div>
-
-        <!-- Contact Introduction -->
-        <p class="contact-intro">I'm always up for a chat or a coffee! Feel free to reach out.</p>
-
-        <!-- Contact Methods -->
-        <div class="contact-methods">
-            <a href="mailto:your.email@example.com" class="contact-item">
-                <span class="icon email-icon">✉️</span>
-                <span>your.email@example.com</span>
-            </a>
-
-            <a href="tel:+1234567890" class="contact-item">
-                <span class="icon phone-icon">📞</span>
-                <span>+1 (234) 567-8900</span>
-            </a>
-        </div>
-
-        <!-- Coffee Message -->
-        <p class="coffee-text">Or catch up over a coffee ☕ 🥧</p>
+  <!-- Nav -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="brand nf">Angel Contreras</a>
+    <div class="navlinks" role="navigation" aria-label="Primary">
+      <a href="index.html#home">Home</a>
+      <a href="index.html#portfolio">Portfolio</a>
+      <a href="index.html#skills">Skills</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="contact.html">Hire Me</a>
     </div>
+    <a href="index.html" class="profile-avatar" aria-label="Back to main" title="Recruiter">
+      <svg viewBox="0 0 24 24">
+        <path d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1h3a3 3 0 0 1 3 3v3h-7v1a1 1 0 0 1-2 0V12H2V9a3 3 0 0 1 3-3h5Zm2-1h0a1 1 0 0 0-1 1v1h2V6a1 1 0 0 0-1-1ZM2 13h9v1a1 1 0 0 0 2 0v-1h9v5a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-5Z"/>
+      </svg>
+    </a>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <section class="profile-section">
+      <!-- Profile Card -->
+      <div class="profile-card">
+        <div class="profile-image">
+          <svg viewBox="0 0 24 24">
+            <path d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1h3a3 3 0 0 1 3 3v3h-7v1a1 1 0 0 1-2 0V12H2V9a3 3 0 0 1 3-3h5Zm2-1h0a1 1 0 0 0-1 1v1h2V6a1 1 0 0 0-1-1ZM2 13h9v1a1 1 0 0 0 2 0v-1h9v5a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-5Z"/>
+          </svg>
+        </div>
+        <div class="profile-info">
+          <h1>Angel Contreras</h1>
+          <h2>Full Stack Developer & IT Professional</h2>
+          <p class="profile-description">
+            CSULA student passionate about building innovative solutions and creating seamless digital experiences. 
+            Skilled in full-stack development, IT management, and database design.
+          </p>
+          <p class="profile-details">Cal State LA Student | Aspiring Tech Professional</p>
+          <a href="https://www.linkedin.com/in/angel-contreras-488539195/" class="linkedin-btn" target="_blank" rel="noopener">
+            <span>in</span> View Profile
+          </a>
+        </div>
+      </div>
+
+      <!-- Contact Introduction -->
+      <p class="contact-intro">I'm always up for a chat or a coffee! Feel free to reach out.</p>
+
+      <!-- Contact Methods -->
+      <div class="contact-grid">
+        <a href="mailto:angel@example.com" class="contact-card">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+          </div>
+          <h3>Email Me</h3>
+          <p>angel@example.com</p>
+        </a>
+
+        <a href="tel:+15555555555" class="contact-card">
+          <div class="contact-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+            </svg>
+          </div>
+          <h3>Call Me</h3>
+          <p>+1 (555) 555-5555</p>
+        </a>
+      </div>
+
+      <!-- Coffee Message -->
+      <p class="coffee-text">Or catch up over a coffee ☕ 🥧</p>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <nav class="links" aria-label="Footer">
+      <a href="mailto:angel@example.com">Email</a>
+      <a href="https://www.linkedin.com/in/angel-contreras-488539195/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      <a href="index.html#portfolio">Portfolio</a>
+      <a href="index.html#skills">Skills</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="contact.html">Hire Me</a>
+      <a href="index.html#home">Back to top</a>
+    </nav>
+    <p class="copyright">© <span id="year"></span> Angel Contreras. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
