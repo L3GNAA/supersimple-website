@@ -103,6 +103,13 @@
       flex-shrink:0;
       display:grid;
       place-items:center;
+      overflow:hidden;
+    }
+
+    .profile-image img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
     }
 
     .profile-image svg{
@@ -236,6 +243,19 @@
       margin-bottom:60px;
     }
 
+    .coffee-cup{
+      display:inline-block;
+      animation:steam 2s ease-in-out infinite;
+      transform-origin:center bottom;
+    }
+
+    @keyframes steam{
+      0%, 100%{ transform:translateY(0px) rotate(0deg); }
+      25%{ transform:translateY(-3px) rotate(-2deg); }
+      50%{ transform:translateY(-5px) rotate(2deg); }
+      75%{ transform:translateY(-3px) rotate(-1deg); }
+    }
+
     /* --- Footer --- */
     .footer{
       padding:48px clamp(16px,4vw,48px) 32px;
@@ -293,16 +313,14 @@
       <!-- Profile Card -->
       <div class="profile-card">
         <div class="profile-image">
-          <svg viewBox="0 0 24 24">
-            <path d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1h3a3 3 0 0 1 3 3v3h-7v1a1 1 0 0 1-2 0V12H2V9a3 3 0 0 1 3-3h5Zm2-1h0a1 1 0 0 0-1 1v1h2V6a1 1 0 0 0-1-1ZM2 13h9v1a1 1 0 0 0 2 0v-1h9v5a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-5Z"/>
-          </svg>
+          <img src="https://media.licdn.com/dms/image/v2/D5603AQEYwX_5HqH_Sg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1729199053031?e=1740614400&v=beta&t=5rGJxQVvXqVSLQFn7RHODuO6Rh7VqK8pLRwMpxPw_tE" alt="Angel Contreras Professional Headshot">
         </div>
         <div class="profile-info">
           <h1>Angel Contreras</h1>
           <h2>CIS Major</h2>
           <p class="profile-description">
-            CSULA student passionate about building innovative solutions and creating seamless digital experiences. 
-            Skilled in full-stack development, IT management, and database design.
+            CSULA graduate passionate about building innovative solutions and creating seamless digital experiences. 
+            Skilled in cybersecurity, IT management, and database design.
           </p>
           <p class="profile-details">Cal State LA Student | Aspiring Tech Professional</p>
           <a href="https://www.linkedin.com/in/angel-contreras-488539195/" class="linkedin-btn" target="_blank" rel="noopener">
@@ -315,7 +333,7 @@
       </div>
 
       <!-- Contact Introduction -->
-      <p class="contact-intro">I'm always up for a chat or a coffee! Feel free to reach out.</p>
+      <p class="contact-intro">I'm always up for a chat! Feel free to reach out.</p>
 
       <!-- Contact Methods -->
       <div class="contact-grid">
@@ -325,7 +343,6 @@
               <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
             </svg>
           </div>
-          <h3>Email Me</h3>
           <p>acontr126@calstatela.edu</p>
         </a>
 
@@ -335,13 +352,15 @@
               <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
             </svg>
           </div>
-          <h3>Call Me</h3>
           <p>(213) 292-1901</p>
         </a>
       </div>
 
       <!-- Coffee Message -->
-      <p class="coffee-text">Or catch up over a coffee ☕ 🥧</p>
+      <p class="coffee-text">
+        Or catch up over a coffee 
+        <span class="coffee-cup">☕</span>
+      </p>
     </section>
   </div>
 
