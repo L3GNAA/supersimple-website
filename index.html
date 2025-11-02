@@ -406,7 +406,8 @@
         <a href="#portfolio" id="navPortfolio">Portfolio</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
-        <a href="contact.html">Hire Me</a>
+        <!-- Added id so Contact Me can mirror this link exactly -->
+        <a id="hireLink" href="contact.html">Hire Me</a>
       </div>
       <button class="profile-avatar" id="profileAvatar" aria-label="Recruiter profile" title="Recruiter">
         <svg viewBox="0 0 24 24">
@@ -434,48 +435,40 @@
       <div class="rail">
         <button class="scroll-btn scroll-left" aria-label="Scroll left">‹</button>
         <div class="scroller" tabindex="0" aria-label="Portfolio carousel">
-          <article class="card" style="background:#2a2a2a">
-            <img class="thumb" alt="Project Charter Website" loading="lazy"
-                 src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=900&auto=format&fit=crop">
+          <!-- UPDATED: Work Permit / Skills / Experience / Certifications -->
+          <article class="card">
+            <img class="thumb" alt="Work Permit" loading="lazy"
+                 src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=1000&auto=format&fit=crop">
             <div class="overlay">
-              <h3 class="title">Project Charter Website</h3>
-              <p class="meta">Interactive web-based project management tool</p>
+              <h3 class="title">Work Permit</h3>
+              <p class="meta">Eligibility & authorization info</p>
             </div>
           </article>
 
           <article class="card">
-            <img class="thumb" alt="Portfolio Website" loading="lazy"
-                 src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=901&auto=format&fit=crop">
+            <img class="thumb" alt="Skills" loading="lazy"
+                 src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1000&auto=format&fit=crop">
             <div class="overlay">
-              <h3 class="title">Portfolio Website</h3>
-              <p class="meta">Personal portfolio showcasing skills and projects</p>
+              <h3 class="title">Skills</h3>
+              <p class="meta">Core technologies & strengths</p>
             </div>
           </article>
 
           <article class="card">
-            <img class="thumb" alt="IT Management System" loading="lazy"
-                 src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=1000&auto=format&fit=crop">
+            <img class="thumb" alt="Experience" loading="lazy"
+                 src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1000&auto=format&fit=crop">
             <div class="overlay">
-              <h3 class="title">IT Management System</h3>
-              <p class="meta">Full-stack application for IT project tracking</p>
+              <h3 class="title">Experience</h3>
+              <p class="meta">Roles, impact & outcomes</p>
             </div>
           </article>
 
           <article class="card">
-            <img class="thumb" alt="Database Design" loading="lazy"
-                 src="https://images.unsplash.com/photo-1555949963-aa79dcee981d?w=1000&auto=format&fit=crop">
+            <img class="thumb" alt="Certifications" loading="lazy"
+                 src="https://images.unsplash.com/photo-1523246194499-2f2e0a1023ae?w=1000&auto=format&fit=crop">
             <div class="overlay">
-              <h3 class="title">Database Design</h3>
-              <p class="meta">Optimized database architecture</p>
-            </div>
-          </article>
-
-          <article class="card">
-            <img class="thumb" alt="Web Development" loading="lazy"
-                 src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1000&auto=format&fit=crop">
-            <div class="overlay">
-              <h3 class="title">Web Development</h3>
-              <p class="meta">Responsive website designs</p>
+              <h3 class="title">Certifications</h3>
+              <p class="meta">Verified credentials</p>
             </div>
           </article>
         </div>
@@ -489,31 +482,36 @@
       <div class="rail">
         <button class="scroll-btn scroll-left" aria-label="Scroll skills left">‹</button>
         <div class="scroller" tabindex="0" aria-label="Skills carousel">
+          <!-- UPDATED: Music / Reading / Blogs / Contact Me -->
           <article class="card">
-            <img class="thumb" alt="Movies" loading="lazy"
-                 src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1000&auto=format&fit=crop">
+            <img class="thumb" alt="Music" loading="lazy"
+                 src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=1000&auto=format&fit=crop">
             <div class="overlay">
-              <h3 class="title">Movies</h3>
-              <p class="meta">Film enthusiast & cinephile</p>
+              <h3 class="title">Music</h3>
+              <p class="meta">Playlists & fav artists</p>
             </div>
           </article>
+
           <article class="card">
-            <img class="thumb" alt="Shows" loading="lazy"
-                 src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=1000&auto=format&fit=crop">
+            <img class="thumb" alt="Reading" loading="lazy"
+                 src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1000&auto=format&fit=crop">
             <div class="overlay">
-              <h3 class="title">Shows</h3>
-              <p class="meta">Binge-watcher & series lover</p>
+              <h3 class="title">Reading</h3>
+              <p class="meta">Books & notes</p>
             </div>
           </article>
+
           <article class="card">
-            <img class="thumb" alt="Blog" loading="lazy"
+            <img class="thumb" alt="Blogs" loading="lazy"
                  src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1000&auto=format&fit=crop">
             <div class="overlay">
-              <h3 class="title">Blog</h3>
+              <h3 class="title">Blogs</h3>
               <p class="meta">Thoughts & insights</p>
             </div>
           </article>
-          <a href="contact.html" class="card" style="text-decoration:none; cursor:pointer">
+
+          <!-- Contact Me mirrors Hire Me link exactly -->
+          <a id="contactCardLink" href="contact.html" class="card" style="text-decoration:none; cursor:pointer">
             <img class="thumb" alt="Contact Me" loading="lazy"
                  src="https://images.unsplash.com/photo-1596524430615-b46475ddff6e?w=1000&auto=format&fit=crop">
             <div class="overlay">
@@ -755,6 +753,30 @@
     window.addEventListener('beforeunload', () => {
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
+    });
+
+    // --- Gentle guard against stubborn jumps on initial paints / hash moves
+    window.addEventListener('DOMContentLoaded', () => {
+      let n = 0;
+      const guard = setInterval(() => {
+        window.scrollTo(0, 0);
+        if (++n > 8) clearInterval(guard); // ~400ms
+      }, 50);
+
+      if (location.hash) {
+        requestAnimationFrame(() => window.scrollTo(0, 0));
+      }
+    });
+
+    // --- Mirror Hire Me link onto Contact Me card (same href/target/rel)
+    window.addEventListener('DOMContentLoaded', () => {
+      const hire = document.getElementById('hireLink');
+      const contactCard = document.getElementById('contactCardLink');
+      if (hire && contactCard) {
+        contactCard.setAttribute('href', hire.getAttribute('href') || '#');
+        const tgt = hire.getAttribute('target'); if (tgt) contactCard.setAttribute('target', tgt);
+        const rel = hire.getAttribute('rel');     if (rel) contactCard.setAttribute('rel', rel);
+      }
     });
   </script>
 </body>
