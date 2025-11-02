@@ -60,24 +60,19 @@
         0 0 40px rgba(229,9,20,.4),
         0 0 60px rgba(229,9,20,.2);
       position:relative;
-      /* Bridge arch effect using inline-block spans */
       display:flex;
       justify-content:center;
       align-items:baseline;
     }
-    .intro-text span{
-      display:inline-block;
-      position:relative;
-    }
-    /* Create arch by adjusting individual letter positions */
+    .intro-text span{ display:inline-block; position:relative; }
     .intro-text span:nth-child(1) { transform:translateY(30px); }
     .intro-text span:nth-child(2) { transform:translateY(20px); }
     .intro-text span:nth-child(3) { transform:translateY(12px); }
     .intro-text span:nth-child(4) { transform:translateY(7px); }
     .intro-text span:nth-child(5) { transform:translateY(3px); }
     .intro-text span:nth-child(6) { transform:translateY(1px); }
-    .intro-text span:nth-child(7) { transform:translateY(0px); } /* Peak */
-    .intro-text span:nth-child(8) { transform:translateY(0px); } /* Peak */
+    .intro-text span:nth-child(7),
+    .intro-text span:nth-child(8) { transform:translateY(0px); }
     .intro-text span:nth-child(9) { transform:translateY(1px); }
     .intro-text span:nth-child(10) { transform:translateY(3px); }
     .intro-text span:nth-child(11) { transform:translateY(7px); }
@@ -187,13 +182,8 @@
       transition:transform .2s ease;
       flex-shrink:0;
     }
-    .profile-avatar:hover{
-      transform:scale(1.05);
-    }
-    .profile-avatar svg{
-      width:20px; height:20px;
-      fill:#fff;
-    }
+    .profile-avatar:hover{ transform:scale(1.05); }
+    .profile-avatar svg{ width:20px; height:20px; fill:#fff; }
 
     /* --- Hero billboard --- */
     .hero{
@@ -244,10 +234,7 @@
       border-color:rgba(255,255,255,.4);
       transform:translateY(-50%) scale(1.1);
     }
-    .scroll-btn:focus{
-      outline:2px solid var(--ring);
-      outline-offset:2px;
-    }
+    .scroll-btn:focus{ outline:2px solid var(--ring); outline-offset:2px; }
     .scroll-left{ left:8px; }
     .scroll-right{ right:8px; }
     
@@ -270,13 +257,14 @@
       position:absolute; inset:auto 0 0 0; padding:16px;
       background:linear-gradient(to top,rgba(0,0,0,.9),transparent);
       opacity:0; transition:opacity .18s ease;
+      /* Center titles selectively with a utility class on h3 */
     }
     .card:hover .overlay{opacity:1}
     .title{font-size:15px; font-weight:800; margin:0 0 6px}
+    .title.center{ text-align:center; } /* used ONLY for the requested topics */
+
     /* Hire Me Contact Section */
-    .contact-container{
-      max-width:800px; margin:0 auto; padding:24px 0;
-    }
+    .contact-container{ max-width:800px; margin:0 auto; padding:24px 0; }
     .contact-grid{
       display:grid; gap:24px; margin-top:32px;
       grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
@@ -305,22 +293,9 @@
       display:grid;
       place-items:center;
     }
-    .contact-icon svg{
-      width:24px; height:24px;
-      fill:#fff;
-    }
-    .contact-card h3{
-      font-size:18px;
-      font-weight:700;
-      margin:0 0 8px;
-      color:#fff;
-    }
-    .contact-card p{
-      font-size:14px;
-      color:#b3b3b3;
-      margin:0;
-      word-break:break-word;
-    }
+    .contact-icon svg{ width:24px; height:24px; fill:#fff; }
+    .contact-card h3{ font-size:18px; font-weight:700; margin:0 0 8px; color:#fff; }
+    .contact-card p{ font-size:14px; color:#b3b3b3; margin:0; word-break:break-word; }
     
     /* Footer */
     .footer{
@@ -337,9 +312,7 @@
       transition:color .2s;
     }
     .footer .links a:hover{ color:#fff; }
-    .footer .copyright{
-      text-align:center; color:#808080; font-size:12px; margin:0;
-    }
+    .footer .copyright{ text-align:center; color:#808080; font-size:12px; margin:0; }
   </style>
 </head>
 <body>
@@ -386,7 +359,7 @@
           <div class="avatar av-guest" aria-hidden="true">
             <span class="icon">
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Zm-3.5 9a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 8.5 11Zm9 2.5a5.5 5.5 0 0 1-11 0 1 1 0 0 1 2 0 3.5 3.5 0 0 0 7 0 1 1 0 0 1 2 0ZM15.5 11A1.5 1.5 0 1 1 17 9.5 1.5 1.5 0 0 1 15.5 11Z"/>
+                <path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Zm-3.5 9a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 8.5 11Zm9 2.5a5.5 5.5 0 0 1-11 0 1 1 0 0 1 2 0 3.5 3.5 0 0 0 7 0 1 1 0  0 1 2 0ZM15.5 11A1.5 1.5 0 1 1 17 9.5 1.5 1.5 0 0 1 15.5 11Z"/>
               </svg>
             </span>
           </div>
@@ -406,13 +379,11 @@
         <a href="#portfolio" id="navPortfolio">Portfolio</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
-        <!-- Added id so Contact Me can mirror this link exactly -->
+        <!-- id so Contact Me mirrors this link exactly -->
         <a id="hireLink" href="contact.html">Hire Me</a>
       </div>
       <button class="profile-avatar" id="profileAvatar" aria-label="Recruiter profile" title="Recruiter">
-        <svg viewBox="0 0 24 24">
-          <path d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1h3a3 3 0 0 1 3 3v3h-7v1a1 1 0 0 1-2 0V12H2V9a3 3 0 0 1 3-3h5Zm2-1h0a1 1 0 0 0-1 1v1h2V6a1 1 0 0 0-1-1ZM2 13h9v1a1 1 0 0 0 2 0v-1h9v5a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-5Z"/>
-        </svg>
+        <svg viewBox="0 0 24 24"><path d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1h3a3 3 0 0 1 3 3v3h-7v1a1 1 0 0 1-2 0V12H2V9a3 3 0 0 1 3-3h5Zm2-1h0a1 1 0 0 0-1 1v1h2V6a1 1 0 0 0-1-1ZM2 13h9v1a1 1 0 0 0 2 0v-1h9v5a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-5Z"/></svg>
       </button>
     </nav>
 
@@ -429,27 +400,18 @@
       </div>
     </header>
 
-    <!-- Portfolio (renamed from Professional) -->
+    <!-- Portfolio -->
     <section class="section" id="portfolio">
       <h2 class="section-title">Today's Top Picks for Recruiter</h2>
       <div class="rail">
         <button class="scroll-btn scroll-left" aria-label="Scroll left">‹</button>
         <div class="scroller" tabindex="0" aria-label="Portfolio carousel">
-          <!-- UPDATED: Work Permit / Skills / Experience / Certifications -->
-          <article class="card">
-            <img class="thumb" alt="Work Permit" loading="lazy"
-                 src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=1000&auto=format&fit=crop">
-            <div class="overlay">
-              <h3 class="title">Work Permit</h3>
-              <p class="meta">Eligibility & authorization info</p>
-            </div>
-          </article>
-
+          <!-- UPDATED: Removed Work Permit; centered titles for Skills, Experience, Certifications -->
           <article class="card">
             <img class="thumb" alt="Skills" loading="lazy"
                  src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1000&auto=format&fit=crop">
             <div class="overlay">
-              <h3 class="title">Skills</h3>
+              <h3 class="title center">Skills</h3>
               <p class="meta">Core technologies & strengths</p>
             </div>
           </article>
@@ -458,7 +420,7 @@
             <img class="thumb" alt="Experience" loading="lazy"
                  src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1000&auto=format&fit=crop">
             <div class="overlay">
-              <h3 class="title">Experience</h3>
+              <h3 class="title center">Experience</h3>
               <p class="meta">Roles, impact & outcomes</p>
             </div>
           </article>
@@ -467,7 +429,7 @@
             <img class="thumb" alt="Certifications" loading="lazy"
                  src="https://images.unsplash.com/photo-1523246194499-2f2e0a1023ae?w=1000&auto=format&fit=crop">
             <div class="overlay">
-              <h3 class="title">Certifications</h3>
+              <h3 class="title center">Certifications</h3>
               <p class="meta">Verified credentials</p>
             </div>
           </article>
@@ -482,22 +444,22 @@
       <div class="rail">
         <button class="scroll-btn scroll-left" aria-label="Scroll skills left">‹</button>
         <div class="scroller" tabindex="0" aria-label="Skills carousel">
-          <!-- UPDATED: Music / Reading / Blogs / Contact Me -->
+          <!-- UPDATED: Music -> Movies; Reading -> Shows; centered titles for Blogs and Contact Me only -->
           <article class="card">
-            <img class="thumb" alt="Music" loading="lazy"
-                 src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=1000&auto=format&fit=crop">
+            <img class="thumb" alt="Movies" loading="lazy"
+                 src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1000&auto=format&fit=crop">
             <div class="overlay">
-              <h3 class="title">Music</h3>
-              <p class="meta">Playlists & fav artists</p>
+              <h3 class="title">Movies</h3>
+              <p class="meta">Film enthusiast & cinephile</p>
             </div>
           </article>
 
           <article class="card">
-            <img class="thumb" alt="Reading" loading="lazy"
-                 src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1000&auto=format&fit=crop">
+            <img class="thumb" alt="Shows" loading="lazy"
+                 src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=1000&auto=format&fit=crop">
             <div class="overlay">
-              <h3 class="title">Reading</h3>
-              <p class="meta">Books & notes</p>
+              <h3 class="title">Shows</h3>
+              <p class="meta">Binge-watcher & series lover</p>
             </div>
           </article>
 
@@ -505,7 +467,7 @@
             <img class="thumb" alt="Blogs" loading="lazy"
                  src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1000&auto=format&fit=crop">
             <div class="overlay">
-              <h3 class="title">Blogs</h3>
+              <h3 class="title center">Blogs</h3>
               <p class="meta">Thoughts & insights</p>
             </div>
           </article>
@@ -515,7 +477,7 @@
             <img class="thumb" alt="Contact Me" loading="lazy"
                  src="https://images.unsplash.com/photo-1596524430615-b46475ddff6e?w=1000&auto=format&fit=crop">
             <div class="overlay">
-              <h3 class="title">Contact Me</h3>
+              <h3 class="title center">Contact Me</h3>
               <p class="meta">Let's connect & collaborate</p>
             </div>
           </a>
@@ -551,7 +513,7 @@
     // ---------- Year ----------
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ---------- "Ta-dum"-style intro (Netflix-inspired sound) ----------
+    // ---------- "Ta-dum"-style intro ----------
     async function playTaDum(){
       const Ctx = window.AudioContext || window.webkitAudioContext;
       if (!Ctx) return;
@@ -587,13 +549,12 @@
         osc.start(t); osc.stop(t + len);
       }
 
-      // Netflix-style "TA-DUM" two-hit signature - LOUDER VERSION
+      // "TA-DUM"
       hit(now, { type:'sine', f0:52, f1:38, g0:2.0, gDur:1.0, len:1.2 });
       noiseBurst(now, 0.25, 1.5);
       hit(now + 0.40, { type:'triangle', f0:415, f1:349, g0:1.8, gDur:1.0, len:1.4 });
       noiseBurst(now + 0.40, 0.20, 1.2);
 
-      // Airy reverb tail - louder
       const tail = ctx.createBuffer(1, ctx.sampleRate * 0.6, ctx.sampleRate);
       const td = tail.getChannelData(0);
       for (let i=0;i<td.length;i++) td[i] = (Math.random()*2-1) * (1 - i/td.length);
@@ -644,7 +605,6 @@
     function showMain(){ appRoot.classList.add('show'); }
     function hideMain(){ appRoot.classList.remove('show'); }
 
-    // autoplay with interaction fallback
     function kickIntro(){
       let started = false;
       const start = async () => {
@@ -662,9 +622,7 @@
 
     function scheduleAfterIntro(){
       if (afterIntroTimer) clearTimeout(afterIntroTimer);
-      afterIntroTimer = setTimeout(() => {
-        showProfiles();
-      }, 2700);
+      afterIntroTimer = setTimeout(() => { showProfiles(); }, 2700);
     }
 
     function replayIntro(){
@@ -709,11 +667,10 @@
     // Brand resets to full intro (with sound)
     document.getElementById('brandHome').addEventListener('click', resetToIntro);
 
-    // Home nav opens Who's Watching (no intro, no sound)
+    // Home nav opens Who's Watching
     const navHome = document.getElementById('navHome');
     const footerHome = document.getElementById('footerHome');
     const profileAvatar = document.getElementById('profileAvatar');
-    
     function openProfilesFromNav(e){
       e.preventDefault();
       hideMain();
@@ -722,53 +679,39 @@
     }
     navHome.addEventListener('click', openProfilesFromNav);
     footerHome.addEventListener('click', openProfilesFromNav);
-    
-    // Profile avatar click opens Who's Watching
     profileAvatar.addEventListener('click', openProfilesFromNav);
 
     // Boot
     window.addEventListener('DOMContentLoaded', () => {
-      // CRITICAL: Force scroll to absolute top on load
+      // Force top on load
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
       window.scrollTo(0, 0);
-      
-      // Prevent any auto-scrolling
-      if ('scrollRestoration' in history) {
-        history.scrollRestoration = 'manual';
-      }
-      
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
       kickIntro();
       scheduleAfterIntro();
     });
-    
-    // Also ensure we're at top when page becomes visible
     window.addEventListener('pageshow', () => {
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
       window.scrollTo(0, 0);
     });
-    
-    // Force top on beforeunload
     window.addEventListener('beforeunload', () => {
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
     });
 
-    // --- Gentle guard against stubborn jumps on initial paints / hash moves
+    // Guard against initial jumps / hash moves
     window.addEventListener('DOMContentLoaded', () => {
       let n = 0;
       const guard = setInterval(() => {
         window.scrollTo(0, 0);
-        if (++n > 8) clearInterval(guard); // ~400ms
+        if (++n > 8) clearInterval(guard);
       }, 50);
-
-      if (location.hash) {
-        requestAnimationFrame(() => window.scrollTo(0, 0));
-      }
+      if (location.hash) requestAnimationFrame(() => window.scrollTo(0, 0));
     });
 
-    // --- Mirror Hire Me link onto Contact Me card (same href/target/rel)
+    // Mirror Hire Me link onto Contact Me card (same href/target/rel)
     window.addEventListener('DOMContentLoaded', () => {
       const hire = document.getElementById('hireLink');
       const contactCard = document.getElementById('contactCardLink');
