@@ -284,9 +284,11 @@
     .overlay{
       position:absolute; inset:auto 0 0 0; padding:16px;
       background:linear-gradient(to top,rgba(0,0,0,.9),transparent);
-      opacity:1;
+      opacity:0; transition:opacity .18s ease;
     }
-    .title{font-size:15px; font-weight:800; margin:0}
+    .card:hover .overlay{opacity:1}
+    .title{font-size:15px; font-weight:800; margin:0 0 6px}
+    .title.center{ text-align:center; } /* used ONLY for requested topics */
 
     /* Footer */
     .footer{
@@ -370,6 +372,7 @@
         <a href="#portfolio" id="navPortfolio">Portfolio</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
+        <!-- id so Contact Me mirrors this link exactly -->
         <a id="hireLink" href="contact.html">Hire Me</a>
       </div>
       <button class="profile-avatar" id="profileAvatar" aria-label="Recruiter profile" title="Recruiter">
@@ -383,6 +386,7 @@
     <header class="profile-hero" id="home">
       <div class="profile-card">
         <div class="profile-avatar-lg" aria-hidden="true">
+          <!-- Reuse your navbar avatar icon -->
           <svg viewBox="0 0 24 24">
             <path d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1h3a3 3 0 0 1 3 3v3h-7v1a1 1 0 0 1-2 0V12H2V9a3 3 0 0 1 3-3h5Zm2-1h0a1 1 0 0 0-1 1v1h2V6a1 1 0 0 0-1-1ZM2 13h9v1a1 1 0 0 0 2 0v-1h9v5a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-5Z"/>
           </svg>
@@ -396,6 +400,7 @@
           </p>
 
           <div class="profile-ctas">
+            <!-- Primary mirrors your Hire Me link exactly -->
             <a id="heroHireLink" class="btn btn-primary" href="contact.html">Hire Me</a>
             <a class="btn btn-secondary" href="#portfolio">View Resume</a>
             <a class="btn btn-secondary" href="https://www.linkedin.com/in/angel-contreras-488539195/" target="_blank" rel="noopener">LinkedIn</a>
@@ -416,11 +421,13 @@
       <div class="rail">
         <button class="scroll-btn scroll-left" aria-label="Scroll left">‹</button>
         <div class="scroller" tabindex="0" aria-label="Portfolio carousel">
+          <!-- UPDATED: Removed Work Permit; centered titles for Skills, Experience, Certifications -->
           <article class="card">
             <img class="thumb" alt="Skills" loading="lazy"
                  src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1000&auto=format&fit=crop">
             <div class="overlay">
-              <h3 class="title">Skills</h3>
+              <h3 class="title center">Skills</h3>
+              <p class="meta">Core technologies & strengths</p>
             </div>
           </article>
 
@@ -428,7 +435,8 @@
             <img class="thumb" alt="Experience" loading="lazy"
                  src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1000&auto=format&fit=crop">
             <div class="overlay">
-              <h3 class="title">Experience</h3>
+              <h3 class="title center">Experience</h3>
+              <p class="meta">Roles, impact & outcomes</p>
             </div>
           </article>
 
@@ -436,7 +444,8 @@
             <img class="thumb" alt="Certifications" loading="lazy"
                  src="https://images.unsplash.com/photo-1523246194499-2f2e0a1023ae?w=1000&auto=format&fit=crop">
             <div class="overlay">
-              <h3 class="title">Certifications</h3>
+              <h3 class="title center">Certifications</h3>
+              <p class="meta">Verified credentials</p>
             </div>
           </article>
         </div>
@@ -450,11 +459,13 @@
       <div class="rail">
         <button class="scroll-btn scroll-left" aria-label="Scroll skills left">‹</button>
         <div class="scroller" tabindex="0" aria-label="Skills carousel">
+          <!-- UPDATED: Music -> Movies; Reading -> Shows; centered titles for Blogs and Contact Me -->
           <article class="card">
             <img class="thumb" alt="Movies" loading="lazy"
                  src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1000&auto=format&fit=crop">
             <div class="overlay">
               <h3 class="title">Movies</h3>
+              <p class="meta">Film enthusiast & cinephile</p>
             </div>
           </article>
 
@@ -463,6 +474,7 @@
                  src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=1000&auto=format&fit=crop">
             <div class="overlay">
               <h3 class="title">Shows</h3>
+              <p class="meta">Binge-watcher & series lover</p>
             </div>
           </article>
 
@@ -470,15 +482,18 @@
             <img class="thumb" alt="Blogs" loading="lazy"
                  src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1000&auto=format&fit=crop">
             <div class="overlay">
-              <h3 class="title">Blogs</h3>
+              <h3 class="title center">Blogs</h3>
+              <p class="meta">Thoughts & insights</p>
             </div>
           </article>
 
+          <!-- Contact Me mirrors Hire Me link exactly -->
           <a id="contactCardLink" href="contact.html" class="card" style="text-decoration:none; cursor:pointer">
             <img class="thumb" alt="Contact Me" loading="lazy"
                  src="https://images.unsplash.com/photo-1596524430615-b46475ddff6e?w=1000&auto=format&fit=crop">
             <div class="overlay">
-              <h3 class="title">Contact Me</h3>
+              <h3 class="title center">Contact Me</h3>
+              <p class="meta">Let's connect & collaborate</p>
             </div>
           </a>
         </div>
