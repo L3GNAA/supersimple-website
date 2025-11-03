@@ -60,19 +60,24 @@
         0 0 40px rgba(229,9,20,.4),
         0 0 60px rgba(229,9,20,.2);
       position:relative;
+      /* Bridge arch effect using inline-block spans */
       display:flex;
       justify-content:center;
       align-items:baseline;
     }
-    .intro-text span{ display:inline-block; position:relative; }
+    .intro-text span{
+      display:inline-block;
+      position:relative;
+    }
+    /* Create arch by adjusting individual letter positions */
     .intro-text span:nth-child(1) { transform:translateY(30px); }
     .intro-text span:nth-child(2) { transform:translateY(20px); }
     .intro-text span:nth-child(3) { transform:translateY(12px); }
     .intro-text span:nth-child(4) { transform:translateY(7px); }
     .intro-text span:nth-child(5) { transform:translateY(3px); }
     .intro-text span:nth-child(6) { transform:translateY(1px); }
-    .intro-text span:nth-child(7),
-    .intro-text span:nth-child(8) { transform:translateY(0px); }
+    .intro-text span:nth-child(7) { transform:translateY(0px); } /* Peak */
+    .intro-text span:nth-child(8) { transform:translateY(0px); } /* Peak */
     .intro-text span:nth-child(9) { transform:translateY(1px); }
     .intro-text span:nth-child(10) { transform:translateY(3px); }
     .intro-text span:nth-child(11) { transform:translateY(7px); }
@@ -190,59 +195,36 @@
       fill:#fff;
     }
 
-    /* --- Original Hero (replaced by profile-hero below) --- */
-    .hero{ display:none; }
-
-    /* === Recruiter Profile Hero === */
-    .profile-hero{
-      position:relative; min-height:84vh; display:grid; align-items:center;
+    /* --- Hero billboard --- */
+    .hero{
+      position:relative; min-height:92vh; display:grid; align-items:center;
       padding:0 clamp(16px,4vw,48px); isolation:isolate;
       background:
-        linear-gradient(90deg,rgba(0,0,0,.85),rgba(0,0,0,.35)),
+        linear-gradient(90deg,rgba(0,0,0,.8),rgba(0,0,0,.3)),
         url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1920&auto=format&fit=crop') center/cover no-repeat;
     }
-    .profile-hero::after{
-      content:""; position:absolute; inset:auto 0 -1px 0; height:140px;
-      background:linear-gradient(to top,var(--bg),transparent);
+    .hero::after{
+      content:""; position:absolute; left:0; right:0; bottom:-1px; height:160px;
+      background:linear-gradient(to top,var(--bg),transparent); z-index:0;
     }
-    .profile-card{
-      position:relative; z-index:1; display:grid; grid-template-columns:auto 1fr; gap:18px; align-items:center;
-      max-width:980px;
+    .hero-content{max-width:720px; position:relative; z-index:1}
+    .hero h1{font-size: clamp(32px,8vw,68px); line-height:1.05; margin:0 0 .25em}
+    .hero .sub{font-size: clamp(16px,3.2vw,22px); color:var(--muted); margin:0 0 .6em}
+    .hero .desc{font-size: clamp(14px,2.6vw,18px); color:#d2d2d2; max-width:54ch; margin:0 0 1em}
+    .cta{display:flex; gap:12px; flex-wrap:wrap}
+    .btn{
+      display:inline-flex; align-items:center; gap:10px; border:0; cursor:pointer;
+      font-weight:700; border-radius:4px; padding:12px 22px; transition:filter .15s;
+      text-decoration:none;
     }
-    @media (max-width:720px){ .profile-card{ grid-template-columns:1fr; text-align:center; justify-items:center; } }
-
-    .profile-avatar-lg{
-      width:92px; height:92px; border-radius:14px; overflow:hidden; flex-shrink:0;
-      background:linear-gradient(180deg,#0DB5FF,#0070F3); display:grid; place-items:center;
-      border:2px solid rgba(255,255,255,.18); box-shadow:0 6px 18px rgba(0,0,0,.4);
-    }
-    .profile-avatar-lg svg{ width:44px; height:44px; fill:#fff }
-
-    .profile-head h1{
-      font:900 clamp(24px,5.4vw,40px)/1.05 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; margin:0 0 4px;
-    }
-    .profile-sub{ color:var(--muted); font-size:15px; margin:0 0 12px }
-    .profile-meta{ display:flex; gap:10px; flex-wrap:wrap; color:#bdbdbd; font-size:13px; margin:0 0 16px }
-    .profile-meta .dot{ width:4px; height:4px; border-radius:50%; background:#6b6b6b; align-self:center }
-
-    .profile-ctas{ display:flex; gap:10px; flex-wrap:wrap; margin:10px 0 6px }
-    .btn{ display:inline-flex; align-items:center; gap:10px; border:0; cursor:pointer; font-weight:700; border-radius:4px; padding:12px 22px; transition:filter .15s; text-decoration:none; }
     .btn:focus{outline:2px solid var(--ring); outline-offset:2px}
-    .btn-primary{ background:#fff; color:#000 }
-    .btn-primary:hover{ filter:brightness(.92) }
-    .btn-secondary{ background:rgba(109,109,110,.7); color:#fff }
-    .btn-secondary:hover{ filter:brightness(1.1) }
+    .btn-white{background:#fff; color:#000}
+    .btn-white:hover{filter:brightness(.92)}
+    .btn-ghost{background:rgba(109,109,110,.7); color:#fff}
+    .btn-ghost:hover{filter:brightness(1.1)}
 
-    .stats{ display:flex; gap:12px; flex-wrap:wrap; margin-top:14px; }
-    .stat{
-      background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12);
-      border-radius:999px; padding:8px 12px; font-weight:700; font-size:12px; color:#eaeaea;
-    }
-    .stat .num{ font-weight:900; margin-right:6px; color:#fff }
-
-    /* Sections */
-    .section{padding: 34px clamp(16px,4vw,48px) 8px}
-    .section-title{font-size:22px; font-weight:700; color:#e5e5e5; margin:0 0 10px; letter-spacing:.02em}
+    .section{padding: 28px clamp(16px,4vw,48px) 8px}
+    .section-title{font-size:20px; font-weight:700; color:#e5e5e5; margin:0 0 10px}
 
     .rail{ position:relative; }
     
@@ -262,7 +244,10 @@
       border-color:rgba(255,255,255,.4);
       transform:translateY(-50%) scale(1.1);
     }
-    .scroll-btn:focus{ outline:2px solid var(--ring); outline-offset:2px; }
+    .scroll-btn:focus{
+      outline:2px solid var(--ring);
+      outline-offset:2px;
+    }
     .scroll-left{ left:8px; }
     .scroll-right{ right:8px; }
     
@@ -288,8 +273,55 @@
     }
     .card:hover .overlay{opacity:1}
     .title{font-size:15px; font-weight:800; margin:0 0 6px}
-    .title.center{ text-align:center; } /* used ONLY for requested topics */
-
+    /* Hire Me Contact Section */
+    .contact-container{
+      max-width:800px; margin:0 auto; padding:24px 0;
+    }
+    .contact-grid{
+      display:grid; gap:24px; margin-top:32px;
+      grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .contact-card{
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:12px;
+      padding:32px 24px;
+      text-align:center;
+      transition:all .3s ease;
+      text-decoration:none;
+      color:inherit;
+      display:block;
+    }
+    .contact-card:hover{
+      background:rgba(255,255,255,.08);
+      border-color:rgba(255,255,255,.2);
+      transform:translateY(-4px);
+    }
+    .contact-icon{
+      width:48px; height:48px;
+      margin:0 auto 16px;
+      background:var(--accent);
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+    }
+    .contact-icon svg{
+      width:24px; height:24px;
+      fill:#fff;
+    }
+    .contact-card h3{
+      font-size:18px;
+      font-weight:700;
+      margin:0 0 8px;
+      color:#fff;
+    }
+    .contact-card p{
+      font-size:14px;
+      color:#b3b3b3;
+      margin:0;
+      word-break:break-word;
+    }
+    
     /* Footer */
     .footer{
       padding:48px clamp(16px,4vw,48px) 32px;
@@ -305,7 +337,9 @@
       transition:color .2s;
     }
     .footer .links a:hover{ color:#fff; }
-    .footer .copyright{ text-align:center; color:#808080; font-size:12px; margin:0; }
+    .footer .copyright{
+      text-align:center; color:#808080; font-size:12px; margin:0;
+    }
   </style>
 </head>
 <body>
@@ -372,8 +406,7 @@
         <a href="#portfolio" id="navPortfolio">Portfolio</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
-        <!-- id so Contact Me mirrors this link exactly -->
-        <a id="hireLink" href="contact.html">Hire Me</a>
+        <a href="contact.html">Hire Me</a>
       </div>
       <button class="profile-avatar" id="profileAvatar" aria-label="Recruiter profile" title="Recruiter">
         <svg viewBox="0 0 24 24">
@@ -382,70 +415,67 @@
       </button>
     </nav>
 
-    <!-- Recruiter-style Profile Hero -->
-    <header class="profile-hero" id="home">
-      <div class="profile-card">
-        <div class="profile-avatar-lg" aria-hidden="true">
-          <!-- Reuse your navbar avatar icon -->
-          <svg viewBox="0 0 24 24">
-            <path d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1h3a3 3 0 0 1 3 3v3h-7v1a1 1 0 0 1-2 0V12H2V9a3 3 0 0 1 3-3h5Zm2-1h0a1 1 0 0 0-1 1v1h2V6a1 1 0 0 0-1-1ZM2 13h9v1a1 1 0 0 0 2 0v-1h9v5a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-5Z"/>
-          </svg>
-        </div>
-
-        <div class="profile-head">
-          <h1 class="nf">ANGEL CONTRERAS</h1>
-          <p class="profile-sub">Full Stack Developer • CSULA Student</p>
-          <p class="profile-meta">
-            Los Angeles, CA <span class="dot"></span> Available for Internship/Junior SWE <span class="dot"></span> Open to Relocation
-          </p>
-
-          <div class="profile-ctas">
-            <!-- Primary mirrors your Hire Me link exactly -->
-            <a id="heroHireLink" class="btn btn-primary" href="contact.html">Hire Me</a>
-            <a class="btn btn-secondary" href="#portfolio">View Resume</a>
-            <a class="btn btn-secondary" href="https://www.linkedin.com/in/angel-contreras-488539195/" target="_blank" rel="noopener">LinkedIn</a>
-          </div>
-
-          <div class="stats" aria-label="Quick stats">
-            <span class="stat"><span class="num">2+</span>Years Coding</span>
-            <span class="stat"><span class="num">10+</span>Projects</span>
-            <span class="stat"><span class="num">3</span>Certifications</span>
-          </div>
+    <!-- Hero -->
+    <header class="hero" id="home">
+      <div class="hero-content">
+        <h1 class="nf" style="white-space:nowrap">ANGEL CONTRERAS - CSULA STUDENT</h1>
+        <p class="sub">Full Stack Developer &amp; IT Professional</p>
+        <p class="desc">Passionate about building innovative solutions and creating seamless digital experiences. Breaking into tech, one project at a time.</p>
+        <div class="cta">
+          <a class="btn btn-white" href="#portfolio"><span aria-hidden="true">▶</span> Resume</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/angel-contreras-488539195/" target="_blank" rel="noopener"><span aria-hidden="true">ℹ</span> LinkedIn</a>
         </div>
       </div>
     </header>
 
-    <!-- Portfolio -->
+    <!-- Portfolio (renamed from Professional) -->
     <section class="section" id="portfolio">
       <h2 class="section-title">Today's Top Picks for Recruiter</h2>
       <div class="rail">
         <button class="scroll-btn scroll-left" aria-label="Scroll left">‹</button>
         <div class="scroller" tabindex="0" aria-label="Portfolio carousel">
-          <!-- UPDATED: Removed Work Permit; centered titles for Skills, Experience, Certifications -->
-          <article class="card">
-            <img class="thumb" alt="Skills" loading="lazy"
-                 src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1000&auto=format&fit=crop">
+          <article class="card" style="background:#2a2a2a">
+            <img class="thumb" alt="Project Charter Website" loading="lazy"
+                 src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=900&auto=format&fit=crop">
             <div class="overlay">
-              <h3 class="title center">Skills</h3>
-              <p class="meta">Core technologies & strengths</p>
+              <h3 class="title">Project Charter Website</h3>
+              <p class="meta">Interactive web-based project management tool</p>
             </div>
           </article>
 
           <article class="card">
-            <img class="thumb" alt="Experience" loading="lazy"
-                 src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1000&auto=format&fit=crop">
+            <img class="thumb" alt="Portfolio Website" loading="lazy"
+                 src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=901&auto=format&fit=crop">
             <div class="overlay">
-              <h3 class="title center">Experience</h3>
-              <p class="meta">Roles, impact & outcomes</p>
+              <h3 class="title">Portfolio Website</h3>
+              <p class="meta">Personal portfolio showcasing skills and projects</p>
             </div>
           </article>
 
           <article class="card">
-            <img class="thumb" alt="Certifications" loading="lazy"
-                 src="https://images.unsplash.com/photo-1523246194499-2f2e0a1023ae?w=1000&auto=format&fit=crop">
+            <img class="thumb" alt="IT Management System" loading="lazy"
+                 src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=1000&auto=format&fit=crop">
             <div class="overlay">
-              <h3 class="title center">Certifications</h3>
-              <p class="meta">Verified credentials</p>
+              <h3 class="title">IT Management System</h3>
+              <p class="meta">Full-stack application for IT project tracking</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <img class="thumb" alt="Database Design" loading="lazy"
+                 src="https://images.unsplash.com/photo-1555949963-aa79dcee981d?w=1000&auto=format&fit=crop">
+            <div class="overlay">
+              <h3 class="title">Database Design</h3>
+              <p class="meta">Optimized database architecture</p>
+            </div>
+          </article>
+
+          <article class="card">
+            <img class="thumb" alt="Web Development" loading="lazy"
+                 src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1000&auto=format&fit=crop">
+            <div class="overlay">
+              <h3 class="title">Web Development</h3>
+              <p class="meta">Responsive website designs</p>
             </div>
           </article>
         </div>
@@ -459,7 +489,6 @@
       <div class="rail">
         <button class="scroll-btn scroll-left" aria-label="Scroll skills left">‹</button>
         <div class="scroller" tabindex="0" aria-label="Skills carousel">
-          <!-- UPDATED: Music -> Movies; Reading -> Shows; centered titles for Blogs and Contact Me -->
           <article class="card">
             <img class="thumb" alt="Movies" loading="lazy"
                  src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1000&auto=format&fit=crop">
@@ -468,7 +497,6 @@
               <p class="meta">Film enthusiast & cinephile</p>
             </div>
           </article>
-
           <article class="card">
             <img class="thumb" alt="Shows" loading="lazy"
                  src="https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=1000&auto=format&fit=crop">
@@ -477,22 +505,19 @@
               <p class="meta">Binge-watcher & series lover</p>
             </div>
           </article>
-
           <article class="card">
-            <img class="thumb" alt="Blogs" loading="lazy"
+            <img class="thumb" alt="Blog" loading="lazy"
                  src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1000&auto=format&fit=crop">
             <div class="overlay">
-              <h3 class="title center">Blogs</h3>
+              <h3 class="title">Blog</h3>
               <p class="meta">Thoughts & insights</p>
             </div>
           </article>
-
-          <!-- Contact Me mirrors Hire Me link exactly -->
-          <a id="contactCardLink" href="contact.html" class="card" style="text-decoration:none; cursor:pointer">
+          <a href="contact.html" class="card" style="text-decoration:none; cursor:pointer">
             <img class="thumb" alt="Contact Me" loading="lazy"
                  src="https://images.unsplash.com/photo-1596524430615-b46475ddff6e?w=1000&auto=format&fit=crop">
             <div class="overlay">
-              <h3 class="title center">Contact Me</h3>
+              <h3 class="title">Contact Me</h3>
               <p class="meta">Let's connect & collaborate</p>
             </div>
           </a>
@@ -564,13 +589,13 @@
         osc.start(t); osc.stop(t + len);
       }
 
-      // Netflix-style "TA-DUM" two-hit signature
+      // Netflix-style "TA-DUM" two-hit signature - LOUDER VERSION
       hit(now, { type:'sine', f0:52, f1:38, g0:2.0, gDur:1.0, len:1.2 });
       noiseBurst(now, 0.25, 1.5);
       hit(now + 0.40, { type:'triangle', f0:415, f1:349, g0:1.8, gDur:1.0, len:1.4 });
       noiseBurst(now + 0.40, 0.20, 1.2);
 
-      // Airy tail
+      // Airy reverb tail - louder
       const tail = ctx.createBuffer(1, ctx.sampleRate * 0.6, ctx.sampleRate);
       const td = tail.getChannelData(0);
       for (let i=0;i<td.length;i++) td[i] = (Math.random()*2-1) * (1 - i/td.length);
@@ -730,36 +755,6 @@
     window.addEventListener('beforeunload', () => {
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
-    });
-
-    // --- Gentle guard against stubborn jumps on initial paints / hash moves
-    window.addEventListener('DOMContentLoaded', () => {
-      let n = 0;
-      const guard = setInterval(() => {
-        window.scrollTo(0, 0);
-        if (++n > 8) clearInterval(guard); // ~400ms
-      }, 50);
-
-      if (location.hash) {
-        requestAnimationFrame(() => window.scrollTo(0, 0));
-      }
-    });
-
-    // --- Mirror Hire Me link onto Contact Me card and Hero button (same href/target/rel)
-    window.addEventListener('DOMContentLoaded', () => {
-      const hire = document.getElementById('hireLink');
-      const contactCard = document.getElementById('contactCardLink');
-      const heroHire = document.getElementById('heroHireLink');
-      if (hire && contactCard) {
-        contactCard.setAttribute('href', hire.getAttribute('href') || '#');
-        const tgt = hire.getAttribute('target'); if (tgt) contactCard.setAttribute('target', tgt);
-        const rel = hire.getAttribute('rel');     if (rel) contactCard.setAttribute('rel', rel);
-      }
-      if (hire && heroHire) {
-        heroHire.setAttribute('href', hire.getAttribute('href') || '#');
-        const tgt = hire.getAttribute('target'); if (tgt) heroHire.setAttribute('target', tgt);
-        const rel = hire.getAttribute('rel');     if (rel) heroHire.setAttribute('rel', rel);
-      }
     });
   </script>
 </body>
