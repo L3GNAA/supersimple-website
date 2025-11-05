@@ -8,15 +8,6 @@
 
   <!-- Free fallback; swap to licensed Netflix Sans via @font-face if you have it -->
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-  
-  <!-- Force page to start at top -->
-  <script>
-    // MUST be in head to prevent any scroll before page loads
-    if (history.scrollRestoration) {
-      history.scrollRestoration = 'manual';
-    }
-    window.scrollTo(0, 0);
-  </script>
 
   <style>
     :root{
@@ -239,8 +230,10 @@
     .scroll-right{ right:8px; }
     
     .scroller{
-      display:flex; gap:10px; overflow:auto; scroll-behavior:smooth; padding-bottom:18px;
+      display:flex; gap:10px; overflow-x:auto; overflow-y:hidden; 
+      scroll-behavior:smooth; padding-bottom:18px;
       scroll-snap-type: x proximity;
+      -webkit-overflow-scrolling: touch;
     }
     .scroller::-webkit-scrollbar{height:8px}
     .scroller::-webkit-scrollbar-track{background:var(--rail)}
@@ -249,7 +242,8 @@
 
     .card{
       position:relative; min-width:290px; height:168px; border-radius:8px; overflow:hidden;
-      background:#222; scroll-snap-align:start; flex-shrink:0; transform-origin:center; transition:transform .2s ease;
+      background:#222; scroll-snap-align:start; flex-shrink:0; transform-origin:center; 
+      transition:transform .2s ease;
     }
     .card:hover{transform:scale(1.06); z-index:5}
     .thumb{width:100%; height:100%; object-fit:cover}
@@ -257,46 +251,12 @@
       position:absolute; inset:auto 0 0 0; padding:16px;
       background:linear-gradient(to top,rgba(0,0,0,.9),transparent);
       opacity:0; transition:opacity .18s ease;
-      /* Center titles selectively with a utility class on h3 */
     }
     .card:hover .overlay{opacity:1}
     .title{font-size:15px; font-weight:800; margin:0 0 6px}
-    .title.center{ text-align:center; } /* used ONLY for the requested topics */
+    .title.center{ text-align:center; }
+    .meta{font-size:13px; color:#b3b3b3; margin:0}
 
-    /* Hire Me Contact Section */
-    .contact-container{ max-width:800px; margin:0 auto; padding:24px 0; }
-    .contact-grid{
-      display:grid; gap:24px; margin-top:32px;
-      grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
-    }
-    .contact-card{
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.1);
-      border-radius:12px;
-      padding:32px 24px;
-      text-align:center;
-      transition:all .3s ease;
-      text-decoration:none;
-      color:inherit;
-      display:block;
-    }
-    .contact-card:hover{
-      background:rgba(255,255,255,.08);
-      border-color:rgba(255,255,255,.2);
-      transform:translateY(-4px);
-    }
-    .contact-icon{
-      width:48px; height:48px;
-      margin:0 auto 16px;
-      background:var(--accent);
-      border-radius:50%;
-      display:grid;
-      place-items:center;
-    }
-    .contact-icon svg{ width:24px; height:24px; fill:#fff; }
-    .contact-card h3{ font-size:18px; font-weight:700; margin:0 0 8px; color:#fff; }
-    .contact-card p{ font-size:14px; color:#b3b3b3; margin:0; word-break:break-word; }
-    
     /* Footer */
     .footer{
       padding:48px clamp(16px,4vw,48px) 32px;
@@ -379,7 +339,6 @@
         <a href="#portfolio" id="navPortfolio">Portfolio</a>
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
-        <!-- id so Contact Me mirrors this link exactly -->
         <a id="hireLink" href="contact.html">Hire Me</a>
       </div>
       <button class="profile-avatar" id="profileAvatar" aria-label="Recruiter profile" title="Recruiter">
@@ -406,7 +365,6 @@
       <div class="rail">
         <button class="scroll-btn scroll-left" aria-label="Scroll left">‹</button>
         <div class="scroller" tabindex="0" aria-label="Portfolio carousel">
-          <!-- UPDATED: Photos aligned with topics -->
           <article class="card">
             <img class="thumb" alt="Skills" loading="lazy"
                  src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1000&auto=format&fit=crop">
@@ -444,7 +402,6 @@
       <div class="rail">
         <button class="scroll-btn scroll-left" aria-label="Scroll skills left">‹</button>
         <div class="scroller" tabindex="0" aria-label="Skills carousel">
-          <!-- UPDATED: Photos aligned with topics -->
           <article class="card">
             <img class="thumb" alt="Movies" loading="lazy"
                  src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1000&auto=format&fit=crop">
@@ -472,7 +429,6 @@
             </div>
           </article>
 
-          <!-- Contact Me mirrors Hire Me link exactly -->
           <a id="contactCardLink" href="contact.html" class="card" style="text-decoration:none; cursor:pointer">
             <img class="thumb" alt="Contact Me" loading="lazy"
                  src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1000&auto=format&fit=crop">
@@ -503,9 +459,19 @@
   </div>
 
   <script>
+    // Prevent all initial scroll jumps
+    (function() {
+      if (history.scrollRestoration) {
+        history.scrollRestoration = 'manual';
+      }
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    })();
+
     // ---------- Nav on scroll ----------
     const navbar = document.getElementById('navbar');
-    addEventListener('scroll', () => {
+    window.addEventListener('scroll', () => {
       if (window.scrollY > 80) navbar.classList.add('scrolled');
       else navbar.classList.remove('scrolled');
     }, { passive: true });
@@ -531,22 +497,42 @@
       const right = rail.querySelector('.scroll-right');
       if (!scroller || !left || !right) return;
       
-      const step = () => Math.round(scroller.clientWidth * 0.9);
-      left.addEventListener('click', () => scroller.scrollBy({left:-step(), behavior:'smooth'}));
-      right.addEventListener('click', () => scroller.scrollBy({left: step(), behavior:'smooth'}));
-      scroller.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight') { e.preventDefault(); scroller.scrollBy({left: step(), behavior:'smooth'}); }
-        if (e.key === 'ArrowLeft')  { e.preventDefault(); scroller.scrollBy({left:-step(), behavior:'smooth'}); }
+      const step = () => {
+        const cardWidth = 290; // min-width of card
+        const gap = 10; // gap between cards
+        return cardWidth + gap;
+      };
+      
+      left.addEventListener('click', () => {
+        scroller.scrollBy({left: -step(), behavior: 'smooth'});
       });
+      
+      right.addEventListener('click', () => {
+        scroller.scrollBy({left: step(), behavior: 'smooth'});
+      });
+      
+      scroller.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') { 
+          e.preventDefault(); 
+          scroller.scrollBy({left: step(), behavior: 'smooth'}); 
+        }
+        if (e.key === 'ArrowLeft') { 
+          e.preventDefault(); 
+          scroller.scrollBy({left: -step(), behavior: 'smooth'}); 
+        }
+      });
+      
       const updateBtns = () => {
         const max = scroller.scrollWidth - scroller.clientWidth - 1;
-        left.style.display  = scroller.scrollLeft <= 2 ? 'none' : 'grid';
+        left.style.display = scroller.scrollLeft <= 2 ? 'none' : 'grid';
         right.style.display = scroller.scrollLeft >= max ? 'none' : 'grid';
       };
-      scroller.addEventListener('scroll', updateBtns, { passive:true });
+      
+      scroller.addEventListener('scroll', updateBtns, { passive: true });
       new ResizeObserver(updateBtns).observe(scroller);
       updateBtns();
     }
+    
     document.querySelectorAll('.rail').forEach(setupRail);
 
     // ---------- Flow: Intro -> Profiles -> Main ----------
@@ -559,23 +545,33 @@
       profiles.classList.add('show');
       profiles.querySelector('.tile:not(.disabled)')?.focus();
     }
-    function hideProfiles(){ profiles.classList.remove('show'); }
-    function showMain(){ appRoot.classList.add('show'); }
-    function hideMain(){ appRoot.classList.remove('show'); }
+    
+    function hideProfiles(){ 
+      profiles.classList.remove('show'); 
+    }
+    
+    function showMain(){ 
+      appRoot.classList.add('show'); 
+    }
+    
+    function hideMain(){ 
+      appRoot.classList.remove('show'); 
+    }
 
     function kickIntro(){
       let started = false;
       const start = async () => {
-        if (started) return; started = true;
+        if (started) return; 
+        started = true;
         try { await playTaDum(); } catch {}
         window.removeEventListener('click', start);
         window.removeEventListener('keydown', start);
         window.removeEventListener('touchstart', start);
       };
       setTimeout(start, 300);
-      window.addEventListener('click', start, { once:true });
-      window.addEventListener('keydown', start, { once:true });
-      window.addEventListener('touchstart', start, { once:true });
+      window.addEventListener('click', start, { once: true });
+      window.addEventListener('keydown', start, { once: true });
+      window.addEventListener('touchstart', start, { once: true });
     }
 
     function scheduleAfterIntro(){
@@ -609,7 +605,7 @@
       showMain();
       setTimeout(() => {
         const el = document.querySelector(target);
-        if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 100);
     }
 
@@ -618,7 +614,10 @@
       btn.addEventListener('click', handleProfileClick);
       btn.addEventListener('keydown', (e) => {
         if (btn.classList.contains('disabled')) return;
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleProfileClick.call(btn, e); }
+        if (e.key === 'Enter' || e.key === ' ') { 
+          e.preventDefault(); 
+          handleProfileClick.call(btn, e); 
+        }
       });
     });
 
@@ -629,54 +628,69 @@
     const navHome = document.getElementById('navHome');
     const footerHome = document.getElementById('footerHome');
     const profileAvatar = document.getElementById('profileAvatar');
+    
     function openProfilesFromNav(e){
       e.preventDefault();
       hideMain();
       showProfiles();
       window.scrollTo({ top: 0, behavior: 'auto' });
     }
+    
     navHome.addEventListener('click', openProfilesFromNav);
     footerHome.addEventListener('click', openProfilesFromNav);
     profileAvatar.addEventListener('click', openProfilesFromNav);
 
-    // Boot
+    // Boot sequence
     window.addEventListener('DOMContentLoaded', () => {
-      // Force top on load
+      // Force scroll to top
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
       window.scrollTo(0, 0);
-      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      
       kickIntro();
       scheduleAfterIntro();
     });
+
+    // Force scroll to top on page show (back/forward navigation)
     window.addEventListener('pageshow', () => {
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
       window.scrollTo(0, 0);
     });
+
+    // Force scroll to top before unload
     window.addEventListener('beforeunload', () => {
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
     });
 
-    // Guard against initial jumps / hash moves
+    // Guard against hash navigation and initial jumps
     window.addEventListener('DOMContentLoaded', () => {
       let n = 0;
       const guard = setInterval(() => {
         window.scrollTo(0, 0);
         if (++n > 8) clearInterval(guard);
       }, 50);
-      if (location.hash) requestAnimationFrame(() => window.scrollTo(0, 0));
+      
+      if (location.hash) {
+        requestAnimationFrame(() => window.scrollTo(0, 0));
+      }
     });
 
-    // Mirror Hire Me link onto Contact Me card (same href/target/rel)
+    // Mirror Hire Me link onto Contact Me card
     window.addEventListener('DOMContentLoaded', () => {
       const hire = document.getElementById('hireLink');
       const contactCard = document.getElementById('contactCardLink');
       if (hire && contactCard) {
         contactCard.setAttribute('href', hire.getAttribute('href') || '#');
-        const tgt = hire.getAttribute('target'); if (tgt) contactCard.setAttribute('target', tgt);
-        const rel = hire.getAttribute('rel');     if (rel) contactCard.setAttribute('rel', rel);
+        const tgt = hire.getAttribute('target'); 
+        if (tgt) contactCard.setAttribute('target', tgt);
+        const rel = hire.getAttribute('rel'); 
+        if (rel) contactCard.setAttribute('rel', rel);
       }
     });
   </script>
