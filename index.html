@@ -513,58 +513,15 @@
     // ---------- Year ----------
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ---------- "Ta-dum"-style intro ----------
+    // ---------- Play intro sound ----------
     async function playTaDum(){
-      const Ctx = window.AudioContext || window.webkitAudioContext;
-      if (!Ctx) return;
-      const ctx = new Ctx();
-      const now = ctx.currentTime;
-
-      const master = ctx.createGain();
-      master.gain.setValueAtTime(1.0, now);
-      master.gain.exponentialRampToValueAtTime(0.0001, now + 2.5);
-      master.connect(ctx.destination);
-
-      function noiseBurst(t, dur = 0.25, gain = 0.8){
-        const buf = ctx.createBuffer(1, ctx.sampleRate * dur, ctx.sampleRate);
-        const d = buf.getChannelData(0);
-        for (let i=0;i<d.length;i++) d[i] = (Math.random()*2-1) * (1 - i/d.length);
-        const src = ctx.createBufferSource(); src.buffer = buf;
-        const g = ctx.createGain();
-        g.gain.setValueAtTime(gain, t);
-        g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-        src.connect(g); g.
-          connect(master); src.start(t); src.stop(t + dur + 0.05);
+      try {
+        const audio = new Audio('soundn.mp3');
+        audio.volume = 1.0;
+        await audio.play();
+      } catch (err) {
+        console.log('Audio playback failed:', err);
       }
-
-      function hit(t, { type='sine', f0=60, f1=45, g0=1.0, gDur=0.9, len=1.0 } = {}){
-        const osc = ctx.createOscillator(); osc.type = type;
-        osc.frequency.setValueAtTime(f0, t);
-        osc.frequency.exponentialRampToValueAtTime(f1, t + gDur);
-        const g = ctx.createGain();
-        g.gain.setValueAtTime(0.0001, t);
-        g.gain.exponentialRampToValueAtTime(g0, t + 0.02);
-        g.gain.exponentialRampToValueAtTime(0.0001, t + gDur);
-        const delay = ctx.createDelay(); delay.delayTime.setValueAtTime(0.012, t);
-        osc.connect(g); g.connect(delay); delay.connect(master);
-        osc.start(t); osc.stop(t + len);
-      }
-
-      // "TA-DUM"
-      hit(now, { type:'sine', f0:52, f1:38, g0:2.0, gDur:1.0, len:1.2 });
-      noiseBurst(now, 0.25, 1.5);
-      hit(now + 0.40, { type:'triangle', f0:415, f1:349, g0:1.8, gDur:1.0, len:1.4 });
-      noiseBurst(now + 0.40, 0.20, 1.2);
-
-      const tail = ctx.createBuffer(1, ctx.sampleRate * 0.6, ctx.sampleRate);
-      const td = tail.getChannelData(0);
-      for (let i=0;i<td.length;i++) td[i] = (Math.random()*2-1) * (1 - i/td.length);
-      const tailSrc = ctx.createBufferSource(); tailSrc.buffer = tail;
-      const bpf = ctx.createBiquadFilter(); bpf.type='bandpass'; bpf.frequency.setValueAtTime(1600, now+0.6); bpf.Q.value = 3;
-      const gTail = ctx.createGain(); gTail.gain.setValueAtTime(0.25, now+0.6);
-      gTail.gain.exponentialRampToValueAtTime(0.0001, now+2.2);
-      tailSrc.connect(bpf); bpf.connect(gTail); gTail.connect(master);
-      tailSrc.start(now+0.6); tailSrc.stop(now+2.3);
     }
 
     // ---------- Carousels ----------
