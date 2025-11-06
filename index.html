@@ -16,8 +16,8 @@
       --ring:rgba(255,255,255,.14);
     }
     *{box-sizing:border-box; margin:0; padding:0}
-    html,body{height:100%; overflow-x:hidden}
-    html{scroll-behavior:smooth; overflow-y:scroll; position:relative}
+    html,body{height:100%; overflow:hidden}
+    html{scroll-behavior:smooth; overflow-y:hidden; position:relative}
     body{
       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
       background:var(--bg); color:var(--ink); position:relative;
@@ -172,6 +172,9 @@
       cursor:pointer;
       transition:transform .2s ease;
       flex-shrink:0;
+      position:relative;
+      top:-4px;
+      right:-8px;
     }
     .profile-avatar:hover{ transform:scale(1.05); }
     .profile-avatar svg{ width:20px; height:20px; fill:#fff; }
@@ -350,7 +353,7 @@
     <header class="hero" id="home">
       <div class="hero-content">
         <h1 class="nf" style="white-space:nowrap">ANGEL CONTRERAS - CSULA STUDENT</h1>
-        <p class="sub">Full Stack Developer &amp; IT Professional</p>
+        <p class="sub">Bachelor's in Computer Information Systems</p>
         <p class="desc">Passionate about building innovative solutions and creating seamless digital experiences. Breaking into tech, one project at a time.</p>
         <div class="cta">
           <a class="btn btn-white" href="#portfolio"><span aria-hidden="true">▶</span> Resume</a>
@@ -482,7 +485,7 @@
     // ---------- Play intro sound ----------
     async function playTaDum(){
       try {
-        const audio = new Audio('https://cdnjs.cloudflare.com/ajax/libs/ion-sound/3.0.7/sounds/door_bump.mp3');
+        const audio = new Audio('ta-dum.mp3');
         audio.volume = 0.6;
         await audio.play();
       } catch (err) {
@@ -555,7 +558,7 @@
     }
     
     function hideMain(){
-appRoot.classList.remove('show'); 
+      appRoot.classList.remove('show'); 
     }
 
     function kickIntro(){
