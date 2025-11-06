@@ -16,8 +16,8 @@
       --ring:rgba(255,255,255,.14);
     }
     *{box-sizing:border-box; margin:0; padding:0}
-    html,body{height:100%; overflow:hidden}
-    html{scroll-behavior:smooth; overflow-y:hidden; position:relative}
+    html,body{height:100%; overflow-x:hidden}
+    html{scroll-behavior:smooth; overflow-y:scroll; position:relative}
     body{
       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
       background:var(--bg); color:var(--ink); position:relative;
@@ -371,28 +371,16 @@
           <article class="card">
             <img class="thumb" alt="Skills" loading="lazy"
                  src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1000&auto=format&fit=crop">
-            <div class="overlay">
-              <h3 class="title center">Skills</h3>
-              <p class="meta">Core technologies & strengths</p>
-            </div>
           </article>
 
           <article class="card">
             <img class="thumb" alt="Experience" loading="lazy"
                  src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1000&auto=format&fit=crop">
-            <div class="overlay">
-              <h3 class="title center">Experience</h3>
-              <p class="meta">Roles, impact & outcomes</p>
-            </div>
           </article>
 
           <article class="card">
             <img class="thumb" alt="Certifications" loading="lazy"
                  src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1000&auto=format&fit=crop">
-            <div class="overlay">
-              <h3 class="title center">Certifications</h3>
-              <p class="meta">Verified credentials</p>
-            </div>
           </article>
         </div>
         <button class="scroll-btn scroll-right" aria-label="Scroll right">›</button>
@@ -408,37 +396,21 @@
           <article class="card">
             <img class="thumb" alt="Movies" loading="lazy"
                  src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1000&auto=format&fit=crop">
-            <div class="overlay">
-              <h3 class="title">Movies</h3>
-              <p class="meta">Film enthusiast & cinephile</p>
-            </div>
           </article>
 
           <article class="card">
             <img class="thumb" alt="Gaming" loading="lazy"
                  src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1000&auto=format&fit=crop">
-            <div class="overlay">
-              <h3 class="title">Gaming</h3>
-              <p class="meta">Strategy & adventure enthusiast</p>
-            </div>
           </article>
 
           <article class="card">
             <img class="thumb" alt="Blogs" loading="lazy"
                  src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1000&auto=format&fit=crop">
-            <div class="overlay">
-              <h3 class="title center">Blogs</h3>
-              <p class="meta">Thoughts & insights</p>
-            </div>
           </article>
 
           <a id="contactCardLink" href="contact.html" class="card" style="text-decoration:none; cursor:pointer">
             <img class="thumb" alt="Contact Me" loading="lazy"
                  src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1000&auto=format&fit=crop">
-            <div class="overlay">
-              <h3 class="title center">Contact Me</h3>
-              <p class="meta">Let's connect & collaborate</p>
-            </div>
           </a>
         </div>
         <button class="scroll-btn scroll-right" aria-label="Scroll skills right">›</button>
@@ -485,7 +457,7 @@
     // ---------- Play intro sound ----------
     async function playTaDum(){
       try {
-        const audio = new Audio('ta-dum.mp3');
+        const audio = new Audio('soundn.mp3');
         audio.volume = 0.6;
         await audio.play();
       } catch (err) {
@@ -595,6 +567,7 @@
       window.scrollTo({ top: 0, behavior: 'auto' });
       replayIntro();
       kickIntro();
+      schedule
       scheduleAfterIntro();
     }
 
