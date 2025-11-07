@@ -368,6 +368,14 @@
       <div class="rail">
         <button class="scroll-btn scroll-left" aria-label="Scroll left">‹</button>
         <div class="scroller" tabindex="0" aria-label="Portfolio carousel">
+          <a href="gaurdcard.html" class="card" style="text-decoration:none; cursor:pointer">
+            <img class="thumb" alt="Guard Card" loading="lazy"
+                 src="https://images.unsplash.com/photo-1564410267200-c4ef195acf70?w=1000&auto=format&fit=crop">
+            <div class="overlay" style="opacity:1;">
+              <h3 class="title center">Guard Card</h3>
+            </div>
+          </a>
+
           <article class="card">
             <img class="thumb" alt="Skills" loading="lazy"
                  src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1000&auto=format&fit=crop">
@@ -560,7 +568,6 @@
         if (started) return; 
         started = true;
         try { await playTaDum(); } catch {}
-        window.remove
         window.removeEventListener('click', start);
         window.removeEventListener('keydown', start);
         window.removeEventListener('touchstart', start);
