@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>California Security Guard Registration</title>
+    <title>California Security Guard Registration — Angel Contreras</title>
     <meta name="color-scheme" content="dark">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <style>
@@ -12,26 +12,79 @@
             --panel:#000; --accent:#E50914; --rail:#1a1a1a; --thumb:#4a4a4a;
             --ring:rgba(255,255,255,.14);
         }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        *{box-sizing:border-box; margin:0; padding:0}
+        html,body{height:100%; overflow-x:hidden}
+        html{scroll-behavior:smooth; overflow-y:scroll}
+        body{
+            font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+            background:var(--bg); color:var(--ink);
         }
+
+        .nf{
+            font-family:"Netflix Sans","Bebas Neue",system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+            letter-spacing:.015em;
+            text-transform:uppercase;
+        }
+
+        /* --- Navbar --- */
+        .navbar{
+            position:fixed; inset:0 auto auto 0; width:100%;
+            padding:14px clamp(16px,4vw,48px);
+            display:flex; align-items:center; gap:32px;
+            z-index:1000;
+            background:#0f0f0f;
+            box-shadow:0 2px 0 rgba(255,255,255,.04) inset;
+        }
+        .brand{
+            background:none; border:0; padding:0; margin:0;
+            font-weight:900; color:var(--accent); letter-spacing:-.04em; font-size:clamp(22px,3.2vw,32px);
+            cursor:pointer;
+            flex-shrink:0;
+            text-decoration:none;
+        }
+
+        .navlinks{display:flex; gap:22px; align-items:center; flex-wrap:wrap; flex:1;}
+        .navlinks a{
+            color:#e5e5e5; text-decoration:none; font-size:14px; font-weight:600;
+        }
+        .navlinks a:hover{color:var(--ink-2)}
         
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-            background: var(--bg);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            color: var(--ink);
+        .profile-avatar{
+            margin-left:auto;
+            width:40px; height:40px;
+            border-radius:6px;
+            background:linear-gradient(180deg,#0DB5FF,#0070F3);
+            display:grid;
+            place-items:center;
+            cursor:pointer;
+            transition:transform .2s ease;
+            flex-shrink:0;
+        }
+        .profile-avatar:hover{
+            transform:scale(1.05);
+        }
+        .profile-avatar svg{
+            width:20px; height:20px;
+            fill:#fff;
+        }
+
+        /* --- Main Content --- */
+        .main-content{
+            padding-top:80px;
+            min-height:100vh;
+        }
+
+        /* --- Guard Card Section --- */
+        .guard-section{
+            padding:40px clamp(16px,4vw,48px);
+            max-width:1200px;
+            margin:0 auto;
         }
         
         .container {
             max-width: 500px;
             width: 100%;
+            margin: 0 auto;
         }
         
         .card-wrapper {
@@ -179,35 +232,24 @@
             font-weight: 600;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         }
-        
-        .back-link {
-            text-align: center;
-            margin-top: 24px;
+
+        /* --- Footer --- */
+        .footer{
+            padding:48px clamp(16px,4vw,48px) 32px;
+            border-top:1px solid rgba(255,255,255,.1);
+            margin-top:48px;
         }
-        
-        .back-link a {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            border: 0;
-            cursor: pointer;
-            font-weight: 700;
-            border-radius: 4px;
-            padding: 12px 22px;
-            transition: filter .15s;
-            text-decoration: none;
-            background: #fff;
-            color: #000;
-            font-size: 14px;
+        .footer .links{
+            display:flex; gap:16px; flex-wrap:wrap; margin-bottom:24px;
+            justify-content:center;
         }
-        
-        .back-link a:hover {
-            filter: brightness(.92);
+        .footer .links a{
+            color:#808080; text-decoration:none; font-size:13px;
+            transition:color .2s;
         }
-        
-        .back-link a:focus {
-            outline: 2px solid var(--ring);
-            outline-offset: 2px;
+        .footer .links a:hover{ color:#fff; }
+        .footer .copyright{
+            text-align:center; color:#808080; font-size:12px; margin:0;
         }
         
         @media (max-width: 600px) {
@@ -231,62 +273,99 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="card-wrapper">
-            <div class="guard-card">
-                <div class="card-header">
-                    <div class="seal-section">
-                        <svg class="seal" width="48" height="48" viewBox="0 0 100 100">
-                            <circle cx="50" cy="50" r="48" fill="#fbbf24" stroke="#fff" stroke-width="2"/>
-                            <circle cx="50" cy="50" r="42" fill="none" stroke="#1e3a8a" stroke-width="1.5"/>
-                            <path d="M50 15 L55 35 L50 30 L45 35 Z" fill="#1e3a8a"/>
-                            <text x="50" y="55" font-family="serif" font-size="14" font-weight="bold" fill="#1e3a8a" text-anchor="middle">EUREKA</text>
-                            <circle cx="50" cy="70" r="3" fill="#1e3a8a"/>
-                            <path d="M35 25 Q30 50 35 75 M65 25 Q70 50 65 75" stroke="#1e3a8a" stroke-width="1.5" fill="none"/>
-                        </svg>
-                        <div class="header-text">
-                            <h1>STATE OF CALIFORNIA</h1>
-                            <h2>DEPARTMENT OF CONSUMER AFFAIRS</h2>
+    <!-- Nav -->
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="brand nf">Angel Contreras</a>
+        <div class="navlinks" role="navigation" aria-label="Primary">
+            <a href="index.html#home">Home</a>
+            <a href="index.html#portfolio">Portfolio</a>
+            <a href="index.html#skills">Skills</a>
+            <a href="index.html#projects">Projects</a>
+            <a href="contact.html">Hire Me</a>
+        </div>
+        <a href="index.html" class="profile-avatar" aria-label="Back to main" title="Recruiter">
+            <svg viewBox="0 0 24 24">
+                <path d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1h3a3 3 0 0 1 3 3v3h-7v1a1 1 0 0 1-2 0V12H2V9a3 3 0 0 1 3-3h5Zm2-1h0a1 1 0 0 0-1 1v1h2V6a1 1 0 0 0-1-1ZM2 13h9v1a1 1 0 0 0 2 0v-1h9v5a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-5Z"/>
+            </svg>
+        </a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <section class="guard-section">
+            <div class="container">
+                <div class="card-wrapper">
+                    <div class="guard-card">
+                        <div class="card-header">
+                            <div class="seal-section">
+                                <svg class="seal" width="48" height="48" viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="48" fill="#fbbf24" stroke="#fff" stroke-width="2"/>
+                                    <circle cx="50" cy="50" r="42" fill="none" stroke="#1e3a8a" stroke-width="1.5"/>
+                                    <path d="M50 15 L55 35 L50 30 L45 35 Z" fill="#1e3a8a"/>
+                                    <text x="50" y="55" font-family="serif" font-size="14" font-weight="bold" fill="#1e3a8a" text-anchor="middle">EUREKA</text>
+                                    <circle cx="50" cy="70" r="3" fill="#1e3a8a"/>
+                                    <path d="M35 25 Q30 50 35 75 M65 25 Q70 50 65 75" stroke="#1e3a8a" stroke-width="1.5" fill="none"/>
+                                </svg>
+                                <div class="header-text">
+                                    <h1>STATE OF CALIFORNIA</h1>
+                                    <h2>DEPARTMENT OF CONSUMER AFFAIRS</h2>
+                                </div>
+                            </div>
+                            <div class="bureau-text">BUREAU OF SECURITY & INVESTIGATIVE SERVICES</div>
                         </div>
-                    </div>
-                    <div class="bureau-text">BUREAU OF SECURITY & INVESTIGATIVE SERVICES</div>
-                </div>
-                
-                <div class="card-body">
-                    <div class="title-section">
-                        <div class="guard-title">SECURITY GUARD</div>
-                        <div class="registration-text">REGISTRATION CARD</div>
-                    </div>
-                    
-                    <div class="info-box">
-                        <div class="info-grid">
-                            <div class="info-label">Registration No:</div>
-                            <div class="info-value">G6746797</div>
+                        
+                        <div class="card-body">
+                            <div class="title-section">
+                                <div class="guard-title">SECURITY GUARD</div>
+                                <div class="registration-text">REGISTRATION CARD</div>
+                            </div>
                             
-                            <div class="info-label">Expiration Date:</div>
-                            <div class="info-value highlight">03/31/2026</div>
-                            
-                            <div class="info-label">Receipt No:</div>
-                            <div class="info-value">1302249</div>
+                            <div class="info-box">
+                                <div class="info-grid">
+                                    <div class="info-label">Registration No:</div>
+                                    <div class="info-value">G6746797</div>
+                                    
+                                    <div class="info-label">Expiration Date:</div>
+                                    <div class="info-value highlight">03/31/2026</div>
+                                    
+                                    <div class="info-label">Receipt No:</div>
+                                    <div class="info-value">1302249</div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                
-                <div class="card-footer">
-                    <div class="contact-address">
-                        P.O. Box 989002<br>
-                        West Sacramento, CA 95798-9002
-                    </div>
-                    <div class="contact-info">
-                        (800) 952-5210 | bsis@dca.ca.gov
+                        
+                        <div class="card-footer">
+                            <div class="contact-address">
+                                P.O. Box 989002<br>
+                                West Sacramento, CA 95798-9002
+                            </div>
+                            <div class="contact-info">
+                                (800) 952-5210 | bsis@dca.ca.gov
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="back-link">
-            <a href="index.html"><span aria-hidden="true">←</span> Back to Portfolio</a>
-        </div>
+        </section>
     </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <nav class="links" aria-label="Footer">
+            <a href="mailto:acontr126@calstatela.edu">Email</a>
+            <a href="https://www.linkedin.com/in/angel-contreras-488539195/" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+            <a href="index.html#portfolio">Portfolio</a>
+            <a href="index.html#skills">Skills</a>
+            <a href="index.html#projects">Projects</a>
+            <a href="contact.html">Hire Me</a>
+            <a href="index.html#home">Back to top</a>
+        </nav>
+        <p class="copyright">© <span id="year"></span> Angel Contreras. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
