@@ -234,7 +234,6 @@
     .card:hover .overlay{opacity:1; background:linear-gradient(to top,rgba(0,0,0,.85),rgba(0,0,0,.5));}
     .title{font-size:15px; font-weight:800; margin:0}
     .title.center{ text-align:center; }
-    .meta{font-size:13px; color:#b3b3b3; margin:0}
     .footer{
       padding:48px clamp(16px,4vw,48px) 32px;
       border-top:1px solid rgba(255,255,255,.1);
@@ -320,7 +319,8 @@
         <p class="sub">Bachelor's in Computer Information Systems</p>
         <p class="desc">Passionate about building innovative solutions and creating seamless digital experiences. Breaking into tech, one project at a time.</p>
         <div class="cta">
-          <a class="btn btn-white" href="#portfolio"><span aria-hidden="true">▶</span> Resume</a>
+          <!-- CHANGED: Resume button now links to AngelResume.pdf -->
+          <a class="btn btn-white" href="AngelResume.pdf" target="_blank" rel="noopener"><span aria-hidden="true">▶</span> Resume</a>
           <a class="btn btn-ghost" href="https://www.linkedin.com/in/angel-contreras-488539195/" target="_blank" rel="noopener"><span aria-hidden="true">ℹ</span> LinkedIn</a>
         </div>
       </div>
@@ -334,7 +334,8 @@
           <a href="gaurdcard.html" class="card" style="text-decoration:none; cursor:pointer">
             <img class="thumb" alt="Guard Card" loading="lazy" src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1000&auto=format&fit=crop">
             <div class="overlay">
-              <h3 class="title center">Guard Card</h3>
+              <!-- CHANGED: force white text -->
+              <h3 class="title center" style="color:#fff">Guard Card</h3>
             </div>
           </a>
           <article class="card">
@@ -386,7 +387,8 @@
           <a id="contactCardLink" href="contact.html" class="card" style="text-decoration:none; cursor:pointer">
             <img class="thumb" alt="Contact Me" loading="lazy" src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1000&auto=format&fit=crop">
             <div class="overlay">
-              <h3 class="title center">Contact Me</h3>
+              <!-- CHANGED: force white text -->
+              <h3 class="title center" style="color:#fff">Contact Me</h3>
             </div>
           </a>
         </div>
