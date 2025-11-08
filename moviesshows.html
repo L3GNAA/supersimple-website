@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movies & Shows - Angel Contreras</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+      color: #fff;
+      min-height: 100vh;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      position: relative;
+    }
+
+    .back-btn {
+      position: absolute;
+      left: 0;
+      top: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .back-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: translateX(-5px);
+    }
+
+    h1 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(48px, 8vw, 96px);
+      letter-spacing: 0.1em;
+      background: linear-gradient(135deg, #E50914 0%, #ff4757 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+      text-shadow: 0 0 40px rgba(229, 9, 20, 0.3);
+    }
+
+    .quote {
+      font-style: italic;
+      color: #ccc;
+      font-size: clamp(16px, 2vw, 20px);
+      margin-bottom: 10px;
+    }
+
+    .emoji {
+      font-size: clamp(24px, 3vw, 32px);
+    }
+
+    .genre-section {
+      margin: 60px 0;
+    }
+
+    .section-title {
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 700;
+      margin-bottom: 30px;
+      padding-left: 10px;
+      border-left: 5px solid #E50914;
+    }
+
+    .genre-buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 50px;
+    }
+
+    .genre-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      color: #fff;
+      padding: 15px 35px;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .genre-btn:hover,
+    .genre-btn.active {
+      background: #E50914;
+      border-color: #E50914;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(229, 9, 20, 0.4);
+    }
+
+    .albums-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      padding: 20px 0;
+    }
+
+    .album-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .album-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .album-image {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .album-card:hover .album-image {
+      transform: scale(1.05);
+    }
+
+    .album-info {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .album-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .album-artist {
+      color: #aaa;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .play-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .album-card:hover .play-overlay {
+      opacity: 1;
+    }
+
+    .play-btn {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: #E50914;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .play-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(229, 9, 20, 0.6);
+    }
+
+    .play-btn::before {
+      content: "▶";
+      color: #fff;
+      font-size: 24px;
+      margin-left: 4px;
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 40px 20px 30px;
+      }
+
+      .back-btn {
+        position: static;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+
+      .genre-buttons {
+        gap: 10px;
+      }
+
+      .genre-btn {
+        padding: 12px 25px;
+        font-size: 16px;
+      }
+
+      .albums-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <a href="index.html" class="back-btn">← Back to Portfolio</a>
+      <h1>Movies & Shows</h1>
+      <p class="quote">"Television is the first truly democratic culture—the first culture available to everybody and entirely governed by what the people want."</p>
+      <span class="emoji">🎬</span>
+    </div>
+
+    <div class="genre-section">
+      <h2 class="section-title">Explore by Genre</h2>
+      <div class="genre-buttons">
+        <button class="genre-btn active" data-genre="all">All</button>
+        <button class="genre-btn" data-genre="drama">Drama</button>
+        <button class="genre-btn" data-genre="action">Action</button>
+        <button class="genre-btn" data-genre="anime">Anime</button>
+        <button class="genre-btn" data-genre="horror">Horror</button>
+        <button class="genre-btn" data-genre="comedy">Comedy</button>
+      </div>
+
+      <h2 class="section-title">Favorite Shows & Movies</h2>
+      <div class="albums-grid" id="albumsGrid">
+        <!-- Game of Thrones -->
+        <div class="album-card" data-genre="drama action">
+          <img src="https://images.unsplash.com/photo-1611419010196-a573bde22f33?w=800&auto=format&fit=crop" alt="Game of Thrones" class="album-image">
+          <div class="play-overlay">
+            <button class="play-btn" aria-label="Play"></button>
+          </div>
+          <div class="album-info">
+            <h3 class="album-title">Game of Thrones</h3>
+            <p class="album-artist">HBO</p>
+          </div>
+        </div>
+
+        <!-- Breaking Bad -->
+        <div class="album-card" data-genre="drama">
+          <img src="https://images.unsplash.com/photo-1574267432644-f74f8ec9f4d0?w=800&auto=format&fit=crop" alt="Breaking Bad" class="album-image">
+          <div class="play-overlay">
+            <button class="play-btn" aria-label="Play"></button>
+          </div>
+          <div class="album-info">
+            <h3 class="album-title">Breaking Bad</h3>
+            <p class="album-artist">AMC</p>
+          </div>
+        </div>
+
+        <!-- Avatar: The Last Airbender -->
+        <div class="album-card" data-genre="anime action">
+          <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=800&auto=format&fit=crop" alt="Avatar: The Last Airbender" class="album-image">
+          <div class="play-overlay">
+            <button class="play-btn" aria-label="Play"></button>
+          </div>
+          <div class="album-info">
+            <h3 class="album-title">Avatar: The Last Airbender</h3>
+            <p class="album-artist">Nickelodeon</p>
+          </div>
+        </div>
+
+        <!-- One Punch Man -->
+        <div class="album-card" data-genre="anime action comedy">
+          <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=800&auto=format&fit=crop" alt="One Punch Man" class="album-image">
+          <div class="play-overlay">
+            <button class="play-btn" aria-label="Play"></button>
+          </div>
+          <div class="album-info">
+            <h3 class="album-title">One Punch Man</h3>
+            <p class="album-artist">Madhouse</p>
+          </div>
+        </div>
+
+        <!-- IT: Welcome to Derry -->
+        <div class="album-card" data-genre="horror">
+          <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?w=800&auto=format&fit=crop" alt="IT: Welcome to Derry" class="album-image">
+          <div class="play-overlay">
+            <button class="play-btn" aria-label="Play"></button>
+          </div>
+          <div class="album-info">
+            <h3 class="album-title">IT: Welcome to Derry</h3>
+            <p class="album-artist">HBO Max</p>
+          </div>
+        </div>
+
+        <!-- Chainsaw Man -->
+        <div class="album-card" data-genre="anime action horror">
+          <img src="https://images.unsplash.com/photo-1613376023733-0a73315d9b06?w=800&auto=format&fit=crop" alt="Chainsaw Man" class="album-image">
+          <div class="play-overlay">
+            <button class="play-btn" aria-label="Play"></button>
+          </div>
+          <div class="album-info">
+            <h3 class="album-title">Chainsaw Man</h3>
+            <p class="album-artist">MAPPA</p>
+          </div>
+        </div>
+
+        <!-- Bugnonia -->
+        <div class="album-card" data-genre="drama">
+          <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800&auto=format&fit=crop" alt="Bugnonia" class="album-image">
+          <div class="play-overlay">
+            <button class="play-btn" aria-label="Play"></button>
+          </div>
+          <div class="album-info">
+            <h3 class="album-title">Bugnonia</h3>
+            <p class="album-artist">Animated Series</p>
+          </div>
+        </div>
+
+        <!-- Eight Legged Freaks -->
+        <div class="album-card" data-genre="horror comedy action">
+          <img src="https://images.unsplash.com/photo-1577992805669-c3f9dd4fa00e?w=800&auto=format&fit=crop" alt="Eight Legged Freaks" class="album-image">
+          <div class="play-overlay">
+            <button class="play-btn" aria-label="Play"></button>
+          </div>
+          <div class="album-info">
+            <h3 class="album-title">Eight Legged Freaks</h3>
+            <p class="album-artist">Warner Bros.</p>
+          </div>
+        </div>
+
+        <!-- Grandma's Boy -->
+        <div class="album-card" data-genre="comedy">
+          <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&auto=format&fit=crop" alt="Grandma's Boy" class="album-image">
+          <div class="play-overlay">
+            <button class="play-btn" aria-label="Play"></button>
+          </div>
+          <div class="album-info">
+            <h3 class="album-title">Grandma's Boy</h3>
+            <p class="album-artist">20th Century Fox</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const genreButtons = document.querySelectorAll('.genre-btn');
+    const albumCards = document.querySelectorAll('.album-card');
+
+    genreButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const selectedGenre = button.getAttribute('data-genre');
+        
+        genreButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        
+        albumCards.forEach(card => {
+          const cardGenres = card.getAttribute('data-genre');
+          
+          if (selectedGenre === 'all' || cardGenres.includes(selectedGenre)) {
+            card.style.display = 'block';
+            setTimeout(() => {
+              card.style.opacity = '1';
+              card.style.transform = 'scale(1)';
+            }, 10);
+          } else {
+            card.style.opacity = '0';
+            card.style.transform = 'scale(0.8)';
+            setTimeout(() => {
+              card.style.display = 'none';
+            }, 300);
+          }
+        });
+      });
+    });
+
+    albumCards.forEach(card => {
+      card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+    });
+  </script>
+</body>
+</html>
