@@ -594,6 +594,16 @@
       
       kickIntro();
       scheduleAfterIntro();
+
+      // NEW: clicking the intro immediately grants access (shows profiles)
+      const intro = document.querySelector(introSel);
+      if (intro) {
+        intro.addEventListener('click', () => {
+          if (afterIntroTimer) clearTimeout(afterIntroTimer);
+          intro.style.display = 'none';
+          showProfiles();
+        }, { once: true });
+      }
     });
 
     window.addEventListener('pageshow', () => {
