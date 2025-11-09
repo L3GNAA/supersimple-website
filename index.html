@@ -196,7 +196,6 @@
       cursor:pointer; z-index:10;
       display:grid; place-items:center;
       transition:all .2s ease;
-      user-select:none;
     }
     .scroll-btn:hover{
       background:rgba(0,0,0,.9);
@@ -304,8 +303,8 @@
       <div class="navlinks" role="navigation" aria-label="Primary">
         <a href="#home" id="navHome">Home</a>
         <a href="#portfolio" id="navPortfolio">Portfolio</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
+        <a href="skills.html">Skills</a>
+        <a href="projects.html">Projects</a>
         <a id="hireLink" href="contact.html">Hire Me</a>
       </div>
       <button class="profile-avatar" id="profileAvatar" aria-label="Recruiter profile" title="Recruiter">
@@ -336,12 +335,12 @@
               <h3 class="title center" style="color:#fff">Guard Card</h3>
             </div>
           </a>
-          <article class="card">
+          <a href="skills.html" class="card" style="text-decoration:none; cursor:pointer">
             <img class="thumb" alt="Skills" loading="lazy" src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1000&auto=format&fit=crop">
             <div class="overlay">
               <h3 class="title center">Skills</h3>
             </div>
-          </article>
+          </a>
           <article class="card">
             <img class="thumb" alt="Experience" loading="lazy" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1000&auto=format&fit=crop">
             <div class="overlay">
@@ -402,7 +401,7 @@
         <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
         <a href="#portfolio">Portfolio</a>
         <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
+        <a href="projects.html">Projects</a>
         <a href="contact.html">Hire Me</a>
         <a href="#home" id="footerHome">Back to top</a>
       </nav>
@@ -594,16 +593,6 @@
       
       kickIntro();
       scheduleAfterIntro();
-
-      // NEW: clicking the intro immediately grants access (shows profiles)
-      const intro = document.querySelector(introSel);
-      if (intro) {
-        intro.addEventListener('click', () => {
-          if (afterIntroTimer) clearTimeout(afterIntroTimer);
-          intro.style.display = 'none';
-          showProfiles();
-        }, { once: true });
-      }
     });
 
     window.addEventListener('pageshow', () => {
