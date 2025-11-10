@@ -15,7 +15,7 @@
     }
     *{box-sizing:border-box; margin:0; padding:0}
     html,body{height:100%; overflow-x:hidden}
-    /* Disable vertical scrolling and ensure top-start */
+    /* keep the no-vertical-scroll behavior */
     html{scroll-behavior:auto; overflow-y:hidden; position:relative}
     body{
       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
@@ -29,7 +29,7 @@
     .netflix-intro{
       position:fixed; inset:0; display:grid; place-items:center;
       background:#000; z-index:10000; animation:hideIntro .5s ease 2.6s forwards;
-      cursor:pointer; /* make intro feel clickable */
+      cursor:pointer; /* intro is clickable */
     }
     .netflix-logo{ 
       display:grid; place-items:center; 
@@ -145,11 +145,11 @@
       color:#e5e5e5; text-decoration:none; font-size:14px; font-weight:600;
     }
     .navlinks a:hover{color:var(--ink-2)}
-    /* Move the avatar to the very top-right of the page */
+    /* Move the avatar 1 inch to the left from the top-right */
     .profile-avatar{
       position:fixed;
       top:8px;
-      right:8px;
+      right:calc(8px + 1in);
       z-index:1100;
       width:40px; height:40px;
       border-radius:6px;
@@ -323,7 +323,6 @@
         <p class="desc">Passionate about building innovative solutions and creating seamless digital experiences. Breaking into tech, one project at a time.</p>
         <div class="cta">
           <a class="btn btn-white" href="AngelResume.pdf" target="_blank" rel="noopener"><span aria-hidden="true">▶</span> Resume</a>
-          <!-- Fix LinkedIn link -->
           <a class="btn btn-ghost" href="https://www.linkedin.com/in/angel-contreras-488539195/" target="_blank" rel="noopener"><span aria-hidden="true">ℹ</span> LinkedIn</a>
         </div>
       </div>
@@ -374,14 +373,12 @@
               <h3 class="title center">Movies & Shows</h3>
             </div>
           </a>
-          <!-- LINKED TO videogames.html -->
           <a href="videogames.html" class="card" style="text-decoration:none; cursor:pointer">
             <img class="thumb" alt="Video Games" loading="lazy" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1000&auto=format&fit=crop">
             <div class="overlay">
               <h3 class="title center">Video Games</h3>
             </div>
           </a>
-          <!-- Blogs now linked to blog.html -->
           <a href="blog.html" class="card" style="text-decoration:none; cursor:pointer">
             <img class="thumb" alt="Blogs" loading="lazy" src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1000&auto=format&fit=crop">
             <div class="overlay">
@@ -402,11 +399,11 @@
     <footer class="footer">
       <nav class="links" aria-label="Footer">
         <a href="mailto:angel@example.com">Email</a>
-        <!-- Fix LinkedIn link in footer -->
         <a href="https://www.linkedin.com/in/angel-contreras-488539195/" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
         <a href="#portfolio">Portfolio</a>
-        <a href="#skills">Skills</a>
+        <!-- Make Skills/Projects go to their tabs (pages), not home/hash -->
+        <a href="skills.html">Skills</a>
         <a href="projects.html">Projects</a>
         <a href="contact.html">Hire Me</a>
         <a href="#home" id="footerHome">Back to top</a>
@@ -433,11 +430,14 @@
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    // Play the sound only once at the very beginning of the session (per tab)
     async function playTaDum(){
       try {
+        if (sessionStorage.getItem('taDumPlayed')) return;
         const audio = new Audio('soundn.mp3');
         audio.volume = 0.6;
         await audio.play();
+        sessionStorage.setItem('taDumPlayed', '1');
       } catch (err) {
         console.log('Audio playback failed:', err);
       }
@@ -535,7 +535,7 @@
       const parent = intro.parentNode;
       const clone = intro.cloneNode(true);
       parent.replaceChild(clone, intro);
-      makeIntroClickable(); // keep clickability after replay
+      makeIntroClickable();
     }
 
     function resetToIntro(){
@@ -603,7 +603,7 @@
       }, { once: true });
     }
 
-    // If landing on a deep link (from Hire Me or elsewhere), skip the intro so it doesn't bounce back
+    // If landing on a deep link, skip intro so it doesn't bounce
     function maybeSkipIntroForHash(){
       const wanted = ['#skills', '#projects', '#portfolio'];
       if (wanted.includes(location.hash)) {
@@ -626,7 +626,6 @@
       makeIntroClickable();
       maybeSkipIntroForHash();
       kickIntro();
-      // Only schedule profiles if we didn't deep-link into a section
       if (!['#skills','#projects','#portfolio'].includes(location.hash)) {
         scheduleAfterIntro();
       }
