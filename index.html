@@ -15,7 +15,8 @@
     }
     *{box-sizing:border-box; margin:0; padding:0}
     html,body{height:100%; overflow-x:hidden}
-    html{scroll-behavior:smooth; overflow-y:scroll; position:relative}
+    /* Disable vertical scrolling and ensure top-start */
+    html{scroll-behavior:auto; overflow-y:hidden; position:relative}
     body{
       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
       background:var(--bg); color:var(--ink); position:relative;
@@ -28,6 +29,7 @@
     .netflix-intro{
       position:fixed; inset:0; display:grid; place-items:center;
       background:#000; z-index:10000; animation:hideIntro .5s ease 2.6s forwards;
+      cursor:pointer; /* make intro feel clickable */
     }
     .netflix-logo{ 
       display:grid; place-items:center; 
@@ -143,8 +145,12 @@
       color:#e5e5e5; text-decoration:none; font-size:14px; font-weight:600;
     }
     .navlinks a:hover{color:var(--ink-2)}
+    /* Move the avatar to the very top-right of the page */
     .profile-avatar{
-      margin-left:auto;
+      position:fixed;
+      top:8px;
+      right:8px;
+      z-index:1100;
       width:40px; height:40px;
       border-radius:6px;
       background:linear-gradient(180deg,#0DB5FF,#0070F3);
@@ -153,9 +159,6 @@
       cursor:pointer;
       transition:transform .2s ease;
       flex-shrink:0;
-      position:relative;
-      top:-4px;
-      right:-8px;
     }
     .profile-avatar:hover{ transform:scale(1.05); }
     .profile-avatar svg{ width:20px; height:20px; fill:#fff; }
@@ -252,7 +255,7 @@
   </style>
 </head>
 <body>
-  <div class="netflix-intro" aria-hidden="true">
+  <div class="netflix-intro" id="clickableIntro" role="button" tabindex="0" aria-label="Enter — click to continue" aria-hidden="false">
     <div class="netflix-logo" aria-label="ANGEL CONTRERAS">
       <h1 class="intro-text">
         <span>A</span><span>N</span><span>G</span><span>E</span><span>L</span><span style="margin-right:0.3em;"> </span><span>C</span><span>O</span><span>N</span><span>T</span><span>R</span><span>E</span><span>R</span><span>A</span><span>S</span>
@@ -320,7 +323,8 @@
         <p class="desc">Passionate about building innovative solutions and creating seamless digital experiences. Breaking into tech, one project at a time.</p>
         <div class="cta">
           <a class="btn btn-white" href="AngelResume.pdf" target="_blank" rel="noopener"><span aria-hidden="true">▶</span> Resume</a>
-          <a class="btn btn-ghost" href="https://www.linkedin.com/in/angel-contrerras-488539195/" target="_blank" rel="noopener"><span aria-hidden="true">ℹ</span> LinkedIn</a>
+          <!-- Fix LinkedIn link -->
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/angel-contreras-488539195/" target="_blank" rel="noopener"><span aria-hidden="true">ℹ</span> LinkedIn</a>
         </div>
       </div>
     </header>
@@ -398,7 +402,8 @@
     <footer class="footer">
       <nav class="links" aria-label="Footer">
         <a href="mailto:angel@example.com">Email</a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+        <!-- Fix LinkedIn link in footer -->
+        <a href="https://www.linkedin.com/in/angel-contreras-488539195/" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
         <a href="#portfolio">Portfolio</a>
         <a href="#skills">Skills</a>
@@ -530,6 +535,7 @@
       const parent = intro.parentNode;
       const clone = intro.cloneNode(true);
       parent.replaceChild(clone, intro);
+      makeIntroClickable(); // keep clickability after replay
     }
 
     function resetToIntro(){
@@ -583,6 +589,31 @@
     footerHome.addEventListener('click', openProfilesFromNav);
     profileAvatar.addEventListener('click', openProfilesFromNav);
 
+    // Make the intro itself clickable to continue immediately
+    function makeIntroClickable(){
+      const intro = document.getElementById('clickableIntro');
+      if (!intro) return;
+      const skip = () => {
+        intro.style.display = 'none';
+        showProfiles();
+      };
+      intro.addEventListener('click', skip, { once: true });
+      intro.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); skip(); }
+      }, { once: true });
+    }
+
+    // If landing on a deep link (from Hire Me or elsewhere), skip the intro so it doesn't bounce back
+    function maybeSkipIntroForHash(){
+      const wanted = ['#skills', '#projects', '#portfolio'];
+      if (wanted.includes(location.hash)) {
+        const intro = document.querySelector(introSel);
+        if (intro) intro.style.display = 'none';
+        hideProfiles();
+        showMain();
+      }
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
@@ -592,8 +623,13 @@
         history.scrollRestoration = 'manual';
       }
       
+      makeIntroClickable();
+      maybeSkipIntroForHash();
       kickIntro();
-      scheduleAfterIntro();
+      // Only schedule profiles if we didn't deep-link into a section
+      if (!['#skills','#projects','#portfolio'].includes(location.hash)) {
+        scheduleAfterIntro();
+      }
     });
 
     window.addEventListener('pageshow', () => {
