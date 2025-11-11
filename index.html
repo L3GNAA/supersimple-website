@@ -145,11 +145,11 @@
       color:#e5e5e5; text-decoration:none; font-size:14px; font-weight:600;
     }
     .navlinks a:hover{color:var(--ink-2)}
-    /* Move the avatar 0.5 inch to the left from the top-right (closer to the edge than before) */
+    /* Move the avatar another 0.5in to the right (closer to the edge than before) */
     .profile-avatar{
       position:fixed;
       top:8px;
-      right:calc(8px + 0.5in);
+      right:8px; /* previously calc(8px + 0.5in) */
       z-index:1100;
       width:40px; height:40px;
       border-radius:6px;
@@ -291,7 +291,7 @@
           <div class="avatar av-guest" aria-hidden="true">
             <span class="icon">
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Zm-3.5 9a1.5 1.5 0 0 1 1.5-1.5A1.5 1.5 0 0 1 8.5 11Zm9 2.5a5.5 5.5 0 0 1-11 0 1 1 0 0 1 2 0 3.5 3.5 0 0 0 7 0 1 1 0  0 1 2 0ZM15.5 11A1.5 1.5 0 1 1 17 9.5 1.5 1.5 0 0 1 15.5 11Z"/>
+                <path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2Zm-3.5 9a1.5 1.5 0 1 1 1.5-1.5A1.5 1.5 0 0 1 8.5 11Zm9 2.5a5.5 5.5 0 0 1-11 0 1 1 0 0 1 2 0 3.5 3.5 0 0 0 7 0 1 1 0  0 1 2 0ZM15.5 11A1.5 1.5 0 1 1 17 9.5 1.5 1.5 0 0 1 15.5 11Z"/>
               </svg>
             </span>
           </div>
@@ -494,7 +494,7 @@
 
     function showProfiles(){
       profiles.classList.add('show');
-      profiles.querySelector('.tile:not(.disabled)')?.focus();
+      // Removed any automatic focus to honor "no autofocus" and preserve top-to-bottom reading order
     }
     
     function hideProfiles(){ 
