@@ -49,8 +49,10 @@
       background:linear-gradient(180deg,#0DB5FF,#0070F3);
       display:grid; place-items:center; cursor:pointer;
       transition:transform .2s ease; flex-shrink:0;
+      /* move avatar a quarter inch to the right */
+      transform: translateX(0.25in);
     }
-    .profile-avatar:hover{ transform:scale(1.05); }
+    .profile-avatar:hover{ transform: translateX(0.25in) scale(1.05); }
     .profile-avatar svg{ width:20px; height:20px; fill:#fff; }
 
     /* ---- Header ---- */
@@ -138,6 +140,24 @@
 
   <main class="wrap">
     <section class="grid">
+
+      <!-- NEW TOPIC — CareGroup/BILH Network Administration -->
+      <article class="card">
+        <img class="thumb" alt="Azure virtual network topology screenshot"
+             src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=1200&auto=format&fit=crop" />
+        <div class="body">
+          <h3 class="title">CareGroup / BILH — Network Administration</h3>
+          <p class="desc">
+            Academic project implementing Azure VNets, NSGs/ASGs, route tables, NVAs, and VNet peering for Beth Israel Lahey Health.
+            Includes full slide deck and final report with step-by-step configurations and validations.
+          </p>
+          <div class="chips">
+            <a class="chip" href="bethlayhe.pdf" target="_blank" rel="noopener">View Slides (PDF)</a>
+            <a class="chip" href="FinalReport.pdf" target="_blank" rel="noopener">Final Report (PDF)</a>
+            <span class="chip">Azure</span><span class="chip">Virtual Networking</span><span class="chip">Security</span>
+          </div>
+        </div>
+      </article>
 
       <!-- All Meno -->
       <article class="card">
