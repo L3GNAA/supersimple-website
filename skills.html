@@ -20,7 +20,6 @@
       background:var(--bg); color:var(--ink);
     }
 
-    /* ---- Top (keep same “tab area”) ---- */
     .nf{
       font-family:"Netflix Sans","Bebas Neue",system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
       letter-spacing:.015em; text-transform:uppercase;
@@ -51,7 +50,6 @@
     .profile-avatar:hover{ transform:scale(1.05); }
     .profile-avatar svg{ width:20px; height:20px; fill:#fff; }
 
-    /* ---- Page header ---- */
     .page-hero{
       padding:28px clamp(16px,4vw,48px) 10px;
       border-bottom:1px solid rgba(255,255,255,.06);
@@ -65,7 +63,6 @@
     }
     .page-hero p{ color:var(--muted); margin-top:8px; max-width:70ch; }
 
-    /* ---- Sections ---- */
     .section{ padding: 30px clamp(16px,4vw,48px) 8px; }
     .section h2{
       font-size: clamp(22px,4vw,36px);
@@ -76,7 +73,6 @@
       margin:8px auto 6px; border-radius:3px;
     }
 
-    /* ---- Skill grid ---- */
     .grid{
       display:grid; gap:18px;
       grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
@@ -105,7 +101,6 @@
       font-size:13px; color:#c9c9c9; line-height:1.45;
     }
 
-    /* footer */
     .footer{
       padding:48px clamp(16px,4vw,48px) 32px;
       border-top:1px solid rgba(255,255,255,.08); margin-top:40px;
@@ -120,51 +115,46 @@
 </head>
 <body>
 
-  <!-- Top / Tabs area (kept) -->
   <nav class="navbar">
-    <a class="brand nf" href="index.html#home" aria-label="Go to Home">Angel Contreras</a>
-    <div class="navlinks" role="navigation" aria-label="Primary">
+    <a class="brand nf" href="index.html#home">Angel Contreras</a>
+    <div class="navlinks">
       <a href="index.html#home">Home</a>
       <a href="index.html#portfolio">Portfolio</a>
       <a href="skills.html" aria-current="page">Skills</a>
       <a href="projects.html">Projects</a>
       <a id="hireLink" href="contact.html">Hire Me</a>
     </div>
-    <a class="profile-avatar" href="index.html#home" title="Back to main">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1h3a3 3 0 0 1 3 3v3h-7v1a1 1 0 0 1-2 0V12H2V9a3 3 0 0 1 3-3h5Zm2-1h0a1 1 0 0 0-1 1v1h2V6a1 1 0 0 0-1-1ZM2 13h9v1a1 1 0 0 0 2 0v-1h9v5a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-5Z"/></svg>
+    <a class="profile-avatar" href="index.html#home">
+      <svg viewBox="0 0 24 24"><path d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1h3a3 3 0 0 1 3 3v3h-7v1a1 1 0 0 1-2 0V12H2V9a3 3 0 0 1 3-3h5Zm2-1h0a1 1 0 0 0-1 1v1h2V6a1 1 0 0 0-1-1ZM2 13h9v1a1 1 0 0 0 2 0v-1h9v5a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-5Z"/></svg>
     </a>
   </nav>
 
   <header class="page-hero">
     <h1 class="nf">Skills</h1>
-    <p>A snapshot of the technologies and tools I use across the stack.</p>
+    <p>A showcase of my Computer Information Systems and Graphic Communications expertise.</p>
   </header>
 
-  <!-- Backend -->
+  <!-- Information Systems & Networking -->
   <section class="section">
-    <h2 class="nf">Backend</h2>
+    <h2 class="nf">Information Systems & Networking</h2>
     <div class="underline"></div>
     <div class="grid">
-      <div class="tile"><div class="ic">Rb</div><div><h3>Ruby on Rails</h3><p>Backend framework</p></div></div>
-      <div class="tile"><div class="ic">PHP</div><div><h3>PHP</h3><p>Backend language</p></div></div>
-      <div class="tile"><div class="ic">J</div><div><h3>Java</h3><p>Object-oriented programming language</p></div></div>
-      <div class="tile"><div class="ic">SB</div><div><h3>Spring Boot</h3><p>Java framework</p></div></div>
-      <div class="tile"><div class="ic">N</div><div><h3>Node.js</h3><p>Backend runtime</p></div></div>
+      <div class="tile"><div class="ic">IT</div><div><h3>Information Systems</h3><p>Systems analysis, implementation, and management.</p></div></div>
+      <div class="tile"><div class="ic">NW</div><div><h3>Networking</h3><p>LAN/WAN, TCP/IP, routing, and network configuration.</p></div></div>
+      <div class="tile"><div class="ic">AD</div><div><h3>Active Directory</h3><p>User, group, and policy management.</p></div></div>
+      <div class="tile"><div class="ic">CL</div><div><h3>Cloud Computing</h3><p>AWS, Azure, and Google Cloud fundamentals.</p></div></div>
     </div>
   </section>
 
-  <!-- Cloud & DevOps -->
+  <!-- Cybersecurity -->
   <section class="section">
-    <h2 class="nf">Cloud &amp; DevOps</h2>
+    <h2 class="nf">Cybersecurity</h2>
     <div class="underline"></div>
     <div class="grid">
-      <div class="tile"><div class="ic">CI</div><div><h3>CI/CD</h3><p>Continuous integration &amp; delivery</p></div></div>
-      <div class="tile"><div class="ic">Ne</div><div><h3>Netlify</h3><p>Frontend deployment platform</p></div></div>
-      <div class="tile"><div class="ic">He</div><div><h3>Heroku</h3><p>Cloud platform for apps</p></div></div>
-      <div class="tile"><div class="ic">K8</div><div><h3>Kubernetes</h3><p>Container orchestration</p></div></div>
-      <div class="tile"><div class="ic">Do</div><div><h3>Docker</h3><p>Containerization</p></div></div>
-      <div class="tile"><div class="ic">G</div><div><h3>Google Cloud</h3><p>Cloud platform (GCP)</p></div></div>
-      <div class="tile"><div class="ic">AWS</div><div><h3>AWS</h3><p>Cloud platform</p></div></div>
+      <div class="tile"><div class="ic">Sec</div><div><h3>Security Fundamentals</h3><p>Principles of confidentiality, integrity, and availability.</p></div></div>
+      <div class="tile"><div class="ic">FW</div><div><h3>Firewalls &amp; VPNs</h3><p>Network defense and secure tunneling setup.</p></div></div>
+      <div class="tile"><div class="ic">EN</div><div><h3>Encryption</h3><p>Data protection through AES, RSA, SSL/TLS protocols.</p></div></div>
+      <div class="tile"><div class="ic">RM</div><div><h3>Risk Management</h3><p>Threat analysis and mitigation strategies.</p></div></div>
     </div>
   </section>
 
@@ -173,40 +163,65 @@
     <h2 class="nf">Databases</h2>
     <div class="underline"></div>
     <div class="grid">
-      <div class="tile"><div class="ic">My</div><div><h3>MySQL</h3><p>Relational database</p></div></div>
-      <div class="tile"><div class="ic">Pg</div><div><h3>PostgreSQL</h3><p>Relational database</p></div></div>
+      <div class="tile"><div class="ic">SQL</div><div><h3>SQL / MySQL</h3><p>Database design and data querying.</p></div></div>
+      <div class="tile"><div class="ic">Pg</div><div><h3>PostgreSQL</h3><p>Advanced relational data management.</p></div></div>
+      <div class="tile"><div class="ic">MS</div><div><h3>Microsoft Access</h3><p>Relational database application development.</p></div></div>
     </div>
   </section>
 
-  <!-- Frontend -->
+  <!-- Web & Software Development -->
   <section class="section">
-    <h2 class="nf">Frontend</h2>
+    <h2 class="nf">Web & Software Development</h2>
     <div class="underline"></div>
     <div class="grid">
-      <div class="tile"><div class="ic">H5</div><div><h3>HTML &amp; CSS</h3><p>Web markup &amp; styling</p></div></div>
-      <div class="tile"><div class="ic">JS</div><div><h3>JavaScript</h3><p>Scripting language</p></div></div>
-      <div class="tile"><div class="ic">TS</div><div><h3>TypeScript</h3><p>Type-safe JavaScript</p></div></div>
-      <div class="tile"><div class="ic">R</div><div><h3>React</h3><p>Frontend library</p></div></div>
+      <div class="tile"><div class="ic">H5</div><div><h3>HTML / CSS</h3><p>Frontend layout and styling for modern web design.</p></div></div>
+      <div class="tile"><div class="ic">JS</div><div><h3>JavaScript</h3><p>Dynamic web functionality and scripting.</p></div></div>
+      <div class="tile"><div class="ic">Py</div><div><h3>Python</h3><p>Automation, scripting, and data-driven apps.</p></div></div>
+      <div class="tile"><div class="ic">Jv</div><div><h3>Java</h3><p>Object-oriented programming for enterprise systems.</p></div></div>
     </div>
   </section>
 
-  <!-- Other Tools & Practices -->
+  <!-- Graphic Communications -->
   <section class="section">
-    <h2 class="nf">Other Tools &amp; Practices</h2>
+    <h2 class="nf">Graphic Communications</h2>
     <div class="underline"></div>
     <div class="grid">
-      <div class="tile"><div class="ic">Dz</div><div><h3>Dockerization</h3><p>Container management</p></div></div>
-      <div class="tile"><div class="ic">Ag</div><div><h3>Agile</h3><p>Development methodology</p></div></div>
+      <div class="tile"><div class="ic">Ps</div><div><h3>Adobe Photoshop</h3><p>Image editing, retouching, and composition.</p></div></div>
+      <div class="tile"><div class="ic">Ai</div><div><h3>Adobe Illustrator</h3><p>Vector illustration and branding assets.</p></div></div>
+      <div class="tile"><div class="ic">Xd</div><div><h3>Adobe XD / Figma</h3><p>UI/UX design and prototyping.</p></div></div>
+      <div class="tile"><div class="ic">In</div><div><h3>InDesign</h3><p>Layout design for print and digital media.</p></div></div>
+    </div>
+  </section>
+
+  <!-- Systems Analysis & Project Management -->
+  <section class="section">
+    <h2 class="nf">Systems Analysis & Project Management</h2>
+    <div class="underline"></div>
+    <div class="grid">
+      <div class="tile"><div class="ic">SD</div><div><h3>Systems Design</h3><p>Designing scalable, efficient information systems.</p></div></div>
+      <div class="tile"><div class="ic">PM</div><div><h3>Project Management</h3><p>Agile, Scrum, and Waterfall methodologies.</p></div></div>
+      <div class="tile"><div class="ic">BA</div><div><h3>Business Analysis</h3><p>Requirements gathering and process improvement.</p></div></div>
+    </div>
+  </section>
+
+  <!-- Tools -->
+  <section class="section">
+    <h2 class="nf">Tools & Platforms</h2>
+    <div class="underline"></div>
+    <div class="grid">
+      <div class="tile"><div class="ic">VS</div><div><h3>VS Code / Eclipse</h3><p>Development environments for coding efficiency.</p></div></div>
+      <div class="tile"><div class="ic">GH</div><div><h3>Git & GitHub</h3><p>Version control and collaborative development.</p></div></div>
+      <div class="tile"><div class="ic">MS</div><div><h3>Microsoft Office 365</h3><p>Documentation, spreadsheets, and presentations.</p></div></div>
     </div>
   </section>
 
   <footer class="footer">
-    <nav class="links" aria-label="Footer">
+    <nav class="links">
       <a href="mailto:angel@example.com">Email</a>
-      <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+      <a href="https://github.com" target="_blank">GitHub</a>
       <a href="index.html#portfolio">Portfolio</a>
-      <a href="skills.html" aria-current="page">Skills</a>
+      <a href="skills.html">Skills</a>
       <a href="projects.html">Projects</a>
       <a href="contact.html">Hire Me</a>
       <a href="index.html#home">Back to top</a>
@@ -215,7 +230,6 @@
   </footer>
 
   <script>
-    // year
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
