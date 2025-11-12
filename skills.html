@@ -41,8 +41,13 @@
       color:#e5e5e5; text-decoration:none; font-size:14px; font-weight:600;
     }
     .navlinks a:hover{ color:#bfbfbf; }
+    .navlinks a[aria-current="page"]{
+      text-decoration:underline;
+      text-decoration-thickness:2px;
+      text-underline-offset:4px;
+    }
     .profile-avatar{
-      margin-left:auto; width:40px; height:40px; border-radius:6px;
+      margin-left:auto; margin-right:-6px; width:40px; height:40px; border-radius:6px;
       background:linear-gradient(180deg,#0DB5FF,#0070F3);
       display:grid; place-items:center; cursor:pointer;
       transition:transform .2s ease; flex-shrink:0;
@@ -56,12 +61,13 @@
       background:
         radial-gradient(1000px 180px at 20% -40%, rgba(229,9,20,.12), transparent 60%),
         radial-gradient(900px 160px at 80% -60%, rgba(255,255,255,.06), transparent 60%);
+      text-align:center;
     }
     .page-hero h1{
       font-size: clamp(28px,5.6vw,54px);
       line-height:1.05;
     }
-    .page-hero p{ color:var(--muted); margin-top:8px; max-width:70ch; }
+    .page-hero p{ color:var(--muted); margin-top:8px; max-width:70ch; margin-left:auto; margin-right:auto; }
 
     .section{ padding: 30px clamp(16px,4vw,48px) 8px; }
     .section h2{
