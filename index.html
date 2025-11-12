@@ -145,11 +145,11 @@
       color:#e5e5e5; text-decoration:none; font-size:14px; font-weight:600;
     }
     .navlinks a:hover{color:var(--ink-2)}
-    /* Move the avatar 0.25in to the left from the edge */
+    /* Move the avatar 0.25in to the RIGHT (was left) from the edge */
     .profile-avatar{
       position:fixed;
       top:8px;
-      right:calc(8px + 0.25in);
+      right:calc(8px - 0.25in);
       z-index:1100;
       width:40px; height:40px;
       border-radius:6px;
@@ -267,7 +267,7 @@
     <div class="profiles-wrap">
       <h2 id="whosWatching" class="nf">Who's watching?</h2>
       <div class="grid">
-        <button class="tile" data-profile="recruiter" data-target="#portfolio" aria-label="Recruiter profile">
+        <button class="tile" data-profile="recruiter" data-target="#home" aria-label="Recruiter profile">
           <div class="avatar av-recruiter" aria-hidden="true">
             <span class="icon">
               <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -506,7 +506,8 @@
       appRoot.classList.add('show'); 
     }
     
-    function hideMain(){
+    function hideMain
+      (){
       appRoot.classList.remove('show'); 
     }
 
@@ -553,7 +554,7 @@
         e && e.preventDefault();
         return;
       }
-      const target = this.getAttribute('data-target') || '#portfolio';
+      const target = this.getAttribute('data-target') || '#home';
       hideProfiles(); 
       showMain();
       setTimeout(() => {
