@@ -47,23 +47,24 @@
 
     .navlinks{display:flex; gap:22px; align-items:center; flex-wrap:wrap; flex:1;}
     .navlinks a{
-      color:#e5e5e5; text-decoration:none; font-size:14px; font-weight:600;
+      color:#e5e5e5; text-decoration:underline; font-size:14px; font-weight:600;
       cursor:pointer;
     }
     .navlinks a:hover{color:var(--ink-2)}
     
     .profile-avatar{
-      margin-left:auto;
+      position:fixed;
+      top:14px;
+      right:clamp(16px,4vw,48px);
       width:40px; height:40px;
       border-radius:6px;
       background:linear-gradient(180deg,#0DB5FF,#0070F3);
       display:grid;
       place-items:center;
       cursor:pointer;
-      transition:transform .2s ease, margin-right .2s ease;
+      transition:transform .2s ease;
       flex-shrink:0;
-      /* moved a quarter inch to the right */
-      margin-right:6.35mm;
+      z-index:1100;
     }
     .profile-avatar:hover{
       transform:scale(1.05);
