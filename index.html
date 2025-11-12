@@ -145,11 +145,11 @@
       color:#e5e5e5; text-decoration:none; font-size:14px; font-weight:600;
     }
     .navlinks a:hover{color:var(--ink-2)}
-    /* Move the avatar 0.25in to the RIGHT (was left) from the edge */
+    /* Move the avatar 0.25in to the left from the edge */
     .profile-avatar{
       position:fixed;
       top:8px;
-      right:calc(8px - 0.25in);
+      right:calc(8px + 0.25in);
       z-index:1100;
       width:40px; height:40px;
       border-radius:6px;
@@ -506,9 +506,9 @@
       appRoot.classList.add('show'); 
     }
     
-    function hideMain
-      (){
-      appRoot.classList.remove('show'); 
+    function hideMain(){
+      app
+      Root.classList.remove('show'); 
     }
 
     function kickIntro(){
