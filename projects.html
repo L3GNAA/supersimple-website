@@ -44,16 +44,6 @@
     }
     .navlinks a:hover{ color:#bfbfbf; }
     .navlinks a[aria-current="page"]{ color:#fff; text-decoration:underline; text-underline-offset:6px; }
-    .profile-avatar{
-      margin-left:auto; width:40px; height:40px; border-radius:6px;
-      background:linear-gradient(180deg,#0DB5FF,#0070F3);
-      display:grid; place-items:center; cursor:pointer;
-      transition:transform .2s ease; flex-shrink:0;
-      /* move avatar a quarter inch to the right */
-      transform: translateX(0.25in);
-    }
-    .profile-avatar:hover{ transform: translateX(0.25in) scale(1.05); }
-    .profile-avatar svg{ width:20px; height:20px; fill:#fff; }
 
     /* ---- Header ---- */
     .page-hero{
@@ -102,6 +92,39 @@
       background:var(--chip); border:1px solid var(--chip-border);
       padding:6px 10px; border-radius:999px;
     }
+    
+    /* Fun PDF buttons */
+    .pdf-btn{
+      font-size:13px; font-weight:700;
+      color:#fff;
+      background:linear-gradient(135deg, #E50914 0%, #ff4757 100%);
+      border:none;
+      padding:8px 16px; border-radius:8px;
+      text-decoration:none;
+      display:inline-flex; align-items:center; gap:6px;
+      transition:all .2s ease;
+      box-shadow:0 4px 12px rgba(229,9,20,.3);
+      position:relative;
+      overflow:hidden;
+    }
+    .pdf-btn::before{
+      content:'';
+      position:absolute;
+      top:0; left:-100%;
+      width:100%; height:100%;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.3), transparent);
+      transition:left .5s ease;
+    }
+    .pdf-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 6px 20px rgba(229,9,20,.5);
+    }
+    .pdf-btn:hover::before{
+      left:100%;
+    }
+    .pdf-btn svg{
+      width:16px; height:16px; fill:#fff;
+    }
 
     /* footer */
     .footer{
@@ -118,7 +141,7 @@
 </head>
 <body>
 
-  <!-- Top / Tabs area (kept) -->
+  <!-- Top / Tabs area -->
   <nav class="navbar">
     <a class="brand nf" href="index.html#home" aria-label="Go to Home">Angel Contreras</a>
     <div class="navlinks" role="navigation" aria-label="Primary">
@@ -128,9 +151,6 @@
       <a href="projects.html" aria-current="page">Projects</a>
       <a id="hireLink" href="contact.html">Hire Me</a>
     </div>
-    <a class="profile-avatar" href="index.html#home" title="Back to main">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1h3a3 3 0 0 1 3 3v3h-7v1a1 1 0 0 1-2 0V12H2V9a3 3 0 0 1 3-3h5Zm2-1h0a1 1 0 0 0-1 1v1h2V6a1 1 0 0 0-1-1ZM2 13h9v1a1 1 0 0 0 2 0v-1h9v5a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-5Z"/></svg>
-    </a>
   </nav>
 
   <header class="page-hero">
@@ -141,7 +161,7 @@
   <main class="wrap">
     <section class="grid">
 
-      <!-- Team Alpha — Infrastructure Project (proper photo) -->
+      <!-- Team Alpha — Infrastructure Project -->
       <article class="card">
         <img class="thumb" alt="Data center racks and network infrastructure"
              src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1600&h=900&fit=crop" />
@@ -152,14 +172,20 @@
             security hardening, and a 76-day rollout timeline with budget and risks.
           </p>
           <div class="chips">
-            <a class="chip" href="TeamAlpha_Infrastructure_Project%20FINAL.pdf" target="_blank" rel="noopener" download>Slides (PDF)</a>
-            <a class="chip" href="Project_Charter_CIS%204100%20%20FINAL.pdf" target="_blank" rel="noopener" download>Project Charter (PDF)</a>
+            <a class="pdf-btn" href="TeamAlpha_Infrastructure_Project%20FINAL.pdf" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg>
+              View Slides
+            </a>
+            <a class="pdf-btn" href="Project_Charter_CIS%204100%20%20FINAL.pdf" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg>
+              Project Charter
+            </a>
             <span class="chip">Networking</span><span class="chip">Planning</span><span class="chip">Security</span>
           </div>
         </div>
       </article>
 
-      <!-- CareGroup/BILH Network Administration (proper photo) -->
+      <!-- CareGroup/BILH Network Administration -->
       <article class="card">
         <img class="thumb" alt="Hospital technology network concept"
              src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1600&h=900&fit=crop" />
@@ -170,14 +196,20 @@
             Includes full slide deck and final report with step-by-step configurations and validations.
           </p>
           <div class="chips">
-            <a class="chip" href="bethlayhe.pdf" target="_blank" rel="noopener">View Slides (PDF)</a>
-            <a class="chip" href="FinalReport.pdf" target="_blank" rel="noopener">Final Report (PDF)</a>
+            <a class="pdf-btn" href="bethlayhe.pdf" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg>
+              View Slides
+            </a>
+            <a class="pdf-btn" href="FinalReport.pdf" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg>
+              Final Report
+            </a>
             <span class="chip">Azure</span><span class="chip">Virtual Networking</span><span class="chip">Security</span>
           </div>
         </div>
       </article>
 
-      <!-- Team Unity (proper photo) -->
+      <!-- Team Unity -->
       <article class="card">
         <img class="thumb" alt="Unity game engine and 3D game development concept"
              src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=1600&h=900&fit=crop" />
@@ -188,18 +220,14 @@
             Includes examples of colliders/tags, scripting, and a 3-D platformer demo sequence.
           </p>
           <div class="chips">
-            <a class="chip" href="teamunity.pdf" target="_blank" rel="noopener">View Team Unity (PDF)</a>
+            <a class="pdf-btn" href="teamunity.pdf" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg>
+              View Team Unity
+            </a>
             <span class="chip">Unity</span><span class="chip">Game Dev</span><span class="chip">C#</span>
           </div>
         </div>
       </article>
-
-      <!-- Removed requested topics:
-           All Meno, Angular to React Migration, Avataar Ventures Website,
-           Corporate Dashboard for Ekincare, Customer Relationship Management Tool,
-           E-Commerce Website for Natural Products, ESOP & Cap Table Management,
-           Secondary Investment Platform
-      -->
 
     </section>
   </main>
@@ -219,13 +247,8 @@
   </footer>
 
   <script>
-    // year
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 
-  <!-- Sources for the new Team Alpha attachments:
-       :contentReference[oaicite:0]{index=0}
-       :contentReference[oaicite:1]{index=1}
-  -->
 </body>
 </html>
