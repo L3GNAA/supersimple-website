@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Breaking Into Tech: My Career Entry Strategy</title>
+  <style>
+    :root { --ink:#1a1a1a; }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Georgia,"Times New Roman",serif;
+      background:#fff;color:var(--ink);
+      line-height:1.8;padding:40px 20px;position:relative;font-size:16px;
+    }
+    /* subtle background texture */
+    body::before{
+      content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+      background-image:
+        repeating-linear-gradient(0deg,transparent,transparent 86px,rgba(0,0,0,.015) 86px,rgba(0,0,0,.015) 87px),
+        repeating-linear-gradient(60deg,transparent,transparent 86px,rgba(0,0,0,.015) 86px,rgba(0,0,0,.015) 87px),
+        repeating-linear-gradient(120deg,transparent,transparent 86px,rgba(0,0,0,.015) 86px,rgba(0,0,0,.015) 87px);
+      background-size:100px 173px;
+    }
+    body::after{
+      content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+      background-image:
+        radial-gradient(circle at 15% 20%,rgba(0,0,0,.01) 0%,transparent 3%),
+        radial-gradient(circle at 85% 15%,rgba(0,0,0,.01) 0%,transparent 2.5%),
+        radial-gradient(circle at 45% 80%,rgba(0,0,0,.01) 0%,transparent 3.5%),
+        radial-gradient(circle at 75% 60%,rgba(0,0,0,.01) 0%,transparent 2%),
+        radial-gradient(circle at 25% 50%,rgba(0,0,0,.01) 0%,transparent 2.8%);
+    }
+
+    .container{max-width:900px;margin:0 auto;position:relative;z-index:1}
+
+    .header{ text-align:center;padding:60px 20px;border-bottom:3px solid var(--ink);margin-bottom:50px;position:relative;overflow:hidden; }
+    .header::before{
+      content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;z-index:0;
+      background-image:
+        linear-gradient(30deg,transparent 48%,rgba(0,0,0,.02) 48%,rgba(0,0,0,.02) 52%,transparent 52%),
+        linear-gradient(90deg,transparent 48%,rgba(0,0,0,.02) 48%,rgba(0,0,0,.02) 52%,transparent 52%),
+        linear-gradient(150deg,transparent 48%,rgba(0,0,0,.02) 48%,rgba(0,0,0,.02) 52%,transparent 52%);
+      background-size:60px 104px;
+    }
+    .header h1,.header p{position:relative;z-index:1}
+    .header h1{font-weight:400;letter-spacing:2px;margin-bottom:15px;color:var(--ink);font-size:clamp(28px,5vw,48px)}
+    .header p{font-size:16px;color:#666;font-style:italic}
+
+    .student-info{background:#f8f8f8;padding:30px;margin-bottom:50px;border-left:4px solid var(--ink)}
+    .student-info h3{font-size:20px;font-weight:400;margin-bottom:20px;color:var(--ink)}
+    .info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+    .info-item{padding:15px 0}
+    .info-label{font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#666;margin-bottom:5px}
+    .info-value{font-size:16px;color:var(--ink)}
+
+    .toc{background:#f8f8f8;padding:40px;margin-bottom:50px;border:2px solid var(--ink)}
+    .toc h2{font-size:24px;font-weight:400;margin-bottom:25px;color:var(--ink)}
+    .toc ol{list-style-position:inside;font-size:16px}
+    .toc li{margin:12px 0;cursor:pointer;transition:all .2s ease}
+    .toc li:hover{margin-left:10px;font-weight:700}
+    .toc a{color:var(--ink);text-decoration:none}
+    .toc a:hover{text-decoration:underline}
+
+    .section{margin-bottom:60px;padding:40px 0;border-bottom:1px solid #e0e0e0;scroll-margin-top:16px}
+    .section:last-child{border-bottom:none}
+    .section-header{margin-bottom:30px;cursor:pointer;user-select:none;display:flex;justify-content:space-between;align-items:center;padding:15px;background:#f8f8f8;border:1px solid #e0e0e0;transition:all .3s ease}
+    .section-header:hover{background:#f0f0f0}
+    .section-title{font-size:clamp(20px,3.2vw,28px);font-weight:400;color:var(--ink);margin-bottom:0}
+    .toggle-icon{font-size:24px;color:#666;transition:transform .3s ease;min-width:30px;text-align:center}
+    .toggle-icon.open{transform:rotate(0deg)}
+    .toggle-icon.closed{transform:rotate(-90deg)}
+
+    .section-content{font-size:16px;color:#333;max-height:5000px;overflow:hidden;transition:max-height .3s ease,opacity .3s ease;opacity:1}
+    .section-content.hidden{max-height:0;opacity:0;overflow:hidden}
+    .section-content h3,.section-content h4{font-weight:400;margin:25px 0 15px;color:var(--ink)}
+    .section-content h3{font-size:22px}
+    .section-content h4{font-size:18px}
+    .section-content p{margin:15px 0;text-align:justify}
+    .section-content ul{margin:20px 0 20px 40px;list-style-type:disc}
+    .section-content li{margin:10px 0}
+
+    .scope-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;margin:30px 0}
+    .scope-card{padding:25px;border:2px solid var(--ink)}
+    .scope-card h4{font-size:16px;font-weight:700;margin-bottom:15px;text-transform:uppercase;letter-spacing:1px}
+    .scope-card ul{margin:0 0 0 20px}
+
+    .table-wrap{width:100%;overflow-x:auto}
+    .stakeholder-table{width:100%;border-collapse:collapse;margin:30px 0;font-size:14px;min-width:720px}
+    .stakeholder-table th{background:var(--ink);color:#fff;padding:15px;text-align:left;font-weight:400;text-transform:uppercase;font-size:12px;letter-spacing:1px}
+    .stakeholder-table td{padding:15px;border-bottom:1px solid #e0e0e0;vertical-align:top}
+    .stakeholder-table tr:hover{background:#f8f8f8}
+
+    .status-reports{margin:30px 0}
+    .status-report{background:#f8f8f8;border:2px solid var(--ink);padding:30px;margin-bottom:30px}
+    .report-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding-bottom:15px;border-bottom:2px solid var(--ink)}
+    .report-header h3{margin:0;font-size:24px;font-weight:400}
+    .report-status{padding:8px 16px;border-radius:4px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+    .status-green{background:#4caf50;color:#fff}
+    .status-at-risk{background:#ff9800;color:#fff}
+    .report-content h4{font-size:16px;font-weight:700;margin-top:20px;margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;color:var(--ink)}
+    .report-content ul{margin:10px 0 20px 20px}
+    .report-content p{margin:10px 0}
+
+    .milestone-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}
+    .milestone-table th{background:#e0e0e0;padding:10px;text-align:left;font-weight:700;border-bottom:2px solid var(--ink)}
+    .milestone-table td{padding:10px;border-bottom:1px solid #e0e0e0}
+
+    .image-container{margin:40px 0;text-align:center}
+    .image-container img{max-width:100%;height:auto;border:1px solid #e0e0e0;margin:20px 0}
+
+    .task-image-pair{display:flex;gap:30px;align-items:flex-start;margin:40px 0}
+    .completion-box{flex-shrink:0;width:280px;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);border-radius:12px;padding:25px;box-shadow:0 10px 30px rgba(102,126,234,.3);position:relative;overflow:hidden}
+    .completion-box::before{content:"✓";position:absolute;top:-20px;right:-20px;font-size:120px;color:rgba(255,255,255,.1);font-weight:bold}
+    .completion-box h4{color:#fff;font-size:18px;font-weight:700;margin:0 0 20px;text-transform:uppercase;letter-spacing:2px;position:relative;z-index:1}
+    .completion-box ul{list-style:none;margin:0;padding:0;position:relative;z-index:1}
+    .completion-box li{color:#fff;margin:12px 0;padding-left:30px;position:relative;font-size:14px;line-height:1.6}
+    .completion-box li::before{content:"✓";position:absolute;left:0;font-size:18px;font-weight:bold;color:#4caf50}
+    .task-image-pair img{flex:1;max-width:calc(100% - 310px);height:auto;border:1px solid #e0e0e0}
+
+    .back-to-top{position:fixed;bottom:30px;right:30px;background:var(--ink);color:#fff;padding:15px 20px;border:none;cursor:pointer;font-size:14px;text-transform:uppercase;letter-spacing:1px;transition:all .3s ease;z-index:100}
+    .back-to-top:hover{background:#333}
+
+    /* === Added styles for new deliverables pages === */
+    .badge{display:inline-block;padding:4px 10px;border:1px solid var(--ink);font-size:12px;letter-spacing:.5px;text-transform:uppercase}
+    .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin:16px 0 28px}
+    .kpi{border:2px solid var(--ink);padding:14px;background:#fafafa}
+    .kpi h4{font-size:14px;text-transform:uppercase;letter-spacing:1px;margin:0 0 8px}
+    .kpi .value{font-size:24px;font-weight:700}
+    .progress{height:10px;background:#eaeaea;border:1px solid #d2d2d2;position:relative}
+    .progress>span{display:block;height:100%;background:linear-gradient(90deg,#00c853,#b2ff59)}
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+    .card{border:2px solid var(--ink);background:#fff;padding:18px}
+    .card h4{margin-top:0;font-size:18px}
+    .meta{font-size:12px;color:#666;margin-top:6px}
+    .doc-list{margin:10px 0 10px 20px}
+    .doc-list li{margin:6px 0}
+    .retro{border-left:4px solid var(--ink);padding:14px 16px;background:#f8f8f8}
+    .ll-table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px}
+    .ll-table th,.ll-table td{border:1px solid #ddd;padding:10px;text-align:left}
+    .ll-table th{background:#f1f1f1;text-transform:uppercase;letter-spacing:.5px;font-size:12px}
+    .video-link{text-decoration:none}
+    .video-badge{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--ink);padding:8px 12px}
+    .star-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+    .star-card{border:2px solid var(--ink);padding:16px;background:#fff}
+    .star-pill{display:inline-block;font-size:12px;padding:2px 8px;border:1px solid var(--ink);margin-right:6px}
+    .star-arrow{display:inline-block;transition:transform .3s ease;margin-left:8px}
+    .star-arrow.open{transform:rotate(180deg)}
+    .star-story-content{margin-top:16px;padding-top:16px;border-top:1px solid #e0e0e0}
+
+    @media (prefers-reduced-motion:reduce){
+      *{transition:none!important;animation:none!important}
+      html{scroll-behavior:auto}
+    }
+    @media print{.back-to-top{display:none}}
+    @media (max-width:768px){
+      body{padding:20px 15px}
+      .header h1{font-size:clamp(24px,7vw,32px)}
+      .toc{padding:25px}
+      .section{padding:20px 0}
+      .scope-grid{grid-template-columns:1fr}
+      .stakeholder-table{font-size:12px}
+      .stakeholder-table th,.the stakeholder-table td{padding:10px}
+      .task-image-pair{flex-direction:column}
+      .completion-box{width:100%}
+      .task-image-pair img{max-width:100%}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Breaking Into Tech: My Career Entry Strategy</h1>
+    </header>
+
+    <section class="student-info" aria-labelledby="student-info-title">
+      <h3 id="student-info-title">Student Information</h3>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-label">Student Name</div>
+          <div class="info-value">Angel Antonio Contreras-Reyes</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Course</div>
+          <div class="info-value">Managing IT Projects</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Semester</div>
+          <div class="info-value">Fall 2025</div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="toc" aria-label="Table of contents">
+      <h2>Table of Contents</h2>
+      <ol>
+        <li><a href="#section1">Project Title &amp; Description</a></li>
+        <li><a href="#section2">Vision, Mission &amp; Strategy Alignment</a></li>
+        <li><a href="#section3">Business Case &amp; Justification</a></li>
+        <li><a href="#section4">High-Level Scope</a></li>
+        <li><a href="#section5">Stakeholder Register</a></li>
+        <li><a href="#section6">Methodology Explanation</a></li>
+        <li><a href="#section7">Project Tool</a></li>
+        <li><a href="#section8">Weekly Status Reports</a></li>
+        <li><a href="#status">📊 Project Status</a></li>
+        <li><a href="#closure">📋 Project Closure Documents</a></li>
+        <li><a href="#interviews">🎥 Stakeholder Interviews</a></li>
+        <li><a href="#star">⭐ STAR Stories Collection</a></li>
+      </ol>
+    </nav>
+
+    <!-- 1 -->
+    <section class="section" id="section1">
+      <div class="section-header" role="button" tabindex="0" aria-expanded="false" aria-controls="section1-content" onclick="toggleSection(this)" onkeypress="if(event.key==='Enter'||event.key===' ') toggleSection(this)">
+        <h2 class="section-title">1. Project Title &amp; Description</h2>
+        <div class="toggle-icon closed">▼</div>
+      </div>
+      <div class="section-content hidden" id="section1-content">
+        <h3>Project Title: Breaking Into Tech</h3>
+        <p>I am choosing to pursue an entry-level position in Information Technology. I selected this project because it directly supports my academic and professional development. By optimizing a variety of software tools, I can set a pace where establishing myself in the IT field is possible by the end of the semester.</p>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="section" id="section2">
+      <div class="section-header" role="button" tabindex="0" aria-expanded="false" aria-controls="section2-content" onclick="toggleSection(this)" onkeypress="if(event.key==='Enter'||event.key===' ') toggleSection(this)">
+        <h2 class="section-title">2. Vision, Mission &amp; Strategy Alignment</h2>
+        <div class="toggle-icon closed">▼</div>
+      </div>
+      <div class="section-content hidden" id="section2-content">
+        <h4>Personal Mission Connection:</h4>
+        <p>Create and refine a plan where deliverables/milestones can be met for landing an entry-level position in the field of Information Technology.</p>
+        <h4>Vision Alignment:</h4>
+        <p>Transitioning into the industry where I can apply and gain knowledge/skills in relation to the IT field. By being in alignment with the stated trajectory all desired facets can be achieved.</p>
+        <h4>Strategic Goal Support:</h4>
+        <p>The field of Tech can prove overwhelming by the large amount of career choice. Curating the development of this personal project will structure the importance of different tasks that need to be accomplished.</p>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="section" id="section3">
+      <div class="section-header" role="button" tabindex="0" aria-expanded="false" aria-controls="section3-content" onclick="toggleSection(this)" onkeypress="if(event.key==='Enter'||event.key===' ') toggleSection(this)">
+        <h2 class="section-title">3. Business Case &amp; Justification</h2>
+        <div class="toggle-icon closed">▼</div>
+      </div>
+      <div class="section-content hidden" id="section3-content">
+        <h4>Professional Value:</h4>
+        <p>Building this project will expose me to new skills and apply them to future endeavors.</p>
+        <h4>Personal Value:</h4>
+        <p>This project will allow me to focus on building my skills in a realistic and achievable way within the given semester.</p>
+        <h4>Learning Outcomes:</h4>
+        <p>I intend to procure technical skills during the course of this project, as well as obtaining project management experience while also gaining more industry knowledge.</p>
+      </div>
+    </section>
+
+    <!-- 4 -->
+    <section class="section" id="section4">
+      <div class="section-header" role="button" tabindex="0" aria-expanded="false" aria-controls="section4-content" onclick="toggleSection(this)" onkeypress="if(event.key==='Enter'||event.key===' ') toggleSection(this)">
+        <h2 class="section-title">4. High-Level Scope</h2>
+        <div class="toggle-icon closed">▼</div>
+      </div>
+      <div class="section-content hidden" id="section4-content">
+        <div class="scope-grid">
+          <div class="scope-card">
+            <h4>In Scope for Semester Project</h4>
+            <ul>
+              <li>Personal Introduction &amp; Background</li>
+              <li>Skills Inventory</li>
+              <li>Resume Development</li>
+              <li>Coursework &amp; Certifications</li>
+              <li>Career Goals &amp; Roadmap</li>
+              <li>Work Samples/Projects Section</li>
+              <li>Reflection &amp; Growth Summary</li>
+            </ul>
+          </div>
+          <div class="scope-card">
+            <h4>Roadmap Items (≤6 Months)</h4>
+            <ul>
+              <li>Earn an Entry-Level IT Certification</li>
+              <li>Build a Personal Website/Portfolio</li>
+              <li>Expand Project Showcase</li>
+              <li>Professional Networking Growth</li>
+            </ul>
+          </div>
+          <div class="scope-card">
+            <h4>Out of Scope</h4>
+            <ul>
+              <li>Advanced Research Work</li>
+              <li>Developing Full Software Applications</li>
+              <li>Industry-Level Certification Beyond Entry-Level</li>
+              <li>Paid Professional Experience</li>
+              <li>Cross-Disciplinary Projects</li>
+              <li>Full Business Startup or Entrepreneurial Venture</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section class="section" id="section5">
+      <div class="section-header" role="button" tabindex="0" aria-expanded="false" aria-controls="section5-content" onclick="toggleSection(this)" onkeypress="if(event.key==='Enter'||event.key===' ') toggleSection(this)">
+        <h2 class="section-title">5. Stakeholder Register</h2>
+        <div class="toggle-icon closed">▼</div>
+      </div>
+      <div class="section-content hidden" id="section5-content">
+        <div class="table-wrap">
+          <table class="stakeholder-table">
+            <thead>
+              <tr>
+                <th>Stakeholder</th><th>Category</th><th>Role/Interest</th><th>Power</th><th>Interest</th><th>Engagement Strategy</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Potential Employers/Clients</td><td>External</td>
+                <td>To quickly find specific examples of your best work, assess your skills, and understand your brand</td>
+                <td>High</td><td>High</td>
+                <td>Manage Closely - Ensure the site is user-friendly, showcases relevant projects prominently, and has clear, accessible contact information.</td>
+              </tr>
+              <tr>
+                <td>The Creator</td><td>Internal</td>
+                <td>The project owner and primary driver. You need a platform that effectively represents your brand and professional abilities</td>
+                <td>High</td><td>High</td>
+                <td>Manage Closely - Define clear objectives for the site. Conduct regular self-reviews and performance tracking.</td>
+              </tr>
+              <tr>
+                <td>Friends and Family</td><td>External</td>
+                <td>Personal network that can provide a "sanity check" and initial feedback on the site's design</td>
+                <td>Low</td><td>High</td>
+                <td>Keep Informed - Share updates and ask for general feedback on the look, feel, and clarity of the site.</td>
+              </tr>
+              <tr>
+                <td>Recruiters/HR Professionals</td><td>External</td>
+                <td>To efficiently scan your credentials, skills, and experience for potential job fit</td>
+                <td>High</td><td>Medium</td>
+                <td>Keep Satisfied - Ensure your resume is easily downloadable and that your skills are clearly listed.</td>
+              </tr>
+              <tr>
+                <td>Mentors/Industry Peers</td><td>External</td>
+                <td>To review your work and provide expert feedback on your projects and overall presentation</td>
+                <td>Medium</td><td>Medium</td>
+                <td>Keep Informed - Send direct links to specific projects for targeted feedback.</td>
+              </tr>
+              <tr>
+                <td>Website Hosting/Platform</td><td>Internal</td>
+                <td>The technical foundation of your site. Need to manage costs and technical requirements</td>
+                <td>Medium</td><td>Low</td>
+                <td>Keep Satisfied - Research and choose a reliable host or platform that meets your needs.</td>
+              </tr>
+              <tr>
+                <td>The General Public</td><td>External</td>
+                <td>General visitors who may stumble upon your site through search engines or social media</td>
+                <td>Low</td><td>Low</td>
+                <td>Monitor - Focus on a clean design and clear navigation.</td>
+              </tr>
+              <tr>
+                <td>Educational Institution/Instructor</td><td>External</td>
+                <td>Assess the quality, completeness, and professionalism of the portfolio as part of course evaluation</td>
+                <td>High</td><td>Medium</td>
+                <td>Keep Satisfied - Follow assignment requirements closely, submit polished deliverables.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="image-container">
+          <img src="square.JPG" alt="Power-Interest Grid" loading="lazy" />
+          <img src="deliv.JPG" alt="Deliverables Breakdown" loading="lazy" />
+          <img src="supermoney.JPG" alt="Budget Estimation" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 -->
+    <section class="section" id="section6">
+      <div class="section-header" role="button" tabindex="0" aria-expanded="false" aria-controls="section6-content" onclick="toggleSection(this)" onkeypress="if(event.key==='Enter'||event.key===' ') toggleSection(this)">
+        <h2 class="section-title">6. Methodology Explanation</h2>
+        <div class="toggle-icon closed">▼</div>
+      </div>
+      <div class="section-content hidden" id="section6-content">
+        <h4>Hybrid Approach</h4>
+        <p>I'll be going with a Hybrid - Iterative approach. It lets me stay on track and prioritize deliverables, as well as adapting flexibly while moving toward a fulfilling promised vision statement.</p>
+        <div class="image-container">
+          <img src="hybridflow.JPG" alt="Methodology Diagram" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- 7 -->
+    <section class="section" id="section7">
+      <div class="section-header" role="button" tabindex="0" aria-expanded="false" aria-controls="section7-content" onclick="toggleSection(this)" onkeypress="if(event.key==='Enter'||event.key===' ') toggleSection(this)">
+        <h2 class="section-title">7. Project Tool</h2>
+        <div class="toggle-icon closed">▼</div>
+      </div>
+      <div class="section-content hidden" id="section7-content">
+        <h4>Microsoft Planner</h4>
+        <p>I went with Microsoft Planner. Visually the tool has a great aesthetic, with a user-friendly interface to boot. I particularly enjoy the automated variety of view-boards, my favorite being the charts tabs. There is an option given to attach URL links for assignments which isn't ideal, but seeing as I'll be using GitHub as a repository convenience won't be an issue.</p>
+
+        <!-- Pair 1 (Charts) -->
+        <div class="task-image-pair">
+          <div class="completion-box">
+            <h4>Tasks</h4>
+            <ul>
+              <li>Connect with Professionals</li>
+              <li>Setup Tracker</li>
+            </ul>
+          </div>
+          <img src="chartz.JPG" alt="Microsoft Planner Charts View" loading="lazy" />
+        </div>
+
+        <!-- Pair 2 (Grid) -->
+        <div class="task-image-pair">
+          <div class="completion-box">
+            <h4>Tasks</h4>
+            <ul>
+              <li>Draft project schedule &amp; milestones</li>
+              <li>Setup GitHub repository</li>
+              <li>Choose Certification</li>
+            </ul>
+          </div>
+          <img src="grid.JPG" alt="Microsoft Planner Grid View" loading="lazy" />
+        </div>
+
+        <!-- Pair 3 (Board) -->
+        <div class="task-image-pair">
+          <div class="completion-box">
+            <h4>Tasks</h4>
+            <ul>
+              <li>Select AI builder tool</li>
+              <li>Update Profile &amp; Headline</li>
+              <li>Add Portfolio Link</li>
+            </ul>
+          </div>
+          <img src="board.JPG" alt="Microsoft Planner Board View" loading="lazy" />
+        </div>
+
+        <!-- Pair 4 (Schedule) -->
+        <div class="task-image-pair">
+          <div class="completion-box">
+            <h4>Tasks</h4>
+            <ul>
+              <li>Study &amp; Practice</li>
+              <li>Take Certificate Exam</li>
+            </ul>
+          </div>
+          <img src="shedule.JPG" alt="Microsoft Planner Schedule View" loading="lazy" />
+        </div>
+
+        <!-- Pair 5 (Planner Overview + Tasks Deliverable) -->
+        <div class="task-image-pair">
+          <div class="completion-box">
+            <h4>Tasks</h4>
+            <ul>
+              <li>Engage with Posts/Groups</li>
+            </ul>
+          </div>
+          <img src="mplanner.JPG" alt="Microsoft Planner Overview" loading="lazy" />
+        </div>
+
+        <!-- Pair 6 (New Grid View) -->
+        <div class="task-image-pair">
+          <div class="completion-box">
+            <h4>Tasks</h4>
+            <ul>
+            </ul>
+          </div>
+          <img src="Week13ProjectToolScreenshot.JPG" alt="Microsoft Planner Grid View" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- 8 -->
+    <section class="section" id="section8">
+      <div class="section-header" role="button" tabindex="0" aria-expanded="false" aria-controls="section8-content" onclick="toggleSection(this)" onkeypress="if(event.key==='Enter'||event.key===' ') toggleSection(this)">
+        <h2 class="section-title">8. Weekly Status Reports</h2>
+        <div class="toggle-icon closed">▼</div>
+      </div>
+      <div class="section-content hidden" id="section8-content">
+        <div class="status-reports">
+          <article class="status-report">
+            <div class="report-header">
+              <h3>Week 7 - Oct 3rd 2025</h3>
+              <span class="report-status status-green">On Track</span>
+            </div>
+            <div class="report-content">
+              <h4>Accomplishments This Week:</h4>
+              <ul>
+                <li>Completed project charter initial draft</li>
+                <li>Identified key stakeholders</li>
+                <li>Selected Microsoft Planner as project management tool</li>
+              </ul>
+              <h4>Work Planned for Next Week:</h4>
+              <ul>
+                <li>Deliverable 1</li>
+                <li>Deliverable 2</li>
+              </ul>
+              <h4>Issues/Blockers:</h4>
+              <ul><li>None at this time</li></ul>
+              <h4>Charter Updates:</h4>
+              <p>Initial charter created with all required sections.</p>
+            </div>
+          </article>
+
+          <article class="status-report">
+            <div class="report-header">
+              <h3>Week 9 - Oct 19th 2025</h3>
+              <span class="report-status status-at-risk">At Risk</span>
+            </div>
+            <div class="report-content">
+              <h4>Executive Summary:</h4>
+              <p>The project status is going steadily, but more progress needs to be made. This past week was more loaded than prior workloads, with two other separate school projects requiring immediate attention. After viewing this upcoming week's schedule I should have time to make this class project the priority.</p>
+              <h4>Accomplishments This Week:</h4>
+              <ul>
+                <li>Implemented Web Format</li>
+                <li>Got a peer review on LinkedIn</li>
+                <li>Received Certificate</li>
+              </ul>
+              <h4>Work Planned for Next Week:</h4>
+              <ul>
+                <li>Job Submission</li>
+                <li>Request LinkedIn reviews</li>
+                <li>Finish Team Project</li>
+              </ul>
+              <h4>Upcoming Milestones:</h4>
+              <table class="milestone-table">
+                <thead><tr><th>Milestone</th><th>Target Date</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr><td>Portfolio</td><td>10/18/2025</td><td>ON TRACK</td></tr>
+                  <tr><td>LinkedIn</td><td>10/18/2025</td><td>ON TRACK</td></tr>
+                  <tr><td>Job Tracker</td><td>10/18/2025</td><td>ON TRACK</td></tr>
+                </tbody>
+              </table>
+              <h4>Issues &amp; Risks / Mitigations:</h4>
+              <p>No issues or risks identified for this reporting period.</p>
+              <h4>Changes Since Last Report:</h4>
+              <p>No changes occurred since the last reporting period.</p>
+            </div>
+          </article>
+
+          <article class="status-report">
+            <div class="report-header">
+              <h3>Week 10 - Oct 25th 2025</h3>
+              <span class="report-status status-green">On Track</span>
+            </div>
+            <div class="report-content">
+              <h4>Executive Summary:</h4>
+              <p>The project is back on track, with the website portion making strides in its design. I gamified the use of Claude ai, by only working on the web building of the project to the point where Claude will not allow the user to proceed until a specified time. I now look forward to those set times where I then crank-out as much productivity as possible to the UI.</p>
+              <h4>Accomplishments This Week:</h4>
+              <ul>
+                <li>Website</li>
+                <li>Linkedin</li>
+                <li>Discipline</li>
+              </ul>
+              <h4>Work Planned for Next Week:</h4>
+              <ul>
+                <li>Linkedin feedback</li>
+                <li>Design &amp; UI</li>
+                <li>Project Planner</li>
+              </ul>
+              <h4>Upcoming Milestones:</h4>
+              <table class="milestone-table">
+                <thead><tr><th>Milestone</th><th>Target Date</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr><td>Portfolio</td><td>10/24/2025</td><td>ON TRACK</td></tr>
+                  <tr><td>Job Tracker</td><td>10/24/2025</td><td>AT RISK</td></tr>
+                  <tr><td>Linkedin</td><td>10/24/2025</td><td>ON TRACK</td></tr>
+                </tbody>
+              </table>
+              <h4>Issues &amp; Risks / Mitigations:</h4>
+              <p><strong>Job Tracker</strong> — <em>MEDIUM</em><br />Mitigation: I need to start looking into reaching out to companies.</p>
+              <h4>Changes Since Last Report:</h4>
+              <p><strong>Change #1</strong><br />
+                <strong>Date:</strong> 2025-10-25<br />
+                <strong>Description:</strong> The web building portion of the project was falling seriously behind.<br />
+                <strong>Reason / Impact if not made:</strong> We are not back on track, after checking-in with instructor, Maria Espinoza.</p>
+            </div>
+          </article>
+
+          <article class="status-report">
+            <div class="report-header">
+              <h3>Week 11 - Nov 2nd 2025</h3>
+              <span class="report-status status-green">On Track</span>
+            </div>
+            <div class="report-content">
+              <h4>Executive Summary:</h4>
+              <p>All is well in the world of this projects health. I'm getting people outside of campus in agreeing to recorded interview, although they have yet to be conducted. The job search is slow but moving.</p>
+              <h4>Accomplishments This Week:</h4>
+              <ul>
+                <li>Began job search</li>
+                <li>Team Charter created</li>
+                <li>Portfolio progression</li>
+              </ul>
+              <h4>Plan for Next Week:</h4>
+              <ul>
+                <li>Portfolio web design</li>
+                <li>Continue job hunt</li>
+                <li>Team Meeting</li>
+              </ul>
+              <h4>Upcoming Milestones:</h4>
+              <table class="milestone-table">
+                <thead><tr><th>Milestone</th><th>Target Date</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr><td>Create &amp; Design</td><td>11/1/2025</td><td>ON TRACK</td></tr>
+                  <tr><td>Job Tracker</td><td>11/1/2025</td><td>ON TRACK</td></tr>
+                  <tr><td>LinkedIn &amp; Networking</td><td>11/1/2025</td><td>ON TRACK</td></tr>
+                </tbody>
+              </table>
+              <h4>Issues &amp; Risks / Mitigations:</h4>
+              <p>No issues or risks identified for this reporting period.</p>
+              <h4>Changes Since Last Report:</h4>
+              <p>No changes occurred since the last reporting period.</p>
+            </div>
+          </article>
+
+          <!-- Week 12 from PDF -->
+          <article class="status-report">
+            <div class="report-header">
+              <h3>Week 12 - Nov 11th 2025</h3>
+              <span class="report-status status-green">On Track</span>
+            </div>
+            <div class="report-content">
+              <h4>Executive Summary:</h4>
+              <p>All is well with the project health. Completion is approximately seventy-two percent with two final deliverables remaining.</p>
+
+              <h4>Accomplishments This Week:</h4>
+              <ul>
+                <li>LinkedIn</li>
+                <li>Networking</li>
+                <li>Team Charter</li>
+              </ul>
+
+              <h4>Plan for Next Week:</h4>
+              <ul>
+                <li>Add remaining web building designs</li>
+                <li>Submit more applications congruent to the tech field</li>
+                <li>Conduct interviews with respondents</li>
+              </ul>
+
+              <h4>Upcoming Milestones:</h4>
+              <table class="milestone-table">
+                <thead><tr><th>Milestone</th><th>Target Date</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr><td>Portfolio</td><td>11/10/2025</td><td>ON TRACK</td></tr>
+                  <tr><td>Job Tracker</td><td>11/10/2025</td><td>ON TRACK</td></tr>
+                  <tr><td>LinkedIn</td><td>11/10/2025</td><td>ON TRACK</td></tr>
+                </tbody>
+              </table>
+
+              <h4>Issues &amp; Risks / Mitigations:</h4>
+              <p>No issues or risks identified for this reporting period.</p>
+
+              <h4>Changes Since Last Report:</h4>
+              <p>No changes occurred since the last reporting period.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10) Project Status Page -->
+    <section class="section" id="status">
+      <div class="section-header" role="button" tabindex="0" aria-expanded="false" aria-controls="status-content" onclick="toggleSection(this)" onkeypress="if(event.key==='Enter'||event.key===' ') toggleSection(this)">
+        <h2 class="section-title">10. 📊 Project Status</h2>
+        <div class="toggle-icon closed">▼</div>
+      </div>
+      <div class="section-content hidden" id="status-content">
+        <div class="kpi-grid">
+          <div class="kpi"><h4>Overall Health</h4><div class="value">On Track</div><span class="badge">Green</span></div>
+          <div class="kpi"><h4>Completion</h4><div class="value">72%</div><div class="progress" aria-label="overall progress"><span style="width:72%"></span></div></div>
+          <div class="kpi"><h4>Tasks Done</h4><div class="value">36/50</div></div>
+          <div class="kpi"><h4>Risks Open</h4><div class="value">1</div></div>
+        </div>
+        <h4>Key Milestones Achieved</h4>
+        <table class="milestone-table">
+          <thead><tr><th>Milestone</th><th>Date</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Portfolio</td><td>—</td><td>In Progress</td></tr>
+            <tr><td>LinkedIn refresh</td><td>11/11/2025</td><td>Done</td></tr>
+            <tr><td>Certificate</td><td>11/11/2025</td><td>Done</td></tr>
+            <tr><td>Job Tracker</td><td>—</td><td>In Progress</td></tr>
+          </tbody>
+        </table>
+        <p class="meta">This page summarizes current status; weekly details remain in Section 8.</p>
+      </div>
+    </section>
+
+    <!-- 11) Project Closure Documents -->
+    <section class="section" id="closure">
+      <div class="section-header" role="button" tabindex="0" aria-expanded="false" aria-controls="closure-content" onclick="toggleSection(this)" onkeypress="if(event.key==='Enter'||event.key===' ') toggleSection(this)">
+        <h2 class="section-title">11. 📋 Project Closure Documents</h2>
+        <div class="toggle-icon closed">▼</div>
+      </div>
+      <div class="section-content hidden" id="closure-content">
+        <h3>Closure Type Analysis</h3>
+        <p>Proposed closure type: <strong>Normal</strong> (objectives substantially met). Rationale: core deliverables completed; remaining items transitioned to personal backlog.</p>
+
+        <h3>Lessons Learned Grid</h3>
+        <table class="ll-table">
+          <thead><tr><th>#</th><th>What Happened</th><th>Lesson</th><th>Action for Future</th><th>Owner</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Late start on job tracker</td><td>Front-load admin tasks</td><td>Set tracker by Week 1</td><td>Angel</td></tr>
+            <tr><td>2</td><td>Over-scoped UI ideas</td><td>Timebox design spikes</td><td>2× 60-min design sprints</td><td>Angel</td></tr>
+            <tr><td>3</td><td>Certification study drift</td><td>Ritualize study blocks</td><td>Pomodoro 4×/wk</td><td>Angel</td></tr>
+            <tr><td>4</td><td>Feedback loops slow</td><td>Schedule reviews early</td><td>Weekly mentor check-ins</td><td>Angel</td></tr>
+            <tr><td>5</td><td>Interview scheduling</td><td>Buffer for reschedules</td><td>Hold 2 backup slots</td><td>Angel</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Project Retrospective</h3>
+        <div class="retro">
+          <p><strong>Went Well:</strong> Portfolio cadence, LinkedIn refresh, consistent weekly reporting.</p>
+          <p><strong>To Improve:</strong> Earlier risk surfacing, commit smaller batch sizes.</p>
+          <p><strong>Experiments:</strong> Timeboxed UI sprints; accountability partner for certification practice.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12) Stakeholder Interviews Page -->
+    <section class="section" id="interviews">
+      <div class="section-header" role="button" tabindex="0" aria-expanded="false" aria-controls="interviews-content" onclick="toggleSection(this)" onkeypress="if(event.key==='Enter'||event.key===' ') toggleSection(this)">
+        <h2 class="section-title">12. 🎥 Stakeholder Interviews</h2>
+        <div class="toggle-icon closed">▼</div>
+      </div>
+      <div class="section-content hidden" id="interviews-content">
+        <div class="card-grid">
+          <div class="card">
+            <h4>Interview #1 — Hiring Manager</h4>
+            <p>Summary: insights on entry-level expectations, resume keywords, and portfolio storytelling.</p>
+            <p class="meta"><a class="video-link" href="#" target="_blank" rel="noopener"><span class="video-badge">▶ Video (if permitted)</span></a></p>
+          </div>
+          <div class="card">
+            <h4>Interview #2 — IT Support Lead</h4>
+            <p>Summary: ticket triage strategies, common tools, and certification value.</p>
+            <p class="meta"><a class="video-link" href="#" target="_blank" rel="noopener"><span class="video-badge">▶ Video (if permitted)</span></a></p>
+          </div>
+          <div class="card">
+            <h4>Interview #3 — Career Services</h4>
+            <p>Summary: networking plans, referral tactics, and STAR story feedback.</p>
+            <p class="meta"><a class="video-link" href="#" target="_blank" rel="noopener"><span class="video-badge">▶ Video (if permitted)</span></a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13) STAR Stories Collection -->
+    <section class="section" id="star">
+      <div class="section-header" role="button" tabindex="0" aria-expanded="false" aria-controls="star-content" onclick="toggleSection(this)" onkeypress="if(event.key==='Enter'||event.key===' ') toggleSection(this)">
+        <h2 class="section-title">13. ⭐ STAR Stories Collection</h2>
+        <div class="toggle-icon closed">▼</div>
+      </div>
+      <div class="section-content hidden" id="star-content">
+        <p class="meta">Five required stories: 2 from presentations, 3 from PMI Principle prompts. Optionally add 1 risk/issue story (does not count toward 5).</p>
+        <div class="star-grid">
+        <div class="star-card">
+          <div class="star-pill">Presentation</div>
+          <h4 style="cursor:pointer;user-select:none;" onclick="toggleStarStory(this)">STAR #1 — CSULA Project Management Team Presentation <span class="star-arrow">▼</span></h4>
+          <div class="star-story-content" style="display:none;">
+            <p><strong>Situation:</strong> During a recent Project Management course at CSULA, I participated in a small group of five classmates to complete a full project within a two-week time frame. The project required us to apply project management principles in real time, including planning, scheduling, and risk assessment. The short timeline created pressure on coordination and accountability among team members.</p>
+            <p><strong>Task:</strong> My responsibility was to complete and submit a key portion of the deliverable early in the project. However, as the deadline approached, the team had not maintained consistent progress. The major risk was time — our lack of synchronization threatened the quality and timely completion of the final presentation.</p>
+            <p><strong>Action:</strong> I communicated with the team to clarify remaining tasks and deadlines. We collectively decided to extend our working sessions, dividing unfinished portions evenly and supporting each other. I checked in regularly with teammates to confirm updates and offer help. Though we worked late into the night, we remained organized and calm under pressure.</p>
+            <p><strong>Result:</strong> The project was submitted successfully and well received. I learned an invaluable lesson about maintaining team-wide transparency and accountability. In future projects, I will emphasize consistent communication, even after my part is complete, to reduce last-minute risk and stress.</p>
+          </div>
+        </div>
+
+        <div class="star-card">
+          <div class="star-pill">Presentation</div>
+          <h4 style="cursor:pointer;user-select:none;" onclick="toggleStarStory(this)">STAR #2 — General Leadership Project Presentation <span class="star-arrow">▼</span></h4>
+          <div class="star-story-content" style="display:none;">
+            <p><strong>Situation:</strong> In the same Project Management course at CSULA, my group was assigned a project on General Leadership. As a team of five, we were responsible for researching, designing, and delivering a presentation demonstrating key leadership concepts. I served as the Presentation Designer and took charge of creating a visually engaging, interactive presentation using Nearpod.</p>
+            <p><strong>Task:</strong> While I had used Nearpod successfully for years, the platform had recently changed, placing many of its best features behind a paywall. This unexpected limitation occurred midway through the project, disrupting our original plan for interactivity. Additionally, on presentation day, the QR code for audience access had expired, creating a setback right before we began.</p>
+            <p><strong>Action:</strong> To adapt, I quickly restructured the presentation using features still available in the free version. I integrated the team's submitted content manually and ensured our slides remained consistent and clear. I communicated regularly with all team members, keeping everyone informed and confident. During the presentation, I helped guide the audience to access the session manually when the QR code failed.</p>
+            <p><strong>Result:</strong> Despite the challenges, the presentation was a success. Our classmates were engaged and participated actively in the interactive activities. I learned the importance of contingency planning for digital tools and verifying technical elements before presenting. In future projects, I plan to test every resource ahead of time and prepare alternative access options to ensure seamless delivery.</p>
+          </div>
+        </div>
+
+        <div class="star-card">
+          <div class="star-pill">PMI Principle</div>
+          <h4 style="cursor:pointer;user-select:none;" onclick="toggleStarStory(this)">STAR #3 — Team Collaboration & Communication <span class="star-arrow">▼</span></h4>
+          <div class="star-story-content" style="display:none;">
+            <p><strong>Situation:</strong> During a collaborative project in my Project Management course at CSULA, I worked in a five-member group responsible for developing a comprehensive presentation under a strict timeline. Each of us was assigned specific deliverables, but as the deadline approached, our progress varied significantly. It became clear that, while each individual was capable, we needed stronger team collaboration to bring our efforts together effectively.</p>
+            <p><strong>Task:</strong> My responsibility was not only to complete my assigned section but also to contribute to fostering a more connected team environment. We needed to re-establish clear communication channels and ensure that each member's progress supported the group's shared goals.</p>
+            <p><strong>Action:</strong> I initiated a team check-in session to discuss challenges openly and reassign smaller, manageable tasks based on each person's capacity. We created a shared document for real-time updates, allowing everyone to see progress and deadlines simultaneously. I also encouraged consistent communication through group chat and offered help to those struggling with their sections.</p>
+            <p><strong>Result:</strong> Our renewed collaboration helped us complete the project on time and improved the group's morale. The professor specifically praised our ability to coordinate and communicate effectively under pressure. This experience reinforced the importance of fostering teamwork, not just for efficiency but also for maintaining trust and accountability. I learned that successful project outcomes depend heavily on creating a supportive team culture where everyone feels included and valued.</p>
+          </div>
+        </div>
+
+        <div class="star-card">
+          <div class="star-pill">PMI Principle</div>
+          <h4 style="cursor:pointer;user-select:none;" onclick="toggleStarStory(this)">STAR #4 — Risk Identification & Mitigation <span class="star-arrow">▼</span></h4>
+          <div class="star-story-content" style="display:none;">
+            <p><strong>Situation:</strong> In my Project Management course at CSULA, our group of five was assigned a leadership-focused project requiring a detailed presentation within a tight two-week period. From the start, I recognized several potential risks: time constraints, uneven workload distribution, and reliance on Nearpod, a third-party presentation platform. I discovered that many of its best features were now locked behind a paywall, threatening our original project plan.</p>
+            <p><strong>Task:</strong> As the Presentation Designer, I was responsible for ensuring our presentation was engaging, accessible, and delivered smoothly. When the paywall changes disrupted our initial design, I needed to find a quick alternative solution to preserve interactivity and ensure the final product met our expectations and deadlines.</p>
+            <p><strong>Action:</strong> I immediately assessed the risks by identifying which features were no longer available and how that would affect our planned activities. To mitigate the issue, I restructured the slides to focus on free features that still allowed real-time engagement. I informed the team of the limitations, proposed adjustments, and coordinated updates so everyone could adapt their content accordingly. Before the presentation, I also created manual login instructions as a contingency plan in case the QR access failed—which ultimately proved helpful when the QR code expired during the live session.</p>
+            <p><strong>Result:</strong> Despite these challenges, our presentation was completed successfully, and the audience actively participated by logging in manually. This experience highlighted how crucial it is to anticipate risks early and prepare contingencies, even for familiar tools. I now approach every project with a proactive mindset—identifying, assessing, and addressing potential risks before they escalate into last-minute problems.</p>
+          </div>
+        </div>
+
+        <div class="star-card">
+          <div class="star-pill">PMI Principle</div>
+          <h4 style="cursor:pointer;user-select:none;" onclick="toggleStarStory(this)">STAR #5 — Adaptability & Resilience Under Pressure <span class="star-arrow">▼</span></h4>
+          <div class="star-story-content" style="display:none;">
+            <p><strong>Situation:</strong> While completing a project on General Leadership in my Project Management course at CSULA, I served as the Presentation Designer for a five-person team. We had chosen to use Nearpod, an interactive web platform I was familiar with, to make our presentation more engaging. However, midway through our project, Nearpod introduced major changes to its free plan, removing many of the interactive features we originally built our design around. This unexpected limitation forced me to completely rethink our approach with only a few days left before the presentation.</p>
+            <p><strong>Task:</strong> My main responsibility was to ensure the presentation remained effective and interactive despite the sudden loss of premium tools. I needed to quickly adapt to these changes, communicate adjustments to my teammates, and deliver a product that would still meet our course objectives and keep the audience engaged.</p>
+            <p><strong>Action:</strong> Rather than panicking, I focused on what resources were still available. I restructured the slides using free, accessible Nearpod tools and added new elements—like embedded questions and short polls—to preserve interactivity. I coordinated with my teammates to make sure their materials fit smoothly into the revised format. On presentation day, when our QR code unexpectedly expired, I guided the audience through manual access instructions in real time so participation could continue uninterrupted.</p>
+            <p><strong>Result:</strong> Our presentation was well-received, and the audience remained actively involved despite the setbacks. This experience strengthened my adaptability and resilience as a project contributor. I learned that technical or procedural challenges are inevitable, but maintaining composure, flexibility, and problem-solving focus allows teams to deliver strong results under pressure.</p>
+          </div>
+        </div>
+        </div>
+        <p class="meta">Optional: <span class="star-pill">Risk/Issue</span> story may be added as a sixth card.</p>
+      </div>
+    </section>
+  </div>
+
+  <button class="back-to-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">↑ Top</button>
+
+  <script>
+    function toggleSection(header){
+      const content = header.nextElementSibling;
+      const icon = header.querySelector('.toggle-icon');
+      const expanded = header.getAttribute('aria-expanded') === 'true';
+      content.classList.toggle('hidden');
+      icon.classList.toggle('closed');
+      icon.classList.toggle('open');
+      header.setAttribute('aria-expanded', String(!expanded));
+    }
+    
+    function toggleStarStory(header){
+      const content = header.nextElementSibling;
+      const arrow = header.querySelector('.star-arrow');
+      if(content.style.display === 'none' || content.style.display === ''){
+        content.style.display = 'block';
+        arrow.classList.add('open');
+      } else {
+        content.style.display = 'none';
+        arrow.classList.remove('open');
+      }
+    }
+  </script>
+</body>
+</html>
