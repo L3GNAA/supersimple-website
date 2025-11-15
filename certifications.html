@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Goal - Project Charter</title>
+    <title>Certifications - Angel Contreras</title>
     <style>
         * {
             margin: 0;
@@ -81,6 +81,105 @@
         .info-value {
             font-size: 16px;
             color: #1a1a1a;
+        }
+
+        .latest-badge {
+            display: inline-block;
+            background: #E50914;
+            color: white;
+            padding: 4px 12px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-radius: 3px;
+            margin-left: 15px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.05);
+            }
+        }
+
+        .cert-showcase {
+            background: linear-gradient(135deg, #f8f8f8 0%, #e8e8e8 100%);
+            padding: 40px;
+            margin-bottom: 50px;
+            border: 3px solid #1a1a1a;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .cert-showcase h2 {
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 25px;
+            color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cert-frame {
+            background: white;
+            padding: 30px;
+            border: 2px solid #1a1a1a;
+            text-align: center;
+            margin: 20px 0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cert-frame:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .cert-frame h3 {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+
+        .cert-meta {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cert-link {
+            display: inline-block;
+            background: #1a1a1a;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 13px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: 2px solid #1a1a1a;
+        }
+
+        .cert-link:hover {
+            background: white;
+            color: #1a1a1a;
+        }
+
+        .cert-description {
+            max-width: 600px;
+            margin: 20px auto;
+            font-size: 15px;
+            line-height: 1.6;
+            color: #333;
         }
         
         .toc {
@@ -269,14 +368,36 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: all 0.3s ease;
+            z-index: 1000;
         }
         
         .back-to-top:hover {
             background: #333;
         }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #1a1a1a;
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            margin-left: -10px;
+        }
+
+        .back-link::before {
+            content: "← ";
+            margin-right: 5px;
+        }
         
         @media print {
-            .back-to-top {
+            .back-to-top, .back-link {
                 display: none;
             }
         }
@@ -288,6 +409,14 @@
             
             .header h1 {
                 font-size: 32px;
+            }
+
+            .cert-showcase {
+                padding: 25px;
+            }
+
+            .cert-frame {
+                padding: 20px;
             }
             
             .toc {
@@ -315,292 +444,146 @@
 </head>
 <body>
     <div class="container">
+        <a href="index.html" class="back-link">Back to Home</a>
+
         <div class="header">
-            <h1>MY GOAL</h1>
-            <p>Project Charter — Managing IT Projects Course</p>
+            <h1>CERTIFICATIONS</h1>
+            <p>Professional Development & Achievements</p>
         </div>
         
         <div class="student-info">
-            <h3>Student Information</h3>
+            <h3>Angel Antonio Contreras-Reyes</h3>
             <div class="info-grid">
                 <div class="info-item">
-                    <div class="info-label">Student Name</div>
-                    <div class="info-value">Angel Antonio Contreras-Reyes</div>
+                    <div class="info-label">Program</div>
+                    <div class="info-value">Computer Information Systems</div>
                 </div>
                 <div class="info-item">
-                    <div class="info-label">Course</div>
-                    <div class="info-value">Managing IT Projects</div>
+                    <div class="info-label">Institution</div>
+                    <div class="info-value">California State University, Los Angeles</div>
                 </div>
                 <div class="info-item">
-                    <div class="info-label">Semester</div>
-                    <div class="info-value">Fall 2025</div>
+                    <div class="info-label">Focus</div>
+                    <div class="info-value">Information Technology</div>
                 </div>
             </div>
         </div>
 
+        <!-- LATEST ACQUISITION SHOWCASE -->
+        <div class="cert-showcase">
+            <h2>
+                Latest Certification
+                <span class="latest-badge">Latest Acquisition</span>
+            </h2>
+            
+            <div class="cert-frame">
+                <h3>AI Fundamentals Certificate</h3>
+                <p class="cert-meta">Issued: November 2025</p>
+                <p class="cert-description">
+                    Comprehensive certification demonstrating proficiency in artificial intelligence fundamentals, 
+                    including machine learning concepts, neural networks, and AI applications in modern technology. 
+                    This certification validates understanding of core AI principles and practical implementation strategies.
+                </p>
+                <a href="CertificateAi.PDF" target="_blank" rel="noopener" class="cert-link">
+                    View Certificate (PDF)
+                </a>
+            </div>
+        </div>
+
         <div class="toc">
-            <h2>Table of Contents</h2>
+            <h2>Certification Portfolio</h2>
             <ol>
-                <li><a href="#section1">Project Title & Description</a></li>
-                <li><a href="#section2">Vision, Mission & Strategy Alignment</a></li>
-                <li><a href="#section3">Business Case & Justification</a></li>
-                <li><a href="#section4">High-Level Scope</a></li>
-                <li><a href="#section5">Stakeholder Register</a></li>
-                <li><a href="#section6">Methodology Explanation</a></li>
-                <li><a href="#section7">Project Tool</a></li>
-                <li><a href="#section8">Additional Charter Components</a></li>
+                <li><a href="#section1">Professional Certifications</a></li>
+                <li><a href="#section2">Technical Skills & Competencies</a></li>
+                <li><a href="#section3">Career Development Path</a></li>
+                <li><a href="#section4">Ongoing Learning Objectives</a></li>
             </ol>
         </div>
 
         <div class="section" id="section1">
             <div class="section-header">
-                <h2 class="section-title">1. Project Title & Description</h2>
+                <h2 class="section-title">1. Professional Certifications</h2>
             </div>
             <div class="section-content">
-                <div class="instructions">
-                    <strong>Instructions:</strong>
-                    Replace the placeholder below with your specific project information. Include a clear project name and 2-3 sentences describing what you will deliver.
-                </div>
+                <h3>Completed Certifications</h3>
+                <p>Throughout my academic and professional journey, I have pursued certifications that align with my career goals in Information Technology. Each certification represents a commitment to continuous learning and professional development.</p>
                 
-                <h3>Project Title: My Goal</h3>
-                <p>I am choosing to pursue an entry-level position in Information Technology. I selected this project because it directly supports my academic and professional development. By optimizing a variety of software tools, I can set a pace where establishing myself in the IT field is possible by the end of the semester.</p>
+                <h4>AI Fundamentals Certificate (November 2025)</h4>
+                <p>This recent achievement demonstrates my understanding of artificial intelligence principles and applications. The certification covers essential topics including machine learning algorithms, data processing, and AI implementation strategies in real-world scenarios.</p>
+                
+                <h4>Future Certification Goals</h4>
+                <ul>
+                    <li>CompTIA A+ Certification</li>
+                    <li>AWS Cloud Practitioner</li>
+                    <li>Google IT Support Professional Certificate</li>
+                    <li>Microsoft Azure Fundamentals</li>
+                </ul>
             </div>
         </div>
 
         <div class="section" id="section2">
             <div class="section-header">
-                <h2 class="section-title">2. Vision, Mission & Strategy Alignment</h2>
+                <h2 class="section-title">2. Technical Skills & Competencies</h2>
             </div>
             <div class="section-content">
-                <div class="instructions">
-                    <strong>Instructions:</strong>
-                    Explain how this project aligns with your personal mission, vision, and strategic goals. Reference your previous mission/vision/strategy work.
-                </div>
-                
-                <h4>Personal Mission Connection:</h4>
-                <p>Create and refine a plan where deliverables/milestones can be met for landing an entry-level position in the field of Information Technology.</p>
-                
-                <h4>Vision Alignment:</h4>
-                <p>Transitioning into the industry where I can apply and gain knowledge/skills in relation to the IT field. By being in alignment with the stated trajectory all desired facets can be achieved.</p>
-                
-                <h4>Strategic Goal Support:</h4>
-                <p>The field of Tech can prove overwhelming by the large amount of career choice. Curating the development of this personal project will structure the importance of different tasks that need to be accomplished.</p>
+                <h4>Core Technical Proficiencies:</h4>
+                <ul>
+                    <li>Artificial Intelligence & Machine Learning Concepts</li>
+                    <li>Programming Languages: Python, JavaScript</li>
+                    <li>Web Development: HTML, CSS, React</li>
+                    <li>Database Management: SQL</li>
+                    <li>Project Management Tools: Microsoft Planner</li>
+                    <li>Version Control: Git & GitHub</li>
+                    <li>Cloud Computing Fundamentals</li>
+                </ul>
+
+                <h4>Soft Skills:</h4>
+                <ul>
+                    <li>Project Management & Planning</li>
+                    <li>Team Collaboration & Communication</li>
+                    <li>Problem-Solving & Critical Thinking</li>
+                    <li>Time Management & Organization</li>
+                    <li>Adaptability & Continuous Learning</li>
+                </ul>
             </div>
         </div>
 
         <div class="section" id="section3">
             <div class="section-header">
-                <h2 class="section-title">3. Business Case & Justification</h2>
+                <h2 class="section-title">3. Career Development Path</h2>
             </div>
             <div class="section-content">
-                <div class="instructions">
-                    <strong>Instructions:</strong>
-                    Describe how this project will add value to you either professionally or personally. What benefits will you gain?
-                </div>
-                
-                <h4>Professional Value:</h4>
-                <p>Building this project will expose me to new skills and apply them to future endeavors.</p>
-                
-                <h4>Personal Value:</h4>
-                <p>This project will allow me to focus on building my skills in a realistic and achievable way within the given semester.</p>
-                
-                <h4>Learning Outcomes:</h4>
-                <p>I intend to procure technical skills during the course of this project, as well as obtaining project management experience while also gaining more industry knowledge.</p>
+                <h4>Short-Term Goals (6-12 Months):</h4>
+                <p>Secure an entry-level position in Information Technology where I can apply my knowledge and continue developing practical skills. Focus on obtaining foundational IT certifications such as CompTIA A+ to strengthen my technical credentials.</p>
+
+                <h4>Medium-Term Goals (1-3 Years):</h4>
+                <p>Advance to mid-level IT positions with increased responsibility in system administration, network management, or cloud computing. Pursue advanced certifications in specialized areas based on industry demands and personal interests.</p>
+
+                <h4>Long-Term Vision (3-5 Years):</h4>
+                <p>Establish myself as a skilled IT professional with expertise in emerging technologies, particularly in AI implementation and cloud infrastructure. Contribute to innovative projects and potentially move into leadership or specialized consultant roles.</p>
             </div>
         </div>
 
         <div class="section" id="section4">
             <div class="section-header">
-                <h2 class="section-title">4. High-Level Scope</h2>
+                <h2 class="section-title">4. Ongoing Learning Objectives</h2>
             </div>
             <div class="section-content">
-                <div class="scope-grid">
-                    <div class="scope-card">
-                        <h4>In Scope for Semester Project</h4>
-                        <ul>
-                            <li>Personal Introduction & Background</li>
-                            <li>Skills Inventory</li>
-                            <li>Resume Development</li>
-                            <li>Coursework & Certifications</li>
-                            <li>Career Goals & Roadmap</li>
-                            <li>Work Samples/Projects Section</li>
-                            <li>Reflection & Growth Summary</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="scope-card">
-                        <h4>Roadmap Items (≤6 Months)</h4>
-                        <ul>
-                            <li>Earn an Entry-Level IT Certification</li>
-                            <li>Build a Personal Website/Portfolio</li>
-                            <li>Expand Project Showcase</li>
-                            <li>Professional Networking Growth</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="scope-card">
-                        <h4>Out of Scope</h4>
-                        <ul>
-                            <li>Advanced Research Work</li>
-                            <li>Developing Full Software Applications</li>
-                            <li>Industry-Level Certification Beyond Entry-Level</li>
-                            <li>Paid Professional Experience</li>
-                            <li>Cross-Disciplinary Projects</li>
-                            <li>Full Business Startup or Entrepreneurial Venture</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section" id="section5">
-            <div class="section-header">
-                <h2 class="section-title">5. Stakeholder Register</h2>
-            </div>
-            <div class="section-content">
-                <table class="stakeholder-table">
-                    <thead>
-                        <tr>
-                            <th>Stakeholder</th>
-                            <th>Category</th>
-                            <th>Role/Interest</th>
-                            <th>Power</th>
-                            <th>Interest</th>
-                            <th>Engagement Strategy</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Potential Employers/Clients</td>
-                            <td>External</td>
-                            <td>To quickly find specific examples of your best work, assess your skills, and understand your brand</td>
-                            <td>High</td>
-                            <td>High</td>
-                            <td>Manage Closely - Ensure the site is user-friendly, showcases relevant projects prominently, and has clear, accessible contact information.</td>
-                        </tr>
-                        <tr>
-                            <td>The Creator</td>
-                            <td>Internal</td>
-                            <td>The project owner and primary driver. You need a platform that effectively represents your brand and professional abilities</td>
-                            <td>High</td>
-                            <td>High</td>
-                            <td>Manage Closely - Define clear objectives for the site. Conduct regular self-reviews and performance tracking.</td>
-                        </tr>
-                        <tr>
-                            <td>Friends and Family</td>
-                            <td>External</td>
-                            <td>Personal network that can provide a "sanity check" and initial feedback on the site's design</td>
-                            <td>Low</td>
-                            <td>High</td>
-                            <td>Keep Informed - Share updates and ask for general feedback on the look, feel, and clarity of the site.</td>
-                        </tr>
-                        <tr>
-                            <td>Recruiters/HR Professionals</td>
-                            <td>External</td>
-                            <td>To efficiently scan your credentials, skills, and experience for potential job fit</td>
-                            <td>High</td>
-                            <td>Medium</td>
-                            <td>Keep Satisfied - Ensure your resume is easily downloadable and that your skills are clearly listed.</td>
-                        </tr>
-                        <tr>
-                            <td>Mentors/Industry Peers</td>
-                            <td>External</td>
-                            <td>To review your work and provide expert feedback on your projects and overall presentation</td>
-                            <td>Medium</td>
-                            <td>Medium</td>
-                            <td>Keep Informed - Send direct links to specific projects for targeted feedback.</td>
-                        </tr>
-                        <tr>
-                            <td>Website Hosting/Platform</td>
-                            <td>Internal</td>
-                            <td>The technical foundation of your site. Need to manage costs and technical requirements</td>
-                            <td>Medium</td>
-                            <td>Low</td>
-                            <td>Keep Satisfied - Research and choose a reliable host or platform that meets your needs.</td>
-                        </tr>
-                        <tr>
-                            <td>The General Public</td>
-                            <td>External</td>
-                            <td>General visitors who may stumble upon your site through search engines or social media</td>
-                            <td>Low</td>
-                            <td>Low</td>
-                            <td>Monitor - Focus on a clean design and clear navigation.</td>
-                        </tr>
-                        <tr>
-                            <td>Educational Institution/Instructor</td>
-                            <td>External</td>
-                            <td>Assess the quality, completeness, and professionalism of the portfolio as part of course evaluation</td>
-                            <td>High</td>
-                            <td>Medium</td>
-                            <td>Keep Satisfied - Follow assignment requirements closely, submit polished deliverables.</td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                <div class="image-container">
-                    <img src="square.JPG" alt="Power-Interest Grid">
-                    <img src="legitdeliverables.JPG" alt="Deliverables Breakdown">
-                    <img src="budgetestimation.JPG" alt="Budget Estimation">
-                </div>
-            </div>
-        </div>
-
-        <div class="section" id="section6">
-            <div class="section-header">
-                <h2 class="section-title">6. Methodology Explanation</h2>
-            </div>
-            <div class="section-content">
-                <div class="instructions">
-                    <strong>Instructions:</strong>
-                    Select either predictive, hybrid-incremental, hybrid-iterative, or agile. Justify your choice with 3-4 reasons specific to your project.
-                </div>
-                
-                <h4>Hybrid Approach</h4>
-                <p>I'll be going with a Hybrid - Iterative approach. It lets me stay on track and prioritize deliverables, as well as adapting flexibly while moving toward a fulfilling promised vision statement.</p>
-                
-                <div class="image-container">
-                    <img src="diagram.JPG" alt="Methodology Diagram">
-                </div>
-            </div>
-        </div>
-
-        <div class="section" id="section7">
-            <div class="section-header">
-                <h2 class="section-title">7. Project Tool</h2>
-            </div>
-            <div class="section-content">
-                <div class="instructions">
-                    <strong>Instructions:</strong>
-                    Selection Explanation
-                </div>
-                
-                <h4>Microsoft Planner</h4>
-                <p>I went with Microsoft Planner. Visually the tool has a great aesthetic, with a user-friendly interface to boot. I particularly enjoy the automated variety of view-boards, my favorite being the charts tabs. There is an option given to attach URL links for assignments which isn't ideal, but seeing as I'll be using GitHub as a repository convenience won't be an issue.</p>
-                
-                <div class="image-container">
-                    <img src="grid.JPG" alt="Microsoft Planner Grid View">
-                </div>
-            </div>
-        </div>
-
-        <div class="section" id="section8">
-            <div class="section-header">
-                <h2 class="section-title">8. Additional Charter Components</h2>
-            </div>
-            <div class="section-content">
-                <div class="instructions">
-                    <strong>Note for Future Updates:</strong>
-                    This charter will be expanded throughout the semester as we cover additional project management components including:
-                </div>
+                <h4>Current Learning Focus:</h4>
                 <ul>
-                    <li>Project Methodology Selection</li>
-                    <li>Deliverables & Definition of Done</li>
-                    <li>High-Level Timeline & Milestones</li>
-                    <li>Execution Plan Overview</li>
-                    <li>Risk Register</li>
-                    <li>Acceptance Criteria</li>
-                    <li>Project Manager Authority & Approvals</li>
+                    <li>Advanced AI and Machine Learning applications</li>
+                    <li>Cloud computing platforms (AWS, Azure, Google Cloud)</li>
+                    <li>Cybersecurity fundamentals and best practices</li>
+                    <li>DevOps methodologies and tools</li>
+                    <li>Advanced database management and optimization</li>
                 </ul>
+
+                <h4>Professional Development Strategy:</h4>
+                <p>I maintain a structured approach to continuous learning through online courses, hands-on projects, industry networking, and staying current with technology trends. Each certification and skill acquisition is strategically chosen to align with my career objectives and market demands in the IT industry.</p>
+
+                <div class="image-container">
+                    <img src="square.JPG" alt="Professional Development Roadmap">
+                </div>
             </div>
         </div>
     </div>
