@@ -9,12 +9,12 @@
 
   <style>
     :root{
-      --bg:#141414; --ink:#fff; --muted:#cfcfcf; --ink-2:#b3b3b3;
-      --panel:#1b1b1b; --panel-2:#202020; --line:#2a2a2a;
-      --accent:#E50914; --ring:rgba(255,255,255,.14);
-      --blue:#1877F2; --blue-2:#0f62d6;
-      --green:#25e26a; --green-2:#0aa84b;
-      --pink:#ffd6e7; --shadow:rgba(0,0,0,.45);
+      --bg:#141414; --ink:#fff; --ink-2:#cfcfcf;
+      --panel:#1a1a1a; --panel-2:#222; --line:#2a2a2a;
+      --accent:#E50914; --shadow:rgba(0,0,0,.5);
+      --muted:#9a9a9a; --muted-2:#bdbdbd;
+      --card:#1b1b1b; --card-2:#1f1f1f;
+      --blue:#60a5fa; --pink:#ffd6e7; --gold:#ffce4b; --green:#25e26a;
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
@@ -23,16 +23,18 @@
       background:var(--bg); color:var(--ink);
     }
 
-    /* Navbar */
+    /* Brand / Netflix-y caps */
     .nf{
       font-family:"Netflix Sans","Bebas Neue",system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
       letter-spacing:.015em; text-transform:uppercase;
     }
+
+    /* Navbar */
     .navbar{
       position:sticky; top:0; inset-inline:0; z-index:1000;
       width:100%; padding:14px clamp(16px,4vw,48px);
       display:flex; align-items:center; gap:32px;
-      background:linear-gradient(180deg,rgba(0,0,0,.78),rgba(0,0,0,.45));
+      background:linear-gradient(180deg,rgba(0,0,0,.8),rgba(0,0,0,.45));
       backdrop-filter:saturate(120%) blur(4px);
       border-bottom:1px solid rgba(255,255,255,.08);
     }
@@ -42,14 +44,10 @@
       text-decoration:none;
     }
     .navlinks{display:flex; gap:22px; align-items:center; flex-wrap:wrap; flex:1;}
-    .navlinks a{
-      color:#e5e5e5; text-decoration:none; font-size:14px; font-weight:600;
-    }
+    .navlinks a{ color:#e5e5e5; text-decoration:none; font-size:14px; font-weight:600; }
     .navlinks a:hover{ color:#bfbfbf; }
     .navlinks a[aria-current="page"]{
-      text-decoration:underline;
-      text-decoration-thickness:2px;
-      text-underline-offset:4px;
+      text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:4px;
     }
 
     /* Hero */
@@ -61,94 +59,85 @@
         radial-gradient(900px 160px at 80% -60%, rgba(255,255,255,.06), transparent 60%);
       text-align:center;
     }
-    .page-hero h1{
-      font-size: clamp(28px,5.6vw,54px);
-      line-height:1.05;
-    }
+    .page-hero h1{ font-size: clamp(28px,5.6vw,54px); line-height:1.05; }
     .page-hero p{ color:var(--ink-2); margin-top:8px; max-width:70ch; margin-inline:auto; }
 
-    /* Timeline layout (matches experience page look) */
-    .wrap{ padding: 28px clamp(16px,4vw,48px) 48px; }
-    .timeline{
-      position:relative; max-width:1100px; margin: 0 auto;
-      padding-left:32px;
+    /* Section header */
+    .section{
+      padding: 28px clamp(16px,4vw,48px) 8px;
     }
-    .timeline::before{
-      content:""; position:absolute; left:22px; top:0; bottom:0; width:6px; border-radius:4px;
-      background:linear-gradient(180deg,#3d3d3d,#262626);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+    .section h2{
+      font-size: clamp(22px,3.6vw,32px);
+      display:flex; align-items:center; gap:10px; margin-bottom:8px;
     }
-    .entry{
-      position:relative; margin: 18px 0 26px 0;
-      display:grid; grid-template-columns: 56px 1fr; gap:14px;
-    }
-    .marker{
-      grid-column:1; position:relative; width:56px; height:56px; flex:0 0 56px;
-      display:grid; place-items:center;
-    }
-    .marker .dot{
-      width:48px; height:48px; border-radius:14px; display:grid; place-items:center;
-      background:#252525; border:1px solid rgba(255,255,255,.08);
-      box-shadow: 0 10px 22px var(--shadow);
-      font-size:22px;
-      color:#fff;
-    }
-    .marker .dot.blue{
-      background:linear-gradient(180deg,var(--blue),var(--blue-2)); border-color:rgba(255,255,255,.2);
-    }
-    .marker .dot.green{
-      background:linear-gradient(180deg,var(--green),var(--green-2)); border-color:rgba(255,255,255,.18);
-      color:#083d23;
-    }
-    .marker .dot.pink{
-      background:linear-gradient(180deg,#ff7aa3,#ff4f88); border-color:rgba(255,255,255,.18);
+    .section .subtitle{ color:var(--ink-2); font-size:14px; margin-bottom:14px; }
+    .rule{
+      height:1px; background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);
+      margin:8px 0 18px;
     }
 
-    /* Card */
+    /* Card grid (like the screenshot) */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:18px;
+      max-width:1200px;
+      margin:0 auto 18px;
+    }
+    @media (max-width: 1000px){ .grid{ grid-template-columns: repeat(2,minmax(0,1fr)); } }
+    @media (max-width: 640px){ .grid{ grid-template-columns: 1fr; } }
+
     .card{
-      grid-column:2; border-radius:14px; padding:18px 18px 14px;
-      background:var(--panel); border:1px solid rgba(255,255,255,.08);
-      box-shadow: 0 14px 28px var(--shadow);
-      color:#f3f3f3;
+      position:relative;
+      background:linear-gradient(180deg,var(--card),var(--card-2));
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:14px;
+      padding:18px;
+      min-height:160px;
+      box-shadow: 0 10px 24px var(--shadow);
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
     }
-    .card--primary{
-      background: linear-gradient(180deg, var(--blue), var(--blue-2));
-      border-color: rgba(255,255,255,.22);
-      color:#fff;
+    .card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.12);
+      box-shadow: 0 16px 28px var(--shadow);
     }
-    .card--edu{ background:#ffd8e4; color:#111; }
-    .card--muted{ background:#eaeaea; color:#111; }
 
-    .card h3{
-      font-size:18px; font-weight:900; display:flex; align-items:center; gap:8px;
-      margin:2px 0 6px;
+    .card-head{
+      display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;
     }
-    .issuer{
-      color:#d8e6ff; font-weight:700; font-size:14px; opacity:.95;
+    .icon{
+      width:34px; height:34px; border-radius:50%;
+      display:grid; place-items:center; font-weight:900;
+      background:#2a2a2a; color:#dbeafe;
+      border:1px solid rgba(255,255,255,.08);
     }
-    .card--muted .issuer, .card--edu .issuer{ color:#444; }
-    .meta{
-      font-size:13px; color:#f2f6ff; opacity:.95; margin:2px 0 8px;
-    }
-    .card--muted .meta, .card--edu .meta{ color:#444; opacity:.8; }
-    .desc{
-      color:#fff; font-size:14px; line-height:1.55;
-    }
-    .card--muted .desc, .card--edu .desc{ color:#232323; }
-    .dates{
-      margin-top:10px; font-size:12px; font-weight:800; opacity:.9;
-      color:#eaeaea;
-    }
-    .card--muted .dates, .card--edu .dates{ color:#333; }
+    .icon.blue{ color:#cfe3ff; }
+    .icon.gold{ color:#1a1200; background:linear-gradient(180deg,var(--gold),#e0a600); }
+    .icon.pink{ color:#2a0e19; background:linear-gradient(180deg,#ffd6e7,#ffbdd6); }
+    .icon.heart{ color:#ffcad0; }
 
-    .cta{
-      margin-top:10px;
-      display:inline-block; padding:8px 12px; border-radius:8px;
-      background:#000; color:#fff; text-decoration:none; font-weight:800; font-size:12px;
-      border:1px solid rgba(255,255,255,.22);
-      transition:transform .15s ease, filter .15s ease;
+    .ext{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:28px; height:28px; border-radius:8px;
+      color:#fff; background:#161616; border:1px solid rgba(255,255,255,.12);
+      text-decoration:none;
     }
-    .cta:hover{ transform:translateY(-1px); filter:brightness(1.08); }
+    .ext svg{ width:16px; height:16px; stroke:var(--accent); }
+    .ext:hover{ filter:brightness(1.08); }
+
+    .title{
+      font-size:18px; font-weight:800; line-height:1.25; margin-bottom:6px;
+    }
+    .issuer{ color:#d8e6ff; font-weight:700; font-size:14px; opacity:.95; }
+    .issuer.muted{ color:#cfcfcf; }
+    .desc{ color:#eaeaea; font-size:14px; line-height:1.55; margin-top:8px; }
+    .foot{ color:var(--muted); font-size:12px; margin-top:14px; }
+
+    .tag{
+      display:inline-block; margin-left:8px; font-size:11px; font-weight:900;
+      padding:2px 8px; border-radius:999px; background:#0003; border:1px solid rgba(255,255,255,.18);
+    }
 
     .footer{
       padding:48px clamp(16px,4vw,48px) 32px;
@@ -160,14 +149,6 @@
     .footer .links a{ color:#8e8e8e; text-decoration:none; font-size:13px; }
     .footer .links a:hover{ color:#fff; }
     .copyright{ text-align:center; color:#8e8e8e; font-size:12px; }
-
-    @media (max-width: 720px){
-      .timeline{ padding-left:20px; }
-      .timeline::before{ left:17px; }
-      .entry{ grid-template-columns: 48px 1fr; }
-      .marker{ width:48px; height:48px; }
-      .marker .dot{ width:40px; height:40px; font-size:18px; border-radius:10px; }
-    }
   </style>
 </head>
 <body>
@@ -189,77 +170,140 @@
   <!-- Hero -->
   <header class="page-hero">
     <h1 class="nf">🏅 Certifications & Credentials</h1>
-    <p>A timeline of issued and planned certifications with quick verification links.</p>
+    <p>A clean, card-based gallery of issued and planned credentials.</p>
   </header>
 
-  <main class="wrap">
-    <section class="timeline" aria-label="Certification timeline">
+  <main>
 
-      <!-- Latest / Awarded (Blue) -->
-      <article class="entry">
-        <div class="marker"><div class="dot blue" aria-hidden="true">✅</div></div>
-        <div class="card card--primary" role="group" aria-label="AI Fundamentals Certificate">
-          <h3>AI Fundamentals Certificate <span class="nf" style="font-size:13px;background:#0003;padding:2px 8px;border-radius:8px;">Latest</span></h3>
+    <!-- TECHNICAL CERTIFICATES -->
+    <section class="section" id="technical-certificates" aria-label="Technical Certificates">
+      <h2 class="nf">💻 Technical Certificates</h2>
+      <p class="subtitle">Technology credentials and roadmap.</p>
+      <div class="rule" aria-hidden="true"></div>
+
+      <div class="grid">
+
+        <!-- Issued example -->
+        <article class="card" role="group" aria-label="AI Fundamentals">
+          <div class="card-head">
+            <div class="icon blue">C</div>
+            <a class="ext" href="CertificateAi.PDF" target="_blank" rel="noopener" aria-label="Open certificate in new tab">
+              <!-- external-link icon -->
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                <path d="M14 3h7v7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M21 3l-9 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10 7H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+          <div class="title">AI Fundamentals Certificate <span class="tag nf">Latest</span></div>
           <div class="issuer">Issued by — Program Provider</div>
-          <div class="meta">Core topics: ML concepts, neural networks, data pipelines, practical AI applications</div>
-          <p class="desc">Validated understanding of modern AI foundations and hands-on implementation strategies for real-world use cases.</p>
-          <div class="dates">Issued: Nov 2025</div>
-          <a class="cta" href="CertificateAi.PDF" target="_blank" rel="noopener">View Certificate (PDF)</a>
-        </div>
-      </article>
+          <p class="desc">Core: ML concepts, neural networks, data pipelines, and applied AI.</p>
+          <div class="foot">Issued Nov 2025</div>
+        </article>
 
-      <!-- Guard Card (Planned) -->
-      <article class="entry">
-        <div class="marker"><div class="dot" aria-hidden="true">🛡️</div></div>
-        <div class="card card--muted" role="group" aria-label="Guard Card">
-          <h3>Guard Card — California BSIS</h3>
-          <div class="issuer">CA Bureau of Security & Investigative Services</div>
-          <div class="meta">Status: Planned / In Progress</div>
-          <p class="desc">State credential for private security roles. Will add license number and expiration upon issuance.</p>
-          <div class="dates">Target: —</div>
-        </div>
-      </article>
+        <!-- Planned tech certs as individual cards -->
+        <article class="card" aria-label="CompTIA A+">
+          <div class="card-head">
+            <div class="icon">🧩</div>
+          </div>
+          <div class="title">CompTIA A+ <span class="tag">Planned</span></div>
+          <div class="issuer muted">CompTIA</div>
+          <p class="desc">Hardware, OS, networking, troubleshooting foundations.</p>
+          <div class="foot">Target —</div>
+        </article>
 
-      <!-- CPR/AED (Planned) -->
-      <article class="entry">
-        <div class="marker"><div class="dot" aria-hidden="true">❤️</div></div>
-        <div class="card card--muted" role="group" aria-label="CPR/AED">
-          <h3>CPR/AED (Adult & Child)</h3>
-          <div class="issuer">American Red Cross or AHA</div>
-          <div class="meta">Status: Planned / In Progress</div>
-          <p class="desc">Life-support credential; will include provider, cert ID, and renewal date (typically every 2 years).</p>
-          <div class="dates">Target: —</div>
-        </div>
-      </article>
+        <article class="card" aria-label="AWS Cloud Practitioner">
+          <div class="card-head">
+            <div class="icon">☁️</div>
+          </div>
+          <div class="title">AWS Cloud Practitioner <span class="tag">Planned</span></div>
+          <div class="issuer muted">Amazon Web Services</div>
+          <p class="desc">Cloud concepts, billing, security, and basic services.</p>
+          <div class="foot">Target —</div>
+        </article>
 
-      <!-- Academic highlight (Pink style card to mirror screenshot variety) -->
-      <article class="entry">
-        <div class="marker"><div class="dot pink" aria-hidden="true">🎓</div></div>
-        <div class="card card--edu" role="group" aria-label="Academic Recognition">
-          <h3>Academic Recognition / Honors</h3>
-          <div class="issuer">California State University, Los Angeles</div>
-          <div class="meta">Dean’s List / Department recognition (add term & details)</div>
-          <p class="desc">Add notable coursework or project links for quick context and verification.</p>
-          <div class="dates">Term: —</div>
-        </div>
-      </article>
+        <article class="card" aria-label="Google IT Support Professional">
+          <div class="card-head">
+            <div class="icon">🛠️</div>
+          </div>
+          <div class="title">Google IT Support Professional <span class="tag">Planned</span></div>
+          <div class="issuer muted">Google</div>
+          <p class="desc">Support fundamentals, networking, system administration.</p>
+          <div class="foot">Target —</div>
+        </article>
 
-      <!-- Technical certs (planned items) -->
-      <article class="entry">
-        <div class="marker"><div class="dot green" aria-hidden="true">🚀</div></div>
-        <div class="card" role="group" aria-label="Planned technical certifications">
-          <h3>Planned Technical Certificates</h3>
-          <div class="issuer">Roadmap</div>
-          <div class="meta">CompTIA, AWS, Google, Microsoft</div>
-          <p class="desc">
-            • CompTIA A+ • AWS Cloud Practitioner • Google IT Support Professional • Microsoft Azure Fundamentals (AZ-900)
-          </p>
-          <div class="dates">Targets: —</div>
-        </div>
-      </article>
+        <article class="card" aria-label="Azure Fundamentals">
+          <div class="card-head">
+            <div class="icon">🪟</div>
+          </div>
+          <div class="title">Microsoft Azure Fundamentals (AZ-900) <span class="tag">Planned</span></div>
+          <div class="issuer muted">Microsoft</div>
+          <p class="desc">Cloud concepts, Azure services, governance, and cost mgmt.</p>
+          <div class="foot">Target —</div>
+        </article>
 
-      <div style="height:10px"></div>
+      </div>
     </section>
+
+    <!-- SECURITY & CPR TRAINING -->
+    <section class="section" id="security-cpr" aria-label="Security & CPR Training">
+      <h2 class="nf">🛡️ Security & ❤️ CPR Training</h2>
+      <p class="subtitle">Compliance and safety certifications.</p>
+      <div class="rule" aria-hidden="true"></div>
+
+      <div class="grid">
+        <article class="card" aria-label="Guard Card">
+          <div class="card-head">
+            <div class="icon gold">🛡️</div>
+          </div>
+          <div class="title">Guard Card — California BSIS <span class="tag">Planned</span></div>
+          <div class="issuer muted">CA Bureau of Security & Investigative Services</div>
+          <p class="desc">State credential for private security roles. License # and expiry to be added upon issuance.</p>
+          <div class="foot">Target —</div>
+        </article>
+
+        <article class="card" aria-label="CPR/AED">
+          <div class="card-head">
+            <div class="icon heart">❤️</div>
+          </div>
+          <div class="title">CPR/AED (Adult & Child) <span class="tag">Planned</span></div>
+          <div class="issuer muted">American Red Cross or AHA</div>
+          <p class="desc">Provider, certificate ID, and renewal date (every ~2 years) to be added once issued.</p>
+          <div class="foot">Target —</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ACADEMIC ACHIEVEMENTS -->
+    <section class="section" id="academic-achievements" aria-label="Academic Achievements">
+      <h2 class="nf">🎓 Academic Achievements</h2>
+      <p class="subtitle">Recognition, honors, and notable coursework.</p>
+      <div class="rule" aria-hidden="true"></div>
+
+      <div class="grid">
+        <article class="card" aria-label="Academic Recognition">
+          <div class="card-head">
+            <div class="icon pink">🎓</div>
+          </div>
+          <div class="title">Academic Recognition / Honors</div>
+          <div class="issuer muted">California State University, Los Angeles</div>
+          <p class="desc">Dean’s List / Department recognition (add term & details). Link supporting docs when ready.</p>
+          <div class="foot">Term —</div>
+        </article>
+
+        <article class="card" aria-label="Notable Coursework">
+          <div class="card-head">
+            <div class="icon">📚</div>
+          </div>
+          <div class="title">Notable Coursework</div>
+          <div class="issuer muted">CSULA</div>
+          <p class="desc">Add high-impact classes or projects (e.g., Data Structures, Networks, AI project links).</p>
+          <div class="foot">Updated —</div>
+        </article>
+      </div>
+    </section>
+
   </main>
 
   <footer class="footer">
