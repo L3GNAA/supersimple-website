@@ -9,12 +9,12 @@
 
   <style>
     :root{
-      --bg:#141414; --ink:#fff; --ink-2:#cfcfcf;
-      --panel:#1a1a1a; --panel-2:#222; --line:#2a2a2a;
-      --accent:#E50914; --shadow:rgba(0,0,0,.5);
-      --muted:#9a9a9a; --muted-2:#bdbdbd;
-      --card:#1b1b1b; --card-2:#1f1f1f;
-      --blue:#60a5fa; --pink:#ffd6e7; --gold:#ffce4b; --green:#25e26a;
+      --bg:#0f0f10; --ink:#fff; --ink-2:#cfcfcf;
+      --panel:#161617; --panel-2:#1d1d1f; --line:#2a2a2a;
+      --accent:#E50914; --shadow:rgba(0,0,0,.55);
+      --muted:#9a9a9a;
+      --card:#151516; --card-2:#1a1b1d;
+      --blue:#9cc5ff; --udemy:#9acbff; --gold:#ffce4b;
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
@@ -23,9 +23,9 @@
       background:var(--bg); color:var(--ink);
     }
 
-    /* Brand / Netflix-y caps */
+    /* Netflix-y caps for headers / brand */
     .nf{
-      font-family:"Netflix Sans","Bebas Neue",system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+      font-family:"Bebas Neue",system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
       letter-spacing:.015em; text-transform:uppercase;
     }
 
@@ -34,14 +34,13 @@
       position:sticky; top:0; inset-inline:0; z-index:1000;
       width:100%; padding:14px clamp(16px,4vw,48px);
       display:flex; align-items:center; gap:32px;
-      background:linear-gradient(180deg,rgba(0,0,0,.8),rgba(0,0,0,.45));
-      backdrop-filter:saturate(120%) blur(4px);
-      border-bottom:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg,rgba(0,0,0,.85),rgba(0,0,0,.45));
+      -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px);
+      border-bottom:1px solid rgba(255,255,255,.07);
     }
     .brand{
-      background:none;border:0;padding:0;margin:0;cursor:pointer;flex-shrink:0;
-      font-weight:900; color:var(--accent); letter-spacing:-.04em; font-size:clamp(22px,3.2vw,32px);
-      text-decoration:none;
+      text-decoration:none; font-weight:900; color:var(--accent);
+      letter-spacing:-.02em; font-size:clamp(22px,3.2vw,32px);
     }
     .navlinks{display:flex; gap:22px; align-items:center; flex-wrap:wrap; flex:1;}
     .navlinks a{ color:#e5e5e5; text-decoration:none; font-size:14px; font-weight:600; }
@@ -50,39 +49,22 @@
       text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:4px;
     }
 
-    /* Hero */
+    /* Header */
     .page-hero{
-      padding:28px clamp(16px,4vw,48px) 16px;
+      padding:26px clamp(16px,4vw,48px) 10px;
       border-bottom:1px solid rgba(255,255,255,.06);
       background:
         radial-gradient(1000px 180px at 20% -40%, rgba(229,9,20,.12), transparent 60%),
         radial-gradient(900px 160px at 80% -60%, rgba(255,255,255,.06), transparent 60%);
-      text-align:center;
     }
     .page-hero h1{ font-size: clamp(28px,5.6vw,54px); line-height:1.05; }
-    .page-hero p{ color:var(--ink-2); margin-top:8px; max-width:70ch; margin-inline:auto; }
+    .page-hero p{ color:var(--ink-2); margin-top:8px; max-width:70ch; }
 
-    /* Section header */
-    .section{
-      padding: 28px clamp(16px,4vw,48px) 8px;
-    }
-    .section h2{
-      font-size: clamp(22px,3.6vw,32px);
-      display:flex; align-items:center; gap:10px; margin-bottom:8px;
-    }
-    .section .subtitle{ color:var(--ink-2); font-size:14px; margin-bottom:14px; }
-    .rule{
-      height:1px; background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);
-      margin:8px 0 18px;
-    }
-
-    /* Card grid (like the screenshot) */
+    /* Grid like the screenshot */
+    .section{ padding: 22px clamp(16px,4vw,48px) 32px; }
     .grid{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap:18px;
-      max-width:1200px;
-      margin:0 auto 18px;
+      display:grid; grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:18px; max-width:1200px; margin:0 auto;
     }
     @media (max-width: 1000px){ .grid{ grid-template-columns: repeat(2,minmax(0,1fr)); } }
     @media (max-width: 640px){ .grid{ grid-template-columns: 1fr; } }
@@ -95,7 +77,7 @@
       padding:18px;
       min-height:160px;
       box-shadow: 0 10px 24px var(--shadow);
-      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease, background .15s ease;
     }
     .card:hover{
       transform: translateY(-2px);
@@ -104,40 +86,31 @@
     }
 
     .card-head{
-      display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;
+      display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;
     }
     .icon{
-      width:34px; height:34px; border-radius:50%;
-      display:grid; place-items:center; font-weight:900;
-      background:#2a2a2a; color:#dbeafe;
+      width:36px; height:36px; border-radius:50%;
+      display:grid; place-items:center; font-weight:900; font-size:18px;
+      background:#242426; color:var(--blue);
       border:1px solid rgba(255,255,255,.08);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.02);
     }
-    .icon.blue{ color:#cfe3ff; }
-    .icon.gold{ color:#1a1200; background:linear-gradient(180deg,var(--gold),#e0a600); }
-    .icon.pink{ color:#2a0e19; background:linear-gradient(180deg,#ffd6e7,#ffbdd6); }
-    .icon.heart{ color:#ffcad0; }
+    .icon.u{ color:var(--udemy) }
+    .icon.gold{ background:linear-gradient(180deg,#2a2a2a,#1d1d1d); color:#ffd966; }
 
     .ext{
       display:inline-flex; align-items:center; justify-content:center;
       width:28px; height:28px; border-radius:8px;
-      color:#fff; background:#161616; border:1px solid rgba(255,255,255,.12);
+      color:#fff; background:#141414; border:1px solid rgba(255,255,255,.12);
       text-decoration:none;
     }
     .ext svg{ width:16px; height:16px; stroke:var(--accent); }
     .ext:hover{ filter:brightness(1.08); }
 
-    .title{
-      font-size:18px; font-weight:800; line-height:1.25; margin-bottom:6px;
-    }
+    .title{ font-size:18px; font-weight:800; line-height:1.25; margin-bottom:6px; }
     .issuer{ color:#d8e6ff; font-weight:700; font-size:14px; opacity:.95; }
     .issuer.muted{ color:#cfcfcf; }
-    .desc{ color:#eaeaea; font-size:14px; line-height:1.55; margin-top:8px; }
     .foot{ color:var(--muted); font-size:12px; margin-top:14px; }
-
-    .tag{
-      display:inline-block; margin-left:8px; font-size:11px; font-weight:900;
-      padding:2px 8px; border-radius:999px; background:#0003; border:1px solid rgba(255,255,255,.18);
-    }
 
     .footer{
       padding:48px clamp(16px,4vw,48px) 32px;
@@ -158,152 +131,117 @@
     <a class="brand nf" href="index.html#home">Angel Contreras</a>
     <div class="navlinks">
       <a href="index.html#home">Home</a>
-      <a href="Charter.html">Portfolio</a>
+      <a href="Charter.html">Professional</a>
       <a href="skills.html">Skills</a>
       <a href="projects.html">Projects</a>
-      <a href="experience.html">Experience</a>
       <a href="certifications.html" aria-current="page">Certifications</a>
       <a id="hireLink" href="contact.html">Hire Me</a>
     </div>
   </nav>
 
-  <!-- Hero -->
+  <!-- Header -->
   <header class="page-hero">
-    <h1 class="nf">🏅 Certifications & Credentials</h1>
-    <p>A clean, card-based gallery of issued and planned credentials.</p>
+    <h1 class="nf">Certifications</h1>
+    <p>A clean, card-style gallery inspired by the look in your reference.</p>
   </header>
 
-  <main>
+  <main class="section">
+    <div class="grid">
+      <!-- Row 1 -->
+      <article class="card" aria-label="C++ for C Programmers">
+        <div class="card-head">
+          <div class="icon">C</div>
+          <a class="ext" href="#" aria-label="Open certificate" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+              <path d="M14 3h7v7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M21 3l-9 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 7H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        <div class="title">C++ for C Programmers</div>
+        <div class="issuer">University of California, Santa Cruz</div>
+      </article>
 
-    <!-- TECHNICAL CERTIFICATES -->
-    <section class="section" id="technical-certificates" aria-label="Technical Certificates">
-      <h2 class="nf">💻 Technical Certificates</h2>
-      <p class="subtitle">Technology credentials and roadmap.</p>
-      <div class="rule" aria-hidden="true"></div>
+      <article class="card" aria-label="IITBombayX Verified Certificate">
+        <div class="card-head">
+          <div class="icon gold">🏛️</div>
+          <a class="ext" href="#" aria-label="Open certificate" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+              <path d="M14 3h7v7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M21 3l-9 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 7H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        <div class="title">Verified Certificate of IITBombayX</div>
+        <div class="issuer muted">Indian Institute of Technology, Bombay</div>
+      </article>
 
-      <div class="grid">
+      <article class="card" aria-label="Programming with Everyone with Python">
+        <div class="card-head">
+          <div class="icon">C</div>
+          <a class="ext" href="#" aria-label="Open certificate" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+              <path d="M14 3h7v7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M21 3l-9 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 7H5a 2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        <div class="title">Programming with Everyone with Python</div>
+        <div class="issuer">University of Michigan</div>
+      </article>
 
-        <!-- Issued example -->
-        <article class="card" role="group" aria-label="AI Fundamentals">
-          <div class="card-head">
-            <div class="icon blue">C</div>
-            <a class="ext" href="CertificateAi.PDF" target="_blank" rel="noopener" aria-label="Open certificate in new tab">
-              <!-- external-link icon -->
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
-                <path d="M14 3h7v7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M21 3l-9 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M10 7H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </div>
-          <div class="title">AI Fundamentals Certificate <span class="tag nf">Latest</span></div>
-          <div class="issuer">Issued by — Program Provider</div>
-          <p class="desc">Core: ML concepts, neural networks, data pipelines, and applied AI.</p>
-          <div class="foot">Issued Nov 2025</div>
-        </article>
+      <!-- Row 2 -->
+      <article class="card" aria-label="Multitility Robot Journal">
+        <div class="card-head">
+          <div class="icon gold">⚙️</div>
+          <a class="ext" href="#" aria-label="Open paper" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+              <path d="M14 3h7v7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M21 3l-9 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 7H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        <div class="title">Multitility Robot Journal</div>
+        <div class="issuer muted">International Journal of Mechanical Engineering &amp; Technology (IEEE)</div>
+        <div class="foot">Issued Jul 2018</div>
+      </article>
 
-        <!-- Planned tech certs as individual cards -->
-        <article class="card" aria-label="CompTIA A+">
-          <div class="card-head">
-            <div class="icon">🧩</div>
-          </div>
-          <div class="title">CompTIA A+ <span class="tag">Planned</span></div>
-          <div class="issuer muted">CompTIA</div>
-          <p class="desc">Hardware, OS, networking, troubleshooting foundations.</p>
-          <div class="foot">Target —</div>
-        </article>
+      <article class="card" aria-label="Hosting Websites with Amazon Lightsail">
+        <div class="card-head">
+          <div class="icon u">U</div>
+          <a class="ext" href="#" aria-label="Open certificate" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+              <path d="M14 3h7v7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M21 3l-9 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 7H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        <div class="title">Hosting Websites with Amazon Lightsail</div>
+        <div class="issuer muted">Udemy</div>
+        <div class="foot">Issued Jan 2020</div>
+      </article>
 
-        <article class="card" aria-label="AWS Cloud Practitioner">
-          <div class="card-head">
-            <div class="icon">☁️</div>
-          </div>
-          <div class="title">AWS Cloud Practitioner <span class="tag">Planned</span></div>
-          <div class="issuer muted">Amazon Web Services</div>
-          <p class="desc">Cloud concepts, billing, security, and basic services.</p>
-          <div class="foot">Target —</div>
-        </article>
-
-        <article class="card" aria-label="Google IT Support Professional">
-          <div class="card-head">
-            <div class="icon">🛠️</div>
-          </div>
-          <div class="title">Google IT Support Professional <span class="tag">Planned</span></div>
-          <div class="issuer muted">Google</div>
-          <p class="desc">Support fundamentals, networking, system administration.</p>
-          <div class="foot">Target —</div>
-        </article>
-
-        <article class="card" aria-label="Azure Fundamentals">
-          <div class="card-head">
-            <div class="icon">🪟</div>
-          </div>
-          <div class="title">Microsoft Azure Fundamentals (AZ-900) <span class="tag">Planned</span></div>
-          <div class="issuer muted">Microsoft</div>
-          <p class="desc">Cloud concepts, Azure services, governance, and cost mgmt.</p>
-          <div class="foot">Target —</div>
-        </article>
-
-      </div>
-    </section>
-
-    <!-- SECURITY & CPR TRAINING -->
-    <section class="section" id="security-cpr" aria-label="Security & CPR Training">
-      <h2 class="nf">🛡️ Security & ❤️ CPR Training</h2>
-      <p class="subtitle">Compliance and safety certifications.</p>
-      <div class="rule" aria-hidden="true"></div>
-
-      <div class="grid">
-        <article class="card" aria-label="Guard Card">
-          <div class="card-head">
-            <div class="icon gold">🛡️</div>
-          </div>
-          <div class="title">Guard Card — California BSIS <span class="tag">Planned</span></div>
-          <div class="issuer muted">CA Bureau of Security & Investigative Services</div>
-          <p class="desc">State credential for private security roles. License # and expiry to be added upon issuance.</p>
-          <div class="foot">Target —</div>
-        </article>
-
-        <article class="card" aria-label="CPR/AED">
-          <div class="card-head">
-            <div class="icon heart">❤️</div>
-          </div>
-          <div class="title">CPR/AED (Adult & Child) <span class="tag">Planned</span></div>
-          <div class="issuer muted">American Red Cross or AHA</div>
-          <p class="desc">Provider, certificate ID, and renewal date (every ~2 years) to be added once issued.</p>
-          <div class="foot">Target —</div>
-        </article>
-      </div>
-    </section>
-
-    <!-- ACADEMIC ACHIEVEMENTS -->
-    <section class="section" id="academic-achievements" aria-label="Academic Achievements">
-      <h2 class="nf">🎓 Academic Achievements</h2>
-      <p class="subtitle">Recognition, honors, and notable coursework.</p>
-      <div class="rule" aria-hidden="true"></div>
-
-      <div class="grid">
-        <article class="card" aria-label="Academic Recognition">
-          <div class="card-head">
-            <div class="icon pink">🎓</div>
-          </div>
-          <div class="title">Academic Recognition / Honors</div>
-          <div class="issuer muted">California State University, Los Angeles</div>
-          <p class="desc">Dean’s List / Department recognition (add term & details). Link supporting docs when ready.</p>
-          <div class="foot">Term —</div>
-        </article>
-
-        <article class="card" aria-label="Notable Coursework">
-          <div class="card-head">
-            <div class="icon">📚</div>
-          </div>
-          <div class="title">Notable Coursework</div>
-          <div class="issuer muted">CSULA</div>
-          <p class="desc">Add high-impact classes or projects (e.g., Data Structures, Networks, AI project links).</p>
-          <div class="foot">Updated —</div>
-        </article>
-      </div>
-    </section>
-
+      <article class="card" aria-label="Typescript Course">
+        <div class="card-head">
+          <div class="icon u">U</div>
+          <a class="ext" href="#" aria-label="Open certificate" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+              <path d="M14 3h7v7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M21 3l-9 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 7H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        <div class="title">Typescript: The Complete Developer’s Guide</div>
+        <div class="issuer muted">Udemy</div>
+        <div class="foot">Issued Dec 2020</div>
+      </article>
+    </div>
   </main>
 
   <footer class="footer">
@@ -311,10 +249,9 @@
       <a href="mailto:angel@example.com">Email</a>
       <a href="https://www.linkedin.com/in/angel-contreras-488539195/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
-      <a href="Charter.html">Portfolio</a>
+      <a href="Charter.html">Professional</a>
       <a href="skills.html">Skills</a>
       <a href="projects.html">Projects</a>
-      <a href="experience.html">Experience</a>
       <a href="certifications.html" aria-current="page">Certifications</a>
       <a href="contact.html" id="hireLink">Hire Me</a>
       <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to top</a>
