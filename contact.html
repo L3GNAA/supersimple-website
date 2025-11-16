@@ -28,9 +28,32 @@
       text-transform:uppercase;
     }
 
+    /* --- Navbar --- */
+    .navbar{
+      position:fixed; inset:0 auto auto 0; width:100%;
+      padding:14px clamp(16px,4vw,48px);
+      display:flex; align-items:center; gap:32px;
+      z-index:1000;
+      background:#0f0f0f;
+      box-shadow:0 2px 0 rgba(255,255,255,.04) inset;
+    }
+    .brand{
+      background:none; border:0; padding:0; margin:0;
+      font-weight:900; color:var(--accent); letter-spacing:-.04em; font-size:clamp(22px,3.2vw,32px);
+      cursor:pointer;
+      flex-shrink:0;
+      text-decoration:none;
+    }
+
+    .navlinks{display:flex; gap:22px; align-items:center; flex-wrap:wrap; flex:1;}
+    .navlinks a{
+      color:#e5e5e5; text-decoration:none; font-size:14px; font-weight:600;
+    }
+    .navlinks a:hover{color:var(--ink-2)}
+
     /* --- Main Content --- */
     .main-content{
-      padding-top:40px;
+      padding-top:80px;
       min-height:100vh;
     }
 
@@ -248,6 +271,18 @@
   </style>
 </head>
 <body>
+  <!-- Nav -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="brand nf">Angel Contreras</a>
+    <div class="navlinks" role="navigation" aria-label="Primary">
+      <a href="index.html#home">Home</a>
+      <a href="index.html#portfolio">Portfolio</a>
+      <a href="skills.html">Skills</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Hire Me</a>
+    </div>
+  </nav>
+
   <!-- Main Content -->
   <div class="main-content">
     <section class="profile-section">
