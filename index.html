@@ -28,8 +28,8 @@
     }
     .netflix-intro{
       position:fixed; inset:0; display:grid; place-items:center;
-      background:#000; z-index:10000; animation:hideIntro .5s ease 2.6s forwards;
-      cursor:pointer; /* intro is clickable */
+      background:#000; z-index:10000;
+      cursor:pointer;
     }
     .netflix-logo{ 
       display:grid; place-items:center; 
@@ -145,23 +145,6 @@
       color:#e5e5e5; text-decoration:none; font-size:14px; font-weight:600;
     }
     .navlinks a:hover{color:var(--ink-2)}
-    /* Move the avatar 0.25in to the left from the edge */
-    .profile-avatar{
-      position:fixed;
-      top:8px;
-      right:calc(8px + 0.25in);
-      z-index:1100;
-      width:40px; height:40px;
-      border-radius:6px;
-      background:linear-gradient(180deg,#0DB5FF,#0070F3);
-      display:grid;
-      place-items:center;
-      cursor:pointer;
-      transition:transform .2s ease;
-      flex-shrink:0;
-    }
-    .profile-avatar:hover{ transform:scale(1.05); }
-    .profile-avatar svg{ width:20px; height:20px; fill:#fff; }
     .hero{
       position:relative; min-height:92vh; display:grid; align-items:center;
       padding:0 clamp(16px,4vw,48px); isolation:isolate;
@@ -277,7 +260,6 @@
           </div>
           <span class="label">Recruiter</span>
         </button>
-        <!-- Friends / Family tab is now clickable -->
         <button class="tile" data-profile="family" data-target="#home" aria-label="Friends and Family profile">
           <div class="avatar av-family" aria-hidden="true">
             <span class="icon">
@@ -288,7 +270,6 @@
           </div>
           <span class="label">Friends / Family</span>
         </button>
-        <!-- Guest tab is now clickable -->
         <button class="tile" data-profile="guest" data-target="#home" aria-label="Guest profile">
           <div class="avatar av-guest" aria-hidden="true">
             <span class="icon">
@@ -313,9 +294,6 @@
         <a href="projects.html">Projects</a>
         <a id="hireLink" href="contact.html">Hire Me</a>
       </div>
-      <button class="profile-avatar" id="profileAvatar" aria-label="Recruiter profile" title="Recruiter">
-        <svg viewBox="0 0 24 24"><path d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1h3a3 3 0 0 1 3 3v3h-7v1a1 1 0 0 1-2 0V12H2V9a3 3 0 0 1 3-3h5Zm2-1h0a1 1 0 0 0-1 1v1h2V6a1 1 0 0 0-1-1ZM2 13h9v1a1 1 0 0 0 2 0v-1h9v5a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-5Z"/></svg>
-      </button>
     </nav>
 
     <header class="hero" id="home">
@@ -335,7 +313,6 @@
       <div class="rail">
         <button class="scroll-btn scroll-left" aria-label="Scroll left">‹</button>
         <div class="scroller" aria-label="Portfolio carousel">
-          <!-- Removed the 'Portfolio' card as requested -->
           <a href="gaurdcard.html" class="card" style="text-decoration:none; cursor:pointer">
             <img class="thumb" alt="Guard Card" loading="lazy" src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1000&auto=format&fit=crop">
             <div class="overlay">
@@ -434,7 +411,6 @@
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Play the sound only once at the very beginning of the session (per tab)
     async function playTaDum(){
       try {
         if (sessionStorage.getItem('taDumPlayed')) return;
@@ -494,7 +470,6 @@
     const introSel = '.netflix-intro';
     const profiles = document.getElementById('profiles');
     const appRoot = document.getElementById('appRoot');
-    let afterIntroTimer = null;
 
     function showProfiles(){
       profiles.classList.add('show');
@@ -512,27 +487,6 @@
       appRoot.classList.remove('show'); 
     }
 
-    function kickIntro(){
-      let started = false;
-      const start = async () => {
-        if (started) return; 
-        started = true;
-        try { await playTaDum(); } catch {}
-        window.removeEventListener('click', start);
-        window.removeEventListener('keydown', start);
-        window.removeEventListener('touchstart', start);
-      };
-      setTimeout(start, 300);
-      window.addEventListener('click', start, { once: true });
-      window.addEventListener('keydown', start, { once: true });
-      window.addEventListener('touchstart', start, { once: true });
-    }
-
-    function scheduleAfterIntro(){
-      if (afterIntroTimer) clearTimeout(afterIntroTimer);
-      afterIntroTimer = setTimeout(() => { showProfiles(); }, 2700);
-    }
-
     function replayIntro(){
       const intro = document.querySelector(introSel);
       const parent = intro.parentNode;
@@ -546,8 +500,6 @@
       hideMain();
       window.scrollTo({ top: 0, behavior: 'auto' });
       replayIntro();
-      kickIntro();
-      scheduleAfterIntro();
     }
 
     function handleProfileClick(e){
@@ -579,7 +531,6 @@
 
     const navHome = document.getElementById('navHome');
     const footerHome = document.getElementById('footerHome');
-    const profileAvatar = document.getElementById('profileAvatar');
     
     function openProfilesFromNav(e){
       e.preventDefault();
@@ -590,15 +541,14 @@
     
     navHome.addEventListener('click', openProfilesFromNav);
     footerHome.addEventListener('click', openProfilesFromNav);
-    profileAvatar.addEventListener('click', openProfilesFromNav);
 
-    // Make the intro itself clickable to continue immediately
     function makeIntroClickable(){
       const intro = document.getElementById('clickableIntro');
       if (!intro) return;
       const skip = () => {
         intro.style.display = 'none';
         showProfiles();
+        playTaDum();
       };
       intro.addEventListener('click', skip, { once: true });
       intro.addEventListener('keydown', (e) => {
@@ -606,7 +556,6 @@
       }, { once: true });
     }
 
-    // If landing on a deep link, skip intro so it doesn't bounce
     function maybeSkipIntroForHash(){
       const wanted = ['#skills', '#projects', '#portfolio'];
       if (wanted.includes(location.hash)) {
@@ -628,10 +577,6 @@
       
       makeIntroClickable();
       maybeSkipIntroForHash();
-      kickIntro();
-      if (!['#skills','#projects','#portfolio'].includes(location.hash)) {
-        scheduleAfterIntro();
-      }
     });
 
     window.addEventListener('pageshow', () => {
