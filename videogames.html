@@ -5,57 +5,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Video Games - Angel Contreras</title>
   <meta name="color-scheme" content="dark" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <style>
     :root{
       --bg:#0e0e0e;
       --panel:#ffffff;
       --muted:#7aa3a2;
       --text:#111;
+      --accent:#E50914;
       --accent-1:#ff6b6b;
       --accent-2:#ff8e66;
       --card-shadow: 0 16px 40px rgba(0,0,0,.45);
       --radius:14px;
+      --ring:rgba(255,255,255,.14);
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
     body{
       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
       background:linear-gradient(135deg,#1a1a1a 0%, #0a0a0a 100%);
       color:#fff;
       min-height:100vh;
-      padding:20px;
     }
 
-    .container{max-width:1200px;margin:0 auto}
-
-    /* Navigation tabs */
-    .tabs{
-      display:flex;
-      gap:8px;
-      margin-bottom:28px;
-      flex-wrap:wrap;
+    .nf{
+      font-family:"Netflix Sans","Bebas Neue",system-ui,-apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+      letter-spacing:.015em; text-transform:uppercase;
     }
-    .tab{
-      padding:10px 20px;
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:8px;
-      color:#fff;
+
+    /* Navigation bar */
+    .navbar{
+      position:sticky; top:0; inset-inline:0;
+      width:100%; padding:14px clamp(16px,4vw,48px);
+      display:flex; align-items:center; gap:32px; z-index:1000;
+      background:linear-gradient(180deg,rgba(0,0,0,.78),rgba(0,0,0,.45));
+      backdrop-filter:saturate(120%) blur(4px);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .brand{
+      background:none;border:0;padding:0;margin:0;cursor:pointer;flex-shrink:0;
+      font-weight:900; color:var(--accent); letter-spacing:-.04em; font-size:clamp(22px,3.2vw,32px);
       text-decoration:none;
-      font-weight:600;
-      font-size:14px;
-      transition:all .2s ease;
     }
-    .tab:hover{
-      background:rgba(255,255,255,.15);
-      border-color:rgba(255,255,255,.25);
-      transform:translateY(-2px);
+    .navlinks{display:flex; gap:22px; align-items:center; flex-wrap:wrap; flex:1;}
+    .navlinks a{
+      color:#e5e5e5; text-decoration:none; font-size:14px; font-weight:600;
     }
-    .tab.active{
-      background:linear-gradient(90deg,var(--accent-1),var(--accent-2));
-      border-color:transparent;
-      color:#fff;
-    }
+    .navlinks a:hover{ color:#bfbfbf; }
+    .navlinks a[aria-current="page"]{ color:#fff; text-decoration:underline; text-underline-offset:6px; }
+
+    .container{max-width:1200px;margin:0 auto;padding:20px}
 
     /* Header like the reading page */
     .title-wrap{display:flex;align-items:center;gap:14px;margin-top:18px}
@@ -130,27 +130,24 @@
       .title-wrap{gap:10px}
       .emoji{font-size:30px}
       .grid{gap:18px}
-      .tabs{gap:6px}
-      .tab{padding:8px 16px;font-size:13px}
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Navigation Tabs -->
-    <nav class="tabs">
-      <a href="index.html" class="tab">Home</a>
-      <a href="Charter.html" class="tab">Portfolio</a>
-      <a href="skills.html" class="tab">Skills</a>
-      <a href="projects.html" class="tab">Projects</a>
-      <a href="experience.html" class="tab">Experience</a>
-      <a href="certifications.html" class="tab">Certifications</a>
-      <a href="moviesshows.html" class="tab">Movies & Shows</a>
-      <a href="videogames.html" class="tab active">Video Games</a>
-      <a href="blog.html" class="tab">Blogs</a>
-      <a href="contact.html" class="tab">Contact</a>
-    </nav>
+  <!-- Navigation bar -->
+  <nav class="navbar">
+    <a class="brand nf" href="index.html#home" aria-label="Go to Home">Angel Contreras</a>
+    <div class="navlinks" role="navigation" aria-label="Primary">
+      <a href="index.html#home">Home</a>
+      <a href="index.html#portfolio">Portfolio</a>
+      <a href="skills.html">Skills</a>
+      <a href="projects.html">Projects</a>
+      <a href="videogames.html" aria-current="page">Video Games</a>
+      <a id="hireLink" href="contact.html">Hire Me</a>
+    </div>
+  </nav>
 
+  <div class="container">
     <!-- Header -->
     <div class="title-wrap">
       <div class="emoji">🎮</div>
