@@ -28,41 +28,9 @@
       text-transform:uppercase;
     }
 
-    /* --- Navbar --- */
-    .navbar{
-      position:fixed; inset:0 auto auto 0; width:100%;
-      padding:14px clamp(16px,4vw,48px);
-      display:flex; align-items:center; gap:32px;
-      z-index:1000;
-      background:#0f0f0f;
-      box-shadow:0 2px 0 rgba(255,255,255,.04) inset;
-    }
-    .brand{
-      background:none; border:0; padding:0; margin:0;
-      font-weight:900; color:var(--accent); letter-spacing:-.04em; font-size:clamp(22px,3.2vw,32px);
-      cursor:pointer;
-      flex-shrink:0;
-      text-decoration:none;
-    }
-
-    .navlinks{display:flex; gap:22px; align-items:center; flex-wrap:wrap; flex:1;}
-    /* Remove underlines from all tabs… */
-    .navlinks a{
-      color:#e5e5e5; text-decoration:none; font-size:14px; font-weight:600;
-      cursor:pointer;
-    }
-    .navlinks a:hover{color:var(--ink-2)}
-    /* …except keep underline for “Hire Me” */
-    .navlinks a.current{
-      text-decoration:underline;
-      text-underline-offset:3px;
-    }
-
-    /* (Removed profile-avatar styles and element per request) */
-
     /* --- Main Content --- */
     .main-content{
-      padding-top:80px;
+      padding-top:40px;
       min-height:100vh;
     }
 
@@ -280,20 +248,6 @@
   </style>
 </head>
 <body>
-  <!-- Nav -->
-  <nav class="navbar" id="navbar">
-    <a href="index.html" class="brand nf">Angel Contreras</a>
-    <div class="navlinks" role="navigation" aria-label="Primary">
-      <a href="#home" class="nav-link">Home</a>
-      <a href="#portfolio" class="nav-link">Portfolio</a>
-      <a href="#skills" class="nav-link">Skills</a>
-      <a href="#projects" class="nav-link">Projects</a>
-      <!-- Keep underline ONLY on this tab -->
-      <a href="contact.html" class="current">Hire Me</a>
-    </div>
-    <!-- Removed profile-avatar (top-right element) -->
-  </nav>
-
   <!-- Main Content -->
   <div class="main-content">
     <section class="profile-section">
@@ -357,29 +311,17 @@
       <a href="mailto:acontr126@calstatela.edu">Email</a>
       <a href="https://www.linkedin.com/in/angel-contreras-488539195/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
-      <a href="#portfolio" class="nav-link">Portfolio</a>
-      <a href="#skills" class="nav-link">Skills</a>
-      <a href="#projects" class="nav-link">Projects</a>
+      <a href="index.html#portfolio">Portfolio</a>
+      <a href="skills.html">Skills</a>
+      <a href="projects.html">Projects</a>
       <a href="contact.html">Hire Me</a>
-      <a href="#home" class="nav-link">Back to top</a>
+      <a href="index.html#home">Back to top</a>
     </nav>
     <p class="copyright">© <span id="year"></span> Angel Contreras. All rights reserved.</p>
   </footer>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Make in-page navigation work without reload
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', e => {
-        const href = e.target.getAttribute('href');
-        if (href && href.startsWith('#')) {
-          e.preventDefault();
-          const target = document.querySelector(href);
-          if (target) target.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    });
   </script>
 </body>
 </html>
