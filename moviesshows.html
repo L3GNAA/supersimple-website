@@ -14,7 +14,7 @@
       --card:#222;
       --muted:#bfbfbf;
       --muted-2:#9a9a9a;
-      --accent:#E50914; /* red accent to mirror reference */
+      --accent:#E50914;
     }
 
     *{margin:0;padding:0;box-sizing:border-box}
@@ -31,6 +31,35 @@
     }
 
     .container{max-width:1200px;margin:0 auto}
+
+    /* Navigation tabs */
+    .tabs{
+      display:flex;
+      gap:8px;
+      margin-bottom:28px;
+      flex-wrap:wrap;
+    }
+    .tab{
+      padding:10px 20px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:8px;
+      color:#fff;
+      text-decoration:none;
+      font-weight:600;
+      font-size:14px;
+      transition:all .2s ease;
+    }
+    .tab:hover{
+      background:rgba(255,255,255,.15);
+      border-color:rgba(255,255,255,.25);
+      transform:translateY(-2px);
+    }
+    .tab.active{
+      background:linear-gradient(135deg,var(--accent),#ff6270);
+      border-color:transparent;
+      color:#fff;
+    }
 
     /* Header */
     .header{padding:34px 8px 10px;text-align:center;position:relative}
@@ -133,11 +162,27 @@
       .back-btn{position:static;margin-bottom:14px;display:inline-block}
       .grid{gap:18px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
       .title{font-size:16px}
+      .tabs{gap:6px}
+      .tab{padding:8px 16px;font-size:13px}
     }
   </style>
 </head>
 <body>
   <div class="container">
+    <!-- Navigation Tabs -->
+    <nav class="tabs">
+      <a href="index.html" class="tab">Home</a>
+      <a href="Charter.html" class="tab">Portfolio</a>
+      <a href="skills.html" class="tab">Skills</a>
+      <a href="projects.html" class="tab">Projects</a>
+      <a href="experience.html" class="tab">Experience</a>
+      <a href="certifications.html" class="tab">Certifications</a>
+      <a href="moviesshows.html" class="tab active">Movies & Shows</a>
+      <a href="videogames.html" class="tab">Video Games</a>
+      <a href="blog.html" class="tab">Blogs</a>
+      <a href="contact.html" class="tab">Contact</a>
+    </nav>
+
     <header class="header">
       <a href="index.html" class="back-btn">← Back to Portfolio</a>
       <h1>Movies &amp; Shows</h1>
