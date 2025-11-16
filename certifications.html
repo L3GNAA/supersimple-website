@@ -59,8 +59,11 @@
     }
     .page-hero h1{ font-size: clamp(28px,5.6vw,54px); line-height:1.05; }
 
-    /* Section styling */
-    .section{ padding: 22px clamp(16px,4vw,48px) 32px; }
+    /* Section styling - LEFT ALIGNED */
+    .section{ 
+      padding: 22px clamp(16px,4vw,48px) 32px;
+      max-width: 1400px;
+    }
     .section-title{
       font-size: clamp(22px,4vw,32px);
       margin-bottom: 18px;
@@ -68,13 +71,17 @@
       font-weight: 700;
     }
 
-    /* Grid like the screenshot */
+    /* Grid - LEFT ALIGNED, no centering */
     .grid{
-      display:grid; grid-template-columns: repeat(3, minmax(0,1fr));
-      gap:18px; max-width:1200px; margin:0 auto 48px;
+      display:grid; 
+      grid-template-columns: repeat(auto-fit, minmax(320px, 400px));
+      gap:18px; 
+      margin-bottom: 48px;
+      justify-content: start;
     }
-    @media (max-width: 1000px){ .grid{ grid-template-columns: repeat(2,minmax(0,1fr)); } }
-    @media (max-width: 640px){ .grid{ grid-template-columns: 1fr; } }
+    @media (max-width: 640px){ 
+      .grid{ grid-template-columns: 1fr; } 
+    }
 
     .card{
       position:relative;
@@ -155,7 +162,7 @@
     <!-- Latest Acquirement Section -->
     <h2 class="section-title nf">Latest Acquirement</h2>
     <div class="grid">
-      <article class="card" aria-label="certificateAi.PDF">
+      <article class="card" aria-label="AI Application Development Certificate">
         <div class="card-head">
           <div class="icon gold">🤖</div>
           <a class="ext" href="certificateAi.PDF" aria-label="Open certificate" target="_blank" rel="noopener">
@@ -166,8 +173,9 @@
             </svg>
           </a>
         </div>
-        <div class="title">certificateAi.PDF</div>
-        <div class="issuer">University of California, Santa Cruz</div>
+        <div class="title">Artificial Intelligence Application Development</div>
+        <div class="issuer">University of California, Santa Cruz Extension</div>
+        <div class="foot">Professional Certificate • 14 Units</div>
       </article>
     </div>
 
@@ -200,7 +208,7 @@
             </svg>
           </a>
         </div>
-        <div class="title">Programming with Everyone with Python</div>
+        <div class="title">Programming for Everyone with Python</div>
         <div class="issuer">University of Michigan</div>
       </article>
     </div>
