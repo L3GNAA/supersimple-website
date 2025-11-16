@@ -58,13 +58,20 @@
         radial-gradient(900px 160px at 80% -60%, rgba(255,255,255,.06), transparent 60%);
     }
     .page-hero h1{ font-size: clamp(28px,5.6vw,54px); line-height:1.05; }
-    .page-hero p{ color:var(--ink-2); margin-top:8px; max-width:70ch; }
+
+    /* Section styling */
+    .section{ padding: 22px clamp(16px,4vw,48px) 32px; }
+    .section-title{
+      font-size: clamp(22px,4vw,32px);
+      margin-bottom: 18px;
+      color: var(--ink);
+      font-weight: 700;
+    }
 
     /* Grid like the screenshot */
-    .section{ padding: 22px clamp(16px,4vw,48px) 32px; }
     .grid{
       display:grid; grid-template-columns: repeat(3, minmax(0,1fr));
-      gap:18px; max-width:1200px; margin:0 auto;
+      gap:18px; max-width:1200px; margin:0 auto 48px;
     }
     @media (max-width: 1000px){ .grid{ grid-template-columns: repeat(2,minmax(0,1fr)); } }
     @media (max-width: 640px){ .grid{ grid-template-columns: 1fr; } }
@@ -142,16 +149,16 @@
   <!-- Header -->
   <header class="page-hero">
     <h1 class="nf">Certifications</h1>
-    <p>A clean, card-style gallery inspired by the look in your reference.</p>
   </header>
 
   <main class="section">
+    <!-- Latest Acquirement Section -->
+    <h2 class="section-title nf">Latest Acquirement</h2>
     <div class="grid">
-      <!-- Row 1 -->
-      <article class="card" aria-label="C++ for C Programmers">
+      <article class="card" aria-label="certificateAi.PDF">
         <div class="card-head">
-          <div class="icon">C</div>
-          <a class="ext" href="#" aria-label="Open certificate" target="_blank" rel="noopener">
+          <div class="icon gold">🤖</div>
+          <a class="ext" href="certificateAi.PDF" aria-label="Open certificate" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
               <path d="M14 3h7v7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M21 3l-9 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
@@ -159,13 +166,17 @@
             </svg>
           </a>
         </div>
-        <div class="title">C++ for C Programmers</div>
+        <div class="title">certificateAi.PDF</div>
         <div class="issuer">University of California, Santa Cruz</div>
       </article>
+    </div>
 
-      <article class="card" aria-label="IITBombayX Verified Certificate">
+    <!-- Security & CPR Training Section -->
+    <h2 class="section-title nf">Security & CPR Training</h2>
+    <div class="grid">
+      <article class="card" aria-label="Verified Certificate of IITBombayX">
         <div class="card-head">
-          <div class="icon gold">🏛️</div>
+          <div class="icon gold">🎓</div>
           <a class="ext" href="#" aria-label="Open certificate" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
               <path d="M14 3h7v7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
@@ -180,7 +191,7 @@
 
       <article class="card" aria-label="Programming with Everyone with Python">
         <div class="card-head">
-          <div class="icon">C</div>
+          <div class="icon gold">🐍</div>
           <a class="ext" href="#" aria-label="Open certificate" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
               <path d="M14 3h7v7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
@@ -192,8 +203,11 @@
         <div class="title">Programming with Everyone with Python</div>
         <div class="issuer">University of Michigan</div>
       </article>
+    </div>
 
-      <!-- Row 2 -->
+    <!-- Academic Achievements Section -->
+    <h2 class="section-title nf">Academic Achievements</h2>
+    <div class="grid">
       <article class="card" aria-label="Multitility Robot Journal">
         <div class="card-head">
           <div class="icon gold">⚙️</div>
@@ -212,7 +226,7 @@
 
       <article class="card" aria-label="Hosting Websites with Amazon Lightsail">
         <div class="card-head">
-          <div class="icon u">U</div>
+          <div class="icon gold">☁️</div>
           <a class="ext" href="#" aria-label="Open certificate" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
               <path d="M14 3h7v7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
@@ -225,10 +239,14 @@
         <div class="issuer muted">Udemy</div>
         <div class="foot">Issued Jan 2020</div>
       </article>
+    </div>
 
+    <!-- Technical Certificates Section -->
+    <h2 class="section-title nf">Technical Certificates</h2>
+    <div class="grid">
       <article class="card" aria-label="Typescript Course">
         <div class="card-head">
-          <div class="icon u">U</div>
+          <div class="icon gold">📘</div>
           <a class="ext" href="#" aria-label="Open certificate" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
               <path d="M14 3h7v7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
@@ -237,7 +255,7 @@
             </svg>
           </a>
         </div>
-        <div class="title">Typescript: The Complete Developer’s Guide</div>
+        <div class="title">Typescript: The Complete Developer's Guide</div>
         <div class="issuer muted">Udemy</div>
         <div class="foot">Issued Dec 2020</div>
       </article>
