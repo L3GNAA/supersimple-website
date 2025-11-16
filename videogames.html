@@ -9,9 +9,9 @@
     :root{
       --bg:#0e0e0e;
       --panel:#ffffff;
-      --muted:#7aa3a2;           /* soft teal subtitle like the reference */
+      --muted:#7aa3a2;
       --text:#111;
-      --accent-1:#ff6b6b;        /* warm red/orange gradient for title, like screenshot */
+      --accent-1:#ff6b6b;
       --accent-2:#ff8e66;
       --card-shadow: 0 16px 40px rgba(0,0,0,.45);
       --radius:14px;
@@ -27,6 +27,35 @@
     }
 
     .container{max-width:1200px;margin:0 auto}
+
+    /* Navigation tabs */
+    .tabs{
+      display:flex;
+      gap:8px;
+      margin-bottom:28px;
+      flex-wrap:wrap;
+    }
+    .tab{
+      padding:10px 20px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:8px;
+      color:#fff;
+      text-decoration:none;
+      font-weight:600;
+      font-size:14px;
+      transition:all .2s ease;
+    }
+    .tab:hover{
+      background:rgba(255,255,255,.15);
+      border-color:rgba(255,255,255,.25);
+      transform:translateY(-2px);
+    }
+    .tab.active{
+      background:linear-gradient(90deg,var(--accent-1),var(--accent-2));
+      border-color:transparent;
+      color:#fff;
+    }
 
     /* Header like the reading page */
     .title-wrap{display:flex;align-items:center;gap:14px;margin-top:18px}
@@ -69,7 +98,7 @@
     }
     .cover{
       width:100%;
-      aspect-ratio: 2 / 3;      /* tall like book covers */
+      aspect-ratio: 2 / 3;
       object-fit:cover;
       display:block;
       background:#222;
@@ -101,11 +130,27 @@
       .title-wrap{gap:10px}
       .emoji{font-size:30px}
       .grid{gap:18px}
+      .tabs{gap:6px}
+      .tab{padding:8px 16px;font-size:13px}
     }
   </style>
 </head>
 <body>
   <div class="container">
+    <!-- Navigation Tabs -->
+    <nav class="tabs">
+      <a href="index.html" class="tab">Home</a>
+      <a href="Charter.html" class="tab">Portfolio</a>
+      <a href="skills.html" class="tab">Skills</a>
+      <a href="projects.html" class="tab">Projects</a>
+      <a href="experience.html" class="tab">Experience</a>
+      <a href="certifications.html" class="tab">Certifications</a>
+      <a href="moviesshows.html" class="tab">Movies & Shows</a>
+      <a href="videogames.html" class="tab active">Video Games</a>
+      <a href="blog.html" class="tab">Blogs</a>
+      <a href="contact.html" class="tab">Contact</a>
+    </nav>
+
     <!-- Header -->
     <div class="title-wrap">
       <div class="emoji">🎮</div>
