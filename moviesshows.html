@@ -87,7 +87,7 @@
       padding-left:12px;border-left:5px solid var(--accent)
     }
 
-    /* Genre buttons – chunky rectangles like the reference */
+    /* Genre buttons */
     .genre-buttons{
       display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin:20px 0 38px
     }
@@ -111,7 +111,6 @@
       display:grid;gap:26px;
       grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
     }
-
     .card{
       background:rgba(255,255,255,.05);
       border:1px solid rgba(255,255,255,.12);
@@ -132,19 +131,7 @@
     .title{font-weight:800;font-size:18px;margin:2px 0 6px}
     .by{color:var(--muted-2);font-size:14px;font-weight:600}
 
-    /* Subtle play overlay (like a hover affordance) */
-    .overlay{
-      position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-      background:rgba(0,0,0,.55);opacity:0;transition:opacity .25s ease
-    }
-    .card:hover .overlay{opacity:1}
-    .play{
-      width:62px;height:62px;border-radius:50%;
-      background:var(--accent);display:flex;align-items:center;justify-content:center;
-      border:none;box-shadow:0 0 24px rgba(229,9,20,.45);transition:transform .2s ease
-    }
-    .play:before{content:"▶";color:#fff;font-size:22px;margin-left:2px}
-    .play:hover{transform:scale(1.06)}
+    /* Removed play overlay styles */
 
     /* Responsive tweaks */
     @media (max-width:768px){
@@ -194,22 +181,20 @@
       <h2 class="section-title">Favorite Shows &amp; Movies</h2>
 
       <div class="grid" id="grid">
-        <!-- Game of Thrones (UNCHANGED) -->
+        <!-- Game of Thrones -->
         <article class="card" data-genre="drama action">
           <img class="cover" alt="Game of Thrones" loading="lazy"
                src="https://m.media-amazon.com/images/M/MV5BN2IzYzBiOTQtNGZmMi00NDI5LTgxMzMtN2EzZjA1NjhlOGMxXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1000_.jpg"/>
-          <div class="overlay"><button class="play" aria-label="Play"></button></div>
           <div class="info">
             <div class="title">Game of Thrones</div>
             <div class="by">by HBO</div>
           </div>
         </article>
 
-        <!-- Breaking Bad (UNCHANGED) -->
+        <!-- Breaking Bad -->
         <article class="card" data-genre="drama">
           <img class="cover" alt="Breaking Bad" loading="lazy"
                src="https://m.media-amazon.com/images/M/MV5BYmQ4YWMxYjUtNjZmYi00MDQ1LWFjMjMtNjA5ZDdiYjdiODU5XkEyXkFqcGdeQXVyMTMzNDExODE5._V1_FMjpg_UX1000_.jpg"/>
-          <div class="overlay"><button class="play" aria-label="Play"></button></div>
           <div class="info">
             <div class="title">Breaking Bad</div>
             <div class="by">by AMC</div>
@@ -220,7 +205,6 @@
         <article class="card" data-genre="anime action">
           <img class="cover" alt="Avatar: The Last Airbender" loading="lazy"
                src="https://m.media-amazon.com/images/M/MV5BODc5YTBhMTItMjhkNi00ZTIxLWI0YjAtNTZmOTY0YjRlZGQ0XkEyXkFqcGdeQXVyODUwNjEzMzg@._V1_FMjpg_UX1000_.jpg"/>
-          <div class="overlay"><button class="play" aria-label="Play"></button></div>
           <div class="info">
             <div class="title">Avatar: The Last Airbender</div>
             <div class="by">by Nickelodeon</div>
@@ -231,7 +215,6 @@
         <article class="card" data-genre="anime action comedy">
           <img class="cover" alt="One Punch Man" loading="lazy"
                src="https://m.media-amazon.com/images/M/MV5BZjJlNzE5YzEtYzQwYS00NTBjLTk5YzAtYzUwOWQyM2E3OGI2XkEyXkFqcGdeQXVyNTgyNTA4MjM@._V1_FMjpg_UX1000_.jpg"/>
-          <div class="overlay"><button class="play" aria-label="Play"></button></div>
           <div class="info">
             <div class="title">One Punch Man</div>
             <div class="by">by Madhouse</div>
@@ -242,7 +225,6 @@
         <article class="card" data-genre="horror">
           <img class="cover" alt="IT: Welcome to Derry" loading="lazy"
                src="https://m.media-amazon.com/images/M/MV5BNDg3MmI1ZDYtNGYwOS00MzcyLTk3Y2UtYjk1Yzk5OGRhMTljXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"/>
-          <div class="overlay"><button class="play" aria-label="Play"></button></div>
           <div class="info">
             <div class="title">IT: Welcome to Derry</div>
             <div class="by">by HBO</div>
@@ -253,7 +235,6 @@
         <article class="card" data-genre="anime action horror">
           <img class="cover" alt="Chainsaw Man" loading="lazy"
                src="https://m.media-amazon.com/images/M/MV5BZjEwZTEwZWQtYjk4Mi00YTE0LTk0MDktMzgzZWIzMWM0NDJmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"/>
-          <div class="overlay"><button class="play" aria-label="Play"></button></div>
           <div class="info">
             <div class="title">Chainsaw Man</div>
             <div class="by">by MAPPA</div>
@@ -264,7 +245,6 @@
         <article class="card" data-genre="drama scifi comedy">
           <img class="cover" alt="Bugonia" loading="lazy"
                src="https://m.media-amazon.com/images/M/MV5BMTU2MTMzOTkxNF5BMl5BanBnXkFtZTcwNjU2NjU0OQ@@._V1_FMjpg_UX1000_.jpg"/>
-          <div class="overlay"><button class="play" aria-label="Play"></button></div>
           <div class="info">
             <div class="title">Bugonia</div>
             <div class="by">by Focus Features</div>
@@ -275,21 +255,9 @@
         <article class="card" data-genre="horror comedy action">
           <img class="cover" alt="Eight Legged Freaks" loading="lazy"
                src="https://m.media-amazon.com/images/M/MV5BZTg1ZTU2OWEtMTY4Ny00ZGQzLWIzNmMtYWRjYTNmNzIxMTllXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_FMjpg_UX1000_.jpg"/>
-          <div class="overlay"><button class="play" aria-label="Play"></button></div>
           <div class="info">
             <div class="title">Eight Legged Freaks</div>
             <div class="by">by Warner Bros.</div>
-          </div>
-        </article>
-
-        <!-- Grandma's Boy -->
-        <article class="card" data-genre="comedy">
-          <img class="cover" alt="Grandma's Boy" loading="lazy"
-               src="https://m.media-amazon.com/images/M/MV5BMTc0MDE2NTc2Ml5BMl5BanBnXkFtZTcwMDU3NTUzMQ@@._V1_FMjpg_UX1000_.jpg"/>
-          <div class="overlay"><button class="play" aria-label="Play"></button></div>
-          <div class="info">
-            <div class="title">Grandma's Boy</div>
-            <div class="by">by 20th Century Fox</div>
           </div>
         </article>
 
@@ -297,7 +265,6 @@
         <article class="card" data-genre="horror">
           <img class="cover" alt="A Nightmare on Elm Street" loading="lazy"
                src="https://m.media-amazon.com/images/M/MV5BNzFjZmM1ODgtMDBkMS00ZmExLWE4Y2ItM2NkNjA3YTI4N2Y2XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_FMjpg_UX1000_.jpg"/>
-          <div class="overlay"><button class="play" aria-label="Play"></button></div>
           <div class="info">
             <div class="title">A Nightmare on Elm Street</div>
             <div class="by">by New Line Cinema</div>
