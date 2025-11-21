@@ -64,12 +64,14 @@
     }
     .subtitle{margin-top:8px;color:var(--muted);font-size:clamp(14px,2.5vw,18px);}
 
+    /* Grid layout */
     .grid{
       margin-top:26px;
       display:grid;
       grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
       gap:22px;
     }
+
     .card{
       background:#1c1c1c;
       border-radius:var(--radius);
@@ -77,6 +79,8 @@
       box-shadow:var(--card-shadow);
       border:1px solid rgba(255,255,255,.08);
       transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      display:flex;                 /* keep panel placement stable even if image is missing */
+      flex-direction:column;
     }
     .card:hover{
       transform:translateY(-6px);
@@ -84,13 +88,26 @@
       box-shadow:0 24px 48px rgba(0,0,0,.55);
     }
 
-    /* Keep images simple & permissive so they always render */
-    .cover{
-      display:block;
+    /* ---- Stable cover area ----
+       The frame reserves space (2:3) so margins/spacing never shift,
+       even if an image fails to load or is removed.
+    */
+    .cover-frame{
       width:100%;
-      height:auto;        /* no forced aspect ratio */
-      object-fit:contain; /* never crop */
-      background:#000;
+      aspect-ratio:2/3;           /* consistent tile height */
+      background:#000;            /* subtle letterbox for odd ratios */
+      display:block;
+      position:relative;
+      overflow:hidden;
+      flex:0 0 auto;
+    }
+    .cover{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:contain;         /* never crop the uploaded art */
+      display:block;
     }
 
     .panel{
@@ -135,7 +152,9 @@
 
       <!-- 1. Kingdom Hearts -> vgpic1 -->
       <article class="card">
-        <img class="cover" alt="Kingdom Hearts cover" src="vgpic1.JPG">
+        <figure class="cover-frame">
+          <img class="cover" loading="lazy" alt="Kingdom Hearts cover" src="vgpic1.JPG">
+        </figure>
         <div class="panel">
           <div class="game-title">Kingdom Hearts Franchise</div>
           <div class="by">Square Enix</div>
@@ -145,7 +164,9 @@
 
       <!-- 2. Jak & Daxter -> vgpic2 -->
       <article class="card">
-        <img class="cover" alt="Jak and Daxter cover" src="vgpic2.JPG">
+        <figure class="cover-frame">
+          <img class="cover" loading="lazy" alt="Jak and Daxter cover" src="vgpic2.JPG">
+        </figure>
         <div class="panel">
           <div class="game-title">Jak and Daxter Franchise</div>
           <div class="by">Naughty Dog</div>
@@ -155,7 +176,9 @@
 
       <!-- 3. Hogwarts Legacy -> vgpic3 -->
       <article class="card">
-        <img class="cover" alt="Hogwarts Legacy cover" src="vgpic3.JPG">
+        <figure class="cover-frame">
+          <img class="cover" loading="lazy" alt="Hogwarts Legacy cover" src="vgpic3.JPG">
+        </figure>
         <div class="panel">
           <div class="game-title">Hogwarts Legacy</div>
           <div class="by">Avalanche Software</div>
@@ -165,7 +188,9 @@
 
       <!-- 4. Sonic Racing CrossWorlds -> vgpic4 -->
       <article class="card">
-        <img class="cover" alt="Sonic Racing: CrossWorlds cover" src="vgpic4.JPG">
+        <figure class="cover-frame">
+          <img class="cover" loading="lazy" alt="Sonic Racing: CrossWorlds cover" src="vgpic4.JPG">
+        </figure>
         <div class="panel">
           <div class="game-title">Sonic Racing: CrossWorlds</div>
           <div class="by">SEGA</div>
@@ -175,7 +200,9 @@
 
       <!-- 5. Resident Evil 7 -> vgpic5 -->
       <article class="card">
-        <img class="cover" alt="Resident Evil 7: Biohazard cover" src="vgpic5.JPG">
+        <figure class="cover-frame">
+          <img class="cover" loading="lazy" alt="Resident Evil 7: Biohazard cover" src="vgpic5.JPG">
+        </figure>
         <div class="panel">
           <div class="game-title">Resident Evil 7</div>
           <div class="by">Capcom</div>
@@ -185,7 +212,9 @@
 
       <!-- 6. Little Nightmares III -> vgpic6 -->
       <article class="card">
-        <img class="cover" alt="Little Nightmares III cover" src="vgpic6.JPG">
+        <figure class="cover-frame">
+          <img class="cover" loading="lazy" alt="Little Nightmares III cover" src="vgpic6.JPG">
+        </figure>
         <div class="panel">
           <div class="game-title">Little Nightmares III</div>
           <div class="by">Supermassive Games</div>
@@ -193,14 +222,15 @@
         </div>
       </article>
 
-      <!-- 7. NEW: Metal Gear Solid -->
+      <!-- 7. Metal Gear Solid -> vgpic7.jpg -->
       <article class="card">
-        <!-- Replace the src path with the correct image path in your repo -->
-        <img class="cover" alt="Metal Gear Solid cover" src="vgpic7.jpg">
+        <figure class="cover-frame">
+          <img class="cover" loading="lazy" alt="Metal Gear Solid cover" src="vgpic7.jpg">
+        </figure>
         <div class="panel">
           <div class="game-title">Metal Gear Solid</div>
           <div class="by">Konami / Hideo Kojima</div>
-          <p class="desc">A stealth-action classic that pioneered cinematic storytelling in games with tactical espionage and memorable boss encounters.</p>
+          <p class="desc">A stealth-action classic that pioneered cinematic storytelling with tactical espionage and unforgettable boss encounters.</p>
         </div>
       </article>
 
