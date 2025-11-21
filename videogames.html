@@ -17,7 +17,6 @@
       --accent-2:#ff8e66;
       --card-shadow: 0 16px 40px rgba(0,0,0,.45);
       --radius:14px;
-      --ring:rgba(255,255,255,.14);
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
@@ -34,12 +33,12 @@
       letter-spacing:.015em; text-transform:uppercase;
     }
 
+    /* Navigation bar (kept simple—no filters that could interfere) */
     .navbar{
       position:sticky; top:0; inset-inline:0;
       width:100%; padding:14px clamp(16px,4vw,48px);
-      display:flex; align-items:center; gap:32px; z-index:1000;
-      background:linear-gradient(180deg,rgba(0,0,0,.78),rgba(0,0,0,.45));
-      backdrop-filter:saturate(120%) blur(4px);
+      display:flex; align-items:center; gap:32px; z-index:10;
+      background:#000;
       border-bottom:1px solid rgba(255,255,255,.06);
     }
     .brand{
@@ -51,16 +50,12 @@
     .navlinks a{
       color:#e5e5e5; text-decoration:none; font-size:14px; font-weight:600;
     }
-    .navlinks a:hover{ color:#bfbfbf; }
     .navlinks a[aria-current="page"]{ color:#fff; text-decoration:underline; text-underline-offset:6px; }
 
     .container{max-width:1200px;margin:0 auto;padding:20px}
 
     .title-wrap{display:flex;align-items:center;gap:14px;margin-top:18px}
-    .emoji{
-      font-size:34px;
-      filter: drop-shadow(0 6px 16px rgba(0,0,0,.35));
-    }
+    .emoji{font-size:34px; filter: drop-shadow(0 6px 16px rgba(0,0,0,.35));}
     h1{
       font-size:clamp(32px,5vw,44px);
       font-weight:900;
@@ -68,11 +63,7 @@
       background:linear-gradient(90deg,var(--accent-1),var(--accent-2));
       -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
     }
-    .subtitle{
-      margin-top:8px;
-      color:var(--muted);
-      font-size:clamp(14px,2.5vw,18px);
-    }
+    .subtitle{margin-top:8px;color:var(--muted);font-size:clamp(14px,2.5vw,18px);}
 
     .grid{
       margin-top:26px;
@@ -93,34 +84,24 @@
       border-color:rgba(255,255,255,.18);
       box-shadow:0 24px 48px rgba(0,0,0,.55);
     }
+
+    /* Make images as simple and permissive as possible */
     .cover{
-      width:100%;
-      aspect-ratio: 2 / 3;
-      object-fit:cover;
       display:block;
-      background:#222;
+      width:100%;
+      height:auto;           /* remove fixed aspect ratio */
+      object-fit:contain;    /* never crop—show the file as-is */
+      background:#000;
     }
+
     .panel{
       background:var(--panel);
       color:var(--text);
       padding:16px 16px 18px;
     }
-    .game-title{
-      font-weight:800;
-      font-size:16px;
-      margin-bottom:6px;
-    }
-    .by{
-      font-weight:800;
-      font-size:13px;
-      opacity:.9;
-      margin-bottom:8px;
-    }
-    .desc{
-      font-size:13px;
-      color:#4a4a4a;
-      line-height:1.45;
-    }
+    .game-title{font-weight:800;font-size:16px;margin-bottom:6px;}
+    .by{font-weight:800;font-size:13px;opacity:.9;margin-bottom:8px;}
+    .desc{font-size:13px;color:#4a4a4a;line-height:1.45;}
 
     @media (max-width:768px){
       .title-wrap{gap:10px}
@@ -153,8 +134,9 @@
 
     <section class="grid">
 
+      <!-- 1. Kingdom Hearts -> vgpic1 -->
       <article class="card">
-        <img class="cover" loading="lazy" alt="Kingdom Hearts cover" src="/mnt/data/vgpic1.JPG"/>
+        <img class="cover" alt="Kingdom Hearts cover" src="/mnt/data/vgpic1.JPG">
         <div class="panel">
           <div class="game-title">Kingdom Hearts Franchise</div>
           <div class="by">Square Enix</div>
@@ -162,8 +144,9 @@
         </div>
       </article>
 
+      <!-- 2. Jak & Daxter -> vgpic2 -->
       <article class="card">
-        <img class="cover" loading="lazy" alt="Jak and Daxter cover" src="/mnt/data/vgpic2.JPG"/>
+        <img class="cover" alt="Jak and Daxter cover" src="/mnt/data/vgpic2.JPG">
         <div class="panel">
           <div class="game-title">Jak and Daxter Franchise</div>
           <div class="by">Naughty Dog</div>
@@ -171,8 +154,9 @@
         </div>
       </article>
 
+      <!-- 3. Hogwarts Legacy -> vgpic3 -->
       <article class="card">
-        <img class="cover" loading="lazy" alt="Hogwarts Legacy cover" src="/mnt/data/vgpic3.JPG"/>
+        <img class="cover" alt="Hogwarts Legacy cover" src="/mnt/data/vgpic3.JPG">
         <div class="panel">
           <div class="game-title">Hogwarts Legacy</div>
           <div class="by">Avalanche Software</div>
@@ -180,8 +164,9 @@
         </div>
       </article>
 
+      <!-- 4. Sonic Racing CrossWorlds -> vgpic4 -->
       <article class="card">
-        <img class="cover" loading="lazy" alt="Sonic Racing: CrossWorlds cover" src="/mnt/data/vgpic4.JPG"/>
+        <img class="cover" alt="Sonic Racing: CrossWorlds" src="vgpic4.JPG">
         <div class="panel">
           <div class="game-title">Sonic Racing: CrossWorlds</div>
           <div class="by">SEGA</div>
@@ -189,8 +174,9 @@
         </div>
       </article>
 
+      <!-- 5. Resident Evil 7 -> vgpic5 -->
       <article class="card">
-        <img class="cover" loading="lazy" alt="Resident Evil 7: Biohazard cover" src="/mnt/data/vgpic5.JPG"/>
+        <img class="cover" alt="Resident Evil 7: Biohazard" src="vgpic5.JPG">
         <div class="panel">
           <div class="game-title">Resident Evil 7</div>
           <div class="by">Capcom</div>
@@ -198,8 +184,9 @@
         </div>
       </article>
 
+      <!-- 6. Little Nightmares III -> vgpic6 -->
       <article class="card">
-        <img class="cover" loading="lazy" alt="Little Nightmares III cover" src="/mnt/data/vgpic6.JPG"/>
+        <img class="cover" alt="Little Nightmares III" src="vgpic6.JPG">
         <div class="panel">
           <div class="game-title">Little Nightmares III</div>
           <div class="by">Supermassive Games</div>
