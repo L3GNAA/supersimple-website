@@ -15,6 +15,7 @@
       --muted-2:#9a9a9a;
       --accent:#E50914;
       --card:#1c1c1c;
+      --space:24px; /* Unified spacing variable */
     }
 
     *{margin:0;padding:0;box-sizing:border-box}
@@ -28,9 +29,10 @@
       overflow-x:hidden;
     }
 
+    /* Navbar */
     .navbar{
       position:sticky; top:0; width:100%;
-      padding:14px clamp(16px,4vw,48px);
+      padding:var(--space) clamp(16px,4vw,48px);
       display:flex; align-items:center; gap:32px;
       background:#000;
       border-bottom:1px solid rgba(255,255,255,.06);
@@ -44,36 +46,63 @@
       text-decoration:none;
     }
     .navlinks{display:flex;gap:22px;flex-wrap:wrap;flex:1;}
-    .navlinks a{color:#e5e5e5;text-decoration:none;font-size:14px;font-weight:600;}
-    .navlinks a[aria-current="page"]{color:#fff;text-decoration:underline;text-underline-offset:6px;}
+    .navlinks a{
+      color:#e5e5e5;text-decoration:none;font-size:14px;font-weight:600;
+    }
+    .navlinks a[aria-current="page"]{
+      color:#fff;text-decoration:underline;text-underline-offset:6px;
+    }
 
-    .container{max-width:1200px;margin:0 auto;padding:20px}
+    /* Layout Container */
+    .container{
+      max-width:1200px;
+      margin:0 auto;
+      padding:var(--space);
+    }
 
+    /* Heading Section */
     h1{
       font-family:"Bebas Neue",sans-serif;
       font-size:clamp(48px,8vw,92px);
       background:linear-gradient(135deg,var(--accent),#ff6270);
-      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
-      text-align:center;margin:40px 0 10px;
+      -webkit-background-clip:text;
+      background-clip:text;
+      -webkit-text-fill-color:transparent;
+      text-align:center;
+      margin:var(--space) 0;
     }
-    .quote{text-align:center;font-style:italic;color:var(--muted);margin-bottom:24px;}
-    .emoji{text-align:center;font-size:clamp(22px,3vw,30px);}
+    .quote{
+      text-align:center;
+      font-style:italic;
+      color:var(--muted);
+      margin-bottom:var(--space);
+    }
+    .emoji{
+      text-align:center;
+      font-size:clamp(22px,3vw,30px);
+      margin-bottom:var(--space);
+    }
 
-    .section{margin-top:44px}
+    /* Section Titles */
+    .section{
+      margin:var(--space) 0;
+    }
     .section-title{
       font-size:clamp(22px,2.4vw,28px);
       font-weight:800;
-      margin:20px 0 18px;
+      margin-bottom:var(--space);
       padding-left:12px;
-      border-left:5px solid var(--accent)
+      border-left:5px solid var(--accent);
     }
 
+    /* Grid */
     .grid{
       display:grid;
-      gap:26px;
+      gap:var(--space);
       grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
     }
 
+    /* Cards */
     .card{
       background:var(--card);
       border:1px solid rgba(255,255,255,.12);
@@ -88,6 +117,7 @@
       box-shadow:0 18px 40px rgba(0,0,0,.55);
     }
 
+    /* Image Cover */
     .cover-frame{
       width:100%;
       aspect-ratio:2/3;
@@ -105,18 +135,29 @@
       display:block;
     }
 
+    /* Card Info */
     .info{
-      padding:16px;
+      padding:var(--space);
       text-align:center;
       background:#fff;
       color:#111;
     }
-    .title{font-weight:800;font-size:18px;margin-bottom:4px;}
-    .by{color:#555;font-size:14px;font-weight:600;}
+    .title{
+      font-weight:800;
+      font-size:18px;
+      margin-bottom:8px;
+    }
+    .by{
+      color:#555;
+      font-size:14px;
+      font-weight:600;
+    }
 
+    /* Responsive */
     @media (max-width:768px){
       .grid{gap:18px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
       .title{font-size:16px}
+      .section-title{margin-bottom:18px}
     }
   </style>
 </head>
@@ -181,8 +222,7 @@
         <!-- IT: Welcome to Derry -->
         <article class="card">
           <figure class="cover-frame">
-            <img class="cover" alt="IT: Welcome to Derry"
-                 src="moshow5.jpg">
+            <img class="cover" alt="IT: Welcome to Derry" src="moshow5.JPG">
           </figure>
           <div class="info">
             <div class="title">IT: Welcome to Derry</div>
@@ -193,8 +233,7 @@
         <!-- Chainsaw Man -->
         <article class="card">
           <figure class="cover-frame">
-            <img class="cover" alt="Chainsaw Man"
-                 src="moshow6.jpg">
+            <img class="cover" alt="Chainsaw Man" src="moshow6.JPG">
           </figure>
           <div class="info">
             <div class="title">Chainsaw Man</div>
@@ -205,8 +244,7 @@
         <!-- Bugonia -->
         <article class="card">
           <figure class="cover-frame">
-            <img class="cover" alt="Bugonia"
-                 src="moshow7.jpg">
+            <img class="cover" alt="Bugonia" src="moshow7.JPG">
           </figure>
           <div class="info">
             <div class="title">Bugonia</div>
@@ -217,8 +255,7 @@
         <!-- Eight Legged Freaks -->
         <article class="card">
           <figure class="cover-frame">
-            <img class="cover" alt="Eight Legged Freaks"
-                 src="https://m.media-amazon.com/images/M/MV5BMDA0ZmYzNDQtMDg3ZC00YzcwLTk3NzEtZThmODRlMjU0NGE1XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_FMjpg_UX1000_.jpg">
+            <img class="cover" alt="Eight Legged Freaks" src="mosho8.JPG">
           </figure>
           <div class="info">
             <div class="title">Eight Legged Freaks</div>
