@@ -116,7 +116,6 @@
       border:1px solid rgba(255,255,255,.12);
       border-radius:18px;overflow:hidden;position:relative;
       transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease,background .25s ease;
-      cursor:pointer
     }
     .card:hover{
       transform:translateY(-8px);
@@ -125,13 +124,15 @@
       box-shadow:0 18px 40px rgba(0,0,0,.55)
     }
 
+    /* Covers: default is 2:3 with cover; add .contain per-card to avoid crops for odd-ratio images */
     .cover{width:100%;aspect-ratio:2/3;object-fit:cover;display:block}
+    .cover.contain{object-fit:contain;background:#000}
 
     .info{padding:16px 16px 20px;text-align:center}
     .title{font-weight:800;font-size:18px;margin:2px 0 6px}
     .by{color:var(--muted-2);font-size:14px;font-weight:600}
 
-    /* Removed play overlay styles */
+    /* (Play overlay removed entirely) */
 
     /* Responsive tweaks */
     @media (max-width:768px){
@@ -176,12 +177,12 @@
       </div>
     </section>
 
-    <!-- Favorite Albums/Shows Grid -->
+    <!-- Favorite Shows & Movies Grid -->
     <section class="section">
       <h2 class="section-title">Favorite Shows &amp; Movies</h2>
 
       <div class="grid" id="grid">
-        <!-- Game of Thrones -->
+        <!-- Game of Thrones (good 2:3 → keep cover) -->
         <article class="card" data-genre="drama action">
           <img class="cover" alt="Game of Thrones" loading="lazy"
                src="https://m.media-amazon.com/images/M/MV5BN2IzYzBiOTQtNGZmMi00NDI5LTgxMzMtN2EzZjA1NjhlOGMxXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1000_.jpg"/>
@@ -191,7 +192,7 @@
           </div>
         </article>
 
-        <!-- Breaking Bad -->
+        <!-- Breaking Bad (good 2:3 → keep cover) -->
         <article class="card" data-genre="drama">
           <img class="cover" alt="Breaking Bad" loading="lazy"
                src="https://m.media-amazon.com/images/M/MV5BYmQ4YWMxYjUtNjZmYi00MDQ1LWFjMjMtNjA5ZDdiYjdiODU5XkEyXkFqcGdeQXVyMTMzNDExODE5._V1_FMjpg_UX1000_.jpg"/>
@@ -201,19 +202,19 @@
           </div>
         </article>
 
-        <!-- Avatar: The Last Airbender -->
+        <!-- Avatar: The Last Airbender (looks fine as cover) -->
         <article class="card" data-genre="anime action">
           <img class="cover" alt="Avatar: The Last Airbender" loading="lazy"
-               src="https://m.media-amazon.com/images/M/MV5BODc5YTBhMTItMjhkNi00ZTIxLWI0YjAtNTZmOTY0YjRlZGQ0XkEyXkFqcGdeQXVyODUwNjEzMzg@._V1_FMjpg_UX1000_.jpg"/>
+               src="https://m.media-amazon.com/images/M/MV5BODc5YTBhMTItMjhkNi00ZTIx-LWI0YjAtNTZmOTY0YjRlZGQ0XkEyXkFqcGdeQXVyODUwNjEzMzg@._V1_FMjpg_UX1000_.jpg"/>
           <div class="info">
             <div class="title">Avatar: The Last Airbender</div>
             <div class="by">by Nickelodeon</div>
           </div>
         </article>
 
-        <!-- One Punch Man -->
+        <!-- One Punch Man (odd ratio → use contain) -->
         <article class="card" data-genre="anime action comedy">
-          <img class="cover" alt="One Punch Man" loading="lazy"
+          <img class="cover contain" alt="One Punch Man" loading="lazy"
                src="https://m.media-amazon.com/images/M/MV5BZjJlNzE5YzEtYzQwYS00NTBjLTk5YzAtYzUwOWQyM2E3OGI2XkEyXkFqcGdeQXVyNTgyNTA4MjM@._V1_FMjpg_UX1000_.jpg"/>
           <div class="info">
             <div class="title">One Punch Man</div>
@@ -221,9 +222,9 @@
           </div>
         </article>
 
-        <!-- IT: Welcome to Derry -->
+        <!-- IT: Welcome to Derry (odd ratio → use contain) -->
         <article class="card" data-genre="horror">
-          <img class="cover" alt="IT: Welcome to Derry" loading="lazy"
+          <img class="cover contain" alt="IT: Welcome to Derry" loading="lazy"
                src="https://m.media-amazon.com/images/M/MV5BNDg3MmI1ZDYtNGYwOS00MzcyLTk3Y2UtYjk1Yzk5OGRhMTljXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"/>
           <div class="info">
             <div class="title">IT: Welcome to Derry</div>
@@ -231,9 +232,9 @@
           </div>
         </article>
 
-        <!-- Chainsaw Man -->
+        <!-- Chainsaw Man (odd ratio → use contain) -->
         <article class="card" data-genre="anime action horror">
-          <img class="cover" alt="Chainsaw Man" loading="lazy"
+          <img class="cover contain" alt="Chainsaw Man" loading="lazy"
                src="https://m.media-amazon.com/images/M/MV5BZjEwZTEwZWQtYjk4Mi00YTE0LTk0MDktMzgzZWIzMWM0NDJmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"/>
           <div class="info">
             <div class="title">Chainsaw Man</div>
@@ -241,9 +242,9 @@
           </div>
         </article>
 
-        <!-- Bugonia -->
+        <!-- Bugonia (odd ratio → use contain) -->
         <article class="card" data-genre="drama scifi comedy">
-          <img class="cover" alt="Bugonia" loading="lazy"
+          <img class="cover contain" alt="Bugonia" loading="lazy"
                src="https://m.media-amazon.com/images/M/MV5BMTU2MTMzOTkxNF5BMl5BanBnXkFtZTcwNjU2NjU0OQ@@._V1_FMjpg_UX1000_.jpg"/>
           <div class="info">
             <div class="title">Bugonia</div>
@@ -251,9 +252,9 @@
           </div>
         </article>
 
-        <!-- Eight Legged Freaks -->
+        <!-- Eight Legged Freaks (odd ratio → use contain) -->
         <article class="card" data-genre="horror comedy action">
-          <img class="cover" alt="Eight Legged Freaks" loading="lazy"
+          <img class="cover contain" alt="Eight Legged Freaks" loading="lazy"
                src="https://m.media-amazon.com/images/M/MV5BZTg1ZTU2OWEtMTY4Ny00ZGQzLWIzNmMtYWRjYTNmNzIxMTllXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_FMjpg_UX1000_.jpg"/>
           <div class="info">
             <div class="title">Eight Legged Freaks</div>
@@ -261,7 +262,7 @@
           </div>
         </article>
 
-        <!-- A Nightmare on Elm Street -->
+        <!-- A Nightmare on Elm Street (kept as cover if it fits; switch to contain if needed) -->
         <article class="card" data-genre="horror">
           <img class="cover" alt="A Nightmare on Elm Street" loading="lazy"
                src="https://m.media-amazon.com/images/M/MV5BNzFjZmM1ODgtMDBkMS00ZmExLWE4Y2ItM2NkNjA3YTI4N2Y2XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_FMjpg_UX1000_.jpg"/>
