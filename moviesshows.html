@@ -28,7 +28,6 @@
       overflow-x:hidden;
     }
 
-    /* Nav */
     .navbar{
       position:sticky; top:0; width:100%;
       padding:14px clamp(16px,4vw,48px);
@@ -69,14 +68,12 @@
       border-left:5px solid var(--accent)
     }
 
-    /* Grid with stable gaps regardless of image presence */
     .grid{
       display:grid;
       gap:26px;
       grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
     }
 
-    /* Card keeps layout stable even if the image is missing */
     .card{
       background:var(--card);
       border:1px solid rgba(255,255,255,.12);
@@ -91,13 +88,10 @@
       box-shadow:0 18px 40px rgba(0,0,0,.55);
     }
 
-    /* --- STATIC COVER FRAME ---
-       Reserves a consistent 2:3 area for every tile so margins/gaps never shift,
-       even if the <img> fails to load or is removed. */
     .cover-frame{
       width:100%;
       aspect-ratio:2/3;
-      background:#000;      /* letterbox for odd ratios + fallback if no image */
+      background:#000;
       position:relative;
       overflow:hidden;
       flex:0 0 auto;
@@ -107,7 +101,7 @@
       inset:0;
       width:100%;
       height:100%;
-      object-fit:contain;   /* never crop; keep full art visible */
+      object-fit:contain;
       display:block;
     }
 
@@ -148,7 +142,7 @@
       <h2 class="section-title">Favorite Shows &amp; Movies</h2>
 
       <div class="grid">
-        <!-- Game of Thrones (unchanged source) -->
+        <!-- Game of Thrones -->
         <article class="card">
           <figure class="cover-frame">
             <img class="cover" alt="Game of Thrones"
@@ -160,7 +154,7 @@
           </div>
         </article>
 
-        <!-- Breaking Bad (unchanged source) -->
+        <!-- Breaking Bad -->
         <article class="card">
           <figure class="cover-frame">
             <img class="cover" alt="Breaking Bad"
@@ -172,7 +166,19 @@
           </div>
         </article>
 
-        <!-- IT: Welcome to Derry -> moshow5.jpg -->
+        <!-- Avatar: The Last Airbender -->
+        <article class="card">
+          <figure class="cover-frame">
+            <img class="cover" alt="Avatar: The Last Airbender"
+                 src="https://m.media-amazon.com/images/M/MV5BZTY4M2IzZjItZmM4ZC00NzE1LWE3Y2ItYzE5YTRiMWFhMTNhXkEyXkFqcGdeQXVyMTMzNDExODE5._V1_FMjpg_UX1000_.jpg">
+          </figure>
+          <div class="info">
+            <div class="title">Avatar: The Last Airbender</div>
+            <div class="by">by Nickelodeon</div>
+          </div>
+        </article>
+
+        <!-- IT: Welcome to Derry -->
         <article class="card">
           <figure class="cover-frame">
             <img class="cover" alt="IT: Welcome to Derry"
@@ -184,7 +190,7 @@
           </div>
         </article>
 
-        <!-- Chainsaw Man -> moshow6.jpg -->
+        <!-- Chainsaw Man -->
         <article class="card">
           <figure class="cover-frame">
             <img class="cover" alt="Chainsaw Man"
@@ -196,11 +202,11 @@
           </div>
         </article>
 
-        <!-- Bugonia -> moshow7.jpg -->
+        <!-- Bugonia -->
         <article class="card">
           <figure class="cover-frame">
             <img class="cover" alt="Bugonia"
-                 src="mosho7.jpg">
+                 src="moshow7.jpg">
           </figure>
           <div class="info">
             <div class="title">Bugonia</div>
@@ -208,11 +214,11 @@
           </div>
         </article>
 
-        <!-- Eight Legged Freaks -> moshow8.jpg -->
+        <!-- Eight Legged Freaks -->
         <article class="card">
           <figure class="cover-frame">
             <img class="cover" alt="Eight Legged Freaks"
-                 src="moshow8.jpg">
+                 src="https://m.media-amazon.com/images/M/MV5BMDA0ZmYzNDQtMDg3ZC00YzcwLTk3NzEtZThmODRlMjU0NGE1XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_FMjpg_UX1000_.jpg">
           </figure>
           <div class="info">
             <div class="title">Eight Legged Freaks</div>
