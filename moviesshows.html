@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Movies & Shows - Angel Contreras</title>
   <meta name="color-scheme" content="dark" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <style>
     :root{
@@ -188,14 +189,15 @@
       </div>
     </section>
 
-    <!-- Favorite Albums/Shows Grid (styled like the reference tiles) -->
+    <!-- Favorite Albums/Shows Grid -->
     <section class="section">
       <h2 class="section-title">Favorite Shows &amp; Movies</h2>
 
       <div class="grid" id="grid">
-        <!-- Game of Thrones -->
+        <!-- Game of Thrones (UNCHANGED) -->
         <article class="card" data-genre="drama action">
-          <img class="cover" alt="Game of Thrones" src="https://m.media-amazon.com/images/M/MV5BN2IzYzBiOTQtNGZmMi00NDI5LTgxMzMtN2EzZjA1NjhlOGMxXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1000_.jpg"/>
+          <img class="cover" alt="Game of Thrones" loading="lazy"
+               src="https://m.media-amazon.com/images/M/MV5BN2IzYzBiOTQtNGZmMi00NDI5LTgxMzMtN2EzZjA1NjhlOGMxXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1000_.jpg"/>
           <div class="overlay"><button class="play" aria-label="Play"></button></div>
           <div class="info">
             <div class="title">Game of Thrones</div>
@@ -203,9 +205,10 @@
           </div>
         </article>
 
-        <!-- Breaking Bad -->
+        <!-- Breaking Bad (UNCHANGED) -->
         <article class="card" data-genre="drama">
-          <img class="cover" alt="Breaking Bad" src="https://m.media-amazon.com/images/M/MV5BYmQ4YWMxYjUtNjZmYi00MDQ1LWFjMjMtNjA5ZDdiYjdiODU5XkEyXkFqcGdeQXVyMTMzNDExODE5._V1_FMjpg_UX1000_.jpg"/>
+          <img class="cover" alt="Breaking Bad" loading="lazy"
+               src="https://m.media-amazon.com/images/M/MV5BYmQ4YWMxYjUtNjZmYi00MDQ1LWFjMjMtNjA5ZDdiYjdiODU5XkEyXkFqcGdeQXVyMTMzNDExODE5._V1_FMjpg_UX1000_.jpg"/>
           <div class="overlay"><button class="play" aria-label="Play"></button></div>
           <div class="info">
             <div class="title">Breaking Bad</div>
@@ -213,9 +216,10 @@
           </div>
         </article>
 
-        <!-- Avatar: The Last Airbender -->
+        <!-- Avatar: The Last Airbender (UNCHANGED) -->
         <article class="card" data-genre="anime action">
-          <img class="cover" alt="Avatar: The Last Airbender" src="https://m.media-amazon.com/images/M/MV5BODc5YTBhMTItMjhkNi00ZTIxLWI0YjAtNTZmOTY0YjRlZGQ0XkEyXkFqcGdeQXVyODUwNjEzMzg@._V1_FMjpg_UX1000_.jpg"/>
+          <img class="cover" alt="Avatar: The Last Airbender" loading="lazy"
+               src="https://m.media-amazon.com/images/M/MV5BODc5YTBhMTItMjhkNi00ZTIxLWI0YjAtNTZmOTY0YjRlZGQ0XkEyXkFqcGdeQXVyODUwNjEzMzg@._V1_FMjpg_UX1000_.jpg"/>
           <div class="overlay"><button class="play" aria-label="Play"></button></div>
           <div class="info">
             <div class="title">Avatar: The Last Airbender</div>
@@ -225,7 +229,8 @@
 
         <!-- One Punch Man -->
         <article class="card" data-genre="anime action comedy">
-          <img class="cover" alt="One Punch Man" src="https://m.media-amazon.com/images/M/MV5BMGMwMjI5YjItMTdhNy00MDQzLTk5MTQtMmJjYjFmZmFlYTI3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"/>
+          <img class="cover" alt="One Punch Man" loading="lazy"
+               src="https://m.media-amazon.com/images/M/MV5BMGMwMjI5YjItMTdhNy00MDQzLTk5MTQtMmJjYjFmZmFlYTI3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"/>
           <div class="overlay"><button class="play" aria-label="Play"></button></div>
           <div class="info">
             <div class="title">One Punch Man</div>
@@ -235,7 +240,8 @@
 
         <!-- IT: Welcome to Derry -->
         <article class="card" data-genre="horror">
-          <img class="cover" alt="IT: Welcome to Derry" src="https://m.media-amazon.com/images/M/MV5BMTY5NjYwNDgtNGVlYS00YjA3LWIwNGMtODczMTA0NzY2NzJhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"/>
+          <img class="cover" alt="IT: Welcome to Derry" loading="lazy"
+               src="https://m.media-amazon.com/images/M/MV5BMTY5NjYwNDgtNGVlYS00YjA3LWIwNGMtODczMTA0NzY2NzJhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"/>
           <div class="overlay"><button class="play" aria-label="Play"></button></div>
           <div class="info">
             <div class="title">IT: Welcome to Derry</div>
@@ -245,7 +251,8 @@
 
         <!-- Chainsaw Man -->
         <article class="card" data-genre="anime action horror">
-          <img class="cover" alt="Chainsaw Man" src="https://m.media-amazon.com/images/M/MV5BZjEwZTEwZWQtYjk4Mi00YTE0LTk0MDktMzgzZWIzMWM0NDJmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"/>
+          <img class="cover" alt="Chainsaw Man" loading="lazy"
+               src="https://m.media-amazon.com/images/M/MV5BZjEwZTEwZWQtYjk4Mi00YTE0LTk0MDktMzgzZWIzMWM0NDJmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"/>
           <div class="overlay"><button class="play" aria-label="Play"></button></div>
           <div class="info">
             <div class="title">Chainsaw Man</div>
@@ -255,7 +262,8 @@
 
         <!-- Bugonia -->
         <article class="card" data-genre="drama scifi">
-          <img class="cover" alt="Bugonia" src="https://m.media-amazon.com/images/M/MV5BOTg5ZWE2NjktYTdlZi00ZTU4LThkODQtMjQ0ZjA4YzZhNGE4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"/>
+          <img class="cover" alt="Bugonia" loading="lazy"
+               src="https://m.media-amazon.com/images/M/MV5BOTg5ZWE2NjktYTdlZi00ZTU4LThkODQtMjQ0ZjA4YzZhNGE4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"/>
           <div class="overlay"><button class="play" aria-label="Play"></button></div>
           <div class="info">
             <div class="title">Bugonia</div>
@@ -265,7 +273,8 @@
 
         <!-- Eight Legged Freaks -->
         <article class="card" data-genre="horror comedy action">
-          <img class="cover" alt="Eight Legged Freaks" src="https://m.media-amazon.com/images/M/MV5BYjRhNjFhYzctYzViMi00NzljLThjMjQtNWIzY2I5YjFkOGVhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"/>
+          <img class="cover" alt="Eight Legged Freaks" loading="lazy"
+               src="https://m.media-amazon.com/images/M/MV5BYjRhNjFhYzctYzViMi00NzljLThjMjQtNWIzY2I5YjFkOGVhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"/>
           <div class="overlay"><button class="play" aria-label="Play"></button></div>
           <div class="info">
             <div class="title">Eight Legged Freaks</div>
@@ -275,7 +284,8 @@
 
         <!-- Grandma's Boy -->
         <article class="card" data-genre="comedy">
-          <img class="cover" alt="Grandma's Boy" src="https://m.media-amazon.com/images/M/MV5BMTI0NjYzOTY0Ml5BMl5BanBnXkFtZTcwODc0MTUzMQ@@._V1_FMjpg_UX1000_.jpg"/>
+          <img class="cover" alt="Grandma's Boy" loading="lazy"
+               src="https://m.media-amazon.com/images/M/MV5BMTI0NjYzOTY0Ml5BMl5BanBnXkFtZTcwODc0MTUzMQ@@._V1_FMjpg_UX1000_.jpg"/>
           <div class="overlay"><button class="play" aria-label="Play"></button></div>
           <div class="info">
             <div class="title">Grandma's Boy</div>
@@ -285,7 +295,8 @@
 
         <!-- A Nightmare on Elm Street -->
         <article class="card" data-genre="horror">
-          <img class="cover" alt="A Nightmare on Elm Street" src="https://m.media-amazon.com/images/M/MV5BNzFjZmM1ODgtMDBkMS00ZmExLWE4Y2ItM2NkNjA3YTI4N2Y2XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_FMjpg_UX1000_.jpg"/>
+          <img class="cover" alt="A Nightmare on Elm Street" loading="lazy"
+               src="https://m.media-amazon.com/images/M/MV5BNzFjZmM1ODgtMDBkMS00ZmExLWE4Y2ItM2NkNjA3YTI4N2Y2XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_FMjpg_UX1000_.jpg"/>
           <div class="overlay"><button class="play" aria-label="Play"></button></div>
           <div class="info">
             <div class="title">A Nightmare on Elm Street</div>
