@@ -17,6 +17,7 @@
       --accent-2:#ff8e66;
       --card-shadow: 0 16px 40px rgba(0,0,0,.45);
       --radius:14px;
+      --space:24px; /* consistent spacing variable */
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
@@ -35,7 +36,7 @@
 
     .navbar{
       position:sticky; top:0; inset-inline:0;
-      width:100%; padding:14px clamp(16px,4vw,48px);
+      width:100%; padding:var(--space) clamp(16px,4vw,48px);
       display:flex; align-items:center; gap:32px; z-index:10;
       background:#000;
       border-bottom:1px solid rgba(255,255,255,.06);
@@ -51,9 +52,18 @@
     }
     .navlinks a[aria-current="page"]{ color:#fff; text-decoration:underline; text-underline-offset:6px; }
 
-    .container{max-width:1200px;margin:0 auto;padding:20px}
+    .container{
+      max-width:1200px;
+      margin:0 auto;
+      padding:var(--space);
+    }
 
-    .title-wrap{display:flex;align-items:center;gap:14px;margin-top:18px}
+    .title-wrap{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      margin:var(--space) 0;
+    }
     .emoji{font-size:34px; filter: drop-shadow(0 6px 16px rgba(0,0,0,.35));}
     h1{
       font-size:clamp(32px,5vw,44px);
@@ -62,14 +72,18 @@
       background:linear-gradient(90deg,var(--accent-1),var(--accent-2));
       -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
     }
-    .subtitle{margin-top:8px;color:var(--muted);font-size:clamp(14px,2.5vw,18px);}
+    .subtitle{
+      margin:0 0 var(--space) 0;
+      color:var(--muted);
+      font-size:clamp(14px,2.5vw,18px);
+    }
 
     /* Grid layout */
     .grid{
-      margin-top:26px;
+      margin:var(--space) 0;
       display:grid;
       grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
-      gap:22px;
+      gap:var(--space);
     }
 
     .card{
@@ -79,8 +93,9 @@
       box-shadow:var(--card-shadow);
       border:1px solid rgba(255,255,255,.08);
       transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-      display:flex;                 /* keep panel placement stable even if image is missing */
+      display:flex;
       flex-direction:column;
+      margin:0; /* ensure all cards are uniform in margin */
     }
     .card:hover{
       transform:translateY(-6px);
@@ -88,14 +103,10 @@
       box-shadow:0 24px 48px rgba(0,0,0,.55);
     }
 
-    /* ---- Stable cover area ----
-       The frame reserves space (2:3) so margins/spacing never shift,
-       even if an image fails to load or is removed.
-    */
     .cover-frame{
       width:100%;
-      aspect-ratio:2/3;           /* consistent tile height */
-      background:#000;            /* subtle letterbox for odd ratios */
+      aspect-ratio:2/3;
+      background:#000;
       display:block;
       position:relative;
       overflow:hidden;
@@ -106,23 +117,25 @@
       inset:0;
       width:100%;
       height:100%;
-      object-fit:contain;         /* never crop the uploaded art */
+      object-fit:contain;
       display:block;
     }
 
     .panel{
       background:var(--panel);
       color:var(--text);
-      padding:16px 16px 18px;
+      padding:var(--space);
+      text-align:left;
     }
-    .game-title{font-weight:800;font-size:16px;margin-bottom:6px;}
+    .game-title{font-weight:800;font-size:16px;margin-bottom:8px;}
     .by{font-weight:800;font-size:13px;opacity:.9;margin-bottom:8px;}
-    .desc{font-size:13px;color:#4a4a4a;line-height:1.45;}
+    .desc{font-size:13px;color:#4a4a4a;line-height:1.45;margin:0;}
 
     @media (max-width:768px){
-      .title-wrap{gap:10px}
+      .title-wrap{gap:10px;margin:var(--space) 0;}
       .emoji{font-size:30px}
-      .grid{gap:18px}
+      .grid{gap:18px;margin:var(--space) 0;}
+      .panel{padding:18px;}
     }
   </style>
 </head>
@@ -149,8 +162,7 @@
     </p>
 
     <section class="grid">
-
-      <!-- 1. Kingdom Hearts -> vgpic1 -->
+      <!-- 1. Kingdom Hearts -->
       <article class="card">
         <figure class="cover-frame">
           <img class="cover" loading="lazy" alt="Kingdom Hearts cover" src="vgpic1.JPG">
@@ -162,7 +174,7 @@
         </div>
       </article>
 
-      <!-- 2. Jak & Daxter -> vgpic2 -->
+      <!-- 2. Jak & Daxter -->
       <article class="card">
         <figure class="cover-frame">
           <img class="cover" loading="lazy" alt="Jak and Daxter cover" src="vgpic2.JPG">
@@ -174,7 +186,7 @@
         </div>
       </article>
 
-      <!-- 3. Hogwarts Legacy -> vgpic3 -->
+      <!-- 3. Hogwarts Legacy -->
       <article class="card">
         <figure class="cover-frame">
           <img class="cover" loading="lazy" alt="Hogwarts Legacy cover" src="vgpic3.JPG">
@@ -186,7 +198,7 @@
         </div>
       </article>
 
-      <!-- 4. Sonic Racing CrossWorlds -> vgpic4 -->
+      <!-- 4. Sonic Racing CrossWorlds -->
       <article class="card">
         <figure class="cover-frame">
           <img class="cover" loading="lazy" alt="Sonic Racing: CrossWorlds cover" src="vgpic4.JPG">
@@ -198,7 +210,7 @@
         </div>
       </article>
 
-      <!-- 5. Resident Evil 7 -> vgpic5 -->
+      <!-- 5. Resident Evil 7 -->
       <article class="card">
         <figure class="cover-frame">
           <img class="cover" loading="lazy" alt="Resident Evil 7: Biohazard cover" src="vgpic5.JPG">
@@ -210,7 +222,7 @@
         </div>
       </article>
 
-      <!-- 6. Little Nightmares III -> vgpic6 -->
+      <!-- 6. Little Nightmares III -->
       <article class="card">
         <figure class="cover-frame">
           <img class="cover" loading="lazy" alt="Little Nightmares III cover" src="vgpic6.JPG">
@@ -222,10 +234,10 @@
         </div>
       </article>
 
-      <!-- 7. Metal Gear Solid -> vgpic7.jpg -->
+      <!-- 7. Metal Gear Solid -->
       <article class="card">
         <figure class="cover-frame">
-          <img class="cover" loading="lazy" alt="Metal Gear Solid cover" src="vgpic7.jpg">
+          <img class="cover" loading="lazy" alt="Metal Gear Solid cover" src="vgpic7.JPG">
         </figure>
         <div class="panel">
           <div class="game-title">Metal Gear Solid</div>
@@ -233,7 +245,6 @@
           <p class="desc">A stealth-action classic that pioneered cinematic storytelling with tactical espionage and unforgettable boss encounters.</p>
         </div>
       </article>
-
     </section>
   </div>
 </body>
