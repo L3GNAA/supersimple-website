@@ -117,7 +117,9 @@
     .ext:hover{ filter:brightness(1.08); }
 
     .title{ font-size:18px; font-weight:800; line-height:1.25; margin-bottom:6px; }
-    .title a{ color:inherit; text-decoration:underline; text-underline-offset:3px; }
+    /* Remove underlines from ALL certificate title links */
+    .title a{ color:inherit; text-decoration:none; }
+
     .title.no-underline, .title.no-underline a{ text-decoration:none; }
     .issuer{ color:#d8e6ff; font-weight:700; font-size:14px; opacity:.95; }
     .issuer.muted{ color:#cfcfcf; }
@@ -243,21 +245,7 @@
 
     <h2 class="section-title nf">Technical Certificates</h2>
     <div class="grid">
-      <article class="card" aria-label="Typescript Course">
-        <div class="card-head">
-          <div class="icon gold">📘</div>
-          <a class="ext" href="#" aria-label="Open certificate" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
-              <path d="M14 3h7v7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M21 3l-9 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M10 7H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </div>
-        <div class="title">Typescript: The Complete Developer's Guide</div>
-        <div class="issuer muted">Udemy</div>
-        <div class="foot">Issued Dec 2020</div>
-      </article>
+      <!-- TypeScript card removed as requested -->
 
       <article class="card" aria-label="LinkedIn Learning Certificate 1">
         <div class="card-head">
@@ -266,7 +254,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M14 3h7v7"/><path d="M21 3l-9 9"/><path d="M10 7H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg>
           </a>
         </div>
-        <div class="title"><a href="https://www.linkedin.com/learning/certificates/f3e39785ed150834d7d4e2692af74a20b69d17c1b030c1648e0718ccfe8c013c?u=35553996" target="_blank" rel="noopener">LinkedIn Learning — Certificate 1</a></div>
+        <div class="title"><a href="https://www.linkedin.com/learning/certificates/f3e39785ed150834d7d4e2692af74a20b69d17c1b030c1648e0718ccfe8c013c?u=35553996" target="_blank" rel="noopener">LinkedIn Learning — [Course Title]</a></div>
         <div class="issuer muted">LinkedIn Learning</div>
       </article>
 
@@ -277,7 +265,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M14 3h7v7"/><path d="M21 3l-9 9"/><path d="M10 7H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg>
           </a>
         </div>
-        <div class="title"><a href="https://www.linkedin.com/learning/certificates/f97487f1025ce31399dcdb50375ef8f97966603aa93060dbb33381a516f48a7e?trk=share_certificate" target="_blank" rel="noopener">LinkedIn Learning — Certificate 2</a></div>
+        <div class="title"><a href="https://www.linkedin.com/learning/certificates/f97487f1025ce31399dcdb50375ef8f97966603aa93060dbb33381a516f48a7e?trk=share_certificate" target="_blank" rel="noopener">LinkedIn Learning — [Course Title]</a></div>
         <div class="issuer muted">LinkedIn Learning</div>
       </article>
 
@@ -288,7 +276,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M14 3h7v7"/><path d="M21 3l-9 9"/><path d="M10 7H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg>
           </a>
         </div>
-        <div class="title"><a href="https://www.linkedin.com/learning/certificates/2eb4ed36179ca37335a0b8af6fe73d00f85abe5fe2c7c2a28b4f90b09ef6d6a7?trk=share_certificate" target="_blank" rel="noopener">LinkedIn Learning — Certificate 3</a></div>
+        <div class="title"><a href="https://www.linkedin.com/learning/certificates/2eb4ed36179ca37335a0b8af6fe73d00f85abe5fe2c7c2a28b4f90b09ef6d6a7?trk=share_certificate" target="_blank" rel="noopener">LinkedIn Learning — [Course Title]</a></div>
         <div class="issuer muted">LinkedIn Learning</div>
       </article>
 
@@ -299,7 +287,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M14 3h7v7"/><path d="M21 3l-9 9"/><path d="M10 7H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg>
           </a>
         </div>
-        <div class="title"><a href="https://www.linkedin.com/learning/certificates/16e9c29e13a18a9cf6422a033c971955f5efdb6e33d57327b7d1f183da25dcab?trk=share_certificate" target="_blank" rel="noopener">LinkedIn Learning — Certificate 4</a></div>
+        <div class="title"><a href="https://www.linkedin.com/learning/certificates/16e9c29e13a18a9cf6422a033c971955f5efdb6e33d57327b7d1f183da25dcab?trk=share_certificate" target="_blank" rel="noopener">LinkedIn Learning — [Course Title]</a></div>
         <div class="issuer muted">LinkedIn Learning</div>
       </article>
 
@@ -310,7 +298,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M14 3h7v7"/><path d="M21 3l-9 9"/><path d="M10 7H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg>
           </a>
         </div>
-        <div class="title"><a href="https://www.linkedin.com/learning/certificates/a9c0ad36214d5d581945a3bef95fa0a81a8f6fd027550924fe83f7c0fd9bca76?trk=share_certificate" target="_blank" rel="noopener">LinkedIn Learning — Certificate 5</a></div>
+        <div class="title"><a href="https://www.linkedin.com/learning/certificates/a9c0ad36214d5d581945a3bef95fa0a81a8f6fd027550924fe83f7c0fd9bca76?trk=share_certificate" target="_blank" rel="noopener">LinkedIn Learning — [Course Title]</a></div>
         <div class="issuer muted">LinkedIn Learning</div>
       </article>
 
@@ -321,7 +309,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M14 3h7v7"/><path d="M21 3l-9 9"/><path d="M10 7H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg>
           </a>
         </div>
-        <div class="title"><a href="https://www.linkedin.com/learning/certificates/7772e12638c0f8eb85589ff674298bdd865b4f964cc6b6c08fb199701e598fbf?trk=share_certificate" target="_blank" rel="noopener">LinkedIn Learning — Certificate 6</a></div>
+        <div class="title"><a href="https://www.linkedin.com/learning/certificates/7772e12638c0f8eb85589ff674298bdd865b4f964cc6b6c08fb199701e598fbf?trk=share_certificate" target="_blank" rel="noopener">LinkedIn Learning — [Course Title]</a></div>
         <div class="issuer muted">LinkedIn Learning</div>
       </article>
 
@@ -332,7 +320,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M14 3h7v7"/><path d="M21 3l-9 9"/><path d="M10 7H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg>
           </a>
         </div>
-        <div class="title"><a href="https://www.linkedin.com/learning/certificates/5465b43f1d041db7536d9cac2b3e4724ce03b0894b8ea7fbe519afac4bff6dd3?trk=share_certificate" target="_blank" rel="noopener">LinkedIn Learning — Certificate 7</a></div>
+        <div class="title"><a href="https://www.linkedin.com/learning/certificates/5465b43f1d041db7536d9cac2b3e4724ce03b0894b8ea7fbe519afac4bff6dd3?trk=share_certificate" target="_blank" rel="noopener">LinkedIn Learning — [Course Title]</a></div>
         <div class="issuer muted">LinkedIn Learning</div>
       </article>
 
@@ -343,7 +331,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M14 3h7v7"/><path d="M21 3l-9 9"/><path d="M10 7H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg>
           </a>
         </div>
-        <div class="title"><a href="https://www.linkedin.com/learning/certificates/56569f3542b12b16fff64ee0a8954fb45b9136911d259d765b1bb4d41b7704ed?trk=share_certificate" target="_blank" rel="noopener">LinkedIn Learning — Certificate 8</a></div>
+        <div class="title"><a href="https://www.linkedin.com/learning/certificates/56569f3542b12b16fff64ee0a8954fb45b9136911d259d765b1bb4d41b7704ed?trk=share_certificate" target="_blank" rel="noopener">LinkedIn Learning — [Course Title]</a></div>
         <div class="issuer muted">LinkedIn Learning</div>
       </article>
 
@@ -354,7 +342,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M14 3h7v7"/><path d="M21 3l-9 9"/><path d="M10 7H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg>
           </a>
         </div>
-        <div class="title"><a href="https://www.linkedin.com/learning/certificates/9a75951130c7aa48a361bcfccf297631ff78249901dd1bf94865bb315055edd1?u=35553996" target="_blank" rel="noopener">LinkedIn Learning — Certificate 9</a></div>
+        <div class="title"><a href="https://www.linkedin.com/learning/certificates/9a75951130c7aa48a361bcfccf297631ff78249901dd1bf94865bb315055edd1?u=35553996" target="_blank" rel="noopener">LinkedIn Learning — [Course Title]</a></div>
         <div class="issuer muted">LinkedIn Learning</div>
       </article>
 
@@ -365,7 +353,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M14 3h7v7"/><path d="M21 3l-9 9"/><path d="M10 7H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg>
           </a>
         </div>
-        <div class="title"><a href="https://www.linkedin.com/learning/certificates/a0a5c5b6cb323dd3bf297c5e961e112e1e1d7b708cdbac272aae70ac32e53956?trk=share_certificate" target="_blank" rel="noopener">LinkedIn Learning — Certificate 10</a></div>
+        <div class="title"><a href="https://www.linkedin.com/learning/certificates/a0a5c5b6cb323dd3bf297c5e961e112e1e1d7b708cdbac272aae70ac32e53956?trk=share_certificate" target="_blank" rel="noopener">LinkedIn Learning — [Course Title]</a></div>
         <div class="issuer muted">LinkedIn Learning</div>
       </article>
 
@@ -457,4 +445,4 @@
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
-</html>                      
+</html>
