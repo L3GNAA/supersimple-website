@@ -17,7 +17,7 @@
       --accent-2:#ff8e66;
       --card-shadow: 0 16px 40px rgba(0,0,0,.45);
       --radius:14px;
-      --space:24px; /* consistent spacing variable */
+      --space:24px; /* unified spacing variable */
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
@@ -27,6 +27,7 @@
       background:linear-gradient(135deg,#1a1a1a 0%, #0a0a0a 100%);
       color:#fff;
       min-height:100vh;
+      overflow-x:hidden;
     }
 
     .nf{
@@ -34,48 +35,63 @@
       letter-spacing:.015em; text-transform:uppercase;
     }
 
+    /* Navbar */
     .navbar{
       position:sticky; top:0; inset-inline:0;
-      width:100%; padding:var(--space) clamp(16px,4vw,48px);
+      width:100%;
+      padding:var(--space) clamp(16px,4vw,48px);
       display:flex; align-items:center; gap:32px; z-index:10;
       background:#000;
       border-bottom:1px solid rgba(255,255,255,.06);
     }
     .brand{
-      background:none;border:0;padding:0;margin:0;cursor:pointer;flex-shrink:0;
-      font-weight:900; color:var(--accent); letter-spacing:-.04em; font-size:clamp(22px,3.2vw,32px);
-      text-decoration:none;
+      font-weight:900; color:var(--accent);
+      letter-spacing:-.04em; font-size:clamp(22px,3.2vw,32px);
+      text-decoration:none; flex-shrink:0;
     }
-    .navlinks{display:flex; gap:22px; align-items:center; flex-wrap:wrap; flex:1;}
+    .navlinks{
+      display:flex; gap:22px; align-items:center;
+      flex-wrap:wrap; flex:1;
+    }
     .navlinks a{
       color:#e5e5e5; text-decoration:none; font-size:14px; font-weight:600;
     }
-    .navlinks a[aria-current="page"]{ color:#fff; text-decoration:underline; text-underline-offset:6px; }
+    .navlinks a[aria-current="page"]{
+      color:#fff; text-decoration:underline; text-underline-offset:6px;
+    }
 
+    /* Container */
     .container{
       max-width:1200px;
       margin:0 auto;
       padding:var(--space);
     }
 
+    /* Titles */
     .title-wrap{
       display:flex;
       align-items:center;
       gap:14px;
       margin:var(--space) 0;
     }
-    .emoji{font-size:34px; filter: drop-shadow(0 6px 16px rgba(0,0,0,.35));}
+    .emoji{
+      font-size:34px;
+      filter: drop-shadow(0 6px 16px rgba(0,0,0,.35));
+    }
     h1{
       font-size:clamp(32px,5vw,44px);
       font-weight:900;
       letter-spacing:.02em;
       background:linear-gradient(90deg,var(--accent-1),var(--accent-2));
-      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+      -webkit-background-clip:text;
+      background-clip:text;
+      -webkit-text-fill-color:transparent;
     }
     .subtitle{
-      margin:0 0 var(--space) 0;
+      margin-bottom:var(--space);
       color:var(--muted);
       font-size:clamp(14px,2.5vw,18px);
+      line-height:1.5;
     }
 
     /* Grid layout */
@@ -86,6 +102,7 @@
       gap:var(--space);
     }
 
+    /* Card design */
     .card{
       background:#1c1c1c;
       border-radius:var(--radius);
@@ -95,7 +112,6 @@
       transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
       display:flex;
       flex-direction:column;
-      margin:0; /* ensure all cards are uniform in margin */
     }
     .card:hover{
       transform:translateY(-6px);
@@ -103,11 +119,11 @@
       box-shadow:0 24px 48px rgba(0,0,0,.55);
     }
 
+    /* Image frame */
     .cover-frame{
       width:100%;
       aspect-ratio:2/3;
       background:#000;
-      display:block;
       position:relative;
       overflow:hidden;
       flex:0 0 auto;
@@ -121,25 +137,23 @@
       display:block;
     }
 
-    /* Uniform inner spacing for EVERY card */
+    /* Card inner panel */
     .panel{
       background:var(--panel);
       color:var(--text);
       padding:var(--space);
       text-align:left;
-
-      /* The key change: uniform vertical spacing without custom margins */
       display:flex;
       flex-direction:column;
       gap:8px;
     }
-    .game-title{font-weight:800;font-size:16px; margin:0;}
-    .by{font-weight:800;font-size:13px;opacity:.9; margin:0;}
-    .desc{font-size:13px;color:#4a4a4a;line-height:1.45; margin:0;}
+    .game-title{font-weight:800;font-size:16px;margin:0;}
+    .by{font-weight:800;font-size:13px;opacity:.9;margin:0;}
+    .desc{font-size:13px;color:#4a4a4a;line-height:1.45;margin:0;}
 
     @media (max-width:768px){
       .title-wrap{gap:10px;margin:var(--space) 0;}
-      .emoji{font-size:30px}
+      .emoji{font-size:30px;}
       .grid{gap:18px;margin:var(--space) 0;}
       .panel{padding:18px;}
     }
@@ -168,7 +182,7 @@
     </p>
 
     <section class="grid">
-      <!-- 1. Kingdom Hearts -->
+      <!-- Kingdom Hearts -->
       <article class="card">
         <figure class="cover-frame">
           <img class="cover" loading="lazy" alt="Kingdom Hearts cover" src="vgpic1.JPG">
@@ -180,7 +194,7 @@
         </div>
       </article>
 
-      <!-- 2. Jak & Daxter -->
+      <!-- Jak & Daxter -->
       <article class="card">
         <figure class="cover-frame">
           <img class="cover" loading="lazy" alt="Jak and Daxter cover" src="vgpic2.JPG">
@@ -192,7 +206,7 @@
         </div>
       </article>
 
-      <!-- 3. Hogwarts Legacy -->
+      <!-- Hogwarts Legacy -->
       <article class="card">
         <figure class="cover-frame">
           <img class="cover" loading="lazy" alt="Hogwarts Legacy cover" src="vgpic3.JPG">
@@ -204,7 +218,7 @@
         </div>
       </article>
 
-      <!-- 4. Sonic Racing CrossWorlds -->
+      <!-- Sonic Racing CrossWorlds -->
       <article class="card">
         <figure class="cover-frame">
           <img class="cover" loading="lazy" alt="Sonic Racing: CrossWorlds cover" src="vgpic4.JPG">
@@ -216,7 +230,7 @@
         </div>
       </article>
 
-      <!-- 5. Resident Evil 7 -->
+      <!-- Resident Evil 7 -->
       <article class="card">
         <figure class="cover-frame">
           <img class="cover" loading="lazy" alt="Resident Evil 7: Biohazard cover" src="vgpic5.JPG">
@@ -228,7 +242,7 @@
         </div>
       </article>
 
-      <!-- 6. Little Nightmares III -->
+      <!-- Little Nightmares III -->
       <article class="card">
         <figure class="cover-frame">
           <img class="cover" loading="lazy" alt="Little Nightmares III cover" src="vgpic6.JPG">
@@ -240,7 +254,7 @@
         </div>
       </article>
 
-      <!-- 7. Metal Gear Solid -->
+      <!-- Metal Gear Solid -->
       <article class="card">
         <figure class="cover-frame">
           <img class="cover" loading="lazy" alt="Metal Gear Solid cover" src="vgpic7.JPG">
