@@ -116,6 +116,16 @@
     .ext svg{ width:16px; height:16px; stroke:var(--accent); }
     .ext:hover{ filter:brightness(1.08); }
 
+    /* Simple thumbnail for optional images inside cards */
+    .thumb{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.08);
+      margin-bottom:12px;
+    }
+
     .title{ font-size:18px; font-weight:800; line-height:1.25; margin-bottom:6px; }
     .issuer{ color:#d8e6ff; font-weight:700; font-size:14px; opacity:.95; }
     .issuer.muted{ color:#cfcfcf; }
@@ -160,7 +170,7 @@
       <article class="card" aria-label="AI Application Development Certificate">
         <div class="card-head">
           <div class="icon gold">🤖</div>
-          <!-- Link updated to point to PDF in GitHub repo -->
+          <!-- Link to PDF -->
           <a class="ext" href="CertificateAi.pdf" aria-label="Open certificate (PDF)" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
               <path d="M14 3h7v7" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
@@ -178,7 +188,8 @@
     <!-- Security & CPR Training Section -->
     <h2 class="section-title nf">Security & CPR Training</h2>
     <div class="grid">
-      <article class="card" aria-label="Verified Certificate of IITBombayX">
+      <!-- Security (attach card.JPG) -->
+      <article class="card" aria-label="Guard Registration">
         <div class="card-head">
           <div class="icon gold">🎓</div>
           <a class="ext" href="#" aria-label="Open certificate" target="_blank" rel="noopener">
@@ -189,11 +200,13 @@
             </svg>
           </a>
         </div>
+        <img class="thumb" src="card.JPG" alt="Security guard registration card">
         <div class="title">Guard Registration</div>
         <div class="issuer muted">Bureau of Security and Investigative Services</div>
       </article>
 
-      <article class="card" aria-label="Programming for Everyone with Python">
+      <!-- CPR (attach cpr.JPG) -->
+      <article class="card" aria-label="Adult & Pediatric First Aid/CPR/AED">
         <div class="card-head">
           <div class="icon gold">🐍</div>
           <a class="ext" href="#" aria-label="Open certificate" target="_blank" rel="noopener">
@@ -204,6 +217,7 @@
             </svg>
           </a>
         </div>
+        <img class="thumb" src="cpr.JPG" alt="CPR/AED certificate">
         <div class="title">Adult & Pediatric First Aid/CPR/AED</div>
         <div class="issuer">American Red Cross</div>
       </article>
